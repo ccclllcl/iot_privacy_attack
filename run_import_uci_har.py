@@ -15,9 +15,10 @@
 from __future__ import annotations
 
 import argparse
-import json
 import logging
 import sys
+import urllib.request
+import zipfile
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
@@ -36,12 +37,97 @@ from src.utils import ensure_dir, save_json, set_seed
 logger = logging.getLogger(__name__)
 
 
+UCI_HAR_ZIP_URL = (
+    "https://archive.ics.uci.edu/ml/machine-learning-databases/00240/"
+    "UCI%20HAR%20Dataset.zip"
+)
+
+
 def _har_root(cfg: ExperimentConfig) -> Path:
     """
     默认读取 data/raw/uci_har/UCI HAR Dataset/。
     若你把数据放在其他位置，可直接改这里或扩展为配置项。
     """
     return (cfg.project_root / "data" / "raw" / "uci_har" / "UCI HAR Dataset").resolve()
+
+
+def _har_zip_path(cfg: ExperimentConfig) -> Path:
+    return (cfg.project_root / "data" / "raw" / "uci_har" / "UCI_HAR_Dataset.zip").resolve()
+
+
+def _cleanup_macos_artifacts(root: Path) -> None:
+    """
+    清理 macOS 解压附件：__MACOSX/、._*、.DS_Store。
+    不影响数据内容，只减少干扰。
+    """
+    mac_dir = root / "__MACOSX"
+    if mac_dir.exists():
+        try:
+            for p in mac_dir.rglob("*"):
+                if p.is_file():
+                    p.unlink(missing_ok=True)
+            # 递归删除目录
+            for p in sorted(mac_dir.rglob("*"), reverse=True):
+                if p.is_dir():
+                    p.rmdir()
+            mac_dir.rmdir()
+        except Exception:
+            pass
+
+    for ds in root.rglob(".DS_Store"):
+        try:
+            ds.unlink(missing_ok=True)
+        except Exception:
+            pass
+    for dot_ in root.rglob("._*"):
+        try:
+            dot_.unlink(missing_ok=True)
+        except Exception:
+            pass
+
+
+def _download_file(url: str, out_path: Path) -> None:
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = out_path.with_suffix(out_path.suffix + ".part")
+    if tmp.exists():
+        tmp.unlink(missing_ok=True)
+    logger.info("下载 UCI HAR 压缩包: %s", url)
+    urllib.request.urlretrieve(url, tmp)  # nosec - controlled public dataset URL
+    tmp.replace(out_path)
+
+
+def _ensure_har_present(cfg: ExperimentConfig, *, auto_download: bool) -> Path:
+    """
+    确保 data/raw/uci_har/UCI HAR Dataset/ 存在。
+    若缺失且 auto_download=True，则自动下载并解压。
+    """
+    har_root = _har_root(cfg)
+    if har_root.is_dir():
+        return har_root
+
+    if not auto_download:
+        raise FileNotFoundError(
+            f"未找到 UCI HAR 目录: {har_root}\n"
+            f"请先手动下载并解压，或在命令中添加 --auto-download。"
+        )
+
+    zip_path = _har_zip_path(cfg)
+    if not zip_path.is_file():
+        _download_file(UCI_HAR_ZIP_URL, zip_path)
+
+    raw_root = zip_path.parent
+    logger.info("解压到: %s", raw_root)
+    with zipfile.ZipFile(zip_path, "r") as zf:
+        zf.extractall(raw_root)
+
+    _cleanup_macos_artifacts(raw_root)
+
+    if not har_root.is_dir():
+        raise FileNotFoundError(
+            f"解压完成但仍未找到目录: {har_root}\n"
+            f"请检查压缩包内容是否为 UCI HAR Dataset.zip。"
+        )
+    return har_root
 
 
 def _load_activity_labels(har_root: Path) -> List[str]:
@@ -132,6 +218,11 @@ def main() -> None:
     )
     parser = argparse.ArgumentParser(description="导入 UCI HAR 数据集到本项目格式")
     parser.add_argument("--config", type=str, default="configs/default.yaml")
+    parser.add_argument(
+        "--auto-download",
+        action="store_true",
+        help="若未找到 data/raw/uci_har/UCI HAR Dataset/，则自动下载并解压官方 UCI HAR 压缩包。",
+    )
     args = parser.parse_args()
 
     cfg_path = Path(args.config)
@@ -141,12 +232,7 @@ def main() -> None:
 
     set_seed(cfg.random_seed())
 
-    har_root = _har_root(cfg)
-    if not har_root.is_dir():
-        raise FileNotFoundError(
-            f"未找到 UCI HAR 目录: {har_root}\n"
-            f"请先下载并解压到 data/raw/uci_har/UCI HAR Dataset/。"
-        )
+    har_root = _ensure_har_present(cfg, auto_download=bool(args.auto_download))
 
     classes = _load_activity_labels(har_root)
     X_train_full, y_train_full = _load_split(har_root, "train")

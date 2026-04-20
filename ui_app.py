@@ -112,6 +112,7 @@ def _render_evaluate_outputs() -> None:
 
 def _phase_label(action: str) -> str:
     return {
+        "import_real": "导入真实数据",
         "preprocess": "数据预处理",
         "train": "模型训练",
         "evaluate": "结果评估",
@@ -237,13 +238,14 @@ def _render_instructions() -> None:
     st.markdown(
         """
 ### 这个界面能做什么
-- **不用命令行也能跑实验**：预处理、训练、评估、防御、防御评估、参数扫描。
+- **不用命令行也能跑实验**：导入真实数据、预处理、训练、评估、防御、防御评估、参数扫描。
 - **侧边栏导航**：说明 / 运行 / 历史。
 - **运行历史**：自动记录每次运行的命令、状态、耗时、stdout/stderr（尾部），以及常见输出文件路径（便于定位结果）。
 
 ### 典型流程（建议）
-- **第 0 步**：（可选）生成模拟数据：运行 `generate_mock_data.py`。
-- **第 1 步**：预处理（raw → processed）。
+- **第 0 步**：导入真实数据（推荐 UCI HAR）：运行 `run_import_uci_har.py --auto-download`。
+- **第 0.5 步**：（可选）生成模拟数据：运行 `generate_mock_data.py`。
+- **第 1 步**：预处理（raw → processed；仅当你使用智能家居长表 CSV 时需要）。
 - **第 2 步**：训练攻击模型（LSTM 或 MLP）。
 - **第 3 步**：在干净测试集上评估攻击模型。
 - **第 4 步**：运行防御（noise / LDP / adaptive LDP），生成 defended 数据。
@@ -291,7 +293,16 @@ def _render_run_page() -> None:
         st.caption(f"本次将使用临时配置：{effective_config_path}")
 
     with st.expander("常用操作", expanded=True):
-        c1, c2, c3 = st.columns(3)
+        c0, c1, c2, c3 = st.columns(4)
+        with c0:
+            if st.button("导入真实数据（UCI HAR）", use_container_width=True):
+                out = _run_action(
+                    "import_real",
+                    "run_import_uci_har.py",
+                    effective_config_path,
+                    ["--auto-download"],
+                )
+                st.session_state["last_run"] = out
         with c1:
             if st.button("预处理", use_container_width=True):
                 out = _run_action("preprocess", "run_preprocess.py", effective_config_path, [])

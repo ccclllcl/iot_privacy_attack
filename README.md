@@ -91,6 +91,7 @@ iot_privacy_attack/
 ├── run_defense.py
 ├── run_defense_eval.py
 ├── run_compare.py
+├── run_import_uci_har.py
 ├── generate_mock_data.py
 ├── requirements.txt
 └── README.md
@@ -101,6 +102,37 @@ iot_privacy_attack/
 1. 将长表格式 CSV 放到 `data/raw/`，路径在 `configs/default.yaml` 的 `paths.raw_csv` 中配置。
 2. 默认列名：`timestamp`, `device_id`, `value`, `behavior_label`。若列名不同，修改 `columns` 映射即可。
 3. **无标签**时：将 `label_mapping.source` 设为 `rules`，并按 `device_groups` / `rules` 调整。
+
+## 真实数据集（推荐：UCI HAR，一键下载并导入）
+
+如果你暂时拿不到 Smart* / CASAS 等智能家居原始事件流，本项目也支持一个**公开可直接下载**的真实时序行为数据集：
+
+- **UCI HAR (Human Activity Recognition Using Smartphones)**：50Hz 加速度计/陀螺仪，窗口长度 128，6 类活动标签（walking/sitting/laying...）。
+
+该数据集**原生就是滑窗样本**，因此不走 `run_preprocess.py`（它面向“智能家居长表 CSV → 重采样 → 滑窗”），而是通过导入脚本直接生成本项目统一的：
+
+- `data/processed/sequences.npz`
+- `data/processed/meta.json`
+- （可选）`data/processed/mlp_features.npz`
+
+一键导入（自动下载 + 解压 + 转换）：
+
+```bash
+python run_import_uci_har.py --config configs/default.yaml --auto-download
+```
+
+之后训练/评估/防御流程与原来完全一致：
+
+```bash
+python run_train.py --config configs/default.yaml --model lstm
+python run_evaluate.py --config configs/default.yaml --model_path outputs/models/best_lstm.pt
+python run_defense.py --config configs/default.yaml
+python run_defense_eval.py --config configs/default.yaml --mode fixed_attacker --model_path outputs/models/best_lstm.pt
+```
+
+说明：
+- UCI HAR 导入后的特征名固定为 9 个惯性通道（见 `data/processed/meta.json` 的 `feature_names`），防御配置里的 `selected_features` 也应与之对应。
+- 导入脚本会清理解压产生的 `__MACOSX/`、`._*`、`.DS_Store` 这类附件文件（不影响数据内容，只减少干扰）。
 
 ## 快速跑通（合成数据 + 攻击基线）
 
@@ -187,6 +219,7 @@ python run_compare.py --config configs/default.yaml --method noise --model_path 
 |------|------|
 | `python generate_mock_data.py` | 生成示例 CSV |
 | `python run_preprocess.py --config configs/default.yaml` | 预处理 |
+| `python run_import_uci_har.py --config configs/default.yaml --auto-download` | 下载并导入真实 UCI HAR 数据集（跳过预处理） |
 | `python run_train.py --config configs/default.yaml --model lstm` | 训练 LSTM |
 | `python run_evaluate.py --config configs/default.yaml --model_path outputs/models/best_lstm.pt` | 基线评估 |
 
