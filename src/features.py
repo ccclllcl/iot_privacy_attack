@@ -72,5 +72,48 @@ def extract_stat_features_matrix(
     """批量窗口 X (N, seq_len, F) -> (N, feat_dim)。"""
     if X.ndim != 3:
         raise ValueError(f"期望 X 维度为 3，得到 shape={X.shape}")
-    rows = [extract_stat_features_for_window(X[i], feature_names, feat_cfg) for i in range(X.shape[0])]
-    return np.stack(rows, axis=0)
+    # Fast vectorized implementation (critical for large N on CASAS-like datasets).
+    per = feat_cfg.get("per_channel", {})
+    glob = feat_cfg.get("global", {})
+
+    Xf = X.astype(np.float64, copy=False)
+    eps = 1e-8
+
+    feats: List[np.ndarray] = []
+
+    # Per-channel features in the SAME order as extract_stat_features_for_window
+    if per.get("use_count", True):
+        feats.append((Xf > eps).sum(axis=1))
+    if per.get("use_mean", True):
+        feats.append(Xf.mean(axis=1))
+    if per.get("use_max", True):
+        feats.append(Xf.max(axis=1) if Xf.size else np.zeros((Xf.shape[0], Xf.shape[2])))
+    if per.get("use_min", True):
+        feats.append(Xf.min(axis=1) if Xf.size else np.zeros((Xf.shape[0], Xf.shape[2])))
+    if per.get("use_std", True):
+        feats.append(Xf.std(axis=1))
+    if per.get("use_change_count", True):
+        d = np.diff(Xf, axis=1)
+        feats.append((np.abs(d) > eps).sum(axis=1))
+
+    # Flatten per-channel blocks: (N, F) * K  -> (N, F*K)
+    out_parts: List[np.ndarray] = []
+    for block in feats:
+        out_parts.append(block.astype(np.float32, copy=False))
+
+    # Global features (append to the end)
+    if glob.get("active_device_count", True):
+        active = (Xf.max(axis=1) > eps).sum(axis=1).astype(np.float32)
+        out_parts.append(active.reshape(-1, 1))
+
+    if glob.get("total_energy_proxy", True):
+        out_parts.append(Xf.sum(axis=(1, 2), dtype=np.float64).astype(np.float32).reshape(-1, 1))
+    if glob.get("mean_power_proxy", True):
+        out_parts.append(Xf.mean(axis=(1, 2)).astype(np.float32).reshape(-1, 1))
+    if glob.get("peak_power_proxy", True):
+        out_parts.append(Xf.max(axis=(1, 2)).astype(np.float32).reshape(-1, 1))
+
+    if not out_parts:
+        return np.zeros((X.shape[0], 0), dtype=np.float32)
+
+    return np.concatenate(out_parts, axis=1)

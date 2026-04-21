@@ -65,8 +65,13 @@ def load_history(history_path: str | Path, limit: int = 200) -> list[dict[str, A
 
 
 def _python_cmd_unbuffered(command: list[str]) -> list[str]:
-    """Insert CPython -u so child logging/tqdm lines flush promptly when stdout is a pipe."""
+    """Insert CPython flags so output is timely + UTF-8 in pipes."""
     c = list(command)
+    # Prefer UTF-8 output on Windows to avoid mojibake in the Streamlit UI.
+    # -X utf8 is supported on CPython 3.7+.
+    if "-X" not in c:
+        c.insert(1, "utf8")
+        c.insert(1, "-X")
     if len(c) >= 2 and c[1] != "-u":
         c.insert(1, "-u")
     return c
@@ -87,7 +92,13 @@ def run_and_record(
     import subprocess  # local import: keep base deps minimal
 
     start = time.perf_counter()
-    merged_env = {**os.environ, "PYTHONUNBUFFERED": "1"}
+    merged_env = {
+        **os.environ,
+        "PYTHONUNBUFFERED": "1",
+        # Force child Python to emit UTF-8, so UI decoding doesn't produce "�"
+        "PYTHONUTF8": "1",
+        "PYTHONIOENCODING": "utf-8",
+    }
     if env is not None:
         merged_env.update(env)
 
