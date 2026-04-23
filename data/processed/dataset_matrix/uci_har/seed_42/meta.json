@@ -1,0 +1,31 @@
+{
+  "dataset": "UCI HAR Dataset",
+  "source": "https://archive.ics.uci.edu/ml/datasets/human+activity+recognition+using+smartphones",
+  "feature_names": [
+    "total_acc_x",
+    "total_acc_y",
+    "total_acc_z",
+    "body_acc_x",
+    "body_acc_y",
+    "body_acc_z",
+    "body_gyro_x",
+    "body_gyro_y",
+    "body_gyro_z"
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ],
+  "seq_len": 128,
+  "freq": "50Hz_windowed_2.56s",
+  "label_source": "uci_har",
+  "mlp_feature_dim": 58,
+  "n_train": 5881,
+  "n_val": 1471,
+  "n_test": 2947,
+  "saved_at": "2026-04-23T16:05:23"
+}

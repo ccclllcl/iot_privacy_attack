@@ -1,0 +1,57 @@
+{
+  "defense_method": "adaptive_ldp",
+  "defense_config": {
+    "enabled": true,
+    "method": "adaptive_ldp",
+    "mode": "fixed_attacker",
+    "epsilon": 1.0,
+    "ldp_sensitivity": 1.0,
+    "noise_type": "laplace",
+    "noise_scale": 0.5,
+    "apply_to": "all",
+    "selected_features": [
+      "kitchen_light",
+      "office_pc",
+      "bedroom_motion"
+    ],
+    "binary_threshold": 0.5,
+    "binary_features": [],
+    "numeric_features": null
+  },
+  "distortion": {
+    "mse": 0.71507654144235,
+    "mae": 0.39126366903102044,
+    "pearson_r": 0.3101393509287957,
+    "mean_relative_abs_error": 76.3498981431065
+  },
+  "system_performance": {
+    "transform_train_seconds": 0.253,
+    "transform_val_seconds": 0.0616,
+    "transform_test_seconds": 0.1252,
+    "transform_total_seconds": 0.4398,
+    "num_windows_train_val_test": [
+      5881,
+      1471,
+      2947
+    ]
+  },
+  "defended_dir": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\defended\\dataset_matrix\\uci_har\\seed_42\\adaptive_ldp",
+  "generated_at": "2026-04-23T16:10:41",
+  "shapes": {
+    "train": [
+      5881,
+      128,
+      9
+    ],
+    "val": [
+      1471,
+      128,
+      9
+    ],
+    "test": [
+      2947,
+      128,
+      9
+    ]
+  }
+}

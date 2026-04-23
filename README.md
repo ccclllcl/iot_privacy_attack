@@ -97,6 +97,26 @@ iot_privacy_attack/
 └── README.md
 ```
 
+## 全量实验结果导航（论文/GPT读取）
+
+为便于快速读取“已跑完的实验全量结果”，新增了统一索引与目录说明：
+
+- 目录说明：`docs/RESULTS_STRUCTURE.md`
+- 合成数据全矩阵清单：`outputs/reports/full_methods_multiseed_manifest.json`
+- 合成数据结果汇总：`outputs/reports/full_multiseed_summary.json`
+- 真实数据集全矩阵清单：`outputs/reports/dataset_matrix_manifest.json`
+
+对应的核心结果目录：
+
+- 合成数据：`outputs/defense/full_multiseed/`
+- 真实数据集：`outputs/defense/dataset_matrix/`
+
+每个 `{seed}/{method}`（或 `{dataset}/seed_{seed}/{method}`）目录下均包含：
+
+- `defense_report.json` / `defense_report.txt`
+- `json_reports/*.json`（baseline、fixed_attacker、retrain_attacker）
+- `comparisons/comparison_results.csv`（ldp/noise 参数扫描）
+
 ## 数据放置与字段映射
 
 1. 将长表格式 CSV 放到 `data/raw/`，路径在 `configs/default.yaml` 的 `paths.raw_csv` 中配置。

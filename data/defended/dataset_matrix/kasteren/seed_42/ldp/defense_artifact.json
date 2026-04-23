@@ -1,0 +1,37 @@
+{
+  "class": "LDPDefense",
+  "feature_names": [
+    "CupsCupboard",
+    "Dishwasher",
+    "Freezer",
+    "Fridge",
+    "Frontdoor",
+    "GroceriesCupboard",
+    "HallBathroomDoor",
+    "HallBedroomDoor",
+    "HallToiletDoor",
+    "Microwave",
+    "PansCupboard",
+    "PlatesCupboard",
+    "ToiletFlush",
+    "Washingmachine"
+  ],
+  "config": {
+    "method": "ldp",
+    "mode": "fixed_attacker",
+    "epsilon": 5.0,
+    "ldp_sensitivity": 1.0,
+    "noise_type": "laplace",
+    "noise_scale": 0.5,
+    "apply_to": "all",
+    "selected_features": [
+      "kitchen_light",
+      "office_pc",
+      "bedroom_motion"
+    ],
+    "binary_threshold": 0.5,
+    "binary_features": [],
+    "numeric_features": null,
+    "random_seed": 42
+  }
+}

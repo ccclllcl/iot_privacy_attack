@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "model_type": "lstm",
+  "accuracy": 0.836443841194435,
+  "f1_macro": 0.8326391825508349,
+  "precision_macro": 0.8366515286663642,
+  "recall_macro": 0.8334921083697733,
+  "per_class_recall": {
+    "walking": 0.9294354838709677,
+    "walking_upstairs": 0.7388535031847133,
+    "walking_downstairs": 0.7952380952380952,
+    "sitting": 0.7963340122199593,
+    "standing": 0.793233082706767,
+    "laying": 0.9478584729981379
+  },
+  "confusion_matrix": [
+    [
+      461,
+      0,
+      32,
+      0,
+      3,
+      0
+    ],
+    [
+      16,
+      348,
+      104,
+      0,
+      2,
+      1
+    ],
+    [
+      64,
+      22,
+      334,
+      0,
+      0,
+      0
+    ],
+    [
+      22,
+      6,
+      1,
+      391,
+      71,
+      0
+    ],
+    [
+      20,
+      4,
+      0,
+      86,
+      422,
+      0
+    ],
+    [
+      1,
+      25,
+      2,
+      0,
+      0,
+      509
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "walking_upstairs",
+      "pred": "walking_downstairs",
+      "count": 104
+    },
+    {
+      "true": "standing",
+      "pred": "sitting",
+      "count": 86
+    },
+    {
+      "true": "sitting",
+      "pred": "standing",
+      "count": 71
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking",
+      "count": 64
+    },
+    {
+      "true": "walking",
+      "pred": "walking_downstairs",
+      "count": 32
+    },
+    {
+      "true": "laying",
+      "pred": "walking_upstairs",
+      "count": 25
+    },
+    {
+      "true": "sitting",
+      "pred": "walking",
+      "count": 22
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking_upstairs",
+      "count": 22
+    },
+    {
+      "true": "standing",
+      "pred": "walking",
+      "count": 20
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking",
+      "count": 16
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}

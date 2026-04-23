@@ -1,0 +1,57 @@
+{
+  "defense_method": "adaptive_ldp",
+  "defense_config": {
+    "enabled": true,
+    "method": "adaptive_ldp",
+    "mode": "fixed_attacker",
+    "epsilon": 1.0,
+    "ldp_sensitivity": 1.0,
+    "noise_type": "laplace",
+    "noise_scale": 0.5,
+    "apply_to": "all",
+    "selected_features": [
+      "kitchen_light",
+      "office_pc",
+      "bedroom_motion"
+    ],
+    "binary_threshold": 0.5,
+    "binary_features": [],
+    "numeric_features": null
+  },
+  "distortion": {
+    "mse": 0.2148091916906182,
+    "mae": 0.2410784214080203,
+    "pearson_r": 0.4485420250207629,
+    "mean_relative_abs_error": 21050109.198886555
+  },
+  "system_performance": {
+    "transform_train_seconds": 0.0292,
+    "transform_val_seconds": 0.0063,
+    "transform_test_seconds": 0.0061,
+    "transform_total_seconds": 0.0416,
+    "num_windows_train_val_test": [
+      903,
+      194,
+      193
+    ]
+  },
+  "defended_dir": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\defended\\dataset_matrix\\kasteren\\seed_123\\adaptive_ldp",
+  "generated_at": "2026-04-23T16:27:41",
+  "shapes": {
+    "train": [
+      903,
+      30,
+      14
+    ],
+    "val": [
+      194,
+      30,
+      14
+    ],
+    "test": [
+      193,
+      30,
+      14
+    ]
+  }
+}

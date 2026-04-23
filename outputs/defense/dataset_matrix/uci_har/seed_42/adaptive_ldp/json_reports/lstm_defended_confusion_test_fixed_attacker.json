@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "model_type": "lstm",
+  "accuracy": 0.19681031557516118,
+  "f1_macro": 0.082514176974594,
+  "precision_macro": 0.21584131122230543,
+  "recall_macro": 0.1814606725461794,
+  "per_class_recall": {
+    "walking": 0.05241935483870968,
+    "walking_upstairs": 0.0,
+    "walking_downstairs": 0.011904761904761904,
+    "sitting": 0.024439918533604887,
+    "standing": 0.0,
+    "laying": 1.0
+  },
+  "confusion_matrix": [
+    [
+      26,
+      0,
+      7,
+      0,
+      0,
+      463
+    ],
+    [
+      6,
+      0,
+      10,
+      0,
+      0,
+      455
+    ],
+    [
+      9,
+      0,
+      5,
+      0,
+      0,
+      406
+    ],
+    [
+      234,
+      0,
+      3,
+      12,
+      1,
+      241
+    ],
+    [
+      318,
+      1,
+      6,
+      2,
+      0,
+      205
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      537
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "walking",
+      "pred": "laying",
+      "count": 463
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "laying",
+      "count": 455
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "laying",
+      "count": 406
+    },
+    {
+      "true": "standing",
+      "pred": "walking",
+      "count": 318
+    },
+    {
+      "true": "sitting",
+      "pred": "laying",
+      "count": 241
+    },
+    {
+      "true": "sitting",
+      "pred": "walking",
+      "count": 234
+    },
+    {
+      "true": "standing",
+      "pred": "laying",
+      "count": 205
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking_downstairs",
+      "count": 10
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking",
+      "count": 9
+    },
+    {
+      "true": "walking",
+      "pred": "walking_downstairs",
+      "count": 7
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}

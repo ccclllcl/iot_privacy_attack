@@ -1,0 +1,8 @@
+{
+  "accuracy": 0.21243523316062177,
+  "precision_macro": 0.20975813402283988,
+  "recall_macro": 0.27699175824175826,
+  "f1_macro": 0.20080677869139407,
+  "model_path": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\models\\dataset_matrix\\kasteren\\seed_42\\best_mlp.pt",
+  "model_type": "mlp"
+}

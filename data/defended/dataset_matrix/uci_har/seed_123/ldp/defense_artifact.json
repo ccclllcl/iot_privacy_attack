@@ -1,0 +1,32 @@
+{
+  "class": "LDPDefense",
+  "feature_names": [
+    "total_acc_x",
+    "total_acc_y",
+    "total_acc_z",
+    "body_acc_x",
+    "body_acc_y",
+    "body_acc_z",
+    "body_gyro_x",
+    "body_gyro_y",
+    "body_gyro_z"
+  ],
+  "config": {
+    "method": "ldp",
+    "mode": "fixed_attacker",
+    "epsilon": 5.0,
+    "ldp_sensitivity": 1.0,
+    "noise_type": "laplace",
+    "noise_scale": 0.5,
+    "apply_to": "all",
+    "selected_features": [
+      "kitchen_light",
+      "office_pc",
+      "bedroom_motion"
+    ],
+    "binary_threshold": 0.5,
+    "binary_features": [],
+    "numeric_features": null,
+    "random_seed": 123
+  }
+}

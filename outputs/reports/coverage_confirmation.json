@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-04-23",
+  "full_multiseed": {
+    "datasets": [
+      "mock_smart_home"
+    ],
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "models": [
+      "lstm",
+      "mlp"
+    ],
+    "defense_methods": [
+      "adaptive_ldp",
+      "ldp",
+      "noise"
+    ],
+    "defense_eval_modes": [
+      "fixed_attacker",
+      "retrain_attacker"
+    ],
+    "parameter_scan": [
+      "ldp_epsilon",
+      "noise_scale"
+    ],
+    "json_report_files": 54,
+    "comparison_csv_files": 6,
+    "manifest": "outputs/reports/full_methods_multiseed_manifest.json"
+  },
+  "dataset_matrix": {
+    "datasets": [
+      "uci_har",
+      "kasteren"
+    ],
+    "seeds": [
+      42,
+      123
+    ],
+    "models": [
+      "lstm",
+      "mlp"
+    ],
+    "defense_methods": [
+      "adaptive_ldp",
+      "ldp",
+      "noise"
+    ],
+    "defense_eval_modes": [
+      "fixed_attacker",
+      "retrain_attacker"
+    ],
+    "parameter_scan": [
+      "ldp_epsilon",
+      "noise_scale"
+    ],
+    "json_report_files": 72,
+    "comparison_csv_files": 8,
+    "manifest": "outputs/reports/dataset_matrix_manifest.json"
+  }
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "dataset": "uci_har",
+    "seed": 42,
+    "base_config": "configs/generated_dataset_matrix/uci_har.seed_42.base.yaml",
+    "processed_dir": "data/processed/dataset_matrix/uci_har/seed_42",
+    "models_dir": "outputs/models/dataset_matrix/uci_har/seed_42",
+    "methods": [
+      {
+        "method": "adaptive_ldp",
+        "config": "configs/generated_dataset_matrix/uci_har.seed_42.adaptive_ldp.yaml",
+        "defended_dir": "data/defended/dataset_matrix/uci_har/seed_42/adaptive_ldp",
+        "defense_dir": "outputs/defense/dataset_matrix/uci_har/seed_42/adaptive_ldp"
+      },
+      {
+        "method": "ldp",
+        "config": "configs/generated_dataset_matrix/uci_har.seed_42.ldp.yaml",
+        "defended_dir": "data/defended/dataset_matrix/uci_har/seed_42/ldp",
+        "defense_dir": "outputs/defense/dataset_matrix/uci_har/seed_42/ldp"
+      },
+      {
+        "method": "noise",
+        "config": "configs/generated_dataset_matrix/uci_har.seed_42.noise.yaml",
+        "defended_dir": "data/defended/dataset_matrix/uci_har/seed_42/noise",
+        "defense_dir": "outputs/defense/dataset_matrix/uci_har/seed_42/noise"
+      }
+    ]
+  },
+  {
+    "dataset": "uci_har",
+    "seed": 123,
+    "base_config": "configs/generated_dataset_matrix/uci_har.seed_123.base.yaml",
+    "processed_dir": "data/processed/dataset_matrix/uci_har/seed_123",
+    "models_dir": "outputs/models/dataset_matrix/uci_har/seed_123",
+    "methods": [
+      {
+        "method": "adaptive_ldp",
+        "config": "configs/generated_dataset_matrix/uci_har.seed_123.adaptive_ldp.yaml",
+        "defended_dir": "data/defended/dataset_matrix/uci_har/seed_123/adaptive_ldp",
+        "defense_dir": "outputs/defense/dataset_matrix/uci_har/seed_123/adaptive_ldp"
+      },
+      {
+        "method": "ldp",
+        "config": "configs/generated_dataset_matrix/uci_har.seed_123.ldp.yaml",
+        "defended_dir": "data/defended/dataset_matrix/uci_har/seed_123/ldp",
+        "defense_dir": "outputs/defense/dataset_matrix/uci_har/seed_123/ldp"
+      },
+      {
+        "method": "noise",
+        "config": "configs/generated_dataset_matrix/uci_har.seed_123.noise.yaml",
+        "defended_dir": "data/defended/dataset_matrix/uci_har/seed_123/noise",
+        "defense_dir": "outputs/defense/dataset_matrix/uci_har/seed_123/noise"
+      }
+    ]
+  },
+  {
+    "dataset": "kasteren",
+    "seed": 42,
+    "base_config": "configs/generated_dataset_matrix/kasteren.seed_42.base.yaml",
+    "processed_dir": "data/processed/dataset_matrix/kasteren/seed_42",
+    "models_dir": "outputs/models/dataset_matrix/kasteren/seed_42",
+    "methods": [
+      {
+        "method": "adaptive_ldp",
+        "config": "configs/generated_dataset_matrix/kasteren.seed_42.adaptive_ldp.yaml",
+        "defended_dir": "data/defended/dataset_matrix/kasteren/seed_42/adaptive_ldp",
+        "defense_dir": "outputs/defense/dataset_matrix/kasteren/seed_42/adaptive_ldp"
+      },
+      {
+        "method": "ldp",
+        "config": "configs/generated_dataset_matrix/kasteren.seed_42.ldp.yaml",
+        "defended_dir": "data/defended/dataset_matrix/kasteren/seed_42/ldp",
+        "defense_dir": "outputs/defense/dataset_matrix/kasteren/seed_42/ldp"
+      },
+      {
+        "method": "noise",
+        "config": "configs/generated_dataset_matrix/kasteren.seed_42.noise.yaml",
+        "defended_dir": "data/defended/dataset_matrix/kasteren/seed_42/noise",
+        "defense_dir": "outputs/defense/dataset_matrix/kasteren/seed_42/noise"
+      }
+    ]
+  },
+  {
+    "dataset": "kasteren",
+    "seed": 123,
+    "base_config": "configs/generated_dataset_matrix/kasteren.seed_123.base.yaml",
+    "processed_dir": "data/processed/dataset_matrix/kasteren/seed_123",
+    "models_dir": "outputs/models/dataset_matrix/kasteren/seed_123",
+    "methods": [
+      {
+        "method": "adaptive_ldp",
+        "config": "configs/generated_dataset_matrix/kasteren.seed_123.adaptive_ldp.yaml",
+        "defended_dir": "data/defended/dataset_matrix/kasteren/seed_123/adaptive_ldp",
+        "defense_dir": "outputs/defense/dataset_matrix/kasteren/seed_123/adaptive_ldp"
+      },
+      {
+        "method": "ldp",
+        "config": "configs/generated_dataset_matrix/kasteren.seed_123.ldp.yaml",
+        "defended_dir": "data/defended/dataset_matrix/kasteren/seed_123/ldp",
+        "defense_dir": "outputs/defense/dataset_matrix/kasteren/seed_123/ldp"
+      },
+      {
+        "method": "noise",
+        "config": "configs/generated_dataset_matrix/kasteren.seed_123.noise.yaml",
+        "defended_dir": "data/defended/dataset_matrix/kasteren/seed_123/noise",
+        "defense_dir": "outputs/defense/dataset_matrix/kasteren/seed_123/noise"
+      }
+    ]
+  }
+]

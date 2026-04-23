@@ -1,0 +1,8 @@
+{
+  "accuracy": 0.8157448252460129,
+  "precision_macro": 0.8096772980566409,
+  "recall_macro": 0.8115383557820294,
+  "f1_macro": 0.8092316388515185,
+  "model_path": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\models\\dataset_matrix\\uci_har\\seed_123\\best_mlp.pt",
+  "model_type": "mlp"
+}

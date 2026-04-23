@@ -1,0 +1,39 @@
+物联网隐私防御评估报告
+模式: retrain_attacker
+
+=== 数据失真（防御流水线输出） ===
+{
+  "mse": 0.5001426135508552,
+  "mae": 0.5000535215727714,
+  "pearson_r": 0.492560356051882,
+  "mean_relative_abs_error": 266.6673200618828
+}
+
+=== 攻击性能 ===
+{
+  "note": "重训后模型在干净测试集上的表现通常下降（分布偏移），在防御后测试集上为自适应攻击者的主指标。",
+  "retrained_on_defended": {
+    "accuracy_on_defended_test": 0.5972175093315236,
+    "f1_macro_on_defended_test": 0.5855676831572957,
+    "per_class_recall_on_defended_test": {
+      "walking": 0.2862903225806452,
+      "walking_upstairs": 0.6178343949044586,
+      "walking_downstairs": 0.44285714285714284,
+      "sitting": 0.7107942973523421,
+      "standing": 0.4849624060150376,
+      "laying": 0.994413407821229
+    }
+  },
+  "same_retrained_model_on_clean_test": {
+    "accuracy": 0.3919239904988123,
+    "f1_macro": 0.34329917965172146,
+    "per_class_recall": {
+      "walking": 0.012096774193548387,
+      "walking_upstairs": 0.7473460721868365,
+      "walking_downstairs": 0.1380952380952381,
+      "sitting": 0.6476578411405295,
+      "standing": 0.4548872180451128,
+      "laying": 0.3333333333333333
+    }
+  }
+}

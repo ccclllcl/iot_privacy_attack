@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "model_type": "lstm",
+  "accuracy": 0.5843230403800475,
+  "f1_macro": 0.5204097523636332,
+  "precision_macro": 0.6084589138051627,
+  "recall_macro": 0.5687059499313788,
+  "per_class_recall": {
+    "walking": 0.5040322580645161,
+    "walking_upstairs": 0.673036093418259,
+    "walking_downstairs": 0.016666666666666666,
+    "sitting": 0.9083503054989817,
+    "standing": 0.3101503759398496,
+    "laying": 1.0
+  },
+  "confusion_matrix": [
+    [
+      250,
+      204,
+      3,
+      2,
+      37,
+      0
+    ],
+    [
+      146,
+      317,
+      2,
+      0,
+      6,
+      0
+    ],
+    [
+      107,
+      298,
+      7,
+      0,
+      8,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      446,
+      40,
+      3
+    ],
+    [
+      3,
+      0,
+      0,
+      364,
+      165,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      537
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "standing",
+      "pred": "sitting",
+      "count": 364
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking_upstairs",
+      "count": 298
+    },
+    {
+      "true": "walking",
+      "pred": "walking_upstairs",
+      "count": 204
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking",
+      "count": 146
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking",
+      "count": 107
+    },
+    {
+      "true": "sitting",
+      "pred": "standing",
+      "count": 40
+    },
+    {
+      "true": "walking",
+      "pred": "standing",
+      "count": 37
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "standing",
+      "count": 8
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "standing",
+      "count": 6
+    },
+    {
+      "true": "standing",
+      "pred": "walking",
+      "count": 3
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}
