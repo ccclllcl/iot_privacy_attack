@@ -1,0 +1,83 @@
+[
+  {
+    "seed": 42,
+    "base_config": "configs/generated_all_methods/default.seed_42.base.yaml",
+    "raw_csv": "data/raw/full_multiseed/seed_42/smart_home_events.csv",
+    "processed_dir": "data/processed/full_multiseed/seed_42",
+    "models_dir": "outputs/models/full_multiseed/seed_42",
+    "methods": [
+      {
+        "method": "adaptive_ldp",
+        "config": "configs/generated_all_methods/default.seed_42.adaptive_ldp.yaml",
+        "defended_dir": "data/defended/full_multiseed/seed_42/adaptive_ldp",
+        "defense_dir": "outputs/defense/full_multiseed/seed_42/adaptive_ldp"
+      },
+      {
+        "method": "ldp",
+        "config": "configs/generated_all_methods/default.seed_42.ldp.yaml",
+        "defended_dir": "data/defended/full_multiseed/seed_42/ldp",
+        "defense_dir": "outputs/defense/full_multiseed/seed_42/ldp"
+      },
+      {
+        "method": "noise",
+        "config": "configs/generated_all_methods/default.seed_42.noise.yaml",
+        "defended_dir": "data/defended/full_multiseed/seed_42/noise",
+        "defense_dir": "outputs/defense/full_multiseed/seed_42/noise"
+      }
+    ]
+  },
+  {
+    "seed": 123,
+    "base_config": "configs/generated_all_methods/default.seed_123.base.yaml",
+    "raw_csv": "data/raw/full_multiseed/seed_123/smart_home_events.csv",
+    "processed_dir": "data/processed/full_multiseed/seed_123",
+    "models_dir": "outputs/models/full_multiseed/seed_123",
+    "methods": [
+      {
+        "method": "adaptive_ldp",
+        "config": "configs/generated_all_methods/default.seed_123.adaptive_ldp.yaml",
+        "defended_dir": "data/defended/full_multiseed/seed_123/adaptive_ldp",
+        "defense_dir": "outputs/defense/full_multiseed/seed_123/adaptive_ldp"
+      },
+      {
+        "method": "ldp",
+        "config": "configs/generated_all_methods/default.seed_123.ldp.yaml",
+        "defended_dir": "data/defended/full_multiseed/seed_123/ldp",
+        "defense_dir": "outputs/defense/full_multiseed/seed_123/ldp"
+      },
+      {
+        "method": "noise",
+        "config": "configs/generated_all_methods/default.seed_123.noise.yaml",
+        "defended_dir": "data/defended/full_multiseed/seed_123/noise",
+        "defense_dir": "outputs/defense/full_multiseed/seed_123/noise"
+      }
+    ]
+  },
+  {
+    "seed": 2026,
+    "base_config": "configs/generated_all_methods/default.seed_2026.base.yaml",
+    "raw_csv": "data/raw/full_multiseed/seed_2026/smart_home_events.csv",
+    "processed_dir": "data/processed/full_multiseed/seed_2026",
+    "models_dir": "outputs/models/full_multiseed/seed_2026",
+    "methods": [
+      {
+        "method": "adaptive_ldp",
+        "config": "configs/generated_all_methods/default.seed_2026.adaptive_ldp.yaml",
+        "defended_dir": "data/defended/full_multiseed/seed_2026/adaptive_ldp",
+        "defense_dir": "outputs/defense/full_multiseed/seed_2026/adaptive_ldp"
+      },
+      {
+        "method": "ldp",
+        "config": "configs/generated_all_methods/default.seed_2026.ldp.yaml",
+        "defended_dir": "data/defended/full_multiseed/seed_2026/ldp",
+        "defense_dir": "outputs/defense/full_multiseed/seed_2026/ldp"
+      },
+      {
+        "method": "noise",
+        "config": "configs/generated_all_methods/default.seed_2026.noise.yaml",
+        "defended_dir": "data/defended/full_multiseed/seed_2026/noise",
+        "defense_dir": "outputs/defense/full_multiseed/seed_2026/noise"
+      }
+    ]
+  }
+]

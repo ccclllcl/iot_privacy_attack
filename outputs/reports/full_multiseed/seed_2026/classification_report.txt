@@ -1,0 +1,21 @@
+物联网隐私攻击基线 — 测试集评估结果
+模型文件: D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\models\full_multiseed\seed_2026\best_mlp.pt
+模型类型: mlp
+
+Accuracy:  0.4719
+Precision (macro): 0.5195
+Recall (macro):    0.5727
+F1-score (macro):  0.4247
+
+=== classification_report ===
+                precision    recall  f1-score   support
+
+         sleep     0.2558    0.4583    0.3284        48
+          away     0.2703    0.6349    0.3791        63
+       cooking     0.8750    0.0281    0.0545       249
+using_computer     0.8611    0.9064    0.8832       171
+         other     0.3352    0.8356    0.4784        73
+
+      accuracy                         0.4719       604
+     macro avg     0.5195    0.5727    0.4247       604
+  weighted avg     0.6935    0.4719    0.3960       604

@@ -1,0 +1,111 @@
+{
+  "split": "test",
+  "model_type": "mlp",
+  "accuracy": 0.4652317880794702,
+  "f1_macro": 0.4129917751339348,
+  "precision_macro": 0.46884109444346356,
+  "recall_macro": 0.5690274506400426,
+  "per_class_recall": {
+    "sleep": 0.2857142857142857,
+    "away": 0.6949152542372882,
+    "cooking": 0.04597701149425287,
+    "using_computer": 0.9122807017543859,
+    "other": 0.90625
+  },
+  "confusion_matrix": [
+    [
+      14,
+      11,
+      1,
+      3,
+      20
+    ],
+    [
+      9,
+      41,
+      3,
+      0,
+      6
+    ],
+    [
+      35,
+      81,
+      12,
+      28,
+      105
+    ],
+    [
+      6,
+      0,
+      0,
+      156,
+      9
+    ],
+    [
+      5,
+      0,
+      1,
+      0,
+      58
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "cooking",
+      "pred": "other",
+      "count": 105
+    },
+    {
+      "true": "cooking",
+      "pred": "away",
+      "count": 81
+    },
+    {
+      "true": "cooking",
+      "pred": "sleep",
+      "count": 35
+    },
+    {
+      "true": "cooking",
+      "pred": "using_computer",
+      "count": 28
+    },
+    {
+      "true": "sleep",
+      "pred": "other",
+      "count": 20
+    },
+    {
+      "true": "sleep",
+      "pred": "away",
+      "count": 11
+    },
+    {
+      "true": "using_computer",
+      "pred": "other",
+      "count": 9
+    },
+    {
+      "true": "away",
+      "pred": "sleep",
+      "count": 9
+    },
+    {
+      "true": "using_computer",
+      "pred": "sleep",
+      "count": 6
+    },
+    {
+      "true": "away",
+      "pred": "other",
+      "count": 6
+    }
+  ],
+  "class_names": [
+    "sleep",
+    "away",
+    "cooking",
+    "using_computer",
+    "other"
+  ]
+}
