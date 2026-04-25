@@ -91,11 +91,69 @@ iot_privacy_attack/
 ├── run_defense.py
 ├── run_defense_eval.py
 ├── run_compare.py
+├── run_cooja_baseline_attack.py   # Cooja 日志 -> 流量特征 -> 攻击基线
+├── run_cooja_compare.py           # 两组 Cooja 日志对比（多 seed）
+├── run_cooja_defense_eval.py      # fixed/retrain 攻击者评估（支持后处理防御）
 ├── run_import_uci_har.py
+├── tools/rewrite_cooja_client_type.py  # 严谨替换 client type，保持节点位置不变
 ├── generate_mock_data.py
 ├── requirements.txt
 └── README.md
 ```
+
+## 第二阶段：Cooja 节点级 dummy 流量实验（推荐）
+
+为更贴近“网络侧混淆”场景，项目新增了基于 Cooja 的日志评估链路。核心思路是：
+
+- 在节点程序中发送与真实业务形态相似的 dummy 包（而非仅调整无线链路参数）。
+- 攻击者从 `Radio messages` / `Mote output` 日志中提取流量特征，执行行为识别。
+- 同时报告 `fixed_attacker` 与 `retrain_attacker` 两种威胁模型结果。
+
+### 1）Cooja 侧准备
+
+已提供 `contiki-ng/examples/rpl-udp/` 下的三个 client 变体：
+
+- `udp-client-mix-noise.c`
+- `udp-client-mix-ldp.c`
+- `udp-client-mix-adaptive.c`
+
+并提供严谨场景生成工具（不手拖节点，避免位置误差）：
+
+```bash
+python tools/rewrite_cooja_client_type.py --input_csc "\\wsl$\Ubuntu-22.04\home\linchen\iot-privacy-project\baseline_no_defense.csc" --output_csc "\\wsl$\Ubuntu-22.04\home\linchen\iot-privacy-project\dummy_noise.csc" --client_source "udp-client-mix-noise.c" --build_target "udp-client-mix-noise"
+python tools/rewrite_cooja_client_type.py --input_csc "\\wsl$\Ubuntu-22.04\home\linchen\iot-privacy-project\baseline_no_defense.csc" --output_csc "\\wsl$\Ubuntu-22.04\home\linchen\iot-privacy-project\dummy_ldp.csc" --client_source "udp-client-mix-ldp.c" --build_target "udp-client-mix-ldp"
+python tools/rewrite_cooja_client_type.py --input_csc "\\wsl$\Ubuntu-22.04\home\linchen\iot-privacy-project\baseline_no_defense.csc" --output_csc "\\wsl$\Ubuntu-22.04\home\linchen\iot-privacy-project\dummy_adaptive_ldp.csc" --client_source "udp-client-mix-adaptive.c" --build_target "udp-client-mix-adaptive"
+```
+
+### 2）日志导出命名约定
+
+建议从 Cooja 导出到 `\\wsl$\Ubuntu-22.04\home\linchen\iot-privacy-project\`，并使用固定命名：
+
+- 基线：`Radiomsg.txt`、`loglistener.txt`
+- dummy_noise：`Radiomsg_dummy_noise.txt`、`loglistener_dummy_noise.txt`
+- dummy_ldp：`Radiomsg_dummy_ldp.txt`、`loglistener_dummy_ldp.txt`
+- dummy_adaptive_ldp：`Radiomsg_dummy_adaptive.txt`、`loglistener_dummy_adaptive.txt`
+
+### 3）攻击评估（fixed / retrain）
+
+配置清单：`configs/cooja_defense_dummy_logs.json`（可按你的日志路径修改）
+
+一键评估命令：
+
+```bash
+python run_cooja_defense_eval.py --manifest configs/cooja_defense_dummy_logs.json --out_dir outputs/cooja_defense_eval_dummy --seeds "42,123,2026" --window_s 8 --step_s 3 --min_requests 2 --dominance_threshold 0.2
+```
+
+输出：
+
+- `outputs/cooja_defense_eval_dummy/defense_eval_report.json`
+- `outputs/cooja_defense_eval_dummy/method_accuracy_bars.png`
+
+### 4）补充工具
+
+- 两组日志快速对比：`run_cooja_compare.py`
+- PowerShell 封装（Windows 直接跑）：`run_cooja_compare_wsl.ps1`
+- 若需“同一 baseline 日志 + 后处理防御”实验，使用：`configs/cooja_defense_postprocess.json`
 
 ## 全量实验结果导航（论文/GPT读取）
 

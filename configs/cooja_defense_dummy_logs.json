@@ -1,0 +1,23 @@
+{
+  "baseline": {
+    "radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg.txt",
+    "app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener.txt"
+  },
+  "methods": [
+    {
+      "name": "dummy_noise",
+      "radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg_dummy_noise.txt",
+      "app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener_dummy_noise.txt"
+    },
+    {
+      "name": "dummy_ldp",
+      "radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg_dummy_ldp.txt",
+      "app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener_dummy_ldp.txt"
+    },
+    {
+      "name": "dummy_adaptive_ldp",
+      "radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg_dummy_adaptive.txt",
+      "app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener_dummy_adaptive.txt"
+    }
+  ]
+}

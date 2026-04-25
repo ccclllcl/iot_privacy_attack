@@ -1,0 +1,31 @@
+{
+  "baseline": {
+    "radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg.txt",
+    "app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener.txt"
+  },
+  "methods": [
+    {
+      "name": "noise_post",
+      "transform": "noise",
+      "time_noise_std_ms": 4.0,
+      "len_noise_std": 2.0
+    },
+    {
+      "name": "ldp_post",
+      "transform": "ldp",
+      "epsilon": 1.2,
+      "sensitivity_time_ms": 8.0,
+      "sensitivity_len": 3.0
+    },
+    {
+      "name": "adaptive_ldp_post",
+      "transform": "adaptive_ldp",
+      "epsilon_min": 0.6,
+      "epsilon_max": 2.0,
+      "sensitivity_time_ms": 8.0,
+      "sensitivity_len": 3.0,
+      "weight_iat": 0.7,
+      "weight_src": 0.3
+    }
+  ]
+}
