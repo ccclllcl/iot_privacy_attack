@@ -1,0 +1,150 @@
+experiment:
+  random_seed: 123
+paths:
+  raw_csv: data/raw/smart_home_events.csv
+  processed_dir: data/processed/real_public_benchmark/kasteren/seed_123
+  defended_dir: data/defended/real_public_benchmark/kasteren/seed_123/ldp
+  models_dir: outputs/models/real_public_benchmark/kasteren/seed_123
+  figures_dir: outputs/figures/real_public_benchmark/kasteren/seed_123
+  reports_dir: outputs/reports/real_public_benchmark/kasteren/seed_123
+  defense_dir: outputs/defense/real_public_benchmark/kasteren/seed_123/ldp
+columns:
+  timestamp: timestamp
+  device_id: device_id
+  value: value
+  state: state
+  label: behavior_label
+preprocess:
+  freq: 5min
+  fill_method: ffill
+  outlier_method: iqr
+  iqr_multiplier: 1.5
+  zscore_limit: 3.0
+  seq_len: 12
+  window_stride: 1
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  save_mlp_features: true
+label_mapping:
+  source: column
+  classes:
+  - sleep
+  - away
+  - cooking
+  - using_computer
+  - other
+  rules:
+    sleep:
+      hour_ranges:
+      - - 22
+        - 24
+      - - 0
+        - 7
+      max_mean_activity: 0.35
+    away:
+      hour_ranges:
+      - - 8
+        - 18
+      max_mean_activity: 0.15
+      max_peak_power: 0.25
+    cooking:
+      hour_ranges:
+      - - 11
+        - 14
+      - - 17
+        - 20
+      min_kitchen_ratio: 0.2
+      min_mean_activity: 0.2
+    using_computer:
+      hour_ranges:
+      - - 9
+        - 23
+      min_computer_ratio: 0.25
+      min_mean_activity: 0.25
+device_groups:
+  kitchen_devices:
+  - kitchen_light
+  - kitchen_microwave
+  - kitchen_fridge
+  computer_devices:
+  - office_pc
+  - desk_lamp
+  - monitor_power
+  motion_devices:
+  - living_motion
+  - bedroom_motion
+features:
+  include_raw_shape: false
+  per_channel:
+    use_count: true
+    use_mean: true
+    use_max: true
+    use_min: true
+    use_std: true
+    use_change_count: true
+  global:
+    active_device_count: true
+    total_energy_proxy: true
+    mean_power_proxy: true
+    peak_power_proxy: true
+train:
+  model_type: lstm
+  batch_size: 64
+  num_epochs: 25
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  dropout: 0.3
+  lstm_hidden_size: 128
+  lstm_num_layers: 2
+  mlp_hidden_sizes:
+  - 256
+  - 128
+  early_stopping_patience: 6
+  early_stopping_min_delta: 0.0001
+  num_workers: 0
+  use_class_weights: true
+  device: auto
+evaluate:
+  batch_size: 128
+  num_workers: 0
+  device: auto
+defense:
+  enabled: true
+  method: ldp
+  mode: fixed_attacker
+  epsilon: 1.0
+  ldp_sensitivity: 1.0
+  noise_type: laplace
+  noise_scale: 0.5
+  apply_to: all
+  selected_features:
+  - kitchen_light
+  - office_pc
+  - bedroom_motion
+  binary_threshold: 0.5
+  binary_features: []
+  numeric_features: null
+adaptive_ldp:
+  epsilon_min: 0.4
+  epsilon_max: 4.0
+  weight_sensitivity: 0.5
+  weight_traffic: 0.5
+  calibration_percentile_low: 5
+  calibration_percentile_high: 95
+  use_edge_budget_cap: false
+  edge_inverse_budget_cap: 100000
+defense_eval:
+  retrained_model_name: best_lstm_kasteren_ldp_defended_retrain.pt
+compare:
+  ldp_epsilon_list:
+  - 0.1
+  - 0.5
+  - 1.0
+  - 2.0
+  - 5.0
+  noise_scale_list:
+  - 0.1
+  - 0.3
+  - 0.5
+  - 1.0

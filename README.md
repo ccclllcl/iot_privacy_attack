@@ -2,6 +2,8 @@
 
 智能家居（Smart* 风格）数据上的 **行为推断攻击基线** 与 **数据侧防御评测**：从设备事件/功耗时序中识别用户行为（睡眠、离家、做饭、使用电脑等），并在对时序特征施加扰动或本地差分隐私（LDP）机制后，量化攻击者分类器准确率下降与数据失真，用于毕业设计「隐私–效用」分析。
 
+> 当前项目默认走**真实公开数据集优先**（UCI HAR / van Kasteren / CASAS），`generate_mock_data.py` 仅作为快速冒烟与开发调试入口。
+
 ## 项目定位
 
 - **攻击者基线（第一部分）**：在原始（或规则标注）数据上训练 LSTM / MLP，报告无保护情形下的识别性能上界。
@@ -91,6 +93,7 @@ iot_privacy_attack/
 ├── run_defense.py
 ├── run_defense_eval.py
 ├── run_compare.py
+├── run_real_public_benchmark.py   # 真实公开数据全矩阵（defense+mode+seed+scan）
 ├── run_cooja_baseline_attack.py   # Cooja 日志 -> 流量特征 -> 攻击基线
 ├── run_cooja_compare.py           # 两组 Cooja 日志对比（多 seed）
 ├── run_cooja_defense_eval.py      # fixed/retrain 攻击者评估（支持后处理防御）
@@ -100,6 +103,46 @@ iot_privacy_attack/
 ├── requirements.txt
 └── README.md
 ```
+
+## 真实公开数据优先：一键全矩阵（推荐）
+
+该入口会自动执行下列组合（真实数据，不使用 mock）：
+
+- 数据集（默认）：`uci_har`、`kasteren`
+- 随机种子：`42,123,2026`（可改）
+- 防御：`noise`、`ldp`、`adaptive_ldp`
+- 攻击机制：`fixed_attacker`、`retrain_attacker`
+- 扫描：`ldp epsilon`、`noise scale`
+
+```bash
+python run_real_public_benchmark.py
+```
+
+可选参数示例：
+
+```bash
+python run_real_public_benchmark.py --datasets uci_har,kasteren,casas_hh101 --seeds 42,123 --max-epochs 20
+```
+
+主索引文件：
+
+- `outputs/reports/real_public_benchmark/real_public_benchmark_manifest.json`
+- `outputs/reports/real_public_benchmark/real_public_benchmark_summary.json`
+- `outputs/reports/real_public_benchmark/real_public_benchmark_runs.csv`
+
+生成聚合汇总（便于论文画表）：
+
+```bash
+python summarize_real_public_benchmark.py
+```
+
+主产物目录（更清晰的真实数据专用路径）：
+
+- `data/processed/real_public_benchmark/{dataset}/seed_{seed}/`
+- `data/defended/real_public_benchmark/{dataset}/seed_{seed}/{method}/`
+- `outputs/models/real_public_benchmark/{dataset}/seed_{seed}/`
+- `outputs/defense/real_public_benchmark/{dataset}/seed_{seed}/{method}/`
+- `outputs/reports/real_public_benchmark/{dataset}/seed_{seed}/`
 
 ## 第二阶段：Cooja 节点级 dummy 流量实验（推荐）
 
