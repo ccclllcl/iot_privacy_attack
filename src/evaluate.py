@@ -229,30 +229,88 @@ def run_evaluate(cfg: ExperimentConfig, model_path: Path) -> None:
 
 def _plot_confusion(cm: np.ndarray, class_names: List[str], out_path: Path) -> None:
     configure_matplotlib_english()
-    fig, ax = plt.subplots(figsize=(6, 5))
-    im = ax.imshow(cm, interpolation="nearest", cmap=plt.cm.Blues)
-    ax.figure.colorbar(im, ax=ax)
+    n_class = int(cm.shape[0])
+    if n_class == 0:
+        return
+
+    # For many classes, show a focused Top-K view to keep the chart readable.
+    top_k = 16
+    use_topk = n_class > top_k
+    if use_topk:
+        supports = cm.sum(axis=1)
+        keep_idx = np.argsort(supports)[-top_k:]
+        keep_idx = np.sort(keep_idx)
+        cm_show = cm[np.ix_(keep_idx, keep_idx)]
+        names_show = [class_names[int(i)] for i in keep_idx]
+        title = f"Confusion matrix (row-normalized, top-{top_k} classes)"
+    else:
+        cm_show = cm
+        names_show = class_names
+        title = "Confusion matrix (row-normalized)"
+
+    row_sum = cm_show.sum(axis=1, keepdims=True).astype(np.float64)
+    row_sum[row_sum == 0] = 1.0
+    cm_norm = cm_show.astype(np.float64) / row_sum
+
+    size = max(7.0, min(14.0, 0.55 * len(names_show)))
+    fig, ax = plt.subplots(figsize=(size, size))
+    im = ax.imshow(cm_norm, interpolation="nearest", cmap=plt.cm.Blues, vmin=0.0, vmax=1.0)
+    cbar = ax.figure.colorbar(im, ax=ax)
+    cbar.set_label("ratio", rotation=90)
     ax.set(
-        xticks=np.arange(cm.shape[1]),
-        yticks=np.arange(cm.shape[0]),
-        xticklabels=class_names,
-        yticklabels=class_names,
+        xticks=np.arange(cm_norm.shape[1]),
+        yticks=np.arange(cm_norm.shape[0]),
+        xticklabels=names_show,
+        yticklabels=names_show,
         ylabel="True label",
         xlabel="Predicted label",
-        title="Confusion matrix",
+        title=title,
     )
     plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
-    thresh = cm.max() / 2.0 if cm.size else 0
-    for i in range(cm.shape[0]):
-        for j in range(cm.shape[1]):
-            ax.text(
-                j,
-                i,
-                format(cm[i, j], "d"),
-                ha="center",
-                va="center",
-                color="white" if cm[i, j] > thresh else "black",
-            )
+
+    # Avoid dense annotations on large matrices.
+    if len(names_show) <= 12:
+        thresh = float(cm_norm.max()) / 2.0 if cm_norm.size else 0.0
+        for i in range(cm_norm.shape[0]):
+            for j in range(cm_norm.shape[1]):
+                v = float(cm_norm[i, j])
+                if v < 0.005:
+                    continue
+                ax.text(
+                    j,
+                    i,
+                    f"{v:.2f}",
+                    ha="center",
+                    va="center",
+                    color="white" if v > thresh else "black",
+                    fontsize=8,
+                )
+
     fig.tight_layout()
-    fig.savefig(out_path, dpi=150)
+    fig.savefig(out_path, dpi=180)
     plt.close(fig)
+
+    # Also save a full normalized matrix as backup for completeness.
+    if use_topk:
+        row_sum_full = cm.sum(axis=1, keepdims=True).astype(np.float64)
+        row_sum_full[row_sum_full == 0] = 1.0
+        cm_norm_full = cm.astype(np.float64) / row_sum_full
+        fig2, ax2 = plt.subplots(figsize=(8, 7))
+        im2 = ax2.imshow(cm_norm_full, interpolation="nearest", cmap=plt.cm.Blues, vmin=0.0, vmax=1.0)
+        ax2.figure.colorbar(im2, ax=ax2)
+        tick_stride = max(1, n_class // 20)
+        ticks = np.arange(0, n_class, tick_stride)
+        ax2.set(
+            xticks=ticks,
+            yticks=ticks,
+            xticklabels=[class_names[i] for i in ticks],
+            yticklabels=[class_names[i] for i in ticks],
+            ylabel="True label",
+            xlabel="Predicted label",
+            title="Confusion matrix (row-normalized, full classes, sparse ticks)",
+        )
+        plt.setp(ax2.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+        fig2.tight_layout()
+        full_path = out_path.with_name(f"{out_path.stem}_full.png")
+        fig2.savefig(full_path, dpi=180)
+        plt.close(fig2)

@@ -2,7 +2,7 @@
 
 智能家居（Smart* 风格）数据上的 **行为推断攻击基线** 与 **数据侧防御评测**：从设备事件/功耗时序中识别用户行为（睡眠、离家、做饭、使用电脑等），并在对时序特征施加扰动或本地差分隐私（LDP）机制后，量化攻击者分类器准确率下降与数据失真，用于毕业设计「隐私–效用」分析。
 
-> 当前项目默认走**真实公开数据集优先**（UCI HAR / van Kasteren / CASAS），`generate_mock_data.py` 仅作为快速冒烟与开发调试入口。
+> 当前项目采用**双轨数据策略**：真实公开数据集（UCI HAR / van Kasteren / CASAS）与 mock 数据流程都完整保留。真实数据用于论文说服力，mock 数据用于完整流程复现与对照。
 
 ## 项目定位
 
@@ -60,6 +60,20 @@ py -3 -m streamlit run ui_app.py
 
 - `outputs/ui/run_history.jsonl`
 
+另外提供一个更精简的前端入口（推荐答辩演示）：
+
+```bash
+py -3 -m streamlit run ui_simple.py
+```
+
+它只保留 3 个核心按钮：
+
+- 补跑 Mock 全流程
+- 补跑 Real（跳过已存在）
+- 同步前端图片资源
+
+并统一从 `web_assets/images/` 展示图表。
+
 ## 目录结构
 
 ```
@@ -94,11 +108,15 @@ iot_privacy_attack/
 ├── run_defense_eval.py
 ├── run_compare.py
 ├── run_real_public_benchmark.py   # 真实公开数据全矩阵（defense+mode+seed+scan）
+├── ui_simple.py                   # 精简版前端（答辩展示推荐）
 ├── run_cooja_baseline_attack.py   # Cooja 日志 -> 流量特征 -> 攻击基线
 ├── run_cooja_compare.py           # 两组 Cooja 日志对比（多 seed）
 ├── run_cooja_defense_eval.py      # fixed/retrain 攻击者评估（支持后处理防御）
 ├── run_import_uci_har.py
 ├── tools/rewrite_cooja_client_type.py  # 严谨替换 client type，保持节点位置不变
+├── tools/refresh_web_assets.py    # 同步前端展示图到 web_assets/images
+├── web_assets/
+│   └── images/                    # 前端页面专用图片资源目录
 ├── generate_mock_data.py
 ├── requirements.txt
 └── README.md
@@ -262,6 +280,26 @@ python generate_mock_data.py
 python run_preprocess.py --config configs/default.yaml
 python run_train.py --config configs/default.yaml --model lstm
 python run_evaluate.py --config configs/default.yaml --model_path outputs/models/best_lstm.pt
+```
+
+## Mock + Real 全量补跑建议
+
+Mock 全量（多 seed、3 防御、2 攻击机制、参数扫描）：
+
+```bash
+python run_all_methods_multiseed.py
+```
+
+Real 全量（多数据集、多 seed、3 防御、2 攻击机制、参数扫描）：
+
+```bash
+python run_real_public_benchmark.py --datasets uci_har,kasteren,casas_hh101 --seeds 42,123 --models lstm,mlp --max-epochs 25 --skip-existing
+```
+
+同步前端图片资源（用于 `ui_simple.py`）：
+
+```bash
+python tools/refresh_web_assets.py
 ```
 
 ## 防御模块简介
