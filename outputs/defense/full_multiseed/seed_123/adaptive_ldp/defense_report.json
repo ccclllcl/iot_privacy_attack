@@ -27,21 +27,21 @@
   "attack_metrics": {
     "note": "重训后模型在干净测试集上的表现通常下降（分布偏移），在防御后测试集上为自适应攻击者的主指标。",
     "retrained_on_defended": {
-      "accuracy_on_defended_test": 0.4139072847682119,
-      "f1_macro_on_defended_test": 0.3351340789232041,
+      "accuracy_on_defended_test": 0.42218543046357615,
+      "f1_macro_on_defended_test": 0.353448181869182,
       "per_class_recall_on_defended_test": {
-        "sleep": 0.12244897959183673,
-        "away": 0.6721311475409836,
-        "cooking": 0.0992063492063492,
-        "using_computer": 0.9017341040462428,
-        "other": 0.3188405797101449
+        "sleep": 0.24489795918367346,
+        "away": 0.5901639344262295,
+        "cooking": 0.14682539682539683,
+        "using_computer": 0.8786127167630058,
+        "other": 0.2608695652173913
       }
     },
     "same_retrained_model_on_clean_test": {
-      "accuracy": 0.2897350993377483,
-      "f1_macro": 0.10485283159463488,
+      "accuracy": 0.28642384105960267,
+      "f1_macro": 0.08906048906048905,
       "per_class_recall": {
-        "sleep": 0.04081632653061224,
+        "sleep": 0.0,
         "away": 0.0,
         "cooking": 0.0,
         "using_computer": 1.0,
