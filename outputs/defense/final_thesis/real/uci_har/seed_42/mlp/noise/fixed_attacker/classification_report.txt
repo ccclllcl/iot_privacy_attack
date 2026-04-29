@@ -1,0 +1,9 @@
+dataset=uci_har
+seed=42
+model=mlp
+method=noise
+mode=fixed_attacker
+baseline_acc=0.797421
+defended_acc=0.168646
+baseline_f1_macro=0.790808
+defended_f1_macro=0.084893

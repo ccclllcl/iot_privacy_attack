@@ -1,0 +1,9 @@
+dataset=mock
+seed=42
+model=lstm
+method=adaptive_ldp
+mode=retrain_attacker
+baseline_acc=0.764901
+defended_acc=0.460265
+baseline_f1_macro=0.755842
+defended_f1_macro=0.394224

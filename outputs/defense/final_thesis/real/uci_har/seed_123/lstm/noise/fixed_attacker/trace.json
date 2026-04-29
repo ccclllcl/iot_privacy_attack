@@ -1,0 +1,11 @@
+{
+  "dataset": "uci_har",
+  "seed": 123,
+  "model_type": "lstm",
+  "method": "noise",
+  "mode": "fixed_attacker",
+  "config": "configs/generated_real_public/uci_har.seed_123.noise.yaml",
+  "command": "python run_defense_eval.py --mode fixed_attacker",
+  "timestamp": "2026-04-29T16:40:46",
+  "git_commit": "5870c1bcf40b456c61c6e067d25224341043eb0a"
+}

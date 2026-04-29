@@ -1,0 +1,7 @@
+{
+  "expected_total": 108,
+  "completed_total": 108,
+  "missing_total": 0,
+  "missing_combinations": [],
+  "notes": "source=outputs/defense/real_public_benchmark/*"
+}

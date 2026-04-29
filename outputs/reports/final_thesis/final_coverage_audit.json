@@ -1,0 +1,43 @@
+{
+  "mock": {
+    "expected_total": 36,
+    "completed_total": 36,
+    "missing_total": 0,
+    "missing_combinations": [],
+    "notes": "source=outputs/defense/full_multiseed/*"
+  },
+  "real": {
+    "expected_total": 108,
+    "completed_total": 108,
+    "missing_total": 0,
+    "missing_combinations": [],
+    "notes": "source=outputs/defense/real_public_benchmark/*"
+  },
+  "cooja_rows": 6,
+  "should_have_experiments": {
+    "mock": 36,
+    "real": 108
+  },
+  "actual_completed": {
+    "mock": 36,
+    "real": 108,
+    "cooja": 6
+  },
+  "missing_combinations": {
+    "mock": [],
+    "real": []
+  },
+  "covered_risk_files": [
+    "outputs/reports/**/metrics.json",
+    "outputs/defense/**/defense_report.json"
+  ],
+  "recommended_for_thesis": [
+    "outputs/reports/final_thesis/mock/mock_summary.csv",
+    "outputs/reports/final_thesis/real/real_summary.csv",
+    "outputs/reports/final_thesis/final_summary.csv"
+  ],
+  "not_recommended_for_thesis": [
+    "outputs/reports/**/metrics.json (legacy single-file outputs)",
+    "outputs/defense/**/defense_report.json (legacy overwritten paths)"
+  ]
+}

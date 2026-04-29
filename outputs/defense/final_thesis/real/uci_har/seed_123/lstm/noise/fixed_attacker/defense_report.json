@@ -1,0 +1,70 @@
+{
+  "mode": "fixed_attacker",
+  "distortion": {
+    "mse": 0.4999640866775363,
+    "mae": 0.500030198002745,
+    "pearson_r": 0.4924533650345407,
+    "mean_relative_abs_error": 261.0642619925348
+  },
+  "defense_config": {
+    "enabled": true,
+    "method": "noise",
+    "mode": "fixed_attacker",
+    "epsilon": 1.0,
+    "ldp_sensitivity": 1.0,
+    "noise_type": "laplace",
+    "noise_scale": 0.5,
+    "apply_to": "all",
+    "selected_features": [
+      "kitchen_light",
+      "office_pc",
+      "bedroom_motion"
+    ],
+    "binary_threshold": 0.5,
+    "binary_features": [],
+    "numeric_features": null
+  },
+  "attack_metrics": {
+    "baseline": {
+      "accuracy": 0.8157448252460129,
+      "precision_macro": 0.8096772980566409,
+      "recall_macro": 0.8115383557820294,
+      "f1_macro": 0.8092316388515185,
+      "per_class_recall": {
+        "walking": 0.6774193548387096,
+        "walking_upstairs": 0.6581740976645435,
+        "walking_downstairs": 0.830952380952381,
+        "sitting": 0.824847250509165,
+        "standing": 0.8796992481203008,
+        "laying": 0.9981378026070763
+      }
+    },
+    "defended_fixed_attacker": {
+      "accuracy": 0.23854767560230744,
+      "precision_macro": 0.19340463458110516,
+      "recall_macro": 0.25450031036623216,
+      "f1_macro": 0.16112359971525983,
+      "per_class_recall": {
+        "walking": 0.0,
+        "walking_upstairs": 0.0,
+        "walking_downstairs": 1.0,
+        "sitting": 0.0,
+        "standing": 0.0,
+        "laying": 0.527001862197393
+      }
+    },
+    "defense_effect": {
+      "accuracy_drop": 0.5771971496437054,
+      "relative_accuracy_drop_percent": 70.75707154742096,
+      "macro_f1_drop": 0.6481080391362587,
+      "per_class_recall_drop": {
+        "walking": 0.6774193548387096,
+        "walking_upstairs": 0.6581740976645435,
+        "walking_downstairs": -0.169047619047619,
+        "sitting": 0.824847250509165,
+        "standing": 0.8796992481203008,
+        "laying": 0.4711359404096833
+      }
+    }
+  }
+}

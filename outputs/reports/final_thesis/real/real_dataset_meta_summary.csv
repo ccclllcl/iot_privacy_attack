@@ -1,0 +1,4 @@
+dataset,freq,meta_path,n_test,n_train,n_val,num_classes,num_features,seq_len,source
+uci_har,50Hz_windowed_2.56s,D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\data\processed\imports\uci_har\meta.json,2947,5881,1471,6,9,128,https://archive.ics.uci.edu/ml/datasets/human+activity+recognition+using+smartphones
+kasteren,event_window,D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\data\processed\imports\kasteren\meta.json,193,903,194,54,14,30,https://raw.githubusercontent.com/aitoralmeida/c4a_activity_recognition/master/experiments/kasteren_dataset/test_kasteren.csv.annotated
+casas_hh101,event_window,D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\data\processed\imports\casas_hh101\meta.json,23147,108019,23147,34,6,30,https://zenodo.org/api/records/15708568/files/labeled_data.zip/content

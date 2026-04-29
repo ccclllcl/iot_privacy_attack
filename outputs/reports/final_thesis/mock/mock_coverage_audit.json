@@ -1,0 +1,7 @@
+{
+  "expected_total": 36,
+  "completed_total": 36,
+  "missing_total": 0,
+  "missing_combinations": [],
+  "notes": "source=outputs/defense/full_multiseed/*"
+}

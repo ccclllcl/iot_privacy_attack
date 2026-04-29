@@ -1,0 +1,9 @@
+dataset=casas_hh101
+seed=42
+model=lstm
+method=noise
+mode=fixed_attacker
+baseline_acc=0.472243
+defended_acc=0.079665
+baseline_f1_macro=0.288742
+defended_f1_macro=0.084675

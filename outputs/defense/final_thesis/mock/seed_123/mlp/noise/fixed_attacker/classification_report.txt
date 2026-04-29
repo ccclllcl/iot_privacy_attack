@@ -1,0 +1,9 @@
+dataset=mock
+seed=123
+model=mlp
+method=noise
+mode=fixed_attacker
+baseline_acc=0.483444
+defended_acc=0.210265
+baseline_f1_macro=0.440592
+defended_f1_macro=0.129675

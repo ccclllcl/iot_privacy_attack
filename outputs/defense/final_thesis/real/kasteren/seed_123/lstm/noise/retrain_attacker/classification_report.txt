@@ -1,0 +1,9 @@
+dataset=kasteren
+seed=123
+model=lstm
+method=noise
+mode=retrain_attacker
+baseline_acc=0.362694
+defended_acc=0.067358
+baseline_f1_macro=0.300653
+defended_f1_macro=0.038659

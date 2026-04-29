@@ -1,0 +1,9 @@
+dataset=uci_har
+seed=123
+model=mlp
+method=adaptive_ldp
+mode=retrain_attacker
+baseline_acc=0.815745
+defended_acc=0.717340
+baseline_f1_macro=0.809232
+defended_f1_macro=0.703230

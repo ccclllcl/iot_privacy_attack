@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-04-29T16:41:04",
+  "git_commit": "5870c1bcf40b456c61c6e067d25224341043eb0a",
+  "inputs": {
+    "mock_source_root": "outputs/defense/full_multiseed",
+    "real_source_root": "outputs/defense/real_public_benchmark",
+    "cooja_manifest_candidates": [
+      "configs/cooja_defense_dummy_logs.json",
+      "configs/cooja_defense_postprocess.json",
+      "configs/cooja_defense_logs.json"
+    ]
+  },
+  "outputs": {
+    "mock_summary": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\reports\\final_thesis\\mock\\mock_summary.csv",
+    "real_summary": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\reports\\final_thesis\\real\\real_summary.csv",
+    "cooja_summary": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\reports\\final_thesis\\cooja\\cooja_summary.csv",
+    "final_summary": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\reports\\final_thesis\\final_summary.csv"
+  }
+}

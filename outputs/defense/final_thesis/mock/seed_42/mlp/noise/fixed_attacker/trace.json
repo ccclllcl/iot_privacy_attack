@@ -1,0 +1,11 @@
+{
+  "dataset": "mock",
+  "seed": 42,
+  "model_type": "mlp",
+  "method": "noise",
+  "mode": "fixed_attacker",
+  "config": "configs/generated_all_methods/default.seed_42.noise.yaml",
+  "command": "python run_defense_eval.py --mode fixed_attacker",
+  "timestamp": "2026-04-29T16:40:45",
+  "git_commit": "5870c1bcf40b456c61c6e067d25224341043eb0a"
+}

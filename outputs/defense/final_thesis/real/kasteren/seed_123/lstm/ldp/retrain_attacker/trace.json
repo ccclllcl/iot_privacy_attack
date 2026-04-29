@@ -1,0 +1,11 @@
+{
+  "dataset": "kasteren",
+  "seed": 123,
+  "model_type": "lstm",
+  "method": "ldp",
+  "mode": "retrain_attacker",
+  "config": "configs/generated_real_public/kasteren.seed_123.ldp.yaml",
+  "command": "python run_defense_eval.py --mode retrain_attacker",
+  "timestamp": "2026-04-29T16:40:47",
+  "git_commit": "5870c1bcf40b456c61c6e067d25224341043eb0a"
+}

@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "model_type": "lstm",
+  "accuracy": 0.3742789277231082,
+  "f1_macro": 0.2827041048279435,
+  "precision_macro": 0.33720800144898044,
+  "recall_macro": 0.3581144032828591,
+  "per_class_recall": {
+    "walking": 0.7963709677419355,
+    "walking_upstairs": 0.0,
+    "walking_downstairs": 0.009523809523809525,
+    "sitting": 0.37067209775967414,
+    "standing": 0.005639097744360902,
+    "laying": 0.9664804469273743
+  },
+  "confusion_matrix": [
+    [
+      395,
+      0,
+      3,
+      97,
+      1,
+      0
+    ],
+    [
+      370,
+      0,
+      8,
+      89,
+      4,
+      0
+    ],
+    [
+      340,
+      0,
+      4,
+      74,
+      2,
+      0
+    ],
+    [
+      305,
+      0,
+      2,
+      182,
+      2,
+      0
+    ],
+    [
+      425,
+      0,
+      0,
+      104,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      18,
+      0,
+      519
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "standing",
+      "pred": "walking",
+      "count": 425
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking",
+      "count": 370
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking",
+      "count": 340
+    },
+    {
+      "true": "sitting",
+      "pred": "walking",
+      "count": 305
+    },
+    {
+      "true": "standing",
+      "pred": "sitting",
+      "count": 104
+    },
+    {
+      "true": "walking",
+      "pred": "sitting",
+      "count": 97
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "sitting",
+      "count": 89
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "sitting",
+      "count": 74
+    },
+    {
+      "true": "laying",
+      "pred": "sitting",
+      "count": 18
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking_downstairs",
+      "count": 8
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}

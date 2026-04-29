@@ -1,0 +1,9 @@
+dataset=mock
+seed=2026
+model=lstm
+method=ldp
+mode=fixed_attacker
+baseline_acc=0.779801
+defended_acc=0.341060
+baseline_f1_macro=0.779508
+defended_f1_macro=0.193330

@@ -1,0 +1,52 @@
+{
+  "mode": "retrain_attacker",
+  "distortion": {
+    "mse": 1.0058371716019419,
+    "mae": 0.5168689694140145,
+    "pearson_r": 0.108581906577775,
+    "mean_relative_abs_error": 44923412.38674499
+  },
+  "defense_config": {
+    "enabled": true,
+    "method": "ldp",
+    "mode": "fixed_attacker",
+    "epsilon": 1.0,
+    "ldp_sensitivity": 1.0,
+    "noise_type": "laplace",
+    "noise_scale": 0.5,
+    "apply_to": "all",
+    "selected_features": [
+      "kitchen_light",
+      "office_pc",
+      "bedroom_motion"
+    ],
+    "binary_threshold": 0.5,
+    "binary_features": [],
+    "numeric_features": null
+  },
+  "attack_metrics": {
+    "note": "重训后模型在干净测试集上的表现通常下降（分布偏移），在防御后测试集上为自适应攻击者的主指标。",
+    "retrained_on_defended": {
+      "accuracy_on_defended_test": 0.21357615894039736,
+      "f1_macro_on_defended_test": 0.15557913185722408,
+      "per_class_recall_on_defended_test": {
+        "sleep": 0.04081632653061224,
+        "away": 0.576271186440678,
+        "cooking": 0.038314176245210725,
+        "using_computer": 0.47953216374269003,
+        "other": 0.015625
+      }
+    },
+    "same_retrained_model_on_clean_test": {
+      "accuracy": 0.43211920529801323,
+      "f1_macro": 0.12069364161849712,
+      "per_class_recall": {
+        "sleep": 0.0,
+        "away": 0.0,
+        "cooking": 1.0,
+        "using_computer": 0.0,
+        "other": 0.0
+      }
+    }
+  }
+}

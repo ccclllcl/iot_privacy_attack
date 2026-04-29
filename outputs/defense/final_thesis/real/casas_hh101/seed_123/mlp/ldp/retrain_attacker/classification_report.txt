@@ -1,0 +1,9 @@
+dataset=casas_hh101
+seed=123
+model=mlp
+method=ldp
+mode=retrain_attacker
+baseline_acc=0.437940
+defended_acc=0.312827
+baseline_f1_macro=0.208173
+defended_f1_macro=0.085631

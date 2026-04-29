@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "model_type": "mlp",
+  "accuracy": 0.22429589412962334,
+  "f1_macro": 0.18106931599703305,
+  "precision_macro": 0.20937597625741955,
+  "recall_macro": 0.21966951188611464,
+  "per_class_recall": {
+    "walking": 0.0,
+    "walking_upstairs": 0.0,
+    "walking_downstairs": 0.15476190476190477,
+    "sitting": 0.6232179226069247,
+    "standing": 0.0,
+    "laying": 0.5400372439478585
+  },
+  "confusion_matrix": [
+    [
+      0,
+      0,
+      205,
+      291,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      125,
+      346,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      65,
+      355,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      185,
+      306,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      489,
+      43,
+      0,
+      0
+    ],
+    [
+      0,
+      5,
+      31,
+      211,
+      0,
+      290
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "standing",
+      "pred": "walking_downstairs",
+      "count": 489
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "sitting",
+      "count": 355
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "sitting",
+      "count": 346
+    },
+    {
+      "true": "walking",
+      "pred": "sitting",
+      "count": 291
+    },
+    {
+      "true": "laying",
+      "pred": "sitting",
+      "count": 211
+    },
+    {
+      "true": "walking",
+      "pred": "walking_downstairs",
+      "count": 205
+    },
+    {
+      "true": "sitting",
+      "pred": "walking_downstairs",
+      "count": 185
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking_downstairs",
+      "count": 125
+    },
+    {
+      "true": "standing",
+      "pred": "sitting",
+      "count": 43
+    },
+    {
+      "true": "laying",
+      "pred": "walking_downstairs",
+      "count": 31
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}

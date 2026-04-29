@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "model_type": "mlp",
+  "accuracy": 0.5748218527315915,
+  "f1_macro": 0.5695232395669679,
+  "precision_macro": 0.5749341815674738,
+  "recall_macro": 0.5656875375236012,
+  "per_class_recall": {
+    "walking": 0.3870967741935484,
+    "walking_upstairs": 0.4692144373673036,
+    "walking_downstairs": 0.4119047619047619,
+    "sitting": 0.6761710794297352,
+    "standing": 0.5018796992481203,
+    "laying": 0.9478584729981379
+  },
+  "confusion_matrix": [
+    [
+      192,
+      59,
+      76,
+      45,
+      124,
+      0
+    ],
+    [
+      97,
+      221,
+      95,
+      7,
+      51,
+      0
+    ],
+    [
+      95,
+      88,
+      173,
+      20,
+      44,
+      0
+    ],
+    [
+      42,
+      7,
+      23,
+      332,
+      87,
+      0
+    ],
+    [
+      126,
+      43,
+      15,
+      81,
+      267,
+      0
+    ],
+    [
+      0,
+      12,
+      1,
+      4,
+      11,
+      509
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "standing",
+      "pred": "walking",
+      "count": 126
+    },
+    {
+      "true": "walking",
+      "pred": "standing",
+      "count": 124
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking",
+      "count": 97
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking",
+      "count": 95
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking_downstairs",
+      "count": 95
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking_upstairs",
+      "count": 88
+    },
+    {
+      "true": "sitting",
+      "pred": "standing",
+      "count": 87
+    },
+    {
+      "true": "standing",
+      "pred": "sitting",
+      "count": 81
+    },
+    {
+      "true": "walking",
+      "pred": "walking_downstairs",
+      "count": 76
+    },
+    {
+      "true": "walking",
+      "pred": "walking_upstairs",
+      "count": 59
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}

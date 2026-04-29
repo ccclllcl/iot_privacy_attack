@@ -1,0 +1,101 @@
+{
+  "split": "test",
+  "model_type": "mlp",
+  "accuracy": 0.26331862911435355,
+  "f1_macro": 0.16748001169858698,
+  "precision_macro": 0.19740796393688956,
+  "recall_macro": 0.25512104283054005,
+  "per_class_recall": {
+    "walking": 0.0,
+    "walking_upstairs": 0.0,
+    "walking_downstairs": 0.0,
+    "sitting": 1.0,
+    "standing": 0.0,
+    "laying": 0.5307262569832403
+  },
+  "confusion_matrix": [
+    [
+      0,
+      0,
+      0,
+      496,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      471,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      420,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      491,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      532,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      252,
+      0,
+      285
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "standing",
+      "pred": "sitting",
+      "count": 532
+    },
+    {
+      "true": "walking",
+      "pred": "sitting",
+      "count": 496
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "sitting",
+      "count": 471
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "sitting",
+      "count": 420
+    },
+    {
+      "true": "laying",
+      "pred": "sitting",
+      "count": 252
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}

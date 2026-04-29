@@ -1,0 +1,70 @@
+{
+  "mode": "fixed_attacker",
+  "distortion": {
+    "mse": 0.7143726837161751,
+    "mae": 0.39118273498813716,
+    "pearson_r": 0.31017781992125315,
+    "mean_relative_abs_error": 76.5783932337547
+  },
+  "defense_config": {
+    "enabled": true,
+    "method": "adaptive_ldp",
+    "mode": "fixed_attacker",
+    "epsilon": 1.0,
+    "ldp_sensitivity": 1.0,
+    "noise_type": "laplace",
+    "noise_scale": 0.5,
+    "apply_to": "all",
+    "selected_features": [
+      "kitchen_light",
+      "office_pc",
+      "bedroom_motion"
+    ],
+    "binary_threshold": 0.5,
+    "binary_features": [],
+    "numeric_features": null
+  },
+  "attack_metrics": {
+    "baseline": {
+      "accuracy": 0.8052256532066508,
+      "precision_macro": 0.8048544941431056,
+      "recall_macro": 0.7993192327926043,
+      "f1_macro": 0.8002938982953446,
+      "per_class_recall": {
+        "walking": 0.6713709677419355,
+        "walking_upstairs": 0.7346072186836518,
+        "walking_downstairs": 0.7452380952380953,
+        "sitting": 0.7535641547861507,
+        "standing": 0.9078947368421053,
+        "laying": 0.9832402234636871
+      }
+    },
+    "defended_fixed_attacker": {
+      "accuracy": 0.26331862911435355,
+      "precision_macro": 0.19740796393688956,
+      "recall_macro": 0.25512104283054005,
+      "f1_macro": 0.16748001169858698,
+      "per_class_recall": {
+        "walking": 0.0,
+        "walking_upstairs": 0.0,
+        "walking_downstairs": 0.0,
+        "sitting": 1.0,
+        "standing": 0.0,
+        "laying": 0.5307262569832403
+      }
+    },
+    "defense_effect": {
+      "accuracy_drop": 0.5419070240922973,
+      "relative_accuracy_drop_percent": 67.29877791824694,
+      "macro_f1_drop": 0.6328138865967576,
+      "per_class_recall_drop": {
+        "walking": 0.6713709677419355,
+        "walking_upstairs": 0.7346072186836518,
+        "walking_downstairs": 0.7452380952380953,
+        "sitting": -0.2464358452138493,
+        "standing": 0.9078947368421053,
+        "laying": 0.45251396648044684
+      }
+    }
+  }
+}

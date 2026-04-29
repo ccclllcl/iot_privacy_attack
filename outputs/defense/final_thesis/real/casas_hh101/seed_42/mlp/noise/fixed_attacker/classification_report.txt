@@ -1,0 +1,9 @@
+dataset=casas_hh101
+seed=42
+model=mlp
+method=noise
+mode=fixed_attacker
+baseline_acc=0.434700
+defended_acc=0.013738
+baseline_f1_macro=0.204355
+defended_f1_macro=0.001732

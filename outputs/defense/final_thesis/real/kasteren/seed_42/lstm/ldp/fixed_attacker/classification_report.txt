@@ -1,0 +1,9 @@
+dataset=kasteren
+seed=42
+model=lstm
+method=ldp
+mode=fixed_attacker
+baseline_acc=0.409326
+defended_acc=0.041451
+baseline_f1_macro=0.351835
+defended_f1_macro=0.023549

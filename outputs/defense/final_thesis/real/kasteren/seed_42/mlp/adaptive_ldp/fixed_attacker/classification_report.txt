@@ -1,0 +1,9 @@
+dataset=kasteren
+seed=42
+model=mlp
+method=adaptive_ldp
+mode=fixed_attacker
+baseline_acc=0.212435
+defended_acc=0.036269
+baseline_f1_macro=0.200807
+defended_f1_macro=0.003639

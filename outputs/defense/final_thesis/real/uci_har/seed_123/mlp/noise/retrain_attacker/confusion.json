@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "model_type": "mlp",
+  "accuracy": 0.6141839158466237,
+  "f1_macro": 0.6059480958948135,
+  "precision_macro": 0.607036690250932,
+  "recall_macro": 0.6083587734291774,
+  "per_class_recall": {
+    "walking": 0.375,
+    "walking_upstairs": 0.4989384288747346,
+    "walking_downstairs": 0.5547619047619048,
+    "sitting": 0.7515274949083504,
+    "standing": 0.4699248120300752,
+    "laying": 1.0
+  },
+  "confusion_matrix": [
+    [
+      186,
+      48,
+      53,
+      73,
+      136,
+      0
+    ],
+    [
+      61,
+      235,
+      103,
+      18,
+      54,
+      0
+    ],
+    [
+      67,
+      64,
+      233,
+      27,
+      29,
+      0
+    ],
+    [
+      51,
+      15,
+      26,
+      369,
+      30,
+      0
+    ],
+    [
+      139,
+      27,
+      24,
+      92,
+      250,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      537
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "standing",
+      "pred": "walking",
+      "count": 139
+    },
+    {
+      "true": "walking",
+      "pred": "standing",
+      "count": 136
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking_downstairs",
+      "count": 103
+    },
+    {
+      "true": "standing",
+      "pred": "sitting",
+      "count": 92
+    },
+    {
+      "true": "walking",
+      "pred": "sitting",
+      "count": 73
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking",
+      "count": 67
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking_upstairs",
+      "count": 64
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking",
+      "count": 61
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "standing",
+      "count": 54
+    },
+    {
+      "true": "walking",
+      "pred": "walking_downstairs",
+      "count": 53
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}

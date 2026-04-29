@@ -1,0 +1,11 @@
+{
+  "dataset": "mock",
+  "seed": 42,
+  "model_type": "lstm",
+  "method": "ldp",
+  "mode": "retrain_attacker",
+  "config": "configs/generated_all_methods/default.seed_42.ldp.yaml",
+  "command": "python run_defense_eval.py --mode retrain_attacker",
+  "timestamp": "2026-04-29T16:40:45",
+  "git_commit": "5870c1bcf40b456c61c6e067d25224341043eb0a"
+}

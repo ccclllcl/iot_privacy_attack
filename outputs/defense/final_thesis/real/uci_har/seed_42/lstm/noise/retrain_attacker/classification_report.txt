@@ -1,0 +1,9 @@
+dataset=uci_har
+seed=42
+model=lstm
+method=noise
+mode=retrain_attacker
+baseline_acc=0.836444
+defended_acc=0.577197
+baseline_f1_macro=0.832639
+defended_f1_macro=0.512828

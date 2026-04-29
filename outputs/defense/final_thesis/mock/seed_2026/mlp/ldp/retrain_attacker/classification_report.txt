@@ -1,0 +1,9 @@
+dataset=mock
+seed=2026
+model=mlp
+method=ldp
+mode=retrain_attacker
+baseline_acc=0.471854
+defended_acc=0.230132
+baseline_f1_macro=0.424720
+defended_f1_macro=0.172268

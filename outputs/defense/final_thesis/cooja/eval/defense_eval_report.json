@@ -1,0 +1,1955 @@
+{
+  "config": {
+    "manifest": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\configs\\cooja_defense_dummy_logs.json",
+    "window_s": 8.0,
+    "step_s": 3.0,
+    "min_requests": 2,
+    "dominance_threshold": 0.2,
+    "test_ratio": 0.3,
+    "seeds": [
+      42,
+      123,
+      2026
+    ]
+  },
+  "methods": {
+    "dummy_noise": {
+      "defense_log_paths": {
+        "radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg_dummy_noise.txt",
+        "app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener_dummy_noise.txt"
+      },
+      "generation": {
+        "mode": "from_defense_logs",
+        "transform": null,
+        "transform_config": null
+      },
+      "dataset": {
+        "baseline_windows": 4016,
+        "defense_windows": 678,
+        "baseline_labels": [
+          "client_2",
+          "client_3",
+          "client_4",
+          "client_5",
+          "client_6",
+          "client_7"
+        ],
+        "defense_labels": [
+          "client_2",
+          "client_3",
+          "client_4",
+          "client_5",
+          "client_6",
+          "client_7"
+        ]
+      },
+      "baseline_test": {
+        "accuracy": {
+          "mean": 0.24896265560165975,
+          "std": 0.006534446368474548,
+          "min": 0.24315352697095435,
+          "max": 0.25809128630705397
+        },
+        "f1_macro": {
+          "mean": 0.24641538784679787,
+          "std": 0.006628544085565602,
+          "min": 0.2411207688402276,
+          "max": 0.2557620743526765
+        }
+      },
+      "fixed_attacker": {
+        "accuracy": {
+          "mean": 0.18627450980392157,
+          "std": 0.032761336038829116,
+          "min": 0.15196078431372548,
+          "max": 0.23039215686274508
+        },
+        "f1_macro": {
+          "mean": 0.17706634544107944,
+          "std": 0.031713089185137426,
+          "min": 0.14716640272784343,
+          "max": 0.22096584369893754
+        },
+        "delta_vs_baseline_accuracy_mean": -0.06268814579773818,
+        "delta_vs_baseline_f1_mean": -0.06934904240571843
+      },
+      "retrain_attacker": {
+        "accuracy": {
+          "mean": 0.25980392156862747,
+          "std": 0.02801703954163766,
+          "min": 0.22549019607843138,
+          "max": 0.29411764705882354
+        },
+        "f1_macro": {
+          "mean": 0.23965556899217483,
+          "std": 0.02982122810145052,
+          "min": 0.20685832208797558,
+          "max": 0.27901533167661347
+        },
+        "delta_vs_baseline_accuracy_mean": 0.010841265966967717,
+        "delta_vs_baseline_f1_mean": -0.00675981885462304
+      },
+      "runs": [
+        {
+          "seed": 42,
+          "baseline_test": {
+            "accuracy": 0.24564315352697094,
+            "f1_macro": 0.2423633203474895,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                62,
+                23,
+                34,
+                22,
+                36,
+                40
+              ],
+              [
+                35,
+                30,
+                31,
+                40,
+                27,
+                33
+              ],
+              [
+                37,
+                24,
+                56,
+                26,
+                18,
+                30
+              ],
+              [
+                26,
+                30,
+                29,
+                34,
+                33,
+                37
+              ],
+              [
+                47,
+                27,
+                34,
+                26,
+                57,
+                24
+              ],
+              [
+                34,
+                26,
+                22,
+                26,
+                32,
+                57
+              ]
+            ]
+          },
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.17647058823529413,
+            "f1_macro": 0.16306678989645734,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                4,
+                2,
+                0,
+                4,
+                12,
+                8
+              ],
+              [
+                9,
+                1,
+                3,
+                3,
+                14,
+                6
+              ],
+              [
+                9,
+                2,
+                7,
+                5,
+                16,
+                9
+              ],
+              [
+                4,
+                3,
+                5,
+                5,
+                13,
+                6
+              ],
+              [
+                3,
+                4,
+                4,
+                0,
+                13,
+                4
+              ],
+              [
+                4,
+                0,
+                0,
+                4,
+                12,
+                6
+              ]
+            ]
+          },
+          "retrain_attacker_on_defense": {
+            "accuracy": 0.22549019607843138,
+            "f1_macro": 0.20685832208797558,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                12,
+                4,
+                2,
+                7,
+                4,
+                1
+              ],
+              [
+                4,
+                4,
+                17,
+                6,
+                3,
+                2
+              ],
+              [
+                8,
+                9,
+                18,
+                7,
+                4,
+                2
+              ],
+              [
+                6,
+                4,
+                10,
+                6,
+                8,
+                2
+              ],
+              [
+                3,
+                3,
+                12,
+                6,
+                2,
+                2
+              ],
+              [
+                7,
+                5,
+                3,
+                5,
+                2,
+                4
+              ]
+            ]
+          }
+        },
+        {
+          "seed": 123,
+          "baseline_test": {
+            "accuracy": 0.25809128630705397,
+            "f1_macro": 0.2557620743526765,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                70,
+                26,
+                34,
+                25,
+                31,
+                31
+              ],
+              [
+                30,
+                35,
+                32,
+                35,
+                23,
+                41
+              ],
+              [
+                38,
+                27,
+                51,
+                27,
+                24,
+                24
+              ],
+              [
+                25,
+                30,
+                28,
+                44,
+                31,
+                31
+              ],
+              [
+                42,
+                26,
+                28,
+                24,
+                58,
+                37
+              ],
+              [
+                31,
+                30,
+                20,
+                22,
+                41,
+                53
+              ]
+            ]
+          },
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.23039215686274508,
+            "f1_macro": 0.22096584369893754,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                3,
+                5,
+                0,
+                3,
+                18,
+                1
+              ],
+              [
+                3,
+                6,
+                2,
+                5,
+                17,
+                3
+              ],
+              [
+                5,
+                8,
+                5,
+                5,
+                20,
+                5
+              ],
+              [
+                1,
+                2,
+                4,
+                8,
+                17,
+                4
+              ],
+              [
+                4,
+                0,
+                4,
+                0,
+                18,
+                2
+              ],
+              [
+                5,
+                2,
+                3,
+                1,
+                8,
+                7
+              ]
+            ]
+          },
+          "retrain_attacker_on_defense": {
+            "accuracy": 0.25980392156862747,
+            "f1_macro": 0.2330930532119354,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                6,
+                8,
+                5,
+                3,
+                7,
+                1
+              ],
+              [
+                6,
+                5,
+                11,
+                5,
+                5,
+                4
+              ],
+              [
+                1,
+                11,
+                26,
+                4,
+                4,
+                2
+              ],
+              [
+                5,
+                5,
+                5,
+                7,
+                6,
+                8
+              ],
+              [
+                8,
+                3,
+                4,
+                8,
+                3,
+                2
+              ],
+              [
+                3,
+                5,
+                6,
+                4,
+                2,
+                6
+              ]
+            ]
+          }
+        },
+        {
+          "seed": 2026,
+          "baseline_test": {
+            "accuracy": 0.24315352697095435,
+            "f1_macro": 0.2411207688402276,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                68,
+                25,
+                33,
+                29,
+                27,
+                35
+              ],
+              [
+                27,
+                41,
+                31,
+                39,
+                20,
+                38
+              ],
+              [
+                28,
+                27,
+                52,
+                31,
+                29,
+                24
+              ],
+              [
+                26,
+                33,
+                30,
+                30,
+                34,
+                36
+              ],
+              [
+                41,
+                33,
+                22,
+                30,
+                51,
+                38
+              ],
+              [
+                35,
+                27,
+                26,
+                28,
+                30,
+                51
+              ]
+            ]
+          },
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.15196078431372548,
+            "f1_macro": 0.14716640272784343,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                8,
+                2,
+                0,
+                2,
+                9,
+                9
+              ],
+              [
+                2,
+                5,
+                1,
+                5,
+                15,
+                8
+              ],
+              [
+                10,
+                1,
+                4,
+                9,
+                16,
+                8
+              ],
+              [
+                8,
+                4,
+                3,
+                2,
+                12,
+                7
+              ],
+              [
+                4,
+                5,
+                3,
+                4,
+                9,
+                3
+              ],
+              [
+                10,
+                2,
+                0,
+                1,
+                10,
+                3
+              ]
+            ]
+          },
+          "retrain_attacker_on_defense": {
+            "accuracy": 0.29411764705882354,
+            "f1_macro": 0.27901533167661347,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                4,
+                4,
+                9,
+                4,
+                3,
+                6
+              ],
+              [
+                6,
+                10,
+                10,
+                3,
+                5,
+                2
+              ],
+              [
+                1,
+                7,
+                20,
+                5,
+                10,
+                5
+              ],
+              [
+                5,
+                7,
+                5,
+                13,
+                5,
+                1
+              ],
+              [
+                3,
+                5,
+                7,
+                6,
+                6,
+                1
+              ],
+              [
+                5,
+                3,
+                4,
+                3,
+                4,
+                7
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    "dummy_ldp": {
+      "defense_log_paths": {
+        "radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg_dummy_ldp.txt",
+        "app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener_dummy_ldp.txt"
+      },
+      "generation": {
+        "mode": "from_defense_logs",
+        "transform": null,
+        "transform_config": null
+      },
+      "dataset": {
+        "baseline_windows": 4016,
+        "defense_windows": 1161,
+        "baseline_labels": [
+          "client_2",
+          "client_3",
+          "client_4",
+          "client_5",
+          "client_6",
+          "client_7"
+        ],
+        "defense_labels": [
+          "client_2",
+          "client_3",
+          "client_4",
+          "client_5",
+          "client_6",
+          "client_7"
+        ]
+      },
+      "baseline_test": {
+        "accuracy": {
+          "mean": 0.24896265560165975,
+          "std": 0.006534446368474548,
+          "min": 0.24315352697095435,
+          "max": 0.25809128630705397
+        },
+        "f1_macro": {
+          "mean": 0.24641538784679787,
+          "std": 0.006628544085565602,
+          "min": 0.2411207688402276,
+          "max": 0.2557620743526765
+        }
+      },
+      "fixed_attacker": {
+        "accuracy": {
+          "mean": 0.2139446036294174,
+          "std": 0.015221945989025053,
+          "min": 0.19484240687679083,
+          "max": 0.23209169054441262
+        },
+        "f1_macro": {
+          "mean": 0.19967997259897008,
+          "std": 0.020200536002604415,
+          "min": 0.17439604343738638,
+          "max": 0.22383865011370227
+        },
+        "delta_vs_baseline_accuracy_mean": -0.035018051972242364,
+        "delta_vs_baseline_f1_mean": -0.04673541524782779
+      },
+      "retrain_attacker": {
+        "accuracy": {
+          "mean": 0.22922636103151864,
+          "std": 0.014230816070440628,
+          "min": 0.2177650429799427,
+          "max": 0.2492836676217765
+        },
+        "f1_macro": {
+          "mean": 0.2247362445321789,
+          "std": 0.013520700260767996,
+          "min": 0.21501983927376914,
+          "max": 0.24385655096668046
+        },
+        "delta_vs_baseline_accuracy_mean": -0.019736294570141116,
+        "delta_vs_baseline_f1_mean": -0.021679143314618954
+      },
+      "runs": [
+        {
+          "seed": 42,
+          "baseline_test": {
+            "accuracy": 0.24564315352697094,
+            "f1_macro": 0.2423633203474895,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                62,
+                23,
+                34,
+                22,
+                36,
+                40
+              ],
+              [
+                35,
+                30,
+                31,
+                40,
+                27,
+                33
+              ],
+              [
+                37,
+                24,
+                56,
+                26,
+                18,
+                30
+              ],
+              [
+                26,
+                30,
+                29,
+                34,
+                33,
+                37
+              ],
+              [
+                47,
+                27,
+                34,
+                26,
+                57,
+                24
+              ],
+              [
+                34,
+                26,
+                22,
+                26,
+                32,
+                57
+              ]
+            ]
+          },
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.23209169054441262,
+            "f1_macro": 0.22383865011370227,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                8,
+                3,
+                4,
+                2,
+                25,
+                6
+              ],
+              [
+                3,
+                9,
+                3,
+                6,
+                25,
+                11
+              ],
+              [
+                13,
+                6,
+                9,
+                8,
+                27,
+                5
+              ],
+              [
+                10,
+                6,
+                8,
+                11,
+                18,
+                4
+              ],
+              [
+                15,
+                6,
+                0,
+                3,
+                28,
+                9
+              ],
+              [
+                10,
+                3,
+                4,
+                6,
+                19,
+                16
+              ]
+            ]
+          },
+          "retrain_attacker_on_defense": {
+            "accuracy": 0.22063037249283668,
+            "f1_macro": 0.21501983927376914,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                9,
+                5,
+                11,
+                9,
+                7,
+                7
+              ],
+              [
+                6,
+                7,
+                16,
+                8,
+                12,
+                8
+              ],
+              [
+                11,
+                11,
+                22,
+                9,
+                11,
+                4
+              ],
+              [
+                6,
+                11,
+                15,
+                9,
+                8,
+                8
+              ],
+              [
+                8,
+                11,
+                12,
+                5,
+                15,
+                10
+              ],
+              [
+                7,
+                11,
+                11,
+                4,
+                10,
+                15
+              ]
+            ]
+          }
+        },
+        {
+          "seed": 123,
+          "baseline_test": {
+            "accuracy": 0.25809128630705397,
+            "f1_macro": 0.2557620743526765,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                70,
+                26,
+                34,
+                25,
+                31,
+                31
+              ],
+              [
+                30,
+                35,
+                32,
+                35,
+                23,
+                41
+              ],
+              [
+                38,
+                27,
+                51,
+                27,
+                24,
+                24
+              ],
+              [
+                25,
+                30,
+                28,
+                44,
+                31,
+                31
+              ],
+              [
+                42,
+                26,
+                28,
+                24,
+                58,
+                37
+              ],
+              [
+                31,
+                30,
+                20,
+                22,
+                41,
+                53
+              ]
+            ]
+          },
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.19484240687679083,
+            "f1_macro": 0.17439604343738638,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                7,
+                5,
+                2,
+                5,
+                28,
+                1
+              ],
+              [
+                9,
+                5,
+                2,
+                7,
+                27,
+                7
+              ],
+              [
+                8,
+                7,
+                3,
+                11,
+                31,
+                8
+              ],
+              [
+                7,
+                5,
+                4,
+                12,
+                20,
+                9
+              ],
+              [
+                9,
+                3,
+                2,
+                9,
+                30,
+                8
+              ],
+              [
+                8,
+                2,
+                9,
+                5,
+                23,
+                11
+              ]
+            ]
+          },
+          "retrain_attacker_on_defense": {
+            "accuracy": 0.2177650429799427,
+            "f1_macro": 0.2153323433560871,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                8,
+                6,
+                12,
+                9,
+                8,
+                5
+              ],
+              [
+                8,
+                10,
+                18,
+                7,
+                6,
+                8
+              ],
+              [
+                8,
+                13,
+                18,
+                6,
+                11,
+                12
+              ],
+              [
+                11,
+                14,
+                11,
+                10,
+                5,
+                6
+              ],
+              [
+                9,
+                9,
+                16,
+                4,
+                13,
+                10
+              ],
+              [
+                5,
+                10,
+                11,
+                6,
+                9,
+                17
+              ]
+            ]
+          }
+        },
+        {
+          "seed": 2026,
+          "baseline_test": {
+            "accuracy": 0.24315352697095435,
+            "f1_macro": 0.2411207688402276,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                68,
+                25,
+                33,
+                29,
+                27,
+                35
+              ],
+              [
+                27,
+                41,
+                31,
+                39,
+                20,
+                38
+              ],
+              [
+                28,
+                27,
+                52,
+                31,
+                29,
+                24
+              ],
+              [
+                26,
+                33,
+                30,
+                30,
+                34,
+                36
+              ],
+              [
+                41,
+                33,
+                22,
+                30,
+                51,
+                38
+              ],
+              [
+                35,
+                27,
+                26,
+                28,
+                30,
+                51
+              ]
+            ]
+          },
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.2148997134670487,
+            "f1_macro": 0.2008052242458216,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                15,
+                5,
+                1,
+                4,
+                16,
+                7
+              ],
+              [
+                14,
+                3,
+                5,
+                3,
+                25,
+                7
+              ],
+              [
+                14,
+                7,
+                10,
+                9,
+                20,
+                8
+              ],
+              [
+                10,
+                7,
+                8,
+                10,
+                15,
+                7
+              ],
+              [
+                15,
+                5,
+                0,
+                6,
+                27,
+                8
+              ],
+              [
+                10,
+                7,
+                2,
+                9,
+                20,
+                10
+              ]
+            ]
+          },
+          "retrain_attacker_on_defense": {
+            "accuracy": 0.2492836676217765,
+            "f1_macro": 0.24385655096668046,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                9,
+                6,
+                13,
+                6,
+                5,
+                9
+              ],
+              [
+                3,
+                11,
+                15,
+                12,
+                7,
+                9
+              ],
+              [
+                7,
+                8,
+                24,
+                13,
+                9,
+                7
+              ],
+              [
+                6,
+                5,
+                19,
+                14,
+                8,
+                5
+              ],
+              [
+                7,
+                13,
+                14,
+                4,
+                12,
+                11
+              ],
+              [
+                6,
+                7,
+                13,
+                7,
+                8,
+                17
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    "dummy_adaptive_ldp": {
+      "defense_log_paths": {
+        "radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg_dummy_adaptive.txt",
+        "app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener_dummy_adaptive.txt"
+      },
+      "generation": {
+        "mode": "from_defense_logs",
+        "transform": null,
+        "transform_config": null
+      },
+      "dataset": {
+        "baseline_windows": 4016,
+        "defense_windows": 1140,
+        "baseline_labels": [
+          "client_2",
+          "client_3",
+          "client_4",
+          "client_5",
+          "client_6",
+          "client_7"
+        ],
+        "defense_labels": [
+          "client_2",
+          "client_3",
+          "client_4",
+          "client_5",
+          "client_6",
+          "client_7"
+        ]
+      },
+      "baseline_test": {
+        "accuracy": {
+          "mean": 0.24896265560165975,
+          "std": 0.006534446368474548,
+          "min": 0.24315352697095435,
+          "max": 0.25809128630705397
+        },
+        "f1_macro": {
+          "mean": 0.24641538784679787,
+          "std": 0.006628544085565602,
+          "min": 0.2411207688402276,
+          "max": 0.2557620743526765
+        }
+      },
+      "fixed_attacker": {
+        "accuracy": {
+          "mean": 0.20955165692007796,
+          "std": 0.016250810916698895,
+          "min": 0.1871345029239766,
+          "max": 0.22514619883040934
+        },
+        "f1_macro": {
+          "mean": 0.19754863109678486,
+          "std": 0.016531607410970338,
+          "min": 0.1748732677589484,
+          "max": 0.21381703162896237
+        },
+        "delta_vs_baseline_accuracy_mean": -0.039410998681581794,
+        "delta_vs_baseline_f1_mean": -0.04886675675001301
+      },
+      "retrain_attacker": {
+        "accuracy": {
+          "mean": 0.24269005847953215,
+          "std": 0.013292574753397532,
+          "min": 0.22807017543859648,
+          "max": 0.260233918128655
+        },
+        "f1_macro": {
+          "mean": 0.2405971839637652,
+          "std": 0.011657844287719364,
+          "min": 0.2261038434302929,
+          "max": 0.25464938949899224
+        },
+        "delta_vs_baseline_accuracy_mean": -0.0062725971221276045,
+        "delta_vs_baseline_f1_mean": -0.005818203883032669
+      },
+      "runs": [
+        {
+          "seed": 42,
+          "baseline_test": {
+            "accuracy": 0.24564315352697094,
+            "f1_macro": 0.2423633203474895,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                62,
+                23,
+                34,
+                22,
+                36,
+                40
+              ],
+              [
+                35,
+                30,
+                31,
+                40,
+                27,
+                33
+              ],
+              [
+                37,
+                24,
+                56,
+                26,
+                18,
+                30
+              ],
+              [
+                26,
+                30,
+                29,
+                34,
+                33,
+                37
+              ],
+              [
+                47,
+                27,
+                34,
+                26,
+                57,
+                24
+              ],
+              [
+                34,
+                26,
+                22,
+                26,
+                32,
+                57
+              ]
+            ]
+          },
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.21637426900584794,
+            "f1_macro": 0.21381703162896237,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                13,
+                1,
+                2,
+                6,
+                24,
+                8
+              ],
+              [
+                11,
+                10,
+                6,
+                5,
+                21,
+                7
+              ],
+              [
+                5,
+                7,
+                11,
+                4,
+                26,
+                6
+              ],
+              [
+                9,
+                3,
+                8,
+                5,
+                24,
+                15
+              ],
+              [
+                10,
+                6,
+                5,
+                4,
+                21,
+                13
+              ],
+              [
+                7,
+                2,
+                3,
+                2,
+                18,
+                14
+              ]
+            ]
+          },
+          "retrain_attacker_on_defense": {
+            "accuracy": 0.260233918128655,
+            "f1_macro": 0.25464938949899224,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                11,
+                8,
+                11,
+                11,
+                10,
+                3
+              ],
+              [
+                8,
+                14,
+                10,
+                11,
+                10,
+                7
+              ],
+              [
+                7,
+                10,
+                15,
+                6,
+                16,
+                5
+              ],
+              [
+                7,
+                8,
+                18,
+                20,
+                8,
+                3
+              ],
+              [
+                12,
+                7,
+                10,
+                6,
+                21,
+                3
+              ],
+              [
+                7,
+                6,
+                3,
+                13,
+                9,
+                8
+              ]
+            ]
+          }
+        },
+        {
+          "seed": 123,
+          "baseline_test": {
+            "accuracy": 0.25809128630705397,
+            "f1_macro": 0.2557620743526765,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                70,
+                26,
+                34,
+                25,
+                31,
+                31
+              ],
+              [
+                30,
+                35,
+                32,
+                35,
+                23,
+                41
+              ],
+              [
+                38,
+                27,
+                51,
+                27,
+                24,
+                24
+              ],
+              [
+                25,
+                30,
+                28,
+                44,
+                31,
+                31
+              ],
+              [
+                42,
+                26,
+                28,
+                24,
+                58,
+                37
+              ],
+              [
+                31,
+                30,
+                20,
+                22,
+                41,
+                53
+              ]
+            ]
+          },
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.22514619883040934,
+            "f1_macro": 0.20395559390244378,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                11,
+                1,
+                3,
+                6,
+                24,
+                9
+              ],
+              [
+                7,
+                4,
+                5,
+                9,
+                30,
+                5
+              ],
+              [
+                7,
+                3,
+                11,
+                4,
+                28,
+                6
+              ],
+              [
+                5,
+                10,
+                5,
+                8,
+                27,
+                9
+              ],
+              [
+                6,
+                4,
+                2,
+                4,
+                35,
+                8
+              ],
+              [
+                5,
+                5,
+                3,
+                3,
+                22,
+                8
+              ]
+            ]
+          },
+          "retrain_attacker_on_defense": {
+            "accuracy": 0.22807017543859648,
+            "f1_macro": 0.2261038434302929,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                13,
+                6,
+                11,
+                7,
+                10,
+                7
+              ],
+              [
+                6,
+                13,
+                12,
+                13,
+                11,
+                5
+              ],
+              [
+                6,
+                11,
+                14,
+                11,
+                13,
+                4
+              ],
+              [
+                8,
+                10,
+                12,
+                17,
+                9,
+                8
+              ],
+              [
+                4,
+                11,
+                9,
+                16,
+                14,
+                5
+              ],
+              [
+                5,
+                10,
+                6,
+                13,
+                5,
+                7
+              ]
+            ]
+          }
+        },
+        {
+          "seed": 2026,
+          "baseline_test": {
+            "accuracy": 0.24315352697095435,
+            "f1_macro": 0.2411207688402276,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                68,
+                25,
+                33,
+                29,
+                27,
+                35
+              ],
+              [
+                27,
+                41,
+                31,
+                39,
+                20,
+                38
+              ],
+              [
+                28,
+                27,
+                52,
+                31,
+                29,
+                24
+              ],
+              [
+                26,
+                33,
+                30,
+                30,
+                34,
+                36
+              ],
+              [
+                41,
+                33,
+                22,
+                30,
+                51,
+                38
+              ],
+              [
+                35,
+                27,
+                26,
+                28,
+                30,
+                51
+              ]
+            ]
+          },
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.1871345029239766,
+            "f1_macro": 0.1748732677589484,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                15,
+                2,
+                4,
+                5,
+                24,
+                4
+              ],
+              [
+                14,
+                5,
+                7,
+                9,
+                19,
+                6
+              ],
+              [
+                15,
+                2,
+                5,
+                5,
+                27,
+                5
+              ],
+              [
+                8,
+                4,
+                10,
+                10,
+                22,
+                10
+              ],
+              [
+                13,
+                7,
+                0,
+                8,
+                22,
+                9
+              ],
+              [
+                8,
+                5,
+                5,
+                2,
+                19,
+                7
+              ]
+            ]
+          },
+          "retrain_attacker_on_defense": {
+            "accuracy": 0.23976608187134502,
+            "f1_macro": 0.24103831896201044,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                12,
+                9,
+                9,
+                9,
+                11,
+                4
+              ],
+              [
+                9,
+                13,
+                13,
+                17,
+                7,
+                1
+              ],
+              [
+                12,
+                11,
+                14,
+                12,
+                7,
+                3
+              ],
+              [
+                10,
+                13,
+                9,
+                20,
+                6,
+                6
+              ],
+              [
+                12,
+                11,
+                9,
+                12,
+                13,
+                2
+              ],
+              [
+                7,
+                8,
+                7,
+                8,
+                6,
+                10
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

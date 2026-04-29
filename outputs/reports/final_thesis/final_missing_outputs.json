@@ -1,0 +1,170 @@
+[
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 42,
+    "model_type": "lstm",
+    "method": "ldp",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 42,
+    "model_type": "mlp",
+    "method": "ldp",
+    "mode": "fixed_attacker",
+    "reason": "mlp_scan_not_generated_by_current_pipeline"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 42,
+    "model_type": "mlp",
+    "method": "ldp",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 42,
+    "model_type": "lstm",
+    "method": "noise",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 42,
+    "model_type": "mlp",
+    "method": "noise",
+    "mode": "fixed_attacker",
+    "reason": "mlp_scan_not_generated_by_current_pipeline"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 42,
+    "model_type": "mlp",
+    "method": "noise",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 123,
+    "model_type": "lstm",
+    "method": "ldp",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 123,
+    "model_type": "mlp",
+    "method": "ldp",
+    "mode": "fixed_attacker",
+    "reason": "mlp_scan_not_generated_by_current_pipeline"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 123,
+    "model_type": "mlp",
+    "method": "ldp",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 123,
+    "model_type": "lstm",
+    "method": "noise",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 123,
+    "model_type": "mlp",
+    "method": "noise",
+    "mode": "fixed_attacker",
+    "reason": "mlp_scan_not_generated_by_current_pipeline"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 123,
+    "model_type": "mlp",
+    "method": "noise",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 2026,
+    "model_type": "lstm",
+    "method": "ldp",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 2026,
+    "model_type": "mlp",
+    "method": "ldp",
+    "mode": "fixed_attacker",
+    "reason": "mlp_scan_not_generated_by_current_pipeline"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 2026,
+    "model_type": "mlp",
+    "method": "ldp",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 2026,
+    "model_type": "lstm",
+    "method": "noise",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 2026,
+    "model_type": "mlp",
+    "method": "noise",
+    "mode": "fixed_attacker",
+    "reason": "mlp_scan_not_generated_by_current_pipeline"
+  },
+  {
+    "section": "real_parameter_scan",
+    "dataset": "uci_har",
+    "seed": 2026,
+    "model_type": "mlp",
+    "method": "noise",
+    "mode": "retrain_attacker",
+    "reason": "retrain_scan_not_supported_by_run_compare"
+  },
+  {
+    "section": "figures",
+    "figure": "cooja_overhead",
+    "reason": "cooja_overhead_metrics_unavailable",
+    "note": "energy_metric_available=false and delay_proxy unavailable in current logs."
+  }
+]

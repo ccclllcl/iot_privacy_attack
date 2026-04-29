@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "model_type": "lstm",
+  "accuracy": 0.1808618934509671,
+  "f1_macro": 0.12400064473824403,
+  "precision_macro": 0.30302042959407477,
+  "recall_macro": 0.18517707253182117,
+  "per_class_recall": {
+    "walking": 0.7036290322580645,
+    "walking_upstairs": 0.11889596602972399,
+    "walking_downstairs": 0.22380952380952382,
+    "sitting": 0.016293279022403257,
+    "standing": 0.0018796992481203006,
+    "laying": 0.04655493482309125
+  },
+  "confusion_matrix": [
+    [
+      349,
+      58,
+      87,
+      1,
+      1,
+      0
+    ],
+    [
+      340,
+      56,
+      72,
+      1,
+      2,
+      0
+    ],
+    [
+      279,
+      47,
+      94,
+      0,
+      0,
+      0
+    ],
+    [
+      311,
+      23,
+      149,
+      8,
+      0,
+      0
+    ],
+    [
+      409,
+      38,
+      82,
+      2,
+      1,
+      0
+    ],
+    [
+      37,
+      6,
+      336,
+      132,
+      1,
+      25
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "standing",
+      "pred": "walking",
+      "count": 409
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking",
+      "count": 340
+    },
+    {
+      "true": "laying",
+      "pred": "walking_downstairs",
+      "count": 336
+    },
+    {
+      "true": "sitting",
+      "pred": "walking",
+      "count": 311
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking",
+      "count": 279
+    },
+    {
+      "true": "sitting",
+      "pred": "walking_downstairs",
+      "count": 149
+    },
+    {
+      "true": "laying",
+      "pred": "sitting",
+      "count": 132
+    },
+    {
+      "true": "walking",
+      "pred": "walking_downstairs",
+      "count": 87
+    },
+    {
+      "true": "standing",
+      "pred": "walking_downstairs",
+      "count": 82
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking_downstairs",
+      "count": 72
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}
