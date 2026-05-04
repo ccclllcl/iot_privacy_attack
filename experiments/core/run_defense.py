@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-命令行入口：数据预处理。
-用法: python run_preprocess.py --config configs/default.yaml
+生成防御（扰动）后的数据集。
+
+用法: python experiments/core/run_defense.py --config configs/default.yaml
 """
 
 from __future__ import annotations
@@ -12,12 +13,12 @@ import logging
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.config import ExperimentConfig
-from src.preprocess import run_preprocess
+from src.defenses.defense_pipeline import run_defense_pipeline
 
 
 def main() -> None:
@@ -25,19 +26,14 @@ def main() -> None:
         level=logging.INFO,
         format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
     )
-    parser = argparse.ArgumentParser(description="Smart* 风格数据预处理")
-    parser.add_argument(
-        "--config",
-        type=str,
-        default="configs/default.yaml",
-        help="YAML 配置文件路径（相对项目根目录）",
-    )
+    parser = argparse.ArgumentParser(description="对预处理序列施加防御并写入 data/defended/")
+    parser.add_argument("--config", type=str, default="configs/default.yaml")
     args = parser.parse_args()
     cfg_path = Path(args.config)
     if not cfg_path.is_absolute():
         cfg_path = (ROOT / cfg_path).resolve()
     cfg = ExperimentConfig.from_yaml(cfg_path, project_root=ROOT)
-    run_preprocess(cfg)
+    run_defense_pipeline(cfg)
 
 
 if __name__ == "__main__":

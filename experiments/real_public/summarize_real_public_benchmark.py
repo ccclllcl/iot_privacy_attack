@@ -12,7 +12,7 @@ from statistics import mean
 from typing import Any
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "outputs" / "reports" / "real_public_benchmark" / "real_public_benchmark_manifest.json"
 OUT_DIR = ROOT / "outputs" / "reports" / "real_public_benchmark"
 

@@ -14,7 +14,7 @@ from typing import Any
 import yaml
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 BASE_CONFIG = ROOT / "configs" / "default.yaml"
 GEN_DIR = ROOT / "configs" / "generated_all_methods"
 SEEDS = [42, 123, 2026]
@@ -71,7 +71,7 @@ def run_seed(seed: int) -> dict[str, Any]:
     _run(
         [
             sys.executable,
-            "generate_mock_data.py",
+            "experiments/core/generate_mock_data.py",
             "--config",
             _rel(seed_cfg_path),
             "--output",
@@ -80,16 +80,16 @@ def run_seed(seed: int) -> dict[str, Any]:
             str(seed),
         ]
     )
-    _run([sys.executable, "run_preprocess.py", "--config", _rel(seed_cfg_path)])
+    _run([sys.executable, "experiments/core/run_preprocess.py", "--config", _rel(seed_cfg_path)])
 
     # Baseline models: lstm + mlp
     for model in MODELS:
-        _run([sys.executable, "run_train.py", "--config", _rel(seed_cfg_path), "--model", model])
+        _run([sys.executable, "experiments/core/run_train.py", "--config", _rel(seed_cfg_path), "--model", model])
         model_path = model_lstm if model == "lstm" else model_mlp
         _run(
             [
                 sys.executable,
-                "run_evaluate.py",
+                "experiments/core/run_evaluate.py",
                 "--config",
                 _rel(seed_cfg_path),
                 "--model_path",
@@ -106,7 +106,7 @@ def run_seed(seed: int) -> dict[str, Any]:
         method_cfg_path = _save_cfg(method_cfg, f"default.{tag}.{method}")
 
         # Explicit defense pipeline
-        _run([sys.executable, "run_defense.py", "--config", _rel(method_cfg_path)])
+        _run([sys.executable, "experiments/core/run_defense.py", "--config", _rel(method_cfg_path)])
 
         # Fixed attacker + retrain attacker for both models
         for model in MODELS:
@@ -114,7 +114,7 @@ def run_seed(seed: int) -> dict[str, Any]:
             _run(
                 [
                     sys.executable,
-                    "run_defense_eval.py",
+                    "experiments/core/run_defense_eval.py",
                     "--config",
                     _rel(method_cfg_path),
                     "--mode",
@@ -135,7 +135,7 @@ def run_seed(seed: int) -> dict[str, Any]:
             _run(
                 [
                     sys.executable,
-                    "run_defense_eval.py",
+                    "experiments/core/run_defense_eval.py",
                     "--config",
                     _rel(retrain_cfg_path),
                     "--mode",
@@ -165,7 +165,7 @@ def run_seed(seed: int) -> dict[str, Any]:
             _run(
                 [
                     sys.executable,
-                    "collect_confusion.py",
+                    "experiments/core/collect_confusion.py",
                     "--model_path",
                     _rel(model_path),
                     "--npz_path",
@@ -181,7 +181,7 @@ def run_seed(seed: int) -> dict[str, Any]:
             _run(
                 [
                     sys.executable,
-                    "collect_confusion.py",
+                    "experiments/core/collect_confusion.py",
                     "--model_path",
                     _rel(model_path),
                     "--npz_path",
@@ -197,7 +197,7 @@ def run_seed(seed: int) -> dict[str, Any]:
             _run(
                 [
                     sys.executable,
-                    "collect_confusion.py",
+                    "experiments/core/collect_confusion.py",
                     "--model_path",
                     _rel(retrained_model),
                     "--npz_path",
@@ -216,7 +216,7 @@ def run_seed(seed: int) -> dict[str, Any]:
             _run(
                 [
                     sys.executable,
-                    "run_compare.py",
+                    "experiments/core/run_compare.py",
                     "--config",
                     _rel(method_cfg_path),
                     "--method",

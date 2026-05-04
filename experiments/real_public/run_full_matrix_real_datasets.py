@@ -14,7 +14,7 @@ from typing import Any
 import yaml
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 BASE_CONFIG = ROOT / "configs" / "default.yaml"
 GEN_DIR = ROOT / "configs" / "generated_dataset_matrix"
 
@@ -67,9 +67,9 @@ def _base_cfg(dataset: str, seed: int) -> dict[str, Any]:
 
 def _run_import(dataset: str, cfg_path: Path) -> None:
     if dataset == "uci_har":
-        _run([sys.executable, "run_import_uci_har.py", "--config", _rel(cfg_path), "--auto-download"])
+        _run([sys.executable, "experiments/real_public/run_import_uci_har.py", "--config", _rel(cfg_path), "--auto-download"])
     elif dataset == "kasteren":
-        _run([sys.executable, "run_import_kasteren.py", "--config", _rel(cfg_path), "--auto-download"])
+        _run([sys.executable, "experiments/real_public/run_import_kasteren.py", "--config", _rel(cfg_path), "--auto-download"])
     else:
         raise ValueError(f"unsupported dataset: {dataset}")
 
@@ -85,9 +85,9 @@ def run_one(dataset: str, seed: int) -> dict[str, Any]:
 
     # Baseline
     for model in MODELS:
-        _run([sys.executable, "run_train.py", "--config", _rel(base_cfg), "--model", model])
+        _run([sys.executable, "experiments/core/run_train.py", "--config", _rel(base_cfg), "--model", model])
         mp = model_lstm if model == "lstm" else model_mlp
-        _run([sys.executable, "run_evaluate.py", "--config", _rel(base_cfg), "--model_path", _rel(mp)])
+        _run([sys.executable, "experiments/core/run_evaluate.py", "--config", _rel(base_cfg), "--model_path", _rel(mp)])
 
     method_records: list[dict[str, str]] = []
     for method in METHODS:
@@ -98,14 +98,14 @@ def run_one(dataset: str, seed: int) -> dict[str, Any]:
         cfg["paths"]["defense_dir"] = f"outputs/defense/dataset_matrix/{tag}"
         cfg_path = _save_cfg(cfg, f"{dataset}.seed_{seed}.{method}")
 
-        _run([sys.executable, "run_defense.py", "--config", _rel(cfg_path)])
+        _run([sys.executable, "experiments/core/run_defense.py", "--config", _rel(cfg_path)])
 
         for model in MODELS:
             model_path = model_lstm if model == "lstm" else model_mlp
             _run(
                 [
                     sys.executable,
-                    "run_defense_eval.py",
+                    "experiments/core/run_defense_eval.py",
                     "--config",
                     _rel(cfg_path),
                     "--mode",
@@ -126,7 +126,7 @@ def run_one(dataset: str, seed: int) -> dict[str, Any]:
             _run(
                 [
                     sys.executable,
-                    "run_defense_eval.py",
+                    "experiments/core/run_defense_eval.py",
                     "--config",
                     _rel(retrain_cfg_path),
                     "--mode",
@@ -155,7 +155,7 @@ def run_one(dataset: str, seed: int) -> dict[str, Any]:
             _run(
                 [
                     sys.executable,
-                    "collect_confusion.py",
+                    "experiments/core/collect_confusion.py",
                     "--model_path",
                     _rel(model_path),
                     "--npz_path",
@@ -171,7 +171,7 @@ def run_one(dataset: str, seed: int) -> dict[str, Any]:
             _run(
                 [
                     sys.executable,
-                    "collect_confusion.py",
+                    "experiments/core/collect_confusion.py",
                     "--model_path",
                     _rel(model_path),
                     "--npz_path",
@@ -187,7 +187,7 @@ def run_one(dataset: str, seed: int) -> dict[str, Any]:
             _run(
                 [
                     sys.executable,
-                    "collect_confusion.py",
+                    "experiments/core/collect_confusion.py",
                     "--model_path",
                     _rel(retrained_model),
                     "--npz_path",
@@ -205,7 +205,7 @@ def run_one(dataset: str, seed: int) -> dict[str, Any]:
             _run(
                 [
                     sys.executable,
-                    "run_compare.py",
+                    "experiments/core/run_compare.py",
                     "--config",
                     _rel(cfg_path),
                     "--method",

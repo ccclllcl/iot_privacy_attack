@@ -31,7 +31,7 @@ from typing import Any
 import yaml
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 BASE_CONFIG = ROOT / "configs" / "default.yaml"
 GEN_DIR = ROOT / "configs" / "generated_real_public"
 
@@ -98,16 +98,16 @@ def _base_cfg(dataset_key: str, seed: int, max_epochs: int) -> dict[str, Any]:
 
 def _run_import(dataset_key: str, cfg_path: Path) -> None:
     if dataset_key == "uci_har":
-        _run([sys.executable, "run_import_uci_har.py", "--config", _rel(cfg_path), "--auto-download"])
+        _run([sys.executable, "experiments/real_public/run_import_uci_har.py", "--config", _rel(cfg_path), "--auto-download"])
         return
     if dataset_key == "kasteren":
-        _run([sys.executable, "run_import_kasteren.py", "--config", _rel(cfg_path), "--auto-download"])
+        _run([sys.executable, "experiments/real_public/run_import_kasteren.py", "--config", _rel(cfg_path), "--auto-download"])
         return
     if dataset_key == "casas_hh101":
         _run(
             [
                 sys.executable,
-                "run_import_casas.py",
+                "experiments/real_public/run_import_casas.py",
                 "--config",
                 _rel(cfg_path),
                 "--home",
@@ -150,11 +150,11 @@ def run_one(
     for model in models:
         model_path = model_lstm if model == "lstm" else model_mlp
         _maybe_run(
-            [sys.executable, "run_train.py", "--config", _rel(base_cfg_path), "--model", model],
+            [sys.executable, "experiments/core/run_train.py", "--config", _rel(base_cfg_path), "--model", model],
             [model_path],
             skip_existing=skip_existing,
         )
-        _run([sys.executable, "run_evaluate.py", "--config", _rel(base_cfg_path), "--model_path", _rel(model_path)])
+        _run([sys.executable, "experiments/core/run_evaluate.py", "--config", _rel(base_cfg_path), "--model_path", _rel(model_path)])
 
     method_records: list[dict[str, Any]] = []
     for method in METHODS:
@@ -167,7 +167,7 @@ def run_one(
 
         defended_seq = ROOT / method_cfg["paths"]["defended_dir"] / "defended_sequences.npz"
         _maybe_run(
-            [sys.executable, "run_defense.py", "--config", _rel(method_cfg_path)],
+            [sys.executable, "experiments/core/run_defense.py", "--config", _rel(method_cfg_path)],
             [defended_seq],
             skip_existing=skip_existing,
         )
@@ -177,7 +177,7 @@ def run_one(
             _run(
                 [
                     sys.executable,
-                    "run_defense_eval.py",
+                    "experiments/core/run_defense_eval.py",
                     "--config",
                     _rel(method_cfg_path),
                     "--mode",
@@ -206,7 +206,7 @@ def run_one(
                 _run(
                     [
                         sys.executable,
-                        "run_defense_eval.py",
+                        "experiments/core/run_defense_eval.py",
                         "--config",
                         _rel(retrain_cfg_path),
                         "--mode",
@@ -230,7 +230,7 @@ def run_one(
             _maybe_run(
                 [
                     sys.executable,
-                    "collect_confusion.py",
+                    "experiments/core/collect_confusion.py",
                     "--model_path",
                     _rel(model_path),
                     "--npz_path",
@@ -249,7 +249,7 @@ def run_one(
             _maybe_run(
                 [
                     sys.executable,
-                    "collect_confusion.py",
+                    "experiments/core/collect_confusion.py",
                     "--model_path",
                     _rel(model_path),
                     "--npz_path",
@@ -268,7 +268,7 @@ def run_one(
             _maybe_run(
                 [
                     sys.executable,
-                    "collect_confusion.py",
+                    "experiments/core/collect_confusion.py",
                     "--model_path",
                     _rel(retrained_model),
                     "--npz_path",
@@ -290,7 +290,7 @@ def run_one(
             _maybe_run(
                 [
                     sys.executable,
-                    "run_compare.py",
+                    "experiments/core/run_compare.py",
                     "--config",
                     _rel(method_cfg_path),
                     "--method",

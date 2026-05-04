@@ -13,7 +13,7 @@ from typing import Any
 import yaml
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 BASE_CONFIG = ROOT / "configs" / "default.yaml"
 GENERATED_CONFIG_DIR = ROOT / "configs" / "generated"
 SEEDS = [42, 123, 2026]
@@ -68,7 +68,7 @@ def run_for_seed(seed: int) -> dict[str, str]:
     run(
         [
             sys.executable,
-            "generate_mock_data.py",
+            "experiments/core/generate_mock_data.py",
             "--config",
             _to_rel(cfg_path),
             "--output",
@@ -77,23 +77,23 @@ def run_for_seed(seed: int) -> dict[str, str]:
             str(seed),
         ]
     )
-    run([sys.executable, "run_preprocess.py", "--config", _to_rel(cfg_path)])
-    run([sys.executable, "run_train.py", "--config", _to_rel(cfg_path), "--model", "lstm"])
+    run([sys.executable, "experiments/core/run_preprocess.py", "--config", _to_rel(cfg_path)])
+    run([sys.executable, "experiments/core/run_train.py", "--config", _to_rel(cfg_path), "--model", "lstm"])
     run(
         [
             sys.executable,
-            "run_evaluate.py",
+            "experiments/core/run_evaluate.py",
             "--config",
             _to_rel(cfg_path),
             "--model_path",
             _to_rel(model_path),
         ]
     )
-    run([sys.executable, "run_defense.py", "--config", _to_rel(cfg_path)])
+    run([sys.executable, "experiments/core/run_defense.py", "--config", _to_rel(cfg_path)])
     run(
         [
             sys.executable,
-            "run_defense_eval.py",
+            "experiments/core/run_defense_eval.py",
             "--config",
             _to_rel(cfg_path),
             "--mode",
@@ -102,11 +102,11 @@ def run_for_seed(seed: int) -> dict[str, str]:
             _to_rel(model_path),
         ]
     )
-    run([sys.executable, "run_defense_eval.py", "--config", _to_rel(cfg_path), "--mode", "retrain_attacker"])
+    run([sys.executable, "experiments/core/run_defense_eval.py", "--config", _to_rel(cfg_path), "--mode", "retrain_attacker"])
     run(
         [
             sys.executable,
-            "run_compare.py",
+            "experiments/core/run_compare.py",
             "--config",
             _to_rel(cfg_path),
             "--method",
@@ -118,7 +118,7 @@ def run_for_seed(seed: int) -> dict[str, str]:
     run(
         [
             sys.executable,
-            "run_compare.py",
+            "experiments/core/run_compare.py",
             "--config",
             _to_rel(cfg_path),
             "--method",
@@ -132,7 +132,7 @@ def run_for_seed(seed: int) -> dict[str, str]:
     run(
         [
             sys.executable,
-            "collect_confusion.py",
+            "experiments/core/collect_confusion.py",
             "--model_path",
             _to_rel(model_path),
             "--npz_path",
@@ -148,7 +148,7 @@ def run_for_seed(seed: int) -> dict[str, str]:
     run(
         [
             sys.executable,
-            "collect_confusion.py",
+            "experiments/core/collect_confusion.py",
             "--model_path",
             _to_rel(model_path),
             "--npz_path",
@@ -164,7 +164,7 @@ def run_for_seed(seed: int) -> dict[str, str]:
     run(
         [
             sys.executable,
-            "collect_confusion.py",
+            "experiments/core/collect_confusion.py",
             "--model_path",
             _to_rel(retrain_model_path),
             "--npz_path",

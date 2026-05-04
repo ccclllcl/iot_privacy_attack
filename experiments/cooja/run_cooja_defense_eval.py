@@ -251,7 +251,7 @@ def main() -> None:
     ap.add_argument("--seeds", default="42,123,2026")
     args = ap.parse_args()
 
-    root = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parents[2]
     out_dir = (root / args.out_dir).resolve() if not Path(args.out_dir).is_absolute() else Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 

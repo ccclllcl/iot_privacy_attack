@@ -7,7 +7,7 @@
 https://github.com/aitoralmeida/c4a_activity_recognition
 
 用法:
-  python run_import_kasteren.py --config configs/default.yaml --auto-download
+  python experiments/real_public/run_import_kasteren.py --config configs/default.yaml --auto-download
 """
 
 from __future__ import annotations
@@ -20,7 +20,7 @@ from typing import Dict, List, Tuple
 
 import numpy as np
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
