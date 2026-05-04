@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 命令行入口：训练攻击者模型。
-用法: python run_train.py --config configs/default.yaml --model lstm
+用法: python experiments/core/run_train.py --config configs/default.yaml --model lstm
 """
 
 from __future__ import annotations
@@ -12,7 +12,7 @@ import logging
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 

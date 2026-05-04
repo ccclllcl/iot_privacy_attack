@@ -9,7 +9,7 @@
 - 可选生成 mlp_features.npz（复用本项目的统计特征提取）
 
 用法:
-  python run_import_uci_har.py --config configs/default.yaml
+  python experiments/real_public/run_import_uci_har.py --config configs/default.yaml
 """
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ from typing import Any, Dict, List, Tuple
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 

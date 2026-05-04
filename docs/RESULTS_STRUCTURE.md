@@ -79,5 +79,5 @@
 
 ## 4) 复现实验脚本
 
-- 合成数据全矩阵：`run_all_methods_multiseed.py`
-- 真实数据集全矩阵：`run_full_matrix_real_datasets.py`
+- 合成数据全矩阵：`experiments/batches/run_all_methods_multiseed.py`
+- 真实数据集全矩阵：`experiments/real_public/run_full_matrix_real_datasets.py`

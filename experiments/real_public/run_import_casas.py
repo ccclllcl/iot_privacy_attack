@@ -6,7 +6,7 @@
 该数据是智能家居环境传感器事件流（门磁/红外等）+ 活动片段标签（begin/end）。
 
 用法:
-  python run_import_casas.py --config configs/default.yaml --home hh101 --auto-download
+  python experiments/real_public/run_import_casas.py --config configs/default.yaml --home hh101 --auto-download
 """
 
 from __future__ import annotations
@@ -21,7 +21,7 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 

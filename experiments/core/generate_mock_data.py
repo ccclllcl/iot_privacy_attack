@@ -7,9 +7,9 @@
 timestamp, device_id, value, behavior_label
 
 用法（在项目根目录）:
-  python generate_mock_data.py
-  python generate_mock_data.py --config configs/default.yaml
-  python generate_mock_data.py --days 21 --output data/raw/smart_home_events.csv --seed 123
+  python experiments/core/generate_mock_data.py
+  python experiments/core/generate_mock_data.py --config configs/default.yaml
+  python experiments/core/generate_mock_data.py --days 21 --output data/raw/smart_home_events.csv --seed 123
 """
 
 from __future__ import annotations
@@ -133,7 +133,7 @@ def main() -> None:
         help="若指定则覆盖配置文件中的随机种子",
     )
     args = parser.parse_args()
-    root = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parents[2]
     cfg_path = Path(args.config)
     if not cfg_path.is_absolute():
         cfg_path = root / cfg_path

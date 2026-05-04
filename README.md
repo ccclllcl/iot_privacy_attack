@@ -18,7 +18,7 @@
 | 论文表述 | 本项目中的体现 |
 |----------|----------------|
 | 流量侧信道推断行为 | 攻击模型从**设备事件与功耗时序**（上报强度、活动模式）推断行为；对应「不解密内容亦可从元数据/统计推断」的威胁模型。 |
-| 数据上报阶段扰动 | `run_defense.py`：在**预处理后的滑窗张量**上施加噪声 / LDP / **adaptive_ldp**（模拟网关节点或可信上报代理）。 |
+| 数据上报阶段扰动 | `experiments/core/run_defense.py`：在**预处理后的滑窗张量**上施加噪声 / LDP / **adaptive_ldp**（模拟网关节点或可信上报代理）。 |
 | **自适应**本地差分隐私 | `defense.method: adaptive_ldp` + `adaptive_ldp.*`：按窗口计算**敏感度代理**（时序 std）与**流量代理**（L1 能量和），动态分配 **epsilon**，高风险窗口更强噪声。 |
 | 边缘辅助 | `src/edge/budget_allocator.py`：可选对一批窗口的 **epsilon 序列**做**总逆预算**裁剪；`defense_pipeline` 在**全量样本上 fit** 标定分位数，模拟边缘掌握历史统计后下发策略。 |
 | 轻量化与系统性能 | `defense_summary.json` 中的 **`system_performance`**：记录各划分 `transform` 耗时（秒），便于与基线方法对比开销。 |
@@ -53,7 +53,7 @@ pip install -r requirements.txt
 启动方式（Windows / PowerShell）：
 
 ```bash
-py -3 -m streamlit run ui_app.py
+py -3 -m streamlit run apps/ui_app.py
 ```
 
 运行历史默认写入：
@@ -63,7 +63,7 @@ py -3 -m streamlit run ui_app.py
 另外提供一个更精简的前端入口（推荐答辩演示）：
 
 ```bash
-py -3 -m streamlit run ui_simple.py
+py -3 -m streamlit run apps/ui_simple.py
 ```
 
 它只保留 3 个核心按钮：
@@ -76,12 +76,33 @@ py -3 -m streamlit run ui_simple.py
 
 ## 目录结构
 
+更详细的路径职责见 `docs/PROJECT_STRUCTURE.md`。
+
 ```
 iot_privacy_attack/
+├── apps/                         # Streamlit 界面入口
+│   ├── ui_app.py
+│   └── ui_simple.py
+├── configs/                      # 手写配置与批量实验生成配置
+│   └── default.yaml
 ├── data/
 │   ├── raw/
 │   ├── processed/
 │   └── defended/              # 扰动后的序列与 MLP 特征
+├── docs/                         # 结构说明与结果索引
+├── experiments/                  # 所有可运行实验入口
+│   ├── core/                     # 单次流水线：生成、预处理、训练、评估、防御
+│   │   ├── generate_mock_data.py
+│   │   ├── run_preprocess.py
+│   │   ├── run_train.py
+│   │   ├── run_evaluate.py
+│   │   ├── run_defense.py
+│   │   ├── run_defense_eval.py
+│   │   ├── run_compare.py
+│   │   └── collect_confusion.py
+│   ├── batches/                  # mock 多 seed / 多方法矩阵
+│   ├── real_public/              # UCI HAR / Kasteren / CASAS 导入与真实数据矩阵
+│   └── cooja/                    # Cooja 日志攻击与防御评估
 ├── outputs/
 │   ├── models/
 │   ├── figures/
@@ -100,24 +121,10 @@ iot_privacy_attack/
 │   ├── evaluate.py
 │   ├── defense_eval.py
 │   └── experiment_compare.py
-├── configs/default.yaml
-├── run_preprocess.py
-├── run_train.py
-├── run_evaluate.py
-├── run_defense.py
-├── run_defense_eval.py
-├── run_compare.py
-├── run_real_public_benchmark.py   # 真实公开数据全矩阵（defense+mode+seed+scan）
-├── ui_simple.py                   # 精简版前端（答辩展示推荐）
-├── run_cooja_baseline_attack.py   # Cooja 日志 -> 流量特征 -> 攻击基线
-├── run_cooja_compare.py           # 两组 Cooja 日志对比（多 seed）
-├── run_cooja_defense_eval.py      # fixed/retrain 攻击者评估（支持后处理防御）
-├── run_import_uci_har.py
-├── tools/rewrite_cooja_client_type.py  # 严谨替换 client type，保持节点位置不变
-├── tools/refresh_web_assets.py    # 同步前端展示图到 web_assets/images
+├── scripts/                      # 论文最终结果打包脚本
+├── tools/                        # 维护工具：刷新图片、改 Cooja 场景等
 ├── web_assets/
 │   └── images/                    # 前端页面专用图片资源目录
-├── generate_mock_data.py
 ├── requirements.txt
 └── README.md
 ```
@@ -133,13 +140,13 @@ iot_privacy_attack/
 - 扫描：`ldp epsilon`、`noise scale`
 
 ```bash
-python run_real_public_benchmark.py
+python experiments/real_public/run_real_public_benchmark.py
 ```
 
 可选参数示例：
 
 ```bash
-python run_real_public_benchmark.py --datasets uci_har,kasteren,casas_hh101 --seeds 42,123 --max-epochs 20
+python experiments/real_public/run_real_public_benchmark.py --datasets uci_har,kasteren,casas_hh101 --seeds 42,123 --max-epochs 20
 ```
 
 主索引文件：
@@ -151,7 +158,7 @@ python run_real_public_benchmark.py --datasets uci_har,kasteren,casas_hh101 --se
 生成聚合汇总（便于论文画表）：
 
 ```bash
-python summarize_real_public_benchmark.py
+python experiments/real_public/summarize_real_public_benchmark.py
 ```
 
 主产物目录（更清晰的真实数据专用路径）：
@@ -202,7 +209,7 @@ python tools/rewrite_cooja_client_type.py --input_csc "\\wsl$\Ubuntu-22.04\home\
 一键评估命令：
 
 ```bash
-python run_cooja_defense_eval.py --manifest configs/cooja_defense_dummy_logs.json --out_dir outputs/cooja_defense_eval_dummy --seeds "42,123,2026" --window_s 8 --step_s 3 --min_requests 2 --dominance_threshold 0.2
+python experiments/cooja/run_cooja_defense_eval.py --manifest configs/cooja_defense_dummy_logs.json --out_dir outputs/cooja_defense_eval_dummy --seeds "42,123,2026" --window_s 8 --step_s 3 --min_requests 2 --dominance_threshold 0.2
 ```
 
 输出：
@@ -212,8 +219,8 @@ python run_cooja_defense_eval.py --manifest configs/cooja_defense_dummy_logs.jso
 
 ### 4）补充工具
 
-- 两组日志快速对比：`run_cooja_compare.py`
-- PowerShell 封装（Windows 直接跑）：`run_cooja_compare_wsl.ps1`
+- 两组日志快速对比：`experiments/cooja/run_cooja_compare.py`
+- PowerShell 封装（Windows 直接跑）：`experiments/cooja/run_cooja_compare_wsl.ps1`
 - 若需“同一 baseline 日志 + 后处理防御”实验，使用：`configs/cooja_defense_postprocess.json`
 
 ## 全量实验结果导航（论文/GPT读取）
@@ -248,7 +255,7 @@ python run_cooja_defense_eval.py --manifest configs/cooja_defense_dummy_logs.jso
 
 - **UCI HAR (Human Activity Recognition Using Smartphones)**：50Hz 加速度计/陀螺仪，窗口长度 128，6 类活动标签（walking/sitting/laying...）。
 
-该数据集**原生就是滑窗样本**，因此不走 `run_preprocess.py`（它面向“智能家居长表 CSV → 重采样 → 滑窗”），而是通过导入脚本直接生成本项目统一的：
+该数据集**原生就是滑窗样本**，因此不走 `experiments/core/run_preprocess.py`（它面向“智能家居长表 CSV → 重采样 → 滑窗”），而是通过导入脚本直接生成本项目统一的：
 
 - `data/processed/sequences.npz`
 - `data/processed/meta.json`
@@ -257,16 +264,16 @@ python run_cooja_defense_eval.py --manifest configs/cooja_defense_dummy_logs.jso
 一键导入（自动下载 + 解压 + 转换）：
 
 ```bash
-python run_import_uci_har.py --config configs/default.yaml --auto-download
+python experiments/real_public/run_import_uci_har.py --config configs/default.yaml --auto-download
 ```
 
 之后训练/评估/防御流程与原来完全一致：
 
 ```bash
-python run_train.py --config configs/default.yaml --model lstm
-python run_evaluate.py --config configs/default.yaml --model_path outputs/models/best_lstm.pt
-python run_defense.py --config configs/default.yaml
-python run_defense_eval.py --config configs/default.yaml --mode fixed_attacker --model_path outputs/models/best_lstm.pt
+python experiments/core/run_train.py --config configs/default.yaml --model lstm
+python experiments/core/run_evaluate.py --config configs/default.yaml --model_path outputs/models/best_lstm.pt
+python experiments/core/run_defense.py --config configs/default.yaml
+python experiments/core/run_defense_eval.py --config configs/default.yaml --mode fixed_attacker --model_path outputs/models/best_lstm.pt
 ```
 
 说明：
@@ -276,10 +283,10 @@ python run_defense_eval.py --config configs/default.yaml --mode fixed_attacker -
 ## 快速跑通（合成数据 + 攻击基线）
 
 ```bash
-python generate_mock_data.py
-python run_preprocess.py --config configs/default.yaml
-python run_train.py --config configs/default.yaml --model lstm
-python run_evaluate.py --config configs/default.yaml --model_path outputs/models/best_lstm.pt
+python experiments/core/generate_mock_data.py
+python experiments/core/run_preprocess.py --config configs/default.yaml
+python experiments/core/run_train.py --config configs/default.yaml --model lstm
+python experiments/core/run_evaluate.py --config configs/default.yaml --model_path outputs/models/best_lstm.pt
 ```
 
 ## Mock + Real 全量补跑建议
@@ -287,16 +294,16 @@ python run_evaluate.py --config configs/default.yaml --model_path outputs/models
 Mock 全量（多 seed、3 防御、2 攻击机制、参数扫描）：
 
 ```bash
-python run_all_methods_multiseed.py
+python experiments/batches/run_all_methods_multiseed.py
 ```
 
 Real 全量（多数据集、多 seed、3 防御、2 攻击机制、参数扫描）：
 
 ```bash
-python run_real_public_benchmark.py --datasets uci_har,kasteren,casas_hh101 --seeds 42,123 --models lstm,mlp --max-epochs 25 --skip-existing
+python experiments/real_public/run_real_public_benchmark.py --datasets uci_har,kasteren,casas_hh101 --seeds 42,123 --models lstm,mlp --max-epochs 25 --skip-existing
 ```
 
-同步前端图片资源（用于 `ui_simple.py`）：
+同步前端图片资源（用于 `apps/ui_simple.py`）：
 
 ```bash
 python tools/refresh_web_assets.py
@@ -327,7 +334,7 @@ python tools/refresh_web_assets.py
 **1）生成防御后数据（写入 `data/defended/`）**
 
 ```bash
-python run_defense.py --config configs/default.yaml
+python experiments/core/run_defense.py --config configs/default.yaml
 ```
 
 生成文件示例：`defended_train.npz`、`defended_val.npz`、`defended_test.npz`、`defended_sequences.npz`、`defended_mlp_features.npz`、`defense_artifact.json`、`defense_summary.json`。
@@ -335,7 +342,7 @@ python run_defense.py --config configs/default.yaml
 **2）模式 A：固定攻击者（需已训练 `best_lstm.pt`）**
 
 ```bash
-python run_defense_eval.py --config configs/default.yaml --mode fixed_attacker --model_path outputs/models/best_lstm.pt
+python experiments/core/run_defense_eval.py --config configs/default.yaml --mode fixed_attacker --model_path outputs/models/best_lstm.pt
 ```
 
 若防御数据已生成且配置未改，可加 `--skip-pipeline` 跳过重复扰动。
@@ -343,7 +350,7 @@ python run_defense_eval.py --config configs/default.yaml --mode fixed_attacker -
 **3）模式 B：防御后重训攻击者**
 
 ```bash
-python run_defense_eval.py --config configs/default.yaml --mode retrain_attacker
+python experiments/core/run_defense_eval.py --config configs/default.yaml --mode retrain_attacker
 ```
 
 重训模型默认保存为 `outputs/models/best_lstm_defended_retrain.pt`（可在 `defense_eval.retrained_model_name` 修改）。**请保持 `train.model_type` 与你要训练的架构一致（lstm / mlp）。**
@@ -351,8 +358,8 @@ python run_defense_eval.py --config configs/default.yaml --mode retrain_attacker
 **4）批量参数扫描（固定攻击者）**
 
 ```bash
-python run_compare.py --config configs/default.yaml --method ldp --model_path outputs/models/best_lstm.pt
-python run_compare.py --config configs/default.yaml --method noise --model_path outputs/models/best_lstm.pt
+python experiments/core/run_compare.py --config configs/default.yaml --method ldp --model_path outputs/models/best_lstm.pt
+python experiments/core/run_compare.py --config configs/default.yaml --method noise --model_path outputs/models/best_lstm.pt
 ```
 
 列表在 `compare.ldp_epsilon_list`、`compare.noise_scale_list` 配置。
@@ -376,15 +383,15 @@ python run_compare.py --config configs/default.yaml --method noise --model_path 
 
 | 命令 | 作用 |
 |------|------|
-| `python generate_mock_data.py` | 生成示例 CSV |
-| `python run_preprocess.py --config configs/default.yaml` | 预处理 |
-| `python run_import_uci_har.py --config configs/default.yaml --auto-download` | 下载并导入真实 UCI HAR 数据集（跳过预处理） |
-| `python run_train.py --config configs/default.yaml --model lstm` | 训练 LSTM |
-| `python run_evaluate.py --config configs/default.yaml --model_path outputs/models/best_lstm.pt` | 基线评估 |
+| `python experiments/core/generate_mock_data.py` | 生成示例 CSV |
+| `python experiments/core/run_preprocess.py --config configs/default.yaml` | 预处理 |
+| `python experiments/real_public/run_import_uci_har.py --config configs/default.yaml --auto-download` | 下载并导入真实 UCI HAR 数据集（跳过预处理） |
+| `python experiments/core/run_train.py --config configs/default.yaml --model lstm` | 训练 LSTM |
+| `python experiments/core/run_evaluate.py --config configs/default.yaml --model_path outputs/models/best_lstm.pt` | 基线评估 |
 
 ## 配置项提示
 
-- **全局随机种子**：`experiment.random_seed` 控制 Python / NumPy / PyTorch、预处理划分、训练、防御 RNG 等；`generate_mock_data.py` 默认从同一配置文件读取（可用 `--seed` 临时覆盖）。
+- **全局随机种子**：`experiment.random_seed` 控制 Python / NumPy / PyTorch、预处理划分、训练、防御 RNG 等；`experiments/core/generate_mock_data.py` 默认从同一配置文件读取（可用 `--seed` 临时覆盖）。
 - **防御**：`defense.*`（`method`、`epsilon`、`noise_scale`、`apply_to`、`selected_features`、`binary_features`、`numeric_features` 等）。
 - **路径**：`paths.defended_dir`、`paths.defense_dir`。
 - **训练/评估设备**：`train.device`、`evaluate.device`。

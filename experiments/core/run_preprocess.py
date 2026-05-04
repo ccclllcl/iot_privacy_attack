@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-命令行入口：测试集评估。
-用法: python run_evaluate.py --config configs/default.yaml --model_path outputs/models/best_lstm.pt
+命令行入口：数据预处理。
+用法: python experiments/core/run_preprocess.py --config configs/default.yaml
 """
 
 from __future__ import annotations
@@ -12,12 +12,12 @@ import logging
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.config import ExperimentConfig
-from src.evaluate import run_evaluate
+from src.preprocess import run_preprocess
 
 
 def main() -> None:
@@ -25,23 +25,19 @@ def main() -> None:
         level=logging.INFO,
         format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
     )
-    parser = argparse.ArgumentParser(description="评估已训练模型")
-    parser.add_argument("--config", type=str, default="configs/default.yaml")
+    parser = argparse.ArgumentParser(description="Smart* 风格数据预处理")
     parser.add_argument(
-        "--model_path",
+        "--config",
         type=str,
-        required=True,
-        help="run_train 保存的 .pt 文件路径",
+        default="configs/default.yaml",
+        help="YAML 配置文件路径（相对项目根目录）",
     )
     args = parser.parse_args()
     cfg_path = Path(args.config)
     if not cfg_path.is_absolute():
         cfg_path = (ROOT / cfg_path).resolve()
-    mp = Path(args.model_path)
-    if not mp.is_absolute():
-        mp = (ROOT / mp).resolve()
     cfg = ExperimentConfig.from_yaml(cfg_path, project_root=ROOT)
-    run_evaluate(cfg, mp)
+    run_preprocess(cfg)
 
 
 if __name__ == "__main__":

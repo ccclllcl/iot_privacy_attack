@@ -169,17 +169,17 @@ def _ensure_import_metas(missing: list[dict[str, Any]]) -> None:
         (
             "uci_har",
             ROOT / "data" / "processed" / "imports" / "uci_har" / "meta.json",
-            [sys.executable, "run_import_uci_har.py", "--config", "configs/default.yaml", "--auto-download"],
+            [sys.executable, "experiments/real_public/run_import_uci_har.py", "--config", "configs/default.yaml", "--auto-download"],
         ),
         (
             "kasteren",
             ROOT / "data" / "processed" / "imports" / "kasteren" / "meta.json",
-            [sys.executable, "run_import_kasteren.py", "--config", "configs/default.yaml", "--auto-download"],
+            [sys.executable, "experiments/real_public/run_import_kasteren.py", "--config", "configs/default.yaml", "--auto-download"],
         ),
         (
             "casas_hh101",
             ROOT / "data" / "processed" / "imports" / "casas_hh101" / "meta.json",
-            [sys.executable, "run_import_casas.py", "--config", "configs/default.yaml", "--home", "hh101", "--auto-download"],
+            [sys.executable, "experiments/real_public/run_import_casas.py", "--config", "configs/default.yaml", "--home", "hh101", "--auto-download"],
         ),
     ]
     for ds, meta, cmd in imports:
@@ -309,7 +309,7 @@ def _collect_mock(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                             method=method,
                             mode=mode,
                             config=f"configs/generated_all_methods/default.seed_{seed}.{method}.yaml",
-                            command=f"python run_defense_eval.py --mode {mode}",
+                            command=f"python experiments/core/run_defense_eval.py --mode {mode}",
                             env=env,
                         ),
                     )
@@ -535,7 +535,7 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                                 method=method,
                                 mode=mode,
                                 config=f"configs/generated_real_public/{ds}.seed_{seed}.{method}.yaml",
-                                command=f"python run_defense_eval.py --mode {mode}",
+                                command=f"python experiments/core/run_defense_eval.py --mode {mode}",
                                 env=env,
                             ),
                         )
@@ -753,7 +753,7 @@ def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any
     out_dir = OUT_DEFENSE / "cooja" / "eval"
     cmd = [
         sys.executable,
-        "run_cooja_defense_eval.py",
+        "experiments/cooja/run_cooja_defense_eval.py",
         "--manifest",
         str(chosen_manifest),
         "--out_dir",

@@ -8,7 +8,7 @@ from pathlib import Path
 import streamlit as st
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 ASSET_DIR = ROOT / "web_assets" / "images"
 
 
@@ -50,20 +50,20 @@ def _run_buttons() -> None:
         st.caption("generate → preprocess → train(lstm/mlp) → evaluate → defense/eval/compare")
     with c2:
         run_real = st.button("补跑 Real（跳过已存在）", use_container_width=True)
-        st.caption("run_real_public_benchmark.py --skip-existing")
+        st.caption("experiments/real_public/run_real_public_benchmark.py --skip-existing")
     with c3:
         sync_assets = st.button("同步前端图片资源", use_container_width=True)
         st.caption("把 outputs 里的关键图复制到 web_assets/images/")
 
     if run_mock:
-        code, out = _run([sys.executable, "run_all_methods_multiseed.py"])
+        code, out = _run([sys.executable, "experiments/batches/run_all_methods_multiseed.py"])
         st.code(out or "(no output)", language="text")
         st.success("Mock 全流程补跑完成。") if code == 0 else st.error(f"Mock 全流程失败，exit_code={code}")
 
     if run_real:
         cmd = [
             sys.executable,
-            "run_real_public_benchmark.py",
+            "experiments/real_public/run_real_public_benchmark.py",
             "--datasets",
             "uci_har,kasteren,casas_hh101",
             "--seeds",

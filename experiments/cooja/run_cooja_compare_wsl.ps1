@@ -15,7 +15,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$root = Split-Path -Parent $MyInvocation.MyCommand.Path
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$root = Resolve-Path (Join-Path $scriptDir "..\..")
 Set-Location $root
 
 $baselineRadioPath = Join-Path $WslDir $BaselineRadio
@@ -29,7 +30,7 @@ foreach ($p in @($baselineRadioPath, $baselineAppPath, $defenseRadioPath, $defen
   }
 }
 
-py -3 run_cooja_compare.py `
+py -3 experiments/cooja/run_cooja_compare.py `
   --baseline_radio_log "$baselineRadioPath" `
   --baseline_app_log "$baselineAppPath" `
   --defense_radio_log "$defenseRadioPath" `

@@ -7,13 +7,16 @@ import sys
 import time
 from pathlib import Path
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 import streamlit as st
 import yaml
 
 from src.ui_history import guess_latest_artifacts, load_history, run_and_record
 
 
-PROJECT_ROOT = Path(__file__).resolve().parent
 DEFAULT_CONFIG = PROJECT_ROOT / "configs" / "default.yaml"
 DEFAULT_HISTORY = PROJECT_ROOT / "outputs" / "ui" / "run_history.jsonl"
 TMP_CONFIG_DIR = PROJECT_ROOT / "outputs" / "ui" / "tmp_configs"
@@ -320,15 +323,15 @@ def _render_wizard(config_path: Path) -> None:
         do_eval = st.button("Step 3：评估", use_container_width=True)
 
     prep_action = "preprocess"
-    prep_script = "run_preprocess.py"
+    prep_script = "experiments/core/run_preprocess.py"
     prep_args: list[str] = []
     if ds == "uci_har":
-        prep_action, prep_script, prep_args = "import_real", "run_import_uci_har.py", ["--auto-download"]
+        prep_action, prep_script, prep_args = "import_real", "experiments/real_public/run_import_uci_har.py", ["--auto-download"]
     elif ds == "kasteren":
-        prep_action, prep_script, prep_args = "import_kasteren", "run_import_kasteren.py", ["--auto-download"]
+        prep_action, prep_script, prep_args = "import_kasteren", "experiments/real_public/run_import_kasteren.py", ["--auto-download"]
     elif ds.startswith("casas_"):
         home = ds.split("_", 1)[1]
-        prep_action, prep_script, prep_args = "import_casas", "run_import_casas.py", ["--home", home, "--auto-download"]
+        prep_action, prep_script, prep_args = "import_casas", "experiments/real_public/run_import_casas.py", ["--home", home, "--auto-download"]
 
     if do_prepare:
         _run_and_store_last_model(prep_action, prep_script, ds_cfg, prep_args)
@@ -336,19 +339,19 @@ def _render_wizard(config_path: Path) -> None:
             ne = _read_train_num_epochs(ds_cfg)
             _run_and_store_last_model(
                 "train",
-                "run_train.py",
+                "experiments/core/run_train.py",
                 ds_cfg,
                 ["--model", ss["wizard_model"]],
                 train_max_epochs=ne,
             )
             mp = _latest_model_relpath(ds_cfg)
             if mp:
-                _run_and_store_last_model("evaluate", "run_evaluate.py", ds_cfg, ["--model_path", mp])
+                _run_and_store_last_model("evaluate", "experiments/core/run_evaluate.py", ds_cfg, ["--model_path", mp])
     elif do_train:
         ne = _read_train_num_epochs(ds_cfg)
         _run_and_store_last_model(
             "train",
-            "run_train.py",
+            "experiments/core/run_train.py",
             ds_cfg,
             ["--model", ss["wizard_model"]],
             train_max_epochs=ne,
@@ -356,13 +359,13 @@ def _render_wizard(config_path: Path) -> None:
         if ss["wizard_autorun"]:
             mp = _latest_model_relpath(ds_cfg)
             if mp:
-                _run_and_store_last_model("evaluate", "run_evaluate.py", ds_cfg, ["--model_path", mp])
+                _run_and_store_last_model("evaluate", "experiments/core/run_evaluate.py", ds_cfg, ["--model_path", mp])
     elif do_eval:
         mp = _latest_model_relpath(ds_cfg)
         if not mp:
             st.error("未检测到可用模型文件。请先完成训练。")
         else:
-            _run_and_store_last_model("evaluate", "run_evaluate.py", ds_cfg, ["--model_path", mp])
+            _run_and_store_last_model("evaluate", "experiments/core/run_evaluate.py", ds_cfg, ["--model_path", mp])
 
 
 def _render_advanced_run_controls(effective_config_path: Path) -> None:
@@ -390,7 +393,7 @@ def _render_advanced_run_controls(effective_config_path: Path) -> None:
             ):
                 out = _run_action(
                     "import_real",
-                    "run_import_uci_har.py",
+                    "experiments/real_public/run_import_uci_har.py",
                     effective_config_path,
                     ["--auto-download"],
                 )
@@ -417,7 +420,7 @@ def _render_advanced_run_controls(effective_config_path: Path) -> None:
                 if processed_tag == "uci_har" and not confirm_pre:
                     st.error("为了避免误操作：请先勾选确认，再运行预处理。")
                 else:
-                    out = _run_action("preprocess", "run_preprocess.py", effective_config_path, [])
+                    out = _run_action("preprocess", "experiments/core/run_preprocess.py", effective_config_path, [])
                     st.session_state["last_run"] = out
 
     st.markdown("### 训练与评估（高级）")
@@ -429,7 +432,7 @@ def _render_advanced_run_controls(effective_config_path: Path) -> None:
                 ne = _read_train_num_epochs(effective_config_path)
                 out = _run_action(
                     "train",
-                    "run_train.py",
+                    "experiments/core/run_train.py",
                     effective_config_path,
                     ["--model", model],
                     train_max_epochs=ne,
@@ -460,7 +463,7 @@ def _render_advanced_run_controls(effective_config_path: Path) -> None:
                 else:
                     out = _run_action(
                         "evaluate",
-                        "run_evaluate.py",
+                        "experiments/core/run_evaluate.py",
                         effective_config_path,
                         ["--model_path", model_path],
                     )
@@ -469,7 +472,7 @@ def _render_advanced_run_controls(effective_config_path: Path) -> None:
 
 def _render_evaluate_outputs(config_path: Path) -> None:
     """
-    `run_evaluate.py` outputs (by design):
+    `experiments/core/run_evaluate.py` outputs (by design):
     - outputs/figures/confusion_matrix.png
     - outputs/reports/classification_report.txt
     - outputs/reports/metrics.json
@@ -540,7 +543,7 @@ def _render_evaluate_outputs(config_path: Path) -> None:
 
 def _render_defense_eval_outputs() -> None:
     """
-    `run_defense_eval.py` writes into outputs/defense/:
+    `experiments/core/run_defense_eval.py` writes into outputs/defense/:
     - fixed_attacker: confusion_matrix_baseline.png, confusion_matrix_defended.png, accuracy_comparison.png
     - retrain_attacker: confusion_matrix_defended_retrain.png
     - defense_report.json / defense_report.txt
@@ -604,7 +607,7 @@ def _render_defense_eval_outputs() -> None:
 
 def _render_compare_outputs() -> None:
     """
-    `run_compare.py` outputs into outputs/defense/comparisons/:
+    `experiments/core/run_compare.py` outputs into outputs/defense/comparisons/:
     - comparison_results.csv
     - LDP: epsilon_vs_accuracy.png, epsilon_vs_distortion.png
     - Noise: distortion_vs_noise.png, noise_scale_vs_accuracy.png
@@ -788,8 +791,8 @@ def _render_instructions() -> None:
 - **运行历史**：自动记录每次运行的命令、状态、耗时、stdout/stderr（尾部），以及常见输出文件路径（便于定位结果）。
 
 ### 典型流程（建议）
-- **第 0 步**：导入真实数据（推荐 UCI HAR）：运行 `run_import_uci_har.py --auto-download`。
-- **第 0.5 步**：（可选）生成模拟数据：运行 `generate_mock_data.py`。
+- **第 0 步**：导入真实数据（推荐 UCI HAR）：运行 `experiments/real_public/run_import_uci_har.py --auto-download`。
+- **第 0.5 步**：（可选）生成模拟数据：运行 `experiments/core/generate_mock_data.py`。
 - **第 1 步**：预处理（raw → processed；仅当你使用智能家居长表 CSV 时需要）。
 - **第 2 步**：训练攻击模型（LSTM 或 MLP）。
 - **第 3 步**：在干净测试集上评估攻击模型。
@@ -1018,7 +1021,7 @@ def _render_run_page() -> None:
                 disabled=not confirm_def,
                 key="run_defense_btn",
             ):
-                out = _run_action("defense", "run_defense.py", effective_defense_config, [])
+                out = _run_action("defense", "experiments/core/run_defense.py", effective_defense_config, [])
                 st.session_state["last_run"] = out
         with c2:
             st.markdown("**防御评估（2 种对手）**")
@@ -1054,7 +1057,7 @@ def _render_run_page() -> None:
                 if mode == "fixed_attacker" and not mp:
                     st.error("fixed_attacker 模式必须提供 --model_path。")
                 else:
-                    out = _run_action("defense_eval", "run_defense_eval.py", effective_defense_config, args)
+                    out = _run_action("defense_eval", "experiments/core/run_defense_eval.py", effective_defense_config, args)
                     st.session_state["last_run"] = out
         with c3:
             st.markdown("**参数扫描对比**")
@@ -1090,7 +1093,7 @@ def _render_run_page() -> None:
                 else:
                     out = _run_action(
                         "compare",
-                        "run_compare.py",
+                        "experiments/core/run_compare.py",
                         effective_defense_config,
                         ["--method", method, "--model_path", model_path],
                     )

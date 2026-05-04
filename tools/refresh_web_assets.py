@@ -75,7 +75,7 @@ def main() -> None:
     marker = ASSET_DIR / "README.txt"
     marker.parent.mkdir(parents=True, exist_ok=True)
     marker.write_text(
-        "This folder stores image resources shown by ui_simple.py.\n"
+        "This folder stores image resources shown by apps/ui_simple.py.\n"
         "Run: python tools/refresh_web_assets.py\n",
         encoding="utf-8",
     )
