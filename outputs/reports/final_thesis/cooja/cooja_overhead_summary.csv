@@ -1,0 +1,4 @@
+baseline_windows,defense_window_ratio,defense_windows,delay_metric_available,energy_metric_available,method,note,window_count_delta
+4016.0,0.1688247011952191,678.0,False,False,dummy_noise,Cooja logs do not include real energy/delay fields; this is a window-count proxy only.,-3338.0
+4016.0,0.289093625498008,1161.0,False,False,dummy_ldp,Cooja logs do not include real energy/delay fields; this is a window-count proxy only.,-2855.0
+4016.0,0.28386454183266935,1140.0,False,False,dummy_adaptive_ldp,Cooja logs do not include real energy/delay fields; this is a window-count proxy only.,-2876.0

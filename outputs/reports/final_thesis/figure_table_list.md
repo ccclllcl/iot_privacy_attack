@@ -34,13 +34,13 @@
 - 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\real_uci_ldp_scan.png`
 - 源文件: `outputs/reports/final_thesis/real/real_parameter_scan_ldp.csv`
 - 可写入论文结论: 可用于展示 epsilon 变大时准确率恢复趋势。
-- 口径限制: 当前扫描来自 fixed_attacker；retrain 扫描缺失。
+- 口径限制: UCI HAR 扫描覆盖 LSTM/MLP 与 fixed/retrain；其他数据集仅作辅助口径。
 
 ## 7. noise scale 参数扫描曲线
 - 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\real_uci_noise_scan.png`
 - 源文件: `outputs/reports/final_thesis/real/real_parameter_scan_noise.csv`
 - 可写入论文结论: 可用于展示噪声强度上升时攻击准确率下降趋势。
-- 口径限制: 当前扫描来自 fixed_attacker；retrain 扫描缺失。
+- 口径限制: UCI HAR 扫描覆盖 LSTM/MLP 与 fixed/retrain；其他数据集仅作辅助口径。
 
 ## 8. mock 代表性 confusion matrix
 - 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\confusion_mock.png`
@@ -71,3 +71,9 @@
 - 源文件: `outputs/reports/final_thesis/cooja/cooja_summary.csv`
 - 可写入论文结论: 可用于展示节点级防御在流量侧攻击下的变化。
 - 口径限制: 依赖 Cooja 日志质量与可获得性。
+
+## 13. Cooja 窗口数量代理开销图
+- 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\cooja_window_overhead_proxy.png`
+- 源文件: `outputs/reports/final_thesis/cooja/cooja_overhead_summary.csv`
+- 可写入论文结论: 可用于说明当前日志只能支持窗口数量代理，而不能支持真实能耗或时延结论。
+- 口径限制: 该图不是能耗或时延实测，只反映当前导出日志形成的窗口规模差异。

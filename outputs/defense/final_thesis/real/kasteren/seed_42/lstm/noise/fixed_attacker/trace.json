@@ -5,7 +5,7 @@
   "method": "noise",
   "mode": "fixed_attacker",
   "config": "configs/generated_real_public/kasteren.seed_42.noise.yaml",
-  "command": "python run_defense_eval.py --mode fixed_attacker",
-  "timestamp": "2026-04-29T16:40:47",
-  "git_commit": "5870c1bcf40b456c61c6e067d25224341043eb0a"
+  "command": "python experiments/core/run_defense_eval.py --mode fixed_attacker",
+  "timestamp": "2026-05-07T13:36:52",
+  "git_commit": "b516557152acf3268c3142f437183d7faf33d04a"
 }

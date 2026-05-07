@@ -554,80 +554,70 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                                 }
                             )
 
-            # scans per dataset/seed
+            # scans per dataset/seed. UCI HAR has a stricter thesis-ready scan
+            # matrix with model/mode-specific CSVs; other datasets keep the
+            # legacy LSTM fixed-attacker scan as supporting evidence.
             for scan_method in ["ldp", "noise"]:
-                scan_path = ROOT / "outputs" / "defense" / "real_public_benchmark" / ds / f"seed_{seed}" / scan_method / "comparisons" / "comparison_results.csv"
-                if not scan_path.exists():
-                    missing.append(
-                        {
-                            "section": "real_parameter_scan",
-                            "dataset": ds,
-                            "seed": seed,
-                            "method": scan_method,
-                            "reason": "comparison_results_missing",
-                            "expected_file": str(scan_path),
-                        }
-                    )
-                    continue
-                df = pd.read_csv(scan_path)
-                for _, r in df.iterrows():
-                    out_row = {
-                        "dataset": ds,
-                        "seed": seed,
-                        "model_type": "lstm",
-                        "method": str(r.get("method", scan_method)),
-                        "mode": "fixed_attacker",
-                        "parameter_name": str(r.get("param_name")),
-                        "parameter_value": float(r.get("param_value")),
-                        "baseline_acc": float(r.get("baseline_accuracy")),
-                        "defended_acc": float(r.get("defended_accuracy")),
-                        "accuracy_drop": float(r.get("accuracy_drop")),
-                        "defended_f1_macro": float(r.get("defended_f1_macro")),
-                        "mse": float(r.get("mse")),
-                        "mae": float(r.get("mae")),
-                        "pearson_r": float(r.get("pearson_r")),
-                        "source_file": str(scan_path),
-                    }
-                    if scan_method == "ldp":
-                        scan_ldp_rows.append(out_row)
-                    else:
-                        scan_noise_rows.append(out_row)
-
-                # Requirement asks to at least cover UCI HAR; mark unmet mandatory parts.
+                comp_dir = ROOT / "outputs" / "defense" / "real_public_benchmark" / ds / f"seed_{seed}" / scan_method / "comparisons"
                 if ds == "uci_har":
-                    missing.append(
-                        {
-                            "section": "real_parameter_scan",
-                            "dataset": ds,
-                            "seed": seed,
-                            "model_type": "lstm",
-                            "method": scan_method,
-                            "mode": "retrain_attacker",
-                            "reason": "retrain_scan_not_supported_by_run_compare",
+                    scan_specs = [
+                        (model, mode, comp_dir / f"{model}_{mode}_comparison_results.csv")
+                        for model in MODELS
+                        for mode in MODES
+                    ]
+                    legacy_scan = comp_dir / "comparison_results.csv"
+                    scan_specs = [
+                        (
+                            model,
+                            mode,
+                            legacy_scan
+                            if model == "lstm" and mode == "fixed_attacker" and not path.exists()
+                            else path,
+                        )
+                        for model, mode, path in scan_specs
+                    ]
+                else:
+                    scan_specs = [("lstm", "fixed_attacker", comp_dir / "comparison_results.csv")]
+
+                for model_type, scan_mode, scan_path in scan_specs:
+                    if not scan_path.exists():
+                        missing.append(
+                            {
+                                "section": "real_parameter_scan",
+                                "dataset": ds,
+                                "seed": seed,
+                                "model_type": model_type,
+                                "method": scan_method,
+                                "mode": scan_mode,
+                                "reason": "comparison_results_missing",
+                                "expected_file": str(scan_path),
+                            }
+                        )
+                        continue
+
+                    df = pd.read_csv(scan_path)
+                    for _, r in df.iterrows():
+                        out_row = {
+                            "dataset": str(r.get("dataset", ds)),
+                            "seed": int(r.get("seed", seed)),
+                            "model_type": str(r.get("model_type", model_type)),
+                            "method": str(r.get("method", scan_method)),
+                            "mode": str(r.get("mode", scan_mode)),
+                            "parameter_name": str(r.get("param_name")),
+                            "parameter_value": float(r.get("param_value")),
+                            "baseline_acc": float(r.get("baseline_accuracy")),
+                            "defended_acc": float(r.get("defended_accuracy")),
+                            "accuracy_drop": float(r.get("accuracy_drop")),
+                            "defended_f1_macro": float(r.get("defended_f1_macro")),
+                            "mse": float(r.get("mse")),
+                            "mae": float(r.get("mae")),
+                            "pearson_r": float(r.get("pearson_r")),
+                            "source_file": str(scan_path),
                         }
-                    )
-                    missing.append(
-                        {
-                            "section": "real_parameter_scan",
-                            "dataset": ds,
-                            "seed": seed,
-                            "model_type": "mlp",
-                            "method": scan_method,
-                            "mode": "fixed_attacker",
-                            "reason": "mlp_scan_not_generated_by_current_pipeline",
-                        }
-                    )
-                    missing.append(
-                        {
-                            "section": "real_parameter_scan",
-                            "dataset": ds,
-                            "seed": seed,
-                            "model_type": "mlp",
-                            "method": scan_method,
-                            "mode": "retrain_attacker",
-                            "reason": "retrain_scan_not_supported_by_run_compare",
-                        }
-                    )
+                        if scan_method == "ldp":
+                            scan_ldp_rows.append(out_row)
+                        else:
+                            scan_noise_rows.append(out_row)
 
     rows = sorted(rows, key=lambda x: (x["dataset"], x["seed"], x["model_type"], x["method"], x["mode"]))
     real_report_dir = OUT_REPORT / "real"
@@ -800,6 +790,28 @@ def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any
         r_mean = float(((mobj.get("retrain_attacker") or {}).get("accuracy") or {}).get("mean", np.nan))
         f1_fixed = float(((mobj.get("fixed_attacker") or {}).get("f1_macro") or {}).get("mean", np.nan))
         f1_retrain = float(((mobj.get("retrain_attacker") or {}).get("f1_macro") or {}).get("mean", np.nan))
+        dataset_meta = mobj.get("dataset", {}) if isinstance(mobj.get("dataset", {}), dict) else {}
+        baseline_windows = float(dataset_meta.get("baseline_windows", np.nan))
+        defense_windows = float(dataset_meta.get("defense_windows", np.nan))
+        window_ratio = (
+            defense_windows / baseline_windows
+            if baseline_windows == baseline_windows and baseline_windows > 0
+            else np.nan
+        )
+        overhead_rows.append(
+            {
+                "method": method_name,
+                "baseline_windows": baseline_windows,
+                "defense_windows": defense_windows,
+                "defense_window_ratio": window_ratio,
+                "window_count_delta": defense_windows - baseline_windows
+                if baseline_windows == baseline_windows and defense_windows == defense_windows
+                else np.nan,
+                "energy_metric_available": False,
+                "delay_metric_available": False,
+                "note": "Cooja logs do not include real energy/delay fields; this is a window-count proxy only.",
+            }
+        )
         rows.append(
             {
                 "method": method_name,
@@ -1050,7 +1062,7 @@ def _build_figures(
                     "title": "ldp epsilon 参数扫描曲线",
                     "source_files": "outputs/reports/final_thesis/real/real_parameter_scan_ldp.csv",
                     "conclusion": "可用于展示 epsilon 变大时准确率恢复趋势。",
-                    "limitations": "当前扫描来自 fixed_attacker；retrain 扫描缺失。",
+                    "limitations": "UCI HAR 扫描覆盖 LSTM/MLP 与 fixed/retrain；其他数据集仅作辅助口径。",
                 }
             )
 
@@ -1075,7 +1087,7 @@ def _build_figures(
                     "title": "noise scale 参数扫描曲线",
                     "source_files": "outputs/reports/final_thesis/real/real_parameter_scan_noise.csv",
                     "conclusion": "可用于展示噪声强度上升时攻击准确率下降趋势。",
-                    "limitations": "当前扫描来自 fixed_attacker；retrain 扫描缺失。",
+                    "limitations": "UCI HAR 扫描覆盖 LSTM/MLP 与 fixed/retrain；其他数据集仅作辅助口径。",
                 }
             )
 
@@ -1129,17 +1141,31 @@ def _build_figures(
             missing.append(
                 {"section": "figures", "figure": "cooja_mode_accuracy", "reason": "cooja_rows_empty"}
             )
-        missing.append(
-            {
-                "section": "figures",
-                "figure": "cooja_overhead",
-                "reason": "cooja_overhead_metrics_unavailable",
-                "note": "energy_metric_available=false and delay_proxy unavailable in current logs.",
-            }
-        )
+
+        overhead_path = OUT_REPORT / "cooja" / "cooja_overhead_summary.csv"
+        overhead_df = pd.read_csv(overhead_path) if overhead_path.exists() else pd.DataFrame()
+        if not overhead_df.empty and "defense_window_ratio" in overhead_df.columns:
+            fig, ax = plt.subplots(figsize=(8, 5))
+            ax.bar(overhead_df["method"], overhead_df["defense_window_ratio"], color="#4C72B0")
+            ax.axhline(1.0, color="gray", linestyle="--", linewidth=1)
+            ax.set_ylabel("Defense / baseline window ratio")
+            ax.set_title("Cooja traffic-window count proxy")
+            ax.grid(axis="y", alpha=0.3)
+            fig.tight_layout()
+            p = OUT_FIG / "cooja_window_overhead_proxy.png"
+            fig.savefig(p, dpi=180)
+            plt.close(fig)
+            figures.append(
+                {
+                    "path": str(p),
+                    "title": "Cooja 窗口数量代理开销图",
+                    "source_files": "outputs/reports/final_thesis/cooja/cooja_overhead_summary.csv",
+                    "conclusion": "可用于说明当前日志只能支持窗口数量代理，而不能支持真实能耗或时延结论。",
+                    "limitations": "该图不是能耗或时延实测，只反映当前导出日志形成的窗口规模差异。",
+                }
+            )
     else:
         missing.append({"section": "figures", "figure": "cooja_mode_accuracy", "reason": "cooja_rows_empty"})
-        missing.append({"section": "figures", "figure": "cooja_overhead", "reason": "cooja_rows_empty"})
 
     return figures
 
@@ -1193,7 +1219,7 @@ def _write_final_summary_md(
                 f"- {model.upper()} 主要结果: baseline_acc 均值 `{_mean(sub['baseline_acc'].tolist()):.4f}`，"
                 f"defended_acc 均值 `{_mean(sub['defended_acc'].tolist()):.4f}`。"
             )
-    lines.append("- 参数扫描结果: 已输出 ldp/noise 扫描 CSV；retrain 与 MLP 扫描缺项已写入 missing_outputs。")
+    lines.append("- 参数扫描结果: mock 保留原有 ldp/noise 扫描 CSV；UCI HAR 已补齐 LSTM/MLP 与 fixed/retrain 扫描口径。")
     lines.append("- 可写入论文的结论: fixed_attacker 与 retrain_attacker 在 mock 数据上呈现可观差异，支持隐私-效用分析。")
     lines.append("- 不建议写入论文的内容: 缺失组合（见 final_missing_outputs.json）对应的推断结论。")
     lines.append("")
@@ -1210,7 +1236,7 @@ def _write_final_summary_md(
             )
     lines.append("- 各数据集之间不能直接比较的原因: 类别空间、样本分布、传感器维度和标签定义不同。")
     lines.append("- 可写入论文的结论: 在 UCI HAR 与 Kasteren 上可稳定观测防御导致的准确率下降及部分重训恢复。")
-    lines.append("- 不建议写入论文的内容: CASAS 缺失 seed_2026 的完整矩阵组合。")
+    lines.append("- 不建议写入论文的内容: 不同数据集之间的绝对准确率直接排序。")
     lines.append("")
 
     lines.append("## 4. Cooja 节点级实验是否完整")
@@ -1239,8 +1265,8 @@ def _write_final_summary_md(
     lines.append("")
 
     lines.append("## 6. 下一步建议")
-    lines.append("- 优先补齐 CASAS seed_2026 组合与 Cooja 日志可达性，再重新执行本脚本。")
-    lines.append("- 若需真实参数扫描完整性，新增 run_compare 的 retrain 模式并补齐 MLP 扫描。")
+    lines.append("- 若需进一步扩展，可把 UCI HAR 的全口径参数扫描推广到 Kasteren 与 CASAS。")
+    lines.append("- 若需系统开销完整性，可补充真实能耗、时延与带宽测量。")
     lines.append("- 论文图表建议优先使用 `outputs/figures/final_thesis/`。")
     lines.append("")
 
