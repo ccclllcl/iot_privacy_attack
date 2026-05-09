@@ -32,9 +32,6 @@ outputs/figures/*
 !outputs/figures/experiments/**
 !outputs/figures/summaries/
 !outputs/figures/summaries/**
-!outputs/reports/
-outputs/reports/*
-!outputs/reports/README.md
 !configs/
 !configs/**
 !docs/

@@ -41,4 +41,4 @@ outputs/summaries/final_thesis/cooja/,最终汇总,Cooja summary、per-seed 结�
 outputs/figures/summaries/final_thesis/,图像产物,最终论文图像，包括准确率、失真、参数扫描、消融和 Cooja 图。,outputs/summaries/final_thesis/,*.png,figure_table_list.md,False,True,
 outputs/figures/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/,图像产物,单组合诊断图像。,outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/,*.png,Dashboard 图表页面,False,False,
 outputs/models/{dataset}/seed_{seed}/{model}/,模型产物,baseline 模型、retrain 模型和 Dashboard demo 生成模型。,src/training/trainer.py,*.pt,experiments/demo/run_dashboard_job.py; src/evaluation/evaluator.py,False,False,
-git tracked files,仓库索引,"当前 git tracked 顶层目录：.gitignore, README.md, apps, configs, data, docs, experiments, outputs, requirements.txt, scripts, src, tools, web_assets。",git ls-files,,,False,False,tracked 文件数：2460
+git tracked files,仓库索引,"当前 git tracked 顶层目录：.gitignore, README.md, apps, configs, data, docs, experiments, outputs, requirements.txt, scripts, src, tools, web_assets。",git ls-files,,,False,False,tracked 文件数：2464

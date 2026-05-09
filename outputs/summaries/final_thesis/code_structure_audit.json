@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-09T19:47:56",
+  "generated_at": "2026-05-09T20:21:12",
   "files_scanned": 115,
   "category_counts": {
     "artifact_paths": 2,
@@ -851,7 +851,7 @@
     },
     {
       "path": "scripts/audit/audit_repository_bloat.py",
-      "size_bytes": 9741,
+      "size_bytes": 22197,
       "category": "audit",
       "imports": [
         "__future__",
@@ -859,6 +859,7 @@
         "datetime",
         "json",
         "pathlib",
+        "re",
         "subprocess",
         "typing"
       ],
@@ -956,7 +957,7 @@
     },
     {
       "path": "scripts/final_thesis/build_final_thesis_results.py",
-      "size_bytes": 105007,
+      "size_bytes": 104982,
       "category": "final_summary_build",
       "imports": [
         "__future__",

@@ -2167,9 +2167,9 @@ def _write_final_summary_md(
     lines.append("")
 
     lines.append("## 5. 文件口径风险")
-    lines.append("- 覆盖风险: 原始 `outputs/reports/**/metrics.json`、`outputs/defense/**/defense_report.json` 可能被后续运行覆盖。")
-    lines.append("- 推荐论文引用: `outputs/summaries/final_thesis/*.csv|*.json` 与 `outputs/experiments/**/source_manifest.json`。")
-    lines.append("- 不建议直接引用: 旧路径中未分 model/mode 的单文件报告。")
+    lines.append("- 覆盖风险: 早期单次运行报告和 defense_report 文件可能被后续运行覆盖。")
+    lines.append("- 论文复核口径: `outputs/summaries/final_thesis/*.csv|*.json` 与 `outputs/experiments/**/source_manifest.json`。")
+    lines.append("- 历史路径说明: 早期未分 model/mode 的单文件报告只用于迁移追溯。")
     lines.append("")
 
     lines.append("## 6. 下一步建议")
