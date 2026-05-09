@@ -3,7 +3,7 @@ README.md,顶层说明,项目入口说明，介绍交付状态、Dashboard、标
 requirements.txt,依赖清单,记录 Python 运行依赖。,,,所有训练、评估、Dashboard 脚本,False,False,
 .gitignore,仓库配置,控制运行产物、缓存和最终交付产物的跟踪策略。,,,outputs/; data/; configs/; docs/,False,False,
 configs/default.yaml,配置文件,默认实验配置，供 core CLI、Dashboard demo runner 和批处理脚本读取。,,outputs/ui/tmp_configs/ 可基于它生成临时配置,experiments/core/*; experiments/demo/run_dashboard_job.py,False,False,
-configs/generated/{dataset}/seed_{seed}/{model}/,generated 配置,按 dataset / seed / model / method / mode 保存已整理的 canonical 配置。,configs/default.yaml,单组合运行使用临时副本,outputs/experiments/{dataset}/seed_{seed}/,False,False,
+configs/generated/{dataset}/seed_{seed}/{model}/,generated 配置,按 dataset / seed / model / method / mode 保存已整理的实验配置。,configs/default.yaml,单组合运行使用临时副本,outputs/experiments/{dataset}/seed_{seed}/,False,False,
 configs/cooja*.json,Cooja 配置,记录 Cooja 日志路径或模板路径。,COOJA_LOG_ROOT 或本地 WSL 路径,outputs/experiments/cooja/,outputs/summaries/final_thesis/cooja/,False,False,本地 WSL 路径仅记录原实验来源。
 apps/dashboard.py,应用入口,正式 Streamlit Dashboard，用于浏览产物、绘制图表、查看混淆矩阵和运行单组合 demo。,outputs/experiments/; outputs/summaries/final_thesis/; outputs/figures/summaries/final_thesis/,outputs/ui/run_history.jsonl; outputs/ui/tmp_configs/,src/dashboard/*; experiments/demo/run_dashboard_job.py,True,False,
 apps/legacy/ui_app.py,legacy UI,旧 UI 占位入口，仅保留历史说明，不推荐使用。,,,apps/dashboard.py,False,False,
@@ -15,7 +15,7 @@ src/evaluation/,源码模块,评估 baseline、防御后攻击和参数扫描。
 src/defenses/,源码模块,实现 `noise`、`ldp`、`adaptive_ldp` 和防御流水线。,data/processed/{dataset}/seed_{seed}/,data/defended/{dataset}/seed_{seed}/{method}/,experiments/core/run_defense.py,False,False,
 src/edge/,源码模块,`adaptive_ldp` 使用的边缘预算分配工具。,configs/default.yaml 中 adaptive_ldp 配置,defense_report.json,src/defenses/adaptive_ldp_defense.py,False,False,
 src/dashboard/,源码模块,Dashboard 路径、IO、绘图、子进程运行器和运行历史工具。,outputs/experiments/; outputs/summaries/final_thesis/,outputs/ui/run_history.jsonl; outputs/ui/tmp_configs/,apps/dashboard.py,False,False,
-src/artifacts/,源码模块,集中维护 canonical artifact 路径和 summary IO。,,,scripts/audit/*; apps/dashboard.py,False,False,
+src/artifacts/,源码模块,集中维护标准产物路径和 summary IO，使汇总、审计和 Dashboard 指向同一套实验结果。,,,scripts/audit/*; apps/dashboard.py,False,False,
 src/*.py,兼容 wrapper,旧 import 路径的兼容层，只 re-export 新分层包。,src/core/; src/data/; src/evaluation/; src/dashboard/,,历史脚本,False,False,
 experiments/core/,实验入口,单步 CLI：预处理、训练、评估、防御、参数扫描和混淆矩阵收集。,configs/default.yaml; data/processed/; data/defended/; outputs/models/,outputs/experiments/; data/defended/; outputs/models/; outputs/figures/experiments/,src/*,True,False,
 experiments/batches/,批处理入口,多 seed / 全矩阵复现脚本，日常交付审查不运行。,configs/default.yaml,outputs/experiments/ 等批量产物,README.md 中不作为常规命令,True,False,
@@ -23,8 +23,8 @@ experiments/real_public/imports/,真实数据导入,导入 `uci_har`、`kasteren
 experiments/real_public/benchmarks/,真实数据 benchmark,真实数据完整 benchmark 和汇总脚本。,data/processed/{dataset}/seed_{seed}/; configs/generated/,outputs/experiments/{dataset}/; outputs/summaries/final_thesis/real/,outputs/summaries/final_thesis/parameter_scan_coverage_audit.json,True,False,
 experiments/cooja/,Cooja 实验入口,读取 Cooja 日志，生成攻击准确率和防御评估结果。,configs/cooja*.json; Cooja 日志,outputs/experiments/cooja/; outputs/summaries/final_thesis/cooja/,cooja_limitations.md,True,False,
 experiments/demo/run_dashboard_job.py,Dashboard demo,Dashboard 调用的单组合训练/评估 runner。,data/processed/; data/defended/; outputs/models/,outputs/experiments/; outputs/models/; outputs/ui/run_history.jsonl,apps/dashboard.py,True,False,
-scripts/final_thesis/build_final_thesis_results.py,汇总脚本,从 canonical artifacts 构建最终 summary 和 figure。,outputs/experiments/,outputs/summaries/final_thesis/; outputs/figures/summaries/final_thesis/,scripts/build_final_thesis_results.py,True,False,
-scripts/audit/audit_experiment_symmetry.py,审计脚本,检查主矩阵、参数扫描和 Cooja canonical 产物完整性。,outputs/experiments/; outputs/summaries/final_thesis/,outputs/summaries/final_thesis/final_symmetry_audit.*,scripts/audit_experiment_symmetry.py,True,False,
+scripts/final_thesis/build_final_thesis_results.py,汇总脚本,从标准实验产物构建最终 summary 和 figure。,outputs/experiments/,outputs/summaries/final_thesis/; outputs/figures/summaries/final_thesis/,scripts/build_final_thesis_results.py,True,False,
+scripts/audit/audit_experiment_symmetry.py,审计脚本,检查主矩阵、参数扫描和 Cooja 标准产物完整性。,outputs/experiments/; outputs/summaries/final_thesis/,outputs/summaries/final_thesis/final_symmetry_audit.*,scripts/audit_experiment_symmetry.py,True,False,
 scripts/audit/audit_repository_bloat.py,审计脚本,检查仓库 tracked 文件、路径卫生和删除候选。,git ls-files; outputs/summaries/final_thesis/,outputs/summaries/final_thesis/repository_bloat_audit.*,scripts/audit_repository_bloat.py,True,False,
 scripts/audit/audit_code_structure.py,审计脚本,检查代码职责分层、兼容 wrapper、legacy 文件和 unknown 文件。,src/; apps/; experiments/; scripts/; tools/; docs/,outputs/summaries/final_thesis/code_structure_audit.*,scripts/audit_code_structure.py,True,False,
 scripts/audit/generate_project_file_report.py,报告脚本,生成本文件功能与产物对应报告。,git ls-files; 项目目录结构,docs/PROJECT_FILE_FUNCTION_REPORT.md; outputs/summaries/final_thesis/project_file_function_report.*,scripts/generate_project_file_report.py,True,False,
@@ -41,4 +41,4 @@ outputs/summaries/final_thesis/cooja/,最终汇总,Cooja summary、per-seed 结�
 outputs/figures/summaries/final_thesis/,图像产物,最终论文图像，包括准确率、失真、参数扫描、消融和 Cooja 图。,outputs/summaries/final_thesis/,*.png,figure_table_list.md,False,True,
 outputs/figures/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/,图像产物,单组合诊断图像。,outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/,*.png,Dashboard 图表页面,False,False,
 outputs/models/{dataset}/seed_{seed}/{model}/,模型产物,baseline 模型、retrain 模型和 Dashboard demo 生成模型。,src/training/trainer.py,*.pt,experiments/demo/run_dashboard_job.py; src/evaluation/evaluator.py,False,False,
-git tracked files,仓库索引,"当前 git tracked 顶层目录：.gitignore, README.md, apps, configs, data, docs, experiments, outputs, requirements.txt, scripts, src, tools, web_assets。",git ls-files,,,False,False,tracked 文件数：2452
+git tracked files,仓库索引,"当前 git tracked 顶层目录：.gitignore, README.md, apps, configs, data, docs, experiments, outputs, requirements.txt, scripts, src, tools, web_assets。",git ls-files,,,False,False,tracked 文件数：2460

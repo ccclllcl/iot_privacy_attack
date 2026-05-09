@@ -1,6 +1,6 @@
 # 项目文件功能与产物对应报告
 
-生成时间：`2026-05-09T18:27:50`
+生成时间：`2026-05-09T19:42:35`
 
 ## 1. 顶层文件
 
@@ -29,7 +29,7 @@
 
 ### `configs/generated/{dataset}/seed_{seed}/{model}/`
 - 类型：generated 配置
-- 作用：按 dataset / seed / model / method / mode 保存已整理的 canonical 配置。
+- 作用：按 dataset / seed / model / method / mode 保存已整理的实验配置。
 - 读取：configs/default.yaml
 - 写入：单组合运行使用临时副本
 - 相关产物：outputs/experiments/{dataset}/seed_{seed}/
@@ -115,7 +115,7 @@
 
 ### `src/artifacts/`
 - 类型：源码模块
-- 作用：集中维护 canonical artifact 路径和 summary IO。
+- 作用：集中维护标准产物路径和 summary IO，使汇总、审计和 Dashboard 指向同一套实验结果。
 - 相关产物：scripts/audit/*; apps/dashboard.py
 
 ### `src/*.py`
@@ -172,14 +172,14 @@
 
 ### `scripts/final_thesis/build_final_thesis_results.py`
 - 类型：汇总脚本
-- 作用：从 canonical artifacts 构建最终 summary 和 figure。
+- 作用：从标准实验产物构建最终 summary 和 figure。
 - 读取：outputs/experiments/
 - 写入：outputs/summaries/final_thesis/; outputs/figures/summaries/final_thesis/
 - 相关产物：scripts/build_final_thesis_results.py
 
 ### `scripts/audit/audit_experiment_symmetry.py`
 - 类型：审计脚本
-- 作用：检查主矩阵、参数扫描和 Cooja canonical 产物完整性。
+- 作用：检查主矩阵、参数扫描和 Cooja 标准产物完整性。
 - 读取：outputs/experiments/; outputs/summaries/final_thesis/
 - 写入：outputs/summaries/final_thesis/final_symmetry_audit.*
 - 相关产物：scripts/audit_experiment_symmetry.py

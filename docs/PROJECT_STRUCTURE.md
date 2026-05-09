@@ -1,6 +1,6 @@
 # 项目结构
 
-本仓库将实现代码、实验入口、标准产物、最终汇总和文档说明分开管理。
+本项目将攻击建模、防御生成、评估分析、结果展示和复核材料分开组织。目录结构既服务源码阅读，也服务从研究结论回溯到单个实验组合。
 
 ## 顶层目录
 
@@ -11,7 +11,7 @@
 - `apps/`：正式 Dashboard 和 legacy UI。
 - `docs/`：项目结构、产物结构、交付说明和 Dashboard 使用说明。
 - `data/`：按 dataset / seed 组织的 processed data 和 defended data。
-- `outputs/experiments/`：按 dataset / seed / model / method / mode 组织的 canonical source artifacts。
+- `outputs/experiments/`：按 dataset / seed / model / method / mode 组织的单组合源产物。
 - `outputs/summaries/final_thesis/`：最终论文结果汇总、审计和说明文件。
 - `outputs/figures/summaries/final_thesis/`：最终论文图像。
 - `outputs/figures/experiments/`：单组合诊断图像。
@@ -25,9 +25,9 @@
 - 评估逻辑（`src/evaluation`）：baseline 评估、防御评估、参数扫描。
 - 防御算法（`src/defenses`）：`noise`、`ldp`、`adaptive_ldp` 和防御流水线。
 - Dashboard 工具（`src/dashboard`）：路径、IO、运行器和历史记录。
-- 产物路径工具（`src/artifacts`）：canonical artifact 路径和 summary IO。
+- 产物路径工具（`src/artifacts`）：标准产物路径和 summary IO。
 
-旧 `src/*.py` 文件只作为兼容 wrapper 保留。
+旧 `src/*.py` 文件作为兼容 wrapper 保留，用于连接早期脚本与当前分层源码。
 
 ## 实验入口
 
@@ -43,13 +43,13 @@
 
 ## Dashboard
 
-推荐演示入口：
+Dashboard 是答辩演示和结果复核入口：
 
 ```bash
 python -m streamlit run apps/dashboard.py
 ```
 
-Dashboard 从 `outputs/experiments/`、`outputs/summaries/final_thesis/` 和 `outputs/figures/summaries/final_thesis/` 读取产物。它可以浏览结果和运行单组合 demo，不导入数据、不运行 Cooja 仿真、不启动完整实验矩阵。
+Dashboard 从 `outputs/experiments/`、`outputs/summaries/final_thesis/` 和 `outputs/figures/summaries/final_thesis/` 读取产物。它可以浏览最终结果、展示图像与混淆矩阵，并基于已有处理数据运行单组合 demo。
 
 ## 标准产物路径
 
@@ -77,9 +77,9 @@ Cooja：
 outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/
 ```
 
-## 最终交付路径
+## 结果复核路径
 
-论文和答辩优先查看：
+论文和答辩复核材料集中在：
 
 - `outputs/summaries/final_thesis/`
 - `outputs/figures/summaries/final_thesis/`
@@ -87,4 +87,4 @@ outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/
 - `docs/ARTIFACT_LAYOUT.md`
 - `docs/CODE_STRUCTURE.md`
 
-旧批次路径已经迁移，迁移记录保留在 `outputs/summaries/layout/migration_report.md`。
+早期批次产物已整理到统一结构中，迁移记录保留在 `outputs/summaries/layout/migration_report.md`。

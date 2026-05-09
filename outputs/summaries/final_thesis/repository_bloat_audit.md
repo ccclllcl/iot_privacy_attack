@@ -1,8 +1,8 @@
 # Repository Bloat Audit
 
-- Generated at: `2026-05-09T18:29:28`
-- Tracked files: `2452`
-- Total tracked bytes: `46302098`
+- Generated at: `2026-05-09T19:49:28`
+- Tracked files: `2460`
+- Total tracked bytes: `46400436`
 - Delete candidates: `0`
 - Path hygiene issues: `35`
 

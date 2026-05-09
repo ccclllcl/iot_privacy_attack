@@ -1,8 +1,8 @@
 # 产物结构说明
 
-canonical artifact layout 的核心原则是：路径本身表达实验选项。
+路径结构服务于实验复核，核心研究结论见 `README.md`、`outputs/summaries/final_thesis/final_summary.csv` 和 `outputs/summaries/final_thesis/final_summary.json`。本文件说明实验产物如何按 dataset、seed、model、method 和 mode 组织，便于从汇总结果回溯到单个实验组合。
 
-## 源实验产物
+## 1. 源实验产物
 
 普通实验组合：
 
@@ -19,6 +19,8 @@ outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/
 - `defense_report.json`
 - `source_manifest.json`
 
+`source_manifest.json` 记录该组合的来源、角色和路径信息，用于连接最终汇总与单组合产物。
+
 baseline 产物：
 
 ```text
@@ -33,7 +35,7 @@ outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/parameter_scan
 
 `adaptive_ldp` profile 扫描除 `comparison_results.csv`、`scan_summary.json`、`scan_trace.json` 外，还包含 `profile_config.json`。
 
-## Dataset 和 Model
+## 2. Dataset 和 Model
 
 支持的 dataset slot：
 
@@ -47,9 +49,9 @@ outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/parameter_scan
 
 - `lstm`
 - `mlp`
-- `random_forest`，仅用于 Cooja。
+- `random_forest`，用于 Cooja 场景。
 
-## Cooja
+## 3. Cooja
 
 Cooja 使用：
 
@@ -57,9 +59,9 @@ Cooja 使用：
 outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/
 ```
 
-该路径整理只规范已有结果，不伪造 packet counts、byte counts、IAT、真实能耗或真实端到端时延。
+Cooja 产物用于节点侧 dummy 流量功能性验证和 fixed/retrain 攻击准确率分析。当前结果不量化真实能耗、真实端到端时延或 dummy/real 包比例；相关说明见 `outputs/summaries/final_thesis/cooja/cooja_limitations.md`。
 
-## 汇总与图像
+## 4. 汇总与图像
 
 最终汇总：
 
@@ -79,25 +81,23 @@ outputs/figures/summaries/final_thesis/
 outputs/figures/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/
 ```
 
-## 迁移记录
+最终汇总面向论文和答辩复核，单组合产物面向结果追溯和 Dashboard 检索。
 
-旧批次路径迁移记录保留在：
+## 5. 历史迁移记录
+
+早期批次产物已整理到统一结构中。迁移记录保留在：
 
 - `outputs/summaries/layout/migration_map.csv`
 - `outputs/summaries/layout/migration_report.md`
 
-旧批次路径只作为历史说明，不应作为最终论文引用路径。
+这些记录用于解释历史路径与标准路径之间的映射关系，最终结果引用以 `outputs/summaries/final_thesis/`、`outputs/figures/summaries/final_thesis/` 和 `outputs/experiments/` 为准。
 
-## Dashboard
+## 6. Dashboard 与相关代码
 
-正式浏览和演示入口：
+Dashboard 使用本文描述的产物结构：
 
 ```bash
 python -m streamlit run apps/dashboard.py
 ```
 
-Dashboard 使用本文件描述的 canonical paths。demo 运行只写入所选组合，并在 `outputs/ui/run_history.jsonl` 记录历史。
-
-## 相关代码
-
-共享路径工具位于 `src/artifacts/canonical_paths.py`。Dashboard 选择和浏览工具位于 `src/dashboard/paths.py`，并复用 canonical path 常量。最终汇总和审计脚本应读取 canonical artifacts，不应再把旧 batch-name 目录作为正式路径。
+共享路径工具位于 `src/artifacts/canonical_paths.py`，Dashboard 选择和浏览工具位于 `src/dashboard/paths.py`。最终汇总和审计脚本基于标准产物路径读取结果，以保证 summary 与单组合 source artifacts 可相互追溯。

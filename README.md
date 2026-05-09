@@ -1,43 +1,98 @@
 # iot_privacy_attack
 
-## 项目简介
+## 项目概述
 
-`iot_privacy_attack` 用于评估 IoT 时序数据上的用户行为推断攻击，以及 `noise`、`ldp`、`adaptive_ldp` 等数据侧隐私防御方法对攻击准确率和数据失真的影响。当前仓库已经整理为本科毕业设计最终交付形态：实验产物路径直接表达 `dataset / seed / model / method / mode`，源码也按配置、数据、训练、评估、防御、Dashboard 和产物路径等职责分层。
+`iot_privacy_attack` 是一个围绕物联网行为推断隐私风险的本科毕业设计项目。项目以设备状态序列、传感器活动序列和流量统计特征为输入，构建攻击模型识别用户行为，并评估 `noise`、`ldp`、`adaptive_ldp` 三类数据侧防御机制对攻击准确率和数据失真的影响。
 
-## 当前交付状态
+项目的实验组织围绕 `dataset / seed / model / method / mode` 展开。最终结果既包含 `mock` 场景，也包含 `uci_har`、`kasteren`、`casas_hh101` 三个真实数据集，以及基于 Cooja 日志的节点侧 dummy 流量功能性验证。
+
+## 研究问题
+
+本项目主要回答以下问题：
+
+- 设备状态序列和流量统计特征是否会泄露用户行为。
+- 数据侧扰动能否降低行为推断攻击的准确率。
+- `fixed_attacker` 与 `retrain_attacker` 两种威胁模型下，防御效果是否存在差异。
+- 隐私抑制与数据失真之间如何权衡。
+- 节点侧 dummy 流量是否能改变窃听者可见的流量模式。
+
+## 主要实现
+
+项目实现了从数据处理、攻击建模、防御生成、攻击评估到结果汇总的完整实验闭环：
+
+- 攻击模型：使用 LSTM 与 MLP 对用户行为进行分类识别。
+- 防御方法：实现 `noise`、`ldp`、`adaptive_ldp` 三类数据扰动机制。
+- 威胁模型：比较 `fixed_attacker` 与 `retrain_attacker` 下的防御效果。
+- 验证场景：覆盖 `mock`、`uci_har`、`kasteren`、`casas_hh101` 和 `cooja`。
+- 演示入口：提供 Streamlit Dashboard，用于浏览最终结果、展示图表、查看混淆矩阵，并演示单组合训练/评估流程。
+
+## 核心实验结论
+
+最终结果表明，LSTM 基线攻击能力整体明显强于 MLP，说明用户行为识别较依赖时序结构，单纯统计特征模型在部分场景下难以捕捉完整动态模式。
+
+默认参数下，`ldp` 对攻击准确率的抑制通常最强，但对应的 MSE 更高、Pearson 相关性更低，体现了更强隐私扰动带来的可用性损失。
+
+`noise` 在多数场景中保留了更多数据相关性，失真相对较低，但攻击者仍能保留较高识别能力，说明简单噪声并不总能充分削弱行为推断风险。
+
+`adaptive_ldp` 在默认参数下呈现隐私与可用性之间的折中效果。其 profile 级消融结果显示，不同 `epsilon_min / epsilon_max`、`weight_sensitivity`、`weight_traffic` 和 `use_edge_budget_cap` 配置会改变防御强度与数据失真表现；面对不同模型和重训练攻击者时，该折中表现也存在差异。
+
+在 `uci_har`、`kasteren`、`casas_hh101` 真实数据上，防御后攻击准确率均出现下降，说明防御效果不只存在于 `mock` 场景，也能在真实行为数据中观察到。
+
+Cooja 结果支持节点侧 dummy 流量机制的功能性验证，可用于分析 fixed/retrain 攻击准确率变化；当前结果不声称真实能耗、真实端到端时延或 dummy/real 包比例已经被量化。
+
+## 实验覆盖情况
 
 - mock 主矩阵：36/36
 - real 主矩阵：108/108
 - mock 参数扫描：36/36
 - real 参数扫描：108/108
 - `adaptive_ldp`：每个 dataset / seed / model / mode 组合包含 6 个 profile
-- Cooja canonical 结果：18/18
+- Cooja canonical：18/18
 - `outputs/summaries/final_thesis/final_missing_outputs.json`：`[]`
 - `outputs/summaries/final_thesis/parameter_scan_missing_outputs.json`：`[]`
 
-日常查看、答辩演示和单组合训练/评估建议使用 Dashboard。除非明确需要复现实验，不建议重复运行完整矩阵。
+完整矩阵结果已作为最终实验结果保留；Dashboard 提供单组合训练/评估演示，便于展示流程而不改变主实验结论。
 
 ## Web Dashboard
 
-正式入口：
+Dashboard 用于答辩演示和结果复核，可展示汇总指标、柱状图、参数扫描曲线、混淆矩阵，并支持单组合训练/评估演示。
+
+启动命令：
 
 ```bash
 python -m streamlit run apps/dashboard.py
 ```
 
-Dashboard 包含：
+Dashboard 包含五个页面：
 
-- 总览：查看覆盖率、缺失产物数量、汇总表和 Cooja 限制说明。
-- 产物检索：按 dataset / seed / model / method / mode 检索 canonical artifacts。
-- 图表与混淆矩阵：查看最终图、从 JSON 实时绘制 confusion matrix，并展示参数扫描曲线。
-- 训练 / 评估演示：只运行用户选择的单个组合，不导入数据、不跑全量矩阵。
-- 运行历史：查看 Dashboard 触发的单组合任务，记录在 `outputs/ui/run_history.jsonl`。
+- 总览：展示实验覆盖、核心汇总表和 Cooja 限制说明。
+- 产物检索：按 dataset / seed / model / method / mode 浏览单组合产物。
+- 图表与混淆矩阵：展示最终图像、实时绘制 confusion matrix，并查看参数扫描曲线。
+- 训练 / 评估演示：基于已有处理数据运行单组合训练或评估任务。
+- 运行历史：展示 Dashboard 触发过的单组合任务记录，记录文件为 `outputs/ui/run_history.jsonl`。
 
-旧式命令 UI 仅保留为 `apps/legacy/ui_app.py`，不作为推荐入口。
+旧式命令 UI 保留在 `apps/legacy/ui_app.py`，用于说明项目早期演示入口的演进。
+
+## 结果复核与产物索引
+
+为便于复核，项目将研究说明、源码实现、实验结果和可视化入口整理如下：
+
+- 最终汇总：`outputs/summaries/final_thesis/final_summary.csv`
+- 最终汇总 JSON：`outputs/summaries/final_thesis/final_summary.json`
+- 实验完整性审计：`outputs/summaries/final_thesis/final_symmetry_audit.json`
+- 参数扫描覆盖审计：`outputs/summaries/final_thesis/parameter_scan_coverage_audit.json`
+- 结果产物索引：`outputs/summaries/final_thesis/artifact_index.md`
+- `adaptive_ldp` 消融总览：`outputs/summaries/final_thesis/adaptive_ldp_ablation_overview.md`
+- Cooja 限制说明：`outputs/summaries/final_thesis/cooja/cooja_limitations.md`
+- 最终图像目录：`outputs/figures/summaries/final_thesis/`
+- 单组合源产物：`outputs/experiments/`
+
+早期批次产物已整理到统一结构中；最终论文和答辩复核以标准结果包为准，历史迁移记录用于追溯：
+
+- `outputs/summaries/layout/migration_map.csv`
+- `outputs/summaries/layout/migration_report.md`
 
 ## 标准产物结构
-
-正式产物入口：
 
 ```text
 outputs/
@@ -56,93 +111,49 @@ outputs/
     experiments/
 ```
 
-普通防御实验：
+普通防御实验路径：
 
 ```text
 outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/
 ```
 
-baseline：
+baseline 路径：
 
 ```text
 outputs/experiments/{dataset}/seed_{seed}/{model}/baseline/
 ```
 
-参数扫描：
+参数扫描路径：
 
 ```text
 outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/parameter_scan/
 ```
 
-Cooja：
+Cooja 路径：
 
 ```text
 outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/
 ```
 
-最终汇总和图像：
-
-```text
-outputs/summaries/final_thesis/
-outputs/figures/summaries/final_thesis/
-outputs/figures/experiments/
-```
-
-旧批次路径已经迁移，迁移记录见 `outputs/summaries/layout/migration_report.md`。
-
 ## 代码结构
 
-主要源码包按职责组织：
+源码按研究流程拆分为数据、模型、训练、评估、防御和展示模块：
 
 - `src/core/`：配置加载、通用工具、绘图工具。
 - `src/data/`：预处理、特征提取、Dataset 封装。
 - `src/models/`：LSTM 和 MLP 模型定义。
 - `src/training/`：训练循环、早停、checkpoint 写入。
 - `src/evaluation/`：baseline 评估、防御后评估、参数扫描。
-- `src/defenses/`：防御算法和防御流水线。
+- `src/defenses/`：`noise`、`ldp`、`adaptive_ldp` 和防御流水线。
 - `src/edge/`：`adaptive_ldp` 的边缘预算分配。
-- `src/dashboard/`：Dashboard 路径、IO、绘图、子进程运行器和历史记录。
-- `src/artifacts/`：canonical artifact 路径和 summary IO 工具。
+- `src/dashboard/`：Dashboard 路径、IO、绘图、运行器和历史记录。
+- `src/artifacts/`：标准产物路径和 summary IO 工具。
 
-旧的 `src/*.py` import 路径保留为轻量兼容 wrapper，便于历史脚本不立即失效。新代码应优先使用上述分层包。详细说明见 `docs/CODE_STRUCTURE.md`。
-
-## 最终结果导航
-
-论文表格、图像和答辩核查优先查看：
-
-- `outputs/summaries/final_thesis/final_summary.csv`
-- `outputs/summaries/final_thesis/final_summary.json`
-- `outputs/summaries/final_thesis/final_symmetry_audit.json`
-- `outputs/summaries/final_thesis/parameter_scan_coverage_audit.json`
-- `outputs/summaries/final_thesis/artifact_index.md`
-- `outputs/summaries/final_thesis/adaptive_ldp_ablation_overview.md`
-- `outputs/summaries/final_thesis/cooja/cooja_limitations.md`
-- `outputs/figures/summaries/final_thesis/`
-
-推荐阅读文档：
-
-- `docs/REPOSITORY_DELIVERY_GUIDE.md`
-- `docs/ARTIFACT_LAYOUT.md`
-- `docs/CODE_STRUCTURE.md`
-- `docs/DASHBOARD_GUIDE.md`
-- `docs/PROJECT_FILE_FUNCTION_REPORT.md`
-
-## 项目文件功能报告
-
-- `docs/PROJECT_FILE_FUNCTION_REPORT.md`：按文件和目录解释项目功能，以及对应读取/生成的产物。
-- `outputs/summaries/final_thesis/project_file_function_report.csv`：机器可读的文件功能索引。
-- `outputs/summaries/final_thesis/artifact_index.md`：最终论文结果产物索引。
+更完整的代码说明见 `docs/CODE_STRUCTURE.md`。
 
 ## 单组合训练与评估演示
 
-Dashboard 和 demo runner 只使用已经存在的处理后数据：
-
-```text
-data/processed/{dataset}/seed_{seed}/
-data/defended/{dataset}/seed_{seed}/{method}/
-```
-
-它们不会下载、导入或生成数据。若输入缺失，会提示缺失路径，而不会自动补齐。
+Dashboard 的演示功能聚焦于已有处理数据上的单组合训练与评估；完整矩阵和 Cooja 日志实验结果以最终结果包中的汇总为准。
 
 等价命令行示例：
 
@@ -152,25 +163,32 @@ python experiments/demo/run_dashboard_job.py --dataset mock --seed 42 --model ls
 python experiments/demo/run_dashboard_job.py --dataset mock --seed 42 --model lstm --job defense_eval_fixed --method ldp --overwrite
 ```
 
-默认不会覆盖已有产物。只有明确传入 `--overwrite` 时，才会覆盖所选单组合对应的 canonical path。
+演示任务读取：
 
-## 常用维护命令
-
-以下命令是轻量维护命令，不会运行完整实验矩阵：
-
-```bash
-python scripts/build_final_thesis_results.py
-python scripts/audit_experiment_symmetry.py
-python scripts/audit_repository_bloat.py
-python scripts/audit_code_structure.py
-python scripts/generate_project_file_report.py
+```text
+data/processed/{dataset}/seed_{seed}/
+data/defended/{dataset}/seed_{seed}/{method}/
 ```
 
-根目录脚本是兼容入口，实际实现位于 `scripts/final_thesis/` 和 `scripts/audit/`。
+演示任务写入对应的单组合产物路径和 `outputs/ui/run_history.jsonl`。
 
-## Cooja 说明
+## 项目文件功能报告
 
-Cooja 结果用于 fixed/retrain 攻击准确率展示和功能性验证。当前交付不声称已经测量真实能耗、真实端到端时延，也不伪造 dummy/real 包比例。
+- `docs/PROJECT_FILE_FUNCTION_REPORT.md`：按文件和目录解释项目功能，以及对应读取/生成的产物。
+- `outputs/summaries/final_thesis/project_file_function_report.csv`：机器可读的文件功能索引。
+- `outputs/summaries/final_thesis/artifact_index.md`：最终论文结果产物索引。
+
+## 运行环境
+
+```bash
+pip install -r requirements.txt
+```
+
+主要依赖包括 Python 3.10+、pandas、numpy、scikit-learn、matplotlib、PyTorch 和 Streamlit。需要 GPU 训练时，可按 PyTorch 官方说明安装匹配的 CUDA 版本。
+
+## Cooja 限制说明
+
+Cooja 结果用于 fixed/retrain 攻击准确率展示和节点侧 dummy 流量功能性验证。当前交付不声称已经测量真实能耗、真实端到端时延，也不伪造 dummy/real 包比例。
 
 复现 Cooja 日志评估时，可复制：
 
@@ -180,18 +198,6 @@ configs/cooja_defense_dummy_logs.template.json
 
 并设置 `COOJA_LOG_ROOT` 指向本地 Cooja 日志目录。已完成结果中的本地 WSL 路径仅用于记录原实验来源，不作为通用复现路径。
 
-## 环境安装
+## 维护说明
 
-```bash
-pip install -r requirements.txt
-```
-
-主要依赖包括 Python 3.10+、pandas、numpy、scikit-learn、matplotlib、PyTorch 和 Streamlit。需要 GPU 训练时，请按 PyTorch 官方说明安装匹配的 CUDA 版本。
-
-## 注意事项
-
-- 不要把 `mock`、`uci_har`、`kasteren`、`casas_hh101`、`cooja` 翻译成中文。
-- 不要把 `adaptive_ldp`、`ldp`、`noise`、`fixed_attacker`、`retrain_attacker` 翻译成中文。
-- 不要修改 JSON/CSV 字段名、命令参数名或路径模板。
-- 不要为了演示而重跑完整矩阵；Dashboard 只用于浏览和单组合演示。
-- Cooja 中不可用的 packet/byte/IAT、能耗、时延字段应保留为限制说明，不应伪造。
+代码和产物中的 dataset、method、mode、JSON/CSV 字段名保持英文标识，以保证脚本和结果可复核。更细的维护约定见 `docs/MAINTENANCE_NOTES.md`。

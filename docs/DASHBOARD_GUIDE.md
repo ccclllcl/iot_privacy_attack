@@ -1,57 +1,55 @@
 # Dashboard 使用指南
 
-从仓库根目录启动：
+Dashboard 是本项目的结果浏览与答辩演示入口。它将最终汇总、单组合产物、图像、混淆矩阵和单组合训练/评估流程集中在同一个页面中，便于展示研究过程和实验结论。
+
+启动命令：
 
 ```bash
 python -m streamlit run apps/dashboard.py
 ```
 
-## 页面说明
+## 1. Dashboard 展示的研究结论
+
+Dashboard 支持从多个角度复核实验发现：
+
+- LSTM/MLP 对比：展示时序模型与统计特征模型在不同 dataset 上的 baseline 与 defended 准确率差异。
+- 三种防御方法比较：展示 `noise`、`ldp`、`adaptive_ldp` 对攻击准确率和数据失真的影响。
+- fixed/retrain 威胁模型比较：展示固定攻击者与重训练攻击者下的防御稳定性差异。
+- 参数扫描趋势：展示 epsilon、noise_scale 和 adaptive profile 对隐私—可用性折中的影响。
+- 真实数据集内部变化：在 `uci_har`、`kasteren`、`casas_hh101` 内部比较 baseline 与 defended 结果。
+- Cooja 功能性验证：展示节点侧 dummy 流量场景中的攻击准确率变化，并说明能耗、端到端时延和 dummy/real 包比例的当前边界。
+
+## 2. 页面结构
 
 - 总览：展示最终覆盖率、缺失产物数量、汇总表和 Cooja 限制。
-- 产物检索：按 dataset、seed、model、method、mode 浏览 canonical experiment folders。
-- 图表与混淆矩阵：展示最终图像、从 JSON 绘制 confusion matrix，并查看参数扫描曲线。
-- 训练 / 评估演示：只运行一个用户选择的训练或评估任务，并写入对应 canonical path。
+- 产物检索：按 dataset、seed、model、method、mode 浏览单组合实验目录。
+- 图表与混淆矩阵：展示最终图像，从 JSON 绘制 confusion matrix，并查看参数扫描曲线。
+- 训练 / 评估演示：基于已有处理数据运行一个单组合训练或评估任务。
 - 运行历史：读取 `outputs/ui/run_history.jsonl`，展示 Dashboard 触发过的任务。
 
-## 实现文件
+## 3. 实现文件
 
 - `apps/dashboard.py`：正式 Streamlit 入口。
-- `src/dashboard/paths.py`：Dashboard 选择项和 canonical path 工具。
+- `src/dashboard/paths.py`：Dashboard 选择项和标准产物路径工具。
 - `src/dashboard/io.py`：产物读取和绘图工具。
 - `src/dashboard/runner.py`：子进程运行器、demo config 构建和 history 写入。
 - `experiments/demo/run_dashboard_job.py`：Dashboard 调用的单组合命令行 runner。
 
-旧 UI 仅保留在 `apps/legacy/`，不作为推荐入口。
+早期 UI 保留在 `apps/legacy/`，用于记录项目演示入口的历史演进。
 
-## 数据策略
+## 4. 数据与输出
 
-Dashboard 不导入或下载数据，只使用已经存在的 processed data：
+Dashboard 的演示功能使用已有 processed data：
 
 ```text
 data/processed/{dataset}/seed_{seed}/
 ```
 
-防御评估使用已经存在的 defended data：
+防御评估使用已有 defended data：
 
 ```text
 data/defended/{dataset}/seed_{seed}/{method}/
 ```
-
-如果这些输入缺失，Dashboard 会显示缺失路径，不会自动下载、导入或生成数据。
-
-## 覆盖策略
-
-- 默认 `overwrite=false`，保护已有 canonical artifacts。
-- 只有显式启用 `overwrite=true` 时，才覆盖所选输出路径。
-- Streamlit 页面会要求二次确认。
-- 每次运行会追加记录到 `outputs/ui/run_history.jsonl`。
-
-## Cooja
-
-Dashboard 只展示已有 Cooja 结果。它不运行 Cooja 仿真，不补真实能耗，不补真实端到端时延，也不伪造 packet/byte/IAT 字段。
-
-## 标准输出
 
 baseline 任务写入：
 
@@ -70,3 +68,19 @@ outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/
 ```text
 outputs/models/{dataset}/seed_{seed}/{model}/
 ```
+
+Dashboard 的单组合演示不会替代最终矩阵结果；其作用是展示训练、评估和产物写入流程。
+
+## 5. 覆盖策略与运行历史
+
+Dashboard 默认保护已有产物。页面提供 overwrite 选项和确认框，用于明确区分结果浏览与单组合演示运行。每次演示运行会追加记录到：
+
+```text
+outputs/ui/run_history.jsonl
+```
+
+运行历史包含 timestamp、dataset、seed、model、method、mode、job、status、duration、command 和 output_path，便于复核演示过程。
+
+## 6. Cooja
+
+Dashboard 展示已有 Cooja 结果，用于说明节点侧 dummy 流量机制的功能性验证。Cooja 页面中的 packet/byte/IAT、真实能耗和真实端到端时延字段保持限制说明，不以 Dashboard 演示补充或推断这些指标。

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-09T18:27:50",
+  "generated_at": "2026-05-09T19:42:35",
   "rows": [
     {
       "path": "README.md",
@@ -48,7 +48,7 @@
     {
       "path": "configs/generated/{dataset}/seed_{seed}/{model}/",
       "type": "generated 配置",
-      "function_zh": "按 dataset / seed / model / method / mode 保存已整理的 canonical 配置。",
+      "function_zh": "按 dataset / seed / model / method / mode 保存已整理的实验配置。",
       "reads_from": "configs/default.yaml",
       "writes_to": "单组合运行使用临时副本",
       "related_artifacts": "outputs/experiments/{dataset}/seed_{seed}/",
@@ -180,7 +180,7 @@
     {
       "path": "src/artifacts/",
       "type": "源码模块",
-      "function_zh": "集中维护 canonical artifact 路径和 summary IO。",
+      "function_zh": "集中维护标准产物路径和 summary IO，使汇总、审计和 Dashboard 指向同一套实验结果。",
       "reads_from": "",
       "writes_to": "",
       "related_artifacts": "scripts/audit/*; apps/dashboard.py",
@@ -268,7 +268,7 @@
     {
       "path": "scripts/final_thesis/build_final_thesis_results.py",
       "type": "汇总脚本",
-      "function_zh": "从 canonical artifacts 构建最终 summary 和 figure。",
+      "function_zh": "从标准实验产物构建最终 summary 和 figure。",
       "reads_from": "outputs/experiments/",
       "writes_to": "outputs/summaries/final_thesis/; outputs/figures/summaries/final_thesis/",
       "related_artifacts": "scripts/build_final_thesis_results.py",
@@ -279,7 +279,7 @@
     {
       "path": "scripts/audit/audit_experiment_symmetry.py",
       "type": "审计脚本",
-      "function_zh": "检查主矩阵、参数扫描和 Cooja canonical 产物完整性。",
+      "function_zh": "检查主矩阵、参数扫描和 Cooja 标准产物完整性。",
       "reads_from": "outputs/experiments/; outputs/summaries/final_thesis/",
       "writes_to": "outputs/summaries/final_thesis/final_symmetry_audit.*",
       "related_artifacts": "scripts/audit_experiment_symmetry.py",
@@ -472,7 +472,7 @@
       "related_artifacts": "",
       "is_entrypoint": false,
       "is_final_delivery": false,
-      "notes": "tracked 文件数：2452"
+      "notes": "tracked 文件数：2460"
     }
   ]
 }

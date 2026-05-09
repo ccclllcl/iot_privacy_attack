@@ -1,7 +1,7 @@
 # 代码结构审计
 
-- 生成时间：`2026-05-09T18:27:49`
-- 扫描文件数：`114`
+- 生成时间：`2026-05-09T19:47:56`
+- 扫描文件数：`115`
 - 结论：当前代码结构已完成职责分层，暂无必须移动的文件。
 
 ## 1. 分类统计
@@ -17,7 +17,7 @@
 - `defense_algorithms`：5
 - `defense_evaluation`：1
 - `defense_pipeline`：1
-- `docs`：8
+- `docs`：9
 - `experiment_cli`：9
 - `final_summary_build`：1
 - `legacy_file`：3

@@ -1,53 +1,62 @@
 # 代码结构说明
 
-本项目源码已经按职责分层，便于答辩评审、复现实验和后续维护时快速定位代码。
+代码结构围绕“攻击建模—防御生成—防御后评估—结果展示”的研究流程组织。各模块既对应论文中的实验方法，也对应最终产物中的数据处理、模型训练、攻击评估和可视化环节。
 
-## `src/`
+## 1. `src/` 研究流程模块
 
-- 配置核心（`src/core`）：负责配置加载、路径解析、通用工具和通用绘图函数。
-- 数据处理（`src/data`）：负责 CSV/NPZ 读取、滑窗、异常值处理、统计特征提取和 Dataset 封装。
-- 模型定义（`src/models`）：包含 LSTM 分类器和 MLP baseline。
-- 训练逻辑（`src/training`）：包含训练循环、早停、checkpoint 写入和训练曲线输出。
-- 评估逻辑（`src/evaluation`）：包含 baseline 评估、防御后攻击评估和参数扫描逻辑。
-- 防御算法（`src/defenses`）：包含 `noise`、`ldp`、`adaptive_ldp` 和防御流水线。
-- 边缘预算（`src/edge`）：包含 `adaptive_ldp` 使用的边缘预算分配逻辑。
-- Dashboard 工具（`src/dashboard`）：包含 Dashboard 的路径、IO、绘图、运行器和历史记录工具。
-- 产物路径工具（`src/artifacts`）：集中维护 canonical artifact 路径和 summary IO。
+- 配置核心（`src/core`）：读取 `configs/default.yaml` 和临时配置，提供路径解析、通用工具和绘图函数，是各实验入口的基础层。
+- 数据处理（`src/data`）：完成 CSV/NPZ 读取、滑窗、异常值处理、统计特征提取和 Dataset 封装，为 LSTM 与 MLP 攻击模型提供输入。
+- 模型定义（`src/models`）：实现 LSTM 分类器和 MLP baseline，用于比较时序模型与统计特征模型的行为识别能力。
+- 训练逻辑（`src/training`）：执行 baseline 攻击者训练或 `retrain_attacker` 训练，写入 checkpoint 和训练曲线。
+- 评估逻辑（`src/evaluation`）：完成 baseline 评估、防御后攻击评估和参数扫描，将攻击准确率、F1、MSE、MAE、Pearson 等指标写入实验产物。
+- 防御算法（`src/defenses`）：实现 `noise`、`ldp`、`adaptive_ldp` 以及防御流水线，负责把 processed data 转换为 defended data。
+- 边缘预算（`src/edge`）：为 `adaptive_ldp` 提供边缘预算分配和裁剪逻辑，支持 profile 级消融分析。
+- Dashboard 工具（`src/dashboard`）：支持结果浏览、图像绘制、单组合 demo runner 调用和运行历史记录。
+- 产物路径工具（`src/artifacts`）：集中维护标准产物路径和 summary IO，使构建脚本、审计脚本和 Dashboard 使用同一套路径规则。
 
-旧路径如 `src/config.py`、`src/train.py`、`src/evaluate.py` 仍保留为兼容 wrapper，只负责 re-export 新包中的实现。新代码应优先从上述分层包导入。
+这些模块共同形成攻击—防御闭环：`src/data` 产生模型输入，`src/models` 与 `src/training` 构建攻击者，`src/defenses` 生成防御数据，`src/evaluation` 衡量攻击抑制与数据失真，`src/dashboard` 和汇总脚本展示最终结论。
 
-## `experiments/`
+根目录下的 `src/config.py`、`src/train.py`、`src/evaluate.py` 等文件保留为兼容 wrapper，负责 re-export 新分层包中的实现，方便历史脚本继续解析。
+
+## 2. `experiments/` 实验入口
 
 - `experiments/core/`：单步实验 CLI，包括预处理、训练、评估、防御生成、防御评估、参数比较和混淆矩阵收集。
-- `experiments/batches/`：多 seed / 全矩阵批处理入口，仅用于复现实验，不作为日常审查入口。
+- `experiments/batches/`：多 seed / 全矩阵批处理入口，用于完整复现实验矩阵。
 - `experiments/real_public/imports/`：`uci_har`、`kasteren`、`casas_hh101` 的真实数据导入流程。
 - `experiments/real_public/benchmarks/`：真实数据 benchmark 运行和汇总脚本。
-- `experiments/cooja/`：Cooja 日志评估和比较脚本。
-- `experiments/demo/`：Dashboard 使用的单组合训练/评估 runner。
+- `experiments/cooja/`：Cooja 日志评估和比较脚本，用于节点侧 dummy 流量功能性验证。
+- `experiments/demo/`：Dashboard 调用的单组合训练/评估 runner，用于答辩演示中的局部流程复现。
 
-## `scripts/`
+## 3. `scripts/` 汇总与审计
 
-- `scripts/final_thesis/`：最终结果汇总构建逻辑。
+- `scripts/final_thesis/`：构建最终汇总结果、覆盖审计、参数扫描汇总和最终图像。
 - `scripts/audit/`：实验对称性审计、仓库体积审计、代码结构审计、项目文件功能报告生成。
-- 根目录脚本保留为兼容入口，以下命令仍可直接运行：
+- 根目录脚本提供命令兼容入口：
   - `python scripts/build_final_thesis_results.py`
   - `python scripts/audit_experiment_symmetry.py`
   - `python scripts/audit_repository_bloat.py`
   - `python scripts/audit_code_structure.py`
   - `python scripts/generate_project_file_report.py`
 
-这些脚本都是轻量维护或审计命令，不会运行完整实验矩阵。
+这些脚本用于维护最终结果包和复核材料，不承担论文结论之外的新实验解释。
 
-## `apps/`
+## 4. `apps/`
 
-- `apps/dashboard.py`：正式 Streamlit Dashboard 入口。
-- `apps/legacy/ui_app.py`：旧式 UI 占位入口，仅用于历史说明，不推荐使用。
+- `apps/dashboard.py`：正式 Streamlit Dashboard 入口，面向结果浏览、图表展示、混淆矩阵查看和单组合演示。
+- `apps/legacy/ui_app.py`：早期 UI 的历史占位入口，记录项目演示方式的演进。
 
-## `tools/`
+## 5. `tools/`
 
 - `tools/cooja/`：Cooja 相关外部维护工具。
-- `tools/maintenance/`：非日常入口的维护工具。
+- `tools/maintenance/`：非主流程维护工具。
 
-## 产物路径原则
+## 6. 产物路径关系
 
-代码结构重构不改变 canonical artifact layout。最终源产物仍位于 `outputs/experiments/`，最终汇总仍位于 `outputs/summaries/final_thesis/`，最终图像仍位于 `outputs/figures/summaries/final_thesis/`。
+代码结构重构不改变实验结论对应的标准产物路径：
+
+- 源实验产物：`outputs/experiments/`
+- 最终汇总：`outputs/summaries/final_thesis/`
+- 最终图像：`outputs/figures/summaries/final_thesis/`
+- 单组合图像：`outputs/figures/experiments/`
+
+源码模块、实验入口和审计脚本通过这些路径连接到最终论文结果，便于从研究结论追溯到具体 dataset / seed / model / method / mode 组合。

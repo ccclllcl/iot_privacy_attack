@@ -1,62 +1,58 @@
-# Codex Fix Report
+# 项目整理与交付修订记录
 
-## Artifact layout normalization
+本文记录最终交付阶段对产物结构、Dashboard、代码结构和文档说明的整理情况。记录中的改动均围绕已有实验结果展开，不改变实验数值和论文结论。
 
-- No full experiment rerun was performed.
-- Missing combinations rerun: none.
-- Mock main matrix remains complete: 36/36.
-- Real main matrix remains complete: 108/108.
-- Mock parameter scans remain complete: 36/36.
-- Real parameter scans remain complete: 108/108.
-- adaptive_ldp profile coverage remains 6 profiles per dataset/seed/model/mode combination.
-- `final_missing_outputs.json` is `[]`.
-- `parameter_scan_missing_outputs.json` is `[]`.
+## 产物结构标准化
 
-## Path Changes
+- 实验源产物统一整理到 `outputs/experiments/`。
+- 最终汇总结果集中在 `outputs/summaries/final_thesis/`。
+- 最终图像集中在 `outputs/figures/summaries/final_thesis/`。
+- 普通实验路径为 `outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/`。
+- baseline 路径为 `outputs/experiments/{dataset}/seed_{seed}/{model}/baseline/`。
+- Cooja 路径为 `outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/`。
+- 早期批次路径与标准路径的映射记录保留在 `outputs/summaries/layout/migration_map.csv` 和 `outputs/summaries/layout/migration_report.md`。
 
-- Old formal source roots were migrated away from batch names.
-- New source root: `outputs/experiments/`.
-- New final summary root: `outputs/summaries/final_thesis/`.
-- New final figure root: `outputs/figures/summaries/final_thesis/`.
-- Normal experiment path: `outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/`.
-- Baseline path: `outputs/experiments/{dataset}/seed_{seed}/{model}/baseline/`.
-- Cooja path: `outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/`.
+## 实验覆盖状态
 
-## Moved and Regenerated Files
+- mock 主矩阵：36/36。
+- real 主矩阵：108/108。
+- mock 参数扫描：36/36。
+- real 参数扫描：108/108。
+- `adaptive_ldp` profile 覆盖：每个 dataset / seed / model / mode 组合 6 个 profile。
+- `final_missing_outputs.json` 为 `[]`。
+- `parameter_scan_missing_outputs.json` 为 `[]`。
 
-- Moved or normalized: main-matrix JSON/TXT artifacts, parameter-scan CSVs, adaptive profile configs, final summaries, final figures, generated configs, processed/defended data, and local model artifacts.
-- Regenerated from canonical paths: final summaries, coverage audits, symmetry audits, repository bloat audit, layout audits, migration map, migration report, artifact index, and summary figures.
-- Deleted old batch roots and empty optional Cooja diagnostic placeholders after canonical copies and `source_manifest.json` files were written.
+## Dashboard 交付
 
-## Cooja
+- 正式 Dashboard 入口为 `apps/dashboard.py`。
+- Dashboard 支持总览、产物检索、图表与混淆矩阵、训练 / 评估演示和运行历史。
+- 单组合演示 runner 为 `experiments/demo/run_dashboard_job.py`。
+- Dashboard 读取 `outputs/experiments/`、`outputs/summaries/final_thesis/` 和 `outputs/figures/summaries/final_thesis/`。
+- Cooja 在 Dashboard 中作为已有结果展示，不补充真实能耗、真实端到端时延、packet/byte/IAT 或 dummy ratio。
 
-- Cooja was only moved into the canonical structure.
-- No real energy, real end-to-end delay, packet/byte/IAT, or dummy ratio values were fabricated.
-- Cooja traffic limitations remain documented in `outputs/summaries/final_thesis/cooja/cooja_limitations.md`.
+## 代码结构整理
 
-## Delivery Status
-
-The normalized repository structure is suitable for undergraduate thesis delivery. Final citation paths are centralized under `outputs/summaries/final_thesis/` and `outputs/figures/summaries/final_thesis/`, with source artifacts traceable through `outputs/experiments/**/source_manifest.json`.
-
-## Canonical dashboard delivery
-
-- No full experiment rerun was performed.
-- Added the formal dashboard entry `apps/dashboard.py`.
-- Added shared dashboard helpers in `src/dashboard_paths.py`, `src/dashboard_io.py`, and `src/dashboard_runner.py`.
-- Added the single-combination runner `experiments/demo/run_dashboard_job.py`.
-- Updated README and delivery docs so `outputs/experiments/`, `outputs/summaries/final_thesis/`, and `outputs/figures/summaries/final_thesis/` are the formal paths.
-- Removed migration-only scripts and the old simple UI entry.
-- Verified one mock `seed_42` `lstm` baseline train/evaluate demo with `max_epochs=1`; overwrite protection refused an existing artifact when overwrite was false.
-- Cooja remains display-only in the dashboard; no packet/byte/IAT, real energy, or real delay metrics were fabricated.
+- 源码按职责分为 `src/core`、`src/data`、`src/models`、`src/training`、`src/evaluation`、`src/defenses`、`src/edge`、`src/dashboard` 和 `src/artifacts`。
+- 根目录 `src/*.py` 保留为兼容 wrapper，用于连接早期脚本与当前分层源码。
+- 代码结构审计输出为 `outputs/summaries/final_thesis/code_structure_audit.json` 和 `outputs/summaries/final_thesis/code_structure_audit.md`。
 
 ## 中文化与文件功能报告
 
-- 本次没有重跑 mock 主矩阵、real 主矩阵、参数扫描或 Cooja 仿真。
-- README 已改为中文，保留 `outputs/experiments/`、`outputs/summaries/final_thesis/`、`outputs/figures/summaries/final_thesis/` 等路径标识。
-- `docs/CODE_STRUCTURE.md`、`docs/PROJECT_STRUCTURE.md`、`docs/REPOSITORY_DELIVERY_GUIDE.md`、`docs/DASHBOARD_GUIDE.md`、`docs/ARTIFACT_LAYOUT.md` 已改为中文说明。
-- `apps/dashboard.py` 和 `apps/legacy/ui_app.py` 的页面标题、tab、按钮、提示和限制说明已中文化。
-- `src/dashboard/runner.py`、`src/dashboard/io.py`、`src/dashboard/paths.py`、`experiments/demo/run_dashboard_job.py` 等 Dashboard 后端提示和 docstring 已中文化。
-- 保留不翻译的英文标识包括：路径、命令、CLI 参数、JSON/CSV 字段名、`mock`、`uci_har`、`kasteren`、`casas_hh101`、`cooja`、`adaptive_ldp`、`ldp`、`noise`、`fixed_attacker`、`retrain_attacker`，以及机器进度标记 `CONFIG_PREPARED`、`TRAINING_STARTED`、`DEFENSE_EVALUATION_STARTED`、`EVALUATION_STARTED`、`WRITING_ARTIFACTS`、`DONE`、`RESULT_JSON`。
-- `scripts/audit/audit_code_structure.py` 已修正，不再把已完成移动写成待办；新报告区分 `completed_moves`、`compatibility_wrappers`、`legacy_files`、`unknown_files` 和 `pending_recommendations`。
-- 已生成 `docs/PROJECT_FILE_FUNCTION_REPORT.md`、`outputs/summaries/final_thesis/project_file_function_report.md`、`project_file_function_report.csv`、`project_file_function_report.json`。
-- 最终轻量审计仍通过，`final_missing_outputs.json` 与 `parameter_scan_missing_outputs.json` 均为 `[]`。
+- README、核心 docs、Dashboard 页面文案、Dashboard 后端提示和主要 docstring 已中文化。
+- 路径、命令、CLI 参数、JSON/CSV 字段名、dataset、method、mode 和机器进度标记保持英文标识。
+- `scripts/audit/audit_code_structure.py` 已修正，报告区分 `completed_moves`、`compatibility_wrappers`、`legacy_files`、`unknown_files` 和 `pending_recommendations`。
+- 已生成 `docs/PROJECT_FILE_FUNCTION_REPORT.md`、`outputs/summaries/final_thesis/project_file_function_report.md`、`project_file_function_report.csv` 和 `project_file_function_report.json`。
+
+## 统一项目文档叙述视角
+
+- README 已调整为本科毕业设计项目说明视角，结构包括项目概述、研究问题、主要实现、核心实验结论、实验覆盖情况、Dashboard 和结果复核入口。
+- `docs/REPOSITORY_DELIVERY_GUIDE.md` 已改写为项目复核指南，重点说明研究目标、核心结论、实验覆盖、Dashboard 展示和单组合追溯方式。
+- `docs/DASHBOARD_GUIDE.md` 增加 Dashboard 展示的研究结论，包括 LSTM/MLP 对比、三种防御方法比较、fixed/retrain 威胁模型比较、参数扫描趋势、真实数据集变化和 Cooja 功能性验证边界。
+- `docs/ARTIFACT_LAYOUT.md` 和 `docs/CODE_STRUCTURE.md` 已从纯工程目录说明改为服务实验复核和攻击—防御闭环的说明。
+- `docs/PROJECT_STRUCTURE.md` 已同步调整为项目结构与研究复核关系说明。
+- 内部维护规则下沉到 `docs/MAINTENANCE_NOTES.md`。
+- 已生成 `outputs/summaries/final_thesis/text_tone_audit.md`、`text_tone_audit.json`、`text_tone_revision_report.md` 和 `text_tone_revision_report.json`。
+
+## Cooja 结果边界
+
+Cooja 结果用于 fixed/retrain 攻击准确率和节点侧 dummy 流量功能性验证。当前结果不声称真实能耗已测量，不声称真实端到端时延已测量，也不伪造 dummy/real 包比例。相关限制见 `outputs/summaries/final_thesis/cooja/cooja_limitations.md`。

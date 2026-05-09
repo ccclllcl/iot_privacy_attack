@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-09T18:27:49",
-  "files_scanned": 114,
+  "generated_at": "2026-05-09T19:47:56",
+  "files_scanned": 115,
   "category_counts": {
     "artifact_paths": 2,
     "audit": 4,
@@ -13,7 +13,7 @@
     "defense_algorithms": 5,
     "defense_evaluation": 1,
     "defense_pipeline": 1,
-    "docs": 8,
+    "docs": 9,
     "experiment_cli": 9,
     "final_summary_build": 1,
     "legacy_file": 3,
@@ -75,7 +75,7 @@
     },
     {
       "path": "docs/ARTIFACT_LAYOUT.md",
-      "size_bytes": 2210,
+      "size_bytes": 2856,
       "category": "docs",
       "imports": [],
       "proposed_new_path": "docs/ARTIFACT_LAYOUT.md",
@@ -86,7 +86,7 @@
     },
     {
       "path": "docs/CODE_STRUCTURE.md",
-      "size_bytes": 3041,
+      "size_bytes": 4353,
       "category": "docs",
       "imports": [],
       "proposed_new_path": "docs/CODE_STRUCTURE.md",
@@ -97,7 +97,7 @@
     },
     {
       "path": "docs/DASHBOARD_GUIDE.md",
-      "size_bytes": 2187,
+      "size_bytes": 3456,
       "category": "docs",
       "imports": [],
       "proposed_new_path": "docs/DASHBOARD_GUIDE.md",
@@ -107,8 +107,19 @@
       "is_legacy_file": false
     },
     {
+      "path": "docs/MAINTENANCE_NOTES.md",
+      "size_bytes": 1556,
+      "category": "docs",
+      "imports": [],
+      "proposed_new_path": "docs/MAINTENANCE_NOTES.md",
+      "reason": "项目文档。",
+      "is_compatibility_wrapper": false,
+      "is_completed_move_target": false,
+      "is_legacy_file": false
+    },
+    {
       "path": "docs/PROJECT_FILE_FUNCTION_REPORT.md",
-      "size_bytes": 13706,
+      "size_bytes": 13748,
       "category": "docs",
       "imports": [],
       "proposed_new_path": "docs/PROJECT_FILE_FUNCTION_REPORT.md",
@@ -119,7 +130,7 @@
     },
     {
       "path": "docs/PROJECT_STRUCTURE.md",
-      "size_bytes": 3556,
+      "size_bytes": 3720,
       "category": "docs",
       "imports": [],
       "proposed_new_path": "docs/PROJECT_STRUCTURE.md",
@@ -130,7 +141,7 @@
     },
     {
       "path": "docs/REPOSITORY_DELIVERY_GUIDE.md",
-      "size_bytes": 3415,
+      "size_bytes": 4430,
       "category": "docs",
       "imports": [],
       "proposed_new_path": "docs/REPOSITORY_DELIVERY_GUIDE.md",
@@ -859,7 +870,7 @@
     },
     {
       "path": "scripts/audit/generate_project_file_report.py",
-      "size_bytes": 18243,
+      "size_bytes": 18285,
       "category": "audit",
       "imports": [
         "__future__",
