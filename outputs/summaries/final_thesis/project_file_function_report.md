@@ -1,6 +1,6 @@
 # 项目文件功能与产物对应报告
 
-生成时间：`2026-05-09T20:21:22`
+生成时间：`2026-05-09T20:52:53`
 
 ## 1. 顶层文件
 
@@ -186,16 +186,16 @@
 
 ### `scripts/audit/audit_repository_bloat.py`
 - 类型：审计脚本
-- 作用：检查仓库 tracked 文件、路径卫生和删除候选。
+- 作用：按需检查仓库 tracked 文件、路径卫生和删除候选。
 - 读取：git ls-files; outputs/summaries/final_thesis/
-- 写入：outputs/summaries/final_thesis/repository_bloat_audit.*
+- 写入：按需生成仓库清理审计输出
 - 相关产物：scripts/audit_repository_bloat.py
 
 ### `scripts/audit/audit_code_structure.py`
 - 类型：审计脚本
-- 作用：检查代码职责分层、兼容 wrapper、legacy 文件和 unknown 文件。
+- 作用：按需检查代码职责分层、兼容 wrapper、legacy 文件和 unknown 文件。
 - 读取：src/; apps/; experiments/; scripts/; tools/; docs/
-- 写入：outputs/summaries/final_thesis/code_structure_audit.*
+- 写入：按需生成代码结构审计输出
 - 相关产物：scripts/audit_code_structure.py
 
 ### `scripts/audit/generate_project_file_report.py`

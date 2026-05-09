@@ -25,8 +25,8 @@ experiments/cooja/,Cooja 实验入口,读取 Cooja 日志，生成攻击准确�
 experiments/demo/run_dashboard_job.py,Dashboard demo,Dashboard 调用的单组合训练/评估 runner。,data/processed/; data/defended/; outputs/models/,outputs/experiments/; outputs/models/; outputs/ui/run_history.jsonl,apps/dashboard.py,True,False,
 scripts/final_thesis/build_final_thesis_results.py,汇总脚本,从标准实验产物构建最终 summary 和 figure。,outputs/experiments/,outputs/summaries/final_thesis/; outputs/figures/summaries/final_thesis/,scripts/build_final_thesis_results.py,True,False,
 scripts/audit/audit_experiment_symmetry.py,审计脚本,检查主矩阵、参数扫描和 Cooja 标准产物完整性。,outputs/experiments/; outputs/summaries/final_thesis/,outputs/summaries/final_thesis/final_symmetry_audit.*,scripts/audit_experiment_symmetry.py,True,False,
-scripts/audit/audit_repository_bloat.py,审计脚本,检查仓库 tracked 文件、路径卫生和删除候选。,git ls-files; outputs/summaries/final_thesis/,outputs/summaries/final_thesis/repository_bloat_audit.*,scripts/audit_repository_bloat.py,True,False,
-scripts/audit/audit_code_structure.py,审计脚本,检查代码职责分层、兼容 wrapper、legacy 文件和 unknown 文件。,src/; apps/; experiments/; scripts/; tools/; docs/,outputs/summaries/final_thesis/code_structure_audit.*,scripts/audit_code_structure.py,True,False,
+scripts/audit/audit_repository_bloat.py,审计脚本,按需检查仓库 tracked 文件、路径卫生和删除候选。,git ls-files; outputs/summaries/final_thesis/,按需生成仓库清理审计输出,scripts/audit_repository_bloat.py,True,False,
+scripts/audit/audit_code_structure.py,审计脚本,按需检查代码职责分层、兼容 wrapper、legacy 文件和 unknown 文件。,src/; apps/; experiments/; scripts/; tools/; docs/,按需生成代码结构审计输出,scripts/audit_code_structure.py,True,False,
 scripts/audit/generate_project_file_report.py,报告脚本,生成本文件功能与产物对应报告。,git ls-files; 项目目录结构,docs/PROJECT_FILE_FUNCTION_REPORT.md; outputs/summaries/final_thesis/project_file_function_report.*,scripts/generate_project_file_report.py,True,False,
 data/processed/{dataset}/seed_{seed}/,数据产物,处理后的训练/验证/测试数据，供训练和评估读取。,data/raw/ 或导入脚本,sequences.npz; mlp_features.npz; meta.json,src/data/; src/training/; src/evaluation/,False,False,
 data/defended/{dataset}/seed_{seed}/{method}/,数据产物,防御后的训练/验证/测试数据，供 fixed/retrain attacker 评估读取。,data/processed/{dataset}/seed_{seed}/,defended_sequences.npz; defended_mlp_features.npz,src/defenses/; src/evaluation/defense_evaluator.py,False,False,
@@ -41,4 +41,4 @@ outputs/summaries/final_thesis/cooja/,最终汇总,Cooja summary、per-seed 结�
 outputs/figures/summaries/final_thesis/,图像产物,最终论文图像，包括准确率、失真、参数扫描、消融和 Cooja 图。,outputs/summaries/final_thesis/,*.png,figure_table_list.md,False,True,
 outputs/figures/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/,图像产物,单组合诊断图像。,outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/,*.png,Dashboard 图表页面,False,False,
 outputs/models/{dataset}/seed_{seed}/{model}/,模型产物,baseline 模型、retrain 模型和 Dashboard demo 生成模型。,src/training/trainer.py,*.pt,experiments/demo/run_dashboard_job.py; src/evaluation/evaluator.py,False,False,
-git tracked files,仓库索引,"当前 git tracked 顶层目录：.gitignore, README.md, apps, configs, data, docs, experiments, outputs, requirements.txt, scripts, src, tools, web_assets。",git ls-files,,,False,False,tracked 文件数：2464
+git tracked files,仓库索引,"当前 git tracked 顶层目录：.gitignore, README.md, apps, configs, data, docs, experiments, outputs, requirements.txt, scripts, src, tools。",git ls-files,,,False,False,tracked 文件数：2442

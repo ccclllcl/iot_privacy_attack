@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-09T20:21:22",
+  "generated_at": "2026-05-09T20:52:53",
   "rows": [
     {
       "path": "README.md",
@@ -290,9 +290,9 @@
     {
       "path": "scripts/audit/audit_repository_bloat.py",
       "type": "审计脚本",
-      "function_zh": "检查仓库 tracked 文件、路径卫生和删除候选。",
+      "function_zh": "按需检查仓库 tracked 文件、路径卫生和删除候选。",
       "reads_from": "git ls-files; outputs/summaries/final_thesis/",
-      "writes_to": "outputs/summaries/final_thesis/repository_bloat_audit.*",
+      "writes_to": "按需生成仓库清理审计输出",
       "related_artifacts": "scripts/audit_repository_bloat.py",
       "is_entrypoint": true,
       "is_final_delivery": false,
@@ -301,9 +301,9 @@
     {
       "path": "scripts/audit/audit_code_structure.py",
       "type": "审计脚本",
-      "function_zh": "检查代码职责分层、兼容 wrapper、legacy 文件和 unknown 文件。",
+      "function_zh": "按需检查代码职责分层、兼容 wrapper、legacy 文件和 unknown 文件。",
       "reads_from": "src/; apps/; experiments/; scripts/; tools/; docs/",
-      "writes_to": "outputs/summaries/final_thesis/code_structure_audit.*",
+      "writes_to": "按需生成代码结构审计输出",
       "related_artifacts": "scripts/audit_code_structure.py",
       "is_entrypoint": true,
       "is_final_delivery": false,
@@ -466,13 +466,13 @@
     {
       "path": "git tracked files",
       "type": "仓库索引",
-      "function_zh": "当前 git tracked 顶层目录：.gitignore, README.md, apps, configs, data, docs, experiments, outputs, requirements.txt, scripts, src, tools, web_assets。",
+      "function_zh": "当前 git tracked 顶层目录：.gitignore, README.md, apps, configs, data, docs, experiments, outputs, requirements.txt, scripts, src, tools。",
       "reads_from": "git ls-files",
       "writes_to": "",
       "related_artifacts": "",
       "is_entrypoint": false,
       "is_final_delivery": false,
-      "notes": "tracked 文件数：2464"
+      "notes": "tracked 文件数：2442"
     }
   ]
 }
