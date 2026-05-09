@@ -34,13 +34,13 @@
 - 图路径: `outputs/figures/final_thesis/real_uci_ldp_scan.png`
 - 源文件: `outputs/reports/final_thesis/real/real_parameter_scan_ldp.csv`
 - 可写入论文结论: 可用于展示 epsilon 变大时准确率恢复趋势。
-- 口径限制: UCI HAR 扫描覆盖 LSTM/MLP 与 fixed/retrain；其他数据集仅作辅助口径。
+- 口径限制: 该图以 UCI HAR 作代表性曲线展示；完整 real 参数扫描矩阵已覆盖 UCI HAR、Kasteren 与 CASAS。
 
 ## 7. noise scale 参数扫描曲线
 - 图路径: `outputs/figures/final_thesis/real_uci_noise_scan.png`
 - 源文件: `outputs/reports/final_thesis/real/real_parameter_scan_noise.csv`
 - 可写入论文结论: 可用于展示噪声强度上升时攻击准确率下降趋势。
-- 口径限制: UCI HAR 扫描覆盖 LSTM/MLP 与 fixed/retrain；其他数据集仅作辅助口径。
+- 口径限制: 该图以 UCI HAR 作代表性曲线展示；完整 real 参数扫描矩阵已覆盖 UCI HAR、Kasteren 与 CASAS。
 
 ## 8. mock 代表性 confusion matrix
 - 图路径: `outputs/figures/final_thesis/confusion_mock.png`

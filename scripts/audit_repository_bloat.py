@@ -226,7 +226,13 @@ def write_outputs(rows: list[dict[str, Any]]) -> None:
     lines.extend(["", "## Recommendation Counts", ""])
     for rec, count in summary["by_recommendation"].items():
         lines.append(f"- `{rec}`: {count}")
-    lines.extend(["", "## Delete Candidates", ""])
+    lines.extend(["", "## Path Hygiene Notes", ""])
+    lines.append("- Path hygiene issues are not deletion candidates by themselves.")
+    lines.append("- The remaining issues are mainly Cooja local WSL radio/app log paths retained to document the completed local evaluation source.")
+    lines.append("- Portable Cooja reproduction should use `configs/cooja_defense_dummy_logs.template.json` with `COOJA_LOG_ROOT` instead of the local WSL paths.")
+    lines.extend(["", "## Delete Candidates"])
+    if summary["delete_candidates"]:
+        lines.append("")
     for row in summary["delete_candidates"][:80]:
         lines.append(f"- `{row['path']}` ({row['file_size_bytes']} bytes): {row['reason']}")
     if len(summary["delete_candidates"]) > 80:

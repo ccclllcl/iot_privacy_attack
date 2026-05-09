@@ -422,6 +422,8 @@ Cooja per-seed 与流量统计结果位于 `outputs/reports/final_thesis/cooja/`
 
 Cooja 当前不提供真实能耗或时延测量，只提供窗口数量与流量统计代理；相关限制写入 `outputs/reports/final_thesis/cooja/cooja_limitations.md`。
 
+已完成的 Cooja 结果保留本机 WSL 日志路径以记录评估来源。复现者应复制 `configs/cooja_defense_dummy_logs.template.json`，设置 `COOJA_LOG_ROOT` 指向自己的 Cooja 日志目录，再运行 Cooja 评估脚本。当前结果不声称真实能耗或真实端到端时延已测量。
+
 ## 最终交付与产物索引
 
 主实验和参数扫描已经完成。最终交付优先查看：

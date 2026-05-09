@@ -12,5 +12,7 @@
       ],
       "reason": "Cooja source_log_files preserve the local WSL radio/app log paths used for the completed accuracy evaluation. These paths are documented in cooja_limitations.md and are not portable reproduction paths."
     }
-  ]
+  ],
+  "portable_template_added": true,
+  "template_file": "configs/cooja_defense_dummy_logs.template.json"
 }

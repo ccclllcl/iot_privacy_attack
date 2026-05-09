@@ -113,3 +113,14 @@ Canonical parameter-scan CSVs now exist at the original symmetric locations:
 - `.gitignore` now ignores broad runtime outputs while explicitly allowing `outputs/reports/final_thesis/` and `outputs/figures/final_thesis/`.
 - Retained source artifacts for traceability include `outputs/defense/full_multiseed/`, `outputs/defense/real_public_benchmark/`, `outputs/defense/final_thesis/`, `data/processed/`, `data/defended/`, and `outputs/models/`.
 - Cooja traffic limitations remain documented: traffic proxy fields may be NaN, dummy ratios are not fabricated, and no real energy or end-to-end delay is claimed.
+
+## Final delivery consistency cleanup
+
+- No experiment was rerun in this final consistency pass.
+- Updated `final_thesis_summary.md` generation so it no longer describes Kasteren/CASAS parameter scans as future work; the summary now states mock scans 36/36 and real scans 108/108.
+- Split final manifest commit metadata into `experiment_result_commit`, `repository_cleanup_commit`, and `latest_verified_commit`. Because the final commit hash is not known before committing, `latest_verified_commit` is recorded as `working_tree_before_final_commit`.
+- Added `configs/cooja_defense_dummy_logs.template.json` for portable Cooja log configuration through `COOJA_LOG_ROOT`.
+- Added `outputs/reports/final_thesis/thesis_text_sync_suggestions.md`.
+- Added `outputs/reports/final_thesis/git_history_size_note.md`.
+- The current working tree is cleaned, but GitHub clone size may remain larger because old large files still exist in history.
+- Further clone-size reduction would require a separate history rewrite with `git filter-repo` or BFG and a force push; this was not performed.

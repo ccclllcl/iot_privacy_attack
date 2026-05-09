@@ -40,6 +40,9 @@ MODES = ["fixed_attacker", "retrain_attacker"]
 @dataclass
 class EnvInfo:
     git_commit: str
+    experiment_result_commit: str
+    repository_cleanup_commit: str
+    latest_verified_commit: str
     python_version: str
     os: str
     start_time: str
@@ -61,6 +64,23 @@ def _run(cmd: list[str], cwd: Path | None = None, timeout: int | None = None) ->
         timeout=timeout,
     )
     return p.returncode, p.stdout or "", p.stderr or ""
+
+
+def _resolve_commit_metadata(current_head: str) -> dict[str, str]:
+    prior_manifest = _safe_json(OUT_REPORT / "final_manifest.json")
+    if not isinstance(prior_manifest, dict):
+        prior_manifest = {}
+    experiment_commit = str(
+        prior_manifest.get("experiment_result_commit")
+        or prior_manifest.get("git_commit")
+        or current_head
+    )
+    cleanup_commit = str(prior_manifest.get("repository_cleanup_commit") or current_head)
+    return {
+        "experiment_result_commit": experiment_commit,
+        "repository_cleanup_commit": cleanup_commit,
+        "latest_verified_commit": "working_tree_before_final_commit",
+    }
 
 
 def _safe_json(path: Path) -> dict[str, Any] | list[Any] | None:
@@ -1867,7 +1887,7 @@ def _build_figures(
                     "title": "ldp epsilon 参数扫描曲线",
                     "source_files": "outputs/reports/final_thesis/real/real_parameter_scan_ldp.csv",
                     "conclusion": "可用于展示 epsilon 变大时准确率恢复趋势。",
-                    "limitations": "UCI HAR 扫描覆盖 LSTM/MLP 与 fixed/retrain；其他数据集仅作辅助口径。",
+                    "limitations": "该图以 UCI HAR 作代表性曲线展示；完整 real 参数扫描矩阵已覆盖 UCI HAR、Kasteren 与 CASAS。",
                 }
             )
 
@@ -1892,7 +1912,7 @@ def _build_figures(
                     "title": "noise scale 参数扫描曲线",
                     "source_files": "outputs/reports/final_thesis/real/real_parameter_scan_noise.csv",
                     "conclusion": "可用于展示噪声强度上升时攻击准确率下降趋势。",
-                    "limitations": "UCI HAR 扫描覆盖 LSTM/MLP 与 fixed/retrain；其他数据集仅作辅助口径。",
+                    "limitations": "该图以 UCI HAR 作代表性曲线展示；完整 real 参数扫描矩阵已覆盖 UCI HAR、Kasteren 与 CASAS。",
                 }
             )
 
@@ -2211,6 +2231,7 @@ def _write_final_summary_md(
     real_rows: list[dict[str, Any]],
     cooja_rows: list[dict[str, Any]],
     missing: list[dict[str, Any]],
+    parameter_scan_coverage: dict[str, Any],
 ) -> None:
     md = OUT_REPORT / "final_thesis_summary.md"
     mock_df = pd.DataFrame(mock_rows)
@@ -2224,7 +2245,10 @@ def _write_final_summary_md(
     lines.append("# 最终实验总结（可追溯）")
     lines.append("")
     lines.append("## 1. 本次运行环境")
-    lines.append(f"- git commit: `{env.git_commit}`")
+    lines.append(f"- experiment_result_commit: `{env.experiment_result_commit}`")
+    lines.append(f"- repository_cleanup_commit: `{env.repository_cleanup_commit}`")
+    lines.append(f"- latest_verified_commit: `{env.latest_verified_commit}`")
+    lines.append("- 说明: 实验结果包生成 commit 与后续仓库清理 commit 可能不同；清理未重跑实验，只修正文档、路径和冗余产物。")
     lines.append(f"- python version: `{env.python_version}`")
     lines.append(f"- OS: `{env.os}`")
     lines.append(f"- start time / end time: `{env.start_time}` / `{env.end_time}`")
@@ -2232,7 +2256,14 @@ def _write_final_summary_md(
 
     lines.append("## 2. mock 实验是否完整")
     mock_expected = len(SEEDS) * len(MODELS) * len(METHODS) * len(MODES)
-    lines.append(f"- 完成情况: 已收集 `{len(mock_df)}` / 期望 `{mock_expected}` 条（dataset=mock）。")
+    mock_scan = parameter_scan_coverage.get("mock", {}) if isinstance(parameter_scan_coverage, dict) else {}
+    real_scan = parameter_scan_coverage.get("real", {}) if isinstance(parameter_scan_coverage, dict) else {}
+    profile_info = parameter_scan_coverage.get("adaptive_ldp_profile_count", {}) if isinstance(parameter_scan_coverage, dict) else {}
+    lines.append(f"- mock 主矩阵完整: `{len(mock_df)}` / `{mock_expected}`。")
+    lines.append(
+        f"- mock 参数扫描完整: `{mock_scan.get('completed', 0)}` / `{mock_scan.get('expected', 0)}`；"
+        f"missing=`{len(mock_scan.get('missing', []) or [])}`。"
+    )
     if not mock_df.empty:
         for model in MODELS:
             sub = mock_df[mock_df["model_type"] == model]
@@ -2240,12 +2271,20 @@ def _write_final_summary_md(
                 f"- {model.upper()} 主要结果: baseline_acc 均值 `{_mean(sub['baseline_acc'].tolist()):.4f}`，"
                 f"defended_acc 均值 `{_mean(sub['defended_acc'].tolist()):.4f}`。"
             )
-    lines.append("- 参数扫描结果: mock 保留原有 ldp/noise 扫描 CSV；UCI HAR 已补齐 LSTM/MLP 与 fixed/retrain 扫描口径。")
+    lines.append(f"- adaptive_ldp 已有 `{profile_info.get('expected', 6)}`-profile 级消融汇总。")
     lines.append("- 可写入论文的结论: fixed_attacker 与 retrain_attacker 在 mock 数据上呈现可观差异，支持隐私-效用分析。")
     lines.append("- 不建议写入论文的内容: 缺失组合（见 final_missing_outputs.json）对应的推断结论。")
     lines.append("")
 
     lines.append("## 3. 真实数据集实验是否完整")
+    real_expected_total = 3 * len(SEEDS) * len(MODELS) * len(METHODS) * len(MODES)
+    lines.append(f"- real 主矩阵完整: `{len(real_df)}` / `{real_expected_total}`。")
+    lines.append(
+        f"- real 参数扫描完整: `{real_scan.get('completed', 0)}` / `{real_scan.get('expected', 0)}`；"
+        f"missing=`{len(real_scan.get('missing', []) or [])}`。"
+    )
+    lines.append("- 参数扫描覆盖: datasets=`uci_har,kasteren,casas_hh101`；methods=`adaptive_ldp,ldp,noise`；models=`lstm,mlp`；modes=`fixed_attacker,retrain_attacker`；seeds=`42,123,2026`。")
+    lines.append("- Kasteren 和 CASAS 参数扫描已经补齐，不再作为后续扩展建议。")
     for ds in ["uci_har", "kasteren", "casas_hh101"]:
         sub = real_df[real_df["dataset"] == ds] if not real_df.empty else pd.DataFrame()
         expected = len(SEEDS) * len(MODELS) * len(METHODS) * len(MODES)
@@ -2256,7 +2295,7 @@ def _write_final_summary_md(
                 f"fixed/retrain defended_acc 均值 `{_mean(sub['defended_acc'].tolist()):.4f}`。"
             )
     lines.append("- 各数据集之间不能直接比较的原因: 类别空间、样本分布、传感器维度和标签定义不同。")
-    lines.append("- 可写入论文的结论: 在 UCI HAR 与 Kasteren 上可稳定观测防御导致的准确率下降及部分重训恢复。")
+    lines.append("- 可写入论文的结论: 在 UCI HAR、Kasteren 与 CASAS 上可稳定观测防御导致的准确率下降及部分重训恢复。")
     lines.append("- 不建议写入论文的内容: 不同数据集之间的绝对准确率直接排序。")
     lines.append("")
 
@@ -2286,9 +2325,9 @@ def _write_final_summary_md(
     lines.append("")
 
     lines.append("## 6. 下一步建议")
-    lines.append("- 若需进一步扩展，可把 UCI HAR 的全口径参数扫描推广到 Kasteren 与 CASAS。")
-    lines.append("- 若需系统开销完整性，可补充真实能耗、时延与带宽测量。")
-    lines.append("- 论文图表建议优先使用 `outputs/figures/final_thesis/`。")
+    lines.append("- Cooja 真实能耗与真实端到端时延仍需真实部署补充。")
+    lines.append("- 更强攻击模型如 Transformer/TCN 可作为后续工作。")
+    lines.append("- 更细粒度真实部署消融仍可作为后续工作。")
     lines.append("")
 
     lines.append("## Missing Count")
@@ -2305,8 +2344,12 @@ def main() -> None:
 
     rc, gout, _ = _run(["git", "rev-parse", "HEAD"], cwd=ROOT)
     git_commit = gout.strip() if rc == 0 else "unknown"
+    commit_metadata = _resolve_commit_metadata(git_commit)
     env = EnvInfo(
         git_commit=git_commit,
+        experiment_result_commit=commit_metadata["experiment_result_commit"],
+        repository_cleanup_commit=commit_metadata["repository_cleanup_commit"],
+        latest_verified_commit=commit_metadata["latest_verified_commit"],
         python_version=sys.version.replace("\n", " "),
         os=platform.platform(),
         start_time=start,
@@ -2331,7 +2374,9 @@ def main() -> None:
 
     manifest = {
         "generated_at": _now(),
-        "git_commit": env.git_commit,
+        "experiment_result_commit": env.experiment_result_commit,
+        "repository_cleanup_commit": env.repository_cleanup_commit,
+        "latest_verified_commit": env.latest_verified_commit,
         "inputs": {
             "mock_source_root": "outputs/defense/full_multiseed",
             "real_source_root": "outputs/defense/real_public_benchmark",
@@ -2407,7 +2452,7 @@ def main() -> None:
     _write_json(OUT_REPORT / "final_missing_outputs.json", missing)
 
     env.end_time = _now()
-    _write_final_summary_md(env, mock["rows"], real["rows"], cooja["rows"], missing)
+    _write_final_summary_md(env, mock["rows"], real["rows"], cooja["rows"], missing, parameter_scans["coverage"])
 
     # Final ready flag
     required = [

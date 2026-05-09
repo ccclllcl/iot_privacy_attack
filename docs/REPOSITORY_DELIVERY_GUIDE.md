@@ -51,3 +51,5 @@ They are kept because:
 - `cooja_summary.csv` and `cooja_per_seed.csv` can be used for attack-accuracy reporting.
 - If `cooja_traffic_metrics.csv` contains null or NaN traffic fields, read `cooja_limitations.md` before interpreting them.
 - Do not claim that real energy consumption or real end-to-end latency has been measured.
+- Completed Cooja results keep local WSL log paths to document the evaluation source.
+- For reproduction, copy `configs/cooja_defense_dummy_logs.template.json`, set `COOJA_LOG_ROOT` to the local Cooja log directory, and keep the generated outputs under the existing final-thesis Cooja paths.

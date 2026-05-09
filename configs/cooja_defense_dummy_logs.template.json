@@ -1,0 +1,23 @@
+{
+  "baseline": {
+    "radio_log": "${COOJA_LOG_ROOT}/Radiomsg.txt",
+    "app_log": "${COOJA_LOG_ROOT}/loglistener.txt"
+  },
+  "methods": [
+    {
+      "name": "dummy_noise",
+      "radio_log": "${COOJA_LOG_ROOT}/Radiomsg_dummy_noise.txt",
+      "app_log": "${COOJA_LOG_ROOT}/loglistener_dummy_noise.txt"
+    },
+    {
+      "name": "dummy_ldp",
+      "radio_log": "${COOJA_LOG_ROOT}/Radiomsg_dummy_ldp.txt",
+      "app_log": "${COOJA_LOG_ROOT}/loglistener_dummy_ldp.txt"
+    },
+    {
+      "name": "dummy_adaptive_ldp",
+      "radio_log": "${COOJA_LOG_ROOT}/Radiomsg_dummy_adaptive.txt",
+      "app_log": "${COOJA_LOG_ROOT}/loglistener_dummy_adaptive.txt"
+    }
+  ]
+}

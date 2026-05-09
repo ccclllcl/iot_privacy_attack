@@ -1,6 +1,8 @@
 {
-  "generated_at": "2026-05-09T14:43:09",
-  "git_commit": "a43cb0e28822124fcaea8df2f40ff6119b571299",
+  "generated_at": "2026-05-09T15:02:42",
+  "experiment_result_commit": "a43cb0e28822124fcaea8df2f40ff6119b571299",
+  "repository_cleanup_commit": "22580d40585af923aa1180215098db4403d47b79",
+  "latest_verified_commit": "working_tree_before_final_commit",
   "inputs": {
     "mock_source_root": "outputs/defense/full_multiseed",
     "real_source_root": "outputs/defense/real_public_benchmark",
