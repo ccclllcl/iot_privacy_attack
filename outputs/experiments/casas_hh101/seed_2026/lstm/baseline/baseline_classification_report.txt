@@ -1,0 +1,6 @@
+dataset=casas_hh101
+seed=2026
+model=lstm
+baseline_acc=0.5245604181967426
+baseline_f1_macro=0.30693562913861266
+note=Derived from baseline_confusion.json; no separate legacy text report existed.

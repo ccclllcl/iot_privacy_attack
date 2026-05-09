@@ -1,0 +1,12 @@
+{
+  "dataset": "uci_har",
+  "seed": 2026,
+  "model": "mlp",
+  "method": "noise",
+  "mode": "fixed_attacker",
+  "row_count": 4,
+  "expected_rows": 4,
+  "complete": true,
+  "source_file": "outputs/experiments/uci_har/seed_2026/mlp/noise/fixed_attacker/parameter_scan/comparison_results.csv",
+  "old_path": "outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/comparisons/mlp_fixed_attacker_comparison_results.csv"
+}

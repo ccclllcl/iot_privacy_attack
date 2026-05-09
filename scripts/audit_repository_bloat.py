@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """Audit tracked repository artifacts and cleanup candidates.
 
-This script is read-only. It does not delete files.
+This script is read-only. It treats the normalized artifact layout as the
+official delivery structure.
 """
 
 from __future__ import annotations
@@ -16,16 +17,28 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT_DIR = ROOT / "outputs" / "reports" / "final_thesis"
+OUT_DIR = ROOT / "outputs" / "summaries" / "final_thesis"
 CSV_OUT = OUT_DIR / "repository_bloat_audit.csv"
 JSON_OUT = OUT_DIR / "repository_bloat_audit.json"
 MD_OUT = OUT_DIR / "repository_bloat_audit.md"
 
-LOCAL_PATH_PATTERNS = [
-    "D:\\",
-    "D:/",
-    "毕业设计毕业设计",
-    "\\\\wsl$",
+LOCAL_PATH_PATTERNS = ["D:\\", "D:/", "姣曚笟璁捐姣曚笟璁捐", "\\\\wsl$"]
+LEGACY_ROOTS = [
+    "outputs/defense/full_multiseed/",
+    "outputs/defense/real_public_benchmark/",
+    "outputs/defense/final_thesis/",
+    "outputs/reports/final_thesis/",
+    "outputs/reports/full_multiseed/",
+    "outputs/reports/real_public_benchmark/",
+    "outputs/figures/final_thesis/",
+    "data/processed/full_multiseed/",
+    "data/processed/real_public_benchmark/",
+    "data/defended/full_multiseed/",
+    "data/defended/real_public_benchmark/",
+    "outputs/models/full_multiseed/",
+    "outputs/models/real_public_benchmark/",
+    "configs/generated_all_methods/",
+    "configs/generated_real_public/",
 ]
 
 
@@ -45,14 +58,14 @@ def _rel(path: Path) -> str:
     try:
         return path.resolve().relative_to(ROOT).as_posix()
     except Exception:
-        return path.as_posix()
+        return path.as_posix().replace("\\", "/")
 
 
 def _tracked_files() -> list[str]:
     rc, out, err = _run(["git", "ls-files"])
     if rc != 0:
         raise RuntimeError(err.strip() or "git ls-files failed")
-    return [line.strip() for line in out.splitlines() if line.strip()]
+    return [line.strip().replace("\\", "/") for line in out.splitlines() if line.strip()]
 
 
 def _last_commit(path: str) -> tuple[str, str]:
@@ -77,10 +90,7 @@ def _reference_files() -> list[Path]:
     docs = ROOT / "docs"
     if docs.exists():
         files.extend(docs.glob("*.md"))
-    unique: dict[str, Path] = {}
-    for path in files:
-        unique[str(path.resolve())] = path
-    return list(unique.values())
+    return list({str(p.resolve()): p for p in files}.values())
 
 
 def _load_reference_texts() -> str:
@@ -94,7 +104,7 @@ def _load_reference_texts() -> str:
 
 
 def _text_contains_local_path(path: Path) -> bool:
-    if path.stat().st_size > 8_000_000:
+    if not path.exists() or not path.is_file() or path.stat().st_size > 8_000_000:
         return False
     try:
         text = path.read_text(encoding="utf-8", errors="replace")
@@ -106,13 +116,15 @@ def _text_contains_local_path(path: Path) -> bool:
 def _category(path: str) -> str:
     p = path.replace("\\", "/")
     name = Path(p).name
-    if p.startswith("outputs/reports/final_thesis/"):
+    if p.startswith("outputs/summaries/final_thesis/"):
         return "final_thesis_required"
-    if p.startswith("outputs/figures/final_thesis/"):
+    if p.startswith(("outputs/figures/summaries/final_thesis/", "outputs/figures/experiments/")):
         return "final_figure_required"
-    if p.startswith("outputs/reports/dataset_matrix/") or "/dataset_matrix/" in p:
-        return "legacy_dataset_matrix"
-    if p.startswith("configs/generated_"):
+    if p.startswith("outputs/experiments/"):
+        return "source_artifact_referenced"
+    if p.startswith(tuple(LEGACY_ROOTS)) or "/dataset_matrix/" in p:
+        return "legacy_batch_path"
+    if p.startswith("configs/generated/"):
         return "generated_config"
     if p.startswith("outputs/ui/") or "run_history" in p:
         return "ui_history"
@@ -120,10 +132,8 @@ def _category(path: str) -> str:
         return "web_asset"
     if name == "metrics.json" and p.startswith("outputs/reports/"):
         return "legacy_metrics_json"
-    if "__pycache__" in p or ".pytest_cache" in p or name in {".DS_Store", "Thumbs.db"} or name.endswith((".tmp", ".bak")) or name.startswith("~"):
+    if "__pycache__" in p or ".pytest_cache" in p or ".mypy_cache" in p or name in {".DS_Store", "Thumbs.db"} or name.endswith((".tmp", ".bak")) or name.startswith("~"):
         return "temp_or_cache"
-    if p.startswith(("outputs/defense/", "outputs/models/", "data/processed/", "data/defended/")):
-        return "source_artifact_referenced"
     if p.startswith(("docs/",)) or name.lower().endswith((".md", ".docx")):
         return "docs"
     if p.endswith((".py", ".yaml", ".yml", ".toml", ".json", ".ps1", ".sh")) or p.startswith(("src/", "scripts/", "experiments/", "configs/", "apps/", "tools/")):
@@ -133,19 +143,22 @@ def _category(path: str) -> str:
 
 def _recommendation(path: str, category: str, referenced: bool, hygiene: bool) -> tuple[str, str]:
     p = path.replace("\\", "/")
+    if p == "outputs/reports/README.md":
+        return "keep", "Small redirect explaining the migrated reports path."
+    if category in {"legacy_batch_path", "legacy_metrics_json", "temp_or_cache", "ui_history"}:
+        return "delete_candidate", "Legacy batch path or temporary artifact should not remain in normalized delivery layout."
     if referenced:
-        return "keep", "Referenced by final_thesis or delivery documentation."
-    if category in {"final_thesis_required", "final_figure_required", "code", "docs"}:
-        reason = "Required delivery/code/documentation file."
+        reason = "Referenced by final summaries or delivery documentation."
         if hygiene:
-            reason += " Contains local absolute path content that should be reviewed."
+            reason += " Contains local path content that should be reviewed."
         return "keep", reason
-    if category in {"legacy_dataset_matrix", "legacy_metrics_json", "temp_or_cache"}:
-        return "delete_candidate", "Legacy or temporary artifact and not referenced by final_thesis."
-    if category in {"generated_config", "ui_history", "web_asset"}:
-        return "review", "Generated or UI/web artifact; keep only if needed for reproduction or documentation."
-    if category == "source_artifact_referenced":
-        return "keep", "Source artifact class kept for traceability unless unreferenced cleanup is explicitly scoped."
+    if category in {"final_thesis_required", "final_figure_required", "source_artifact_referenced", "code", "docs", "generated_config"}:
+        reason = "Required canonical delivery/code/documentation file."
+        if hygiene:
+            reason += " Contains local path content that should be reviewed."
+        return "keep", reason
+    if category in {"web_asset"}:
+        return "review", "Web/UI asset; keep only if documented."
     return "review", "Unknown tracked file category."
 
 
@@ -154,6 +167,8 @@ def build_audit() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for path in _tracked_files():
         full = ROOT / path
+        if not full.exists():
+            continue
         size = full.stat().st_size if full.exists() else 0
         last_time, last_hash = _last_commit(path)
         category = _category(path)
@@ -208,7 +223,6 @@ def write_outputs(rows: list[dict[str, Any]]) -> None:
             counts[str(row[key])] = counts.get(str(row[key]), 0) + 1
         summary[f"by_{key.replace('deletion_', '')}"] = dict(sorted(counts.items()))
     JSON_OUT.write_text(json.dumps({"summary": summary, "rows": rows}, ensure_ascii=False, indent=2), encoding="utf-8")
-
     lines = [
         "# Repository Bloat Audit",
         "",
@@ -218,35 +232,26 @@ def write_outputs(rows: list[dict[str, Any]]) -> None:
         f"- Delete candidates: `{len(summary['delete_candidates'])}`",
         f"- Path hygiene issues: `{len(summary['path_hygiene_issues'])}`",
         "",
-        "## Category Counts",
+        "## Path Hygiene",
+        "",
+        "- Cooja local WSL log paths may remain in Cooja limitations/source-log fields as provenance, not portable reproduction paths.",
+        "- Portable Cooja configuration uses `configs/cooja_defense_dummy_logs.template.json`.",
+        "",
+        "## Delete Candidates",
         "",
     ]
-    for category, count in summary["by_category"].items():
-        lines.append(f"- `{category}`: {count}")
-    lines.extend(["", "## Recommendation Counts", ""])
-    for rec, count in summary["by_recommendation"].items():
-        lines.append(f"- `{rec}`: {count}")
-    lines.extend(["", "## Path Hygiene Notes", ""])
-    lines.append("- Path hygiene issues are not deletion candidates by themselves.")
-    lines.append("- The remaining issues are mainly Cooja local WSL radio/app log paths retained to document the completed local evaluation source.")
-    lines.append("- Portable Cooja reproduction should use `configs/cooja_defense_dummy_logs.template.json` with `COOJA_LOG_ROOT` instead of the local WSL paths.")
-    lines.extend(["", "## Delete Candidates"])
     if summary["delete_candidates"]:
-        lines.append("")
-    for row in summary["delete_candidates"][:80]:
-        lines.append(f"- `{row['path']}` ({row['file_size_bytes']} bytes): {row['reason']}")
-    if len(summary["delete_candidates"]) > 80:
-        lines.append(f"- ... {len(summary['delete_candidates']) - 80} more rows in `{_rel(CSV_OUT)}`")
+        for row in summary["delete_candidates"][:100]:
+            lines.append(f"- `{row['path']}`: {row['reason']}")
+    else:
+        lines.append("- None")
     MD_OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def main() -> None:
     rows = build_audit()
     write_outputs(rows)
-    print(f"repository_bloat_audit_csv={_rel(CSV_OUT)}")
-    print(f"repository_bloat_audit_json={_rel(JSON_OUT)}")
-    print(f"repository_bloat_audit_md={_rel(MD_OUT)}")
-    print(f"tracked_files={len(rows)}")
+    print(f"repository_bloat_audit={_rel(JSON_OUT)}")
 
 
 if __name__ == "__main__":

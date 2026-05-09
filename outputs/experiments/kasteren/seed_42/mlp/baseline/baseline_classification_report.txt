@@ -1,0 +1,6 @@
+dataset=kasteren
+seed=42
+model=mlp
+baseline_acc=0.21243523316062177
+baseline_f1_macro=0.20080677869139407
+note=Derived from baseline_confusion.json; no separate legacy text report existed.

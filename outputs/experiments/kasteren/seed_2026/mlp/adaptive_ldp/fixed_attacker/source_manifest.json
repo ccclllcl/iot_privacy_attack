@@ -1,0 +1,37 @@
+{
+  "dataset": "kasteren",
+  "seed": 2026,
+  "model": "mlp",
+  "method": "adaptive_ldp",
+  "mode": "fixed_attacker",
+  "role": "main_matrix",
+  "baseline_dir": "outputs/experiments/kasteren/seed_2026/mlp/baseline",
+  "source_files": [
+    {
+      "role": "confusion.json",
+      "old_path": "outputs/defense/final_thesis/real/kasteren/seed_2026/mlp/adaptive_ldp/fixed_attacker/confusion.json",
+      "new_path": "outputs/experiments/kasteren/seed_2026/mlp/adaptive_ldp/fixed_attacker/confusion.json"
+    },
+    {
+      "role": "classification_report.txt",
+      "old_path": "outputs/defense/final_thesis/real/kasteren/seed_2026/mlp/adaptive_ldp/fixed_attacker/classification_report.txt",
+      "new_path": "outputs/experiments/kasteren/seed_2026/mlp/adaptive_ldp/fixed_attacker/classification_report.txt"
+    },
+    {
+      "role": "trace.json",
+      "old_path": "outputs/defense/final_thesis/real/kasteren/seed_2026/mlp/adaptive_ldp/fixed_attacker/trace.json",
+      "new_path": "outputs/experiments/kasteren/seed_2026/mlp/adaptive_ldp/fixed_attacker/trace.json"
+    },
+    {
+      "role": "defense_report.json",
+      "old_path": "outputs/defense/final_thesis/real/kasteren/seed_2026/mlp/adaptive_ldp/fixed_attacker/defense_report.json",
+      "new_path": "outputs/experiments/kasteren/seed_2026/mlp/adaptive_ldp/fixed_attacker/defense_report.json"
+    },
+    {
+      "role": "metrics.json",
+      "old_path": "outputs/defense/final_thesis/real/kasteren/seed_2026/mlp/adaptive_ldp/fixed_attacker/confusion.json",
+      "new_path": "outputs/experiments/kasteren/seed_2026/mlp/adaptive_ldp/fixed_attacker/metrics.json"
+    }
+  ],
+  "unavailable_reason": {}
+}

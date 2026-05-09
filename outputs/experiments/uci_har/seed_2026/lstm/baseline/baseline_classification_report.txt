@@ -1,0 +1,6 @@
+dataset=uci_har
+seed=2026
+model=lstm
+baseline_acc=0.5894129623345775
+baseline_f1_macro=0.49974276727124584
+note=Derived from baseline_confusion.json; no separate legacy text report existed.

@@ -1,0 +1,6 @@
+dataset=uci_har
+seed=42
+model=mlp
+baseline_acc=0.7974211062097047
+baseline_f1_macro=0.7908078181634011
+note=Derived from baseline_confusion.json; no separate legacy text report existed.

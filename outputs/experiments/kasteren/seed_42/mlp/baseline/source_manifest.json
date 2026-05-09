@@ -1,0 +1,16 @@
+{
+  "dataset": "kasteren",
+  "seed": 42,
+  "model": "mlp",
+  "role": "baseline",
+  "source_files": [
+    {
+      "role": "baseline_confusion",
+      "old_path": "outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json",
+      "new_path": "outputs/experiments/kasteren/seed_42/mlp/baseline/baseline_confusion.json"
+    }
+  ],
+  "unavailable_reason": {
+    "baseline_trace.json": "No separate baseline trace existed in the legacy artifacts."
+  }
+}

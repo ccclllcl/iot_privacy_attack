@@ -1,0 +1,14 @@
+{
+  "dataset": "cooja",
+  "seed": 42,
+  "model": "random_forest",
+  "method": "dummy_ldp",
+  "mode": "retrain_attacker",
+  "baseline_acc": "0.24564315352697094",
+  "defended_acc": "0.22063037249283668",
+  "accuracy_drop": "0.025012781034134263",
+  "baseline_f1_macro": "0.2423633203474895",
+  "defended_f1_macro": "0.21501983927376914",
+  "source_radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg_dummy_ldp.txt",
+  "source_app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener_dummy_ldp.txt"
+}

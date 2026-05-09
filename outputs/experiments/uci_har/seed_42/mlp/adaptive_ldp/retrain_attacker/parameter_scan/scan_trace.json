@@ -1,0 +1,5 @@
+{
+  "source_file": "outputs/experiments/uci_har/seed_42/mlp/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
+  "old_path": "outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+  "generated_at": "2026-05-09T15:52:17"
+}

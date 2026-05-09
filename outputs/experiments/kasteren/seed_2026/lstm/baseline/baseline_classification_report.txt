@@ -1,0 +1,6 @@
+dataset=kasteren
+seed=2026
+model=lstm
+baseline_acc=0.29015544041450775
+baseline_f1_macro=0.2285667956291526
+note=Derived from baseline_confusion.json; no separate legacy text report existed.

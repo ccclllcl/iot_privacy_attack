@@ -1,0 +1,5 @@
+dataset,seed,model_type,mode,method,param_name,param_value,baseline_accuracy,defended_accuracy,accuracy_drop,defended_f1_macro,mse,mae,pearson_r,model_source
+uci_har,2026,lstm,fixed_attacker,noise,noise_scale,0.1,0.5894129623345775,0.5890736342042755,0.000339328130302019,0.500930094492238,0.020010376394543453,0.10002018364562319,0.9428595311292882,outputs/models/uci_har/seed_2026/lstm/baseline/best_lstm.pt
+uci_har,2026,lstm,fixed_attacker,noise,noise_scale,0.3,0.5894129623345775,0.4604682728198168,0.12894468951476074,0.3923573559912003,0.18009338755344378,0.30006055093815936,0.686127511257651,outputs/models/uci_har/seed_2026/lstm/baseline/best_lstm.pt
+uci_har,2026,lstm,fixed_attacker,noise,noise_scale,0.5,0.5894129623345775,0.3501866304716661,0.23922633186291142,0.2574611551954617,0.5002594098298141,0.5001009182149014,0.49245968468715057,outputs/models/uci_har/seed_2026/lstm/baseline/best_lstm.pt
+uci_har,2026,lstm,fixed_attacker,noise,noise_scale,1.0,0.5894129623345775,0.3033593484899898,0.2860536138445877,0.2073347574840867,2.001037639371797,1.000201836432143,0.2721560853680186,outputs/models/uci_har/seed_2026/lstm/baseline/best_lstm.pt

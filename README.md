@@ -166,7 +166,7 @@ python experiments/real_public/summarize_real_public_benchmark.py
 - `data/processed/real_public_benchmark/{dataset}/seed_{seed}/`
 - `data/defended/real_public_benchmark/{dataset}/seed_{seed}/{method}/`
 - `outputs/models/real_public_benchmark/{dataset}/seed_{seed}/`
-- `outputs/defense/real_public_benchmark/{dataset}/seed_{seed}/{method}/`
+- `outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/`
 - `outputs/reports/real_public_benchmark/{dataset}/seed_{seed}/`
 
 ## 第二阶段：Cooja 节点级 dummy 流量实验（推荐）
@@ -230,14 +230,14 @@ python experiments/cooja/run_cooja_defense_eval.py --manifest configs/cooja_defe
 - 目录说明：`docs/RESULTS_STRUCTURE.md`
 - 合成数据全矩阵清单：`outputs/reports/full_methods_multiseed_manifest.json`
 - 合成数据结果汇总：`outputs/reports/full_multiseed_summary.json`
-- 真实数据集最终汇总：`outputs/reports/final_thesis/real/`
-- 最终交付索引：`outputs/reports/final_thesis/artifact_index.md`
+- 真实数据集最终汇总：`outputs/summaries/final_thesis/real/`
+- 最终交付索引：`outputs/summaries/final_thesis/artifact_index.md`
 
 对应的核心结果目录：
 
-- 合成数据：`outputs/defense/full_multiseed/`
-- 真实数据集：`outputs/defense/real_public_benchmark/`
-- 论文最终引用：`outputs/reports/final_thesis/` 与 `outputs/figures/final_thesis/`
+- 合成数据：`outputs/experiments/mock/`
+- 真实数据集：`outputs/experiments/{uci_har,kasteren,casas_hh101}/`
+- 论文最终引用：`outputs/summaries/final_thesis/` 与 `outputs/figures/summaries/final_thesis/`
 
 每个 `{seed}/{method}`（或 `{dataset}/seed_{seed}/{method}`）目录下均包含：
 
@@ -418,9 +418,9 @@ python experiments/batches/run_missing_parameter_scans.py --skip-existing
 python scripts/build_final_thesis_results.py
 ```
 
-Cooja per-seed 与流量统计结果位于 `outputs/reports/final_thesis/cooja/`。参数扫描汇总位于 `outputs/reports/final_thesis/mock/` 和 `outputs/reports/final_thesis/real/`。
+Cooja per-seed 与流量统计结果位于 `outputs/summaries/final_thesis/cooja/`。参数扫描汇总位于 `outputs/summaries/final_thesis/mock/` 和 `outputs/summaries/final_thesis/real/`。
 
-Cooja 当前不提供真实能耗或时延测量，只提供窗口数量与流量统计代理；相关限制写入 `outputs/reports/final_thesis/cooja/cooja_limitations.md`。
+Cooja 当前不提供真实能耗或时延测量，只提供窗口数量与流量统计代理；相关限制写入 `outputs/summaries/final_thesis/cooja/cooja_limitations.md`。
 
 已完成的 Cooja 结果保留本机 WSL 日志路径以记录评估来源。复现者应复制 `configs/cooja_defense_dummy_logs.template.json`，设置 `COOJA_LOG_ROOT` 指向自己的 Cooja 日志目录，再运行 Cooja 评估脚本。当前结果不声称真实能耗或真实端到端时延已测量。
 
@@ -428,10 +428,24 @@ Cooja 当前不提供真实能耗或时延测量，只提供窗口数量与流�
 
 主实验和参数扫描已经完成。最终交付优先查看：
 
-- `outputs/reports/final_thesis/`
-- `outputs/figures/final_thesis/`
+- `outputs/experiments/`
+- `outputs/summaries/final_thesis/`
+- `outputs/figures/summaries/final_thesis/`
 - `docs/REPOSITORY_DELIVERY_GUIDE.md`
 
-自适应 LDP 消融汇总见 `outputs/reports/final_thesis/adaptive_ldp_ablation_overview.md`。真实数据参数扫描覆盖见 `outputs/reports/final_thesis/parameter_scan_coverage_audit.json`。Cooja 限制说明见 `outputs/reports/final_thesis/cooja/cooja_limitations.md`。
+自适应 LDP 消融汇总见 `outputs/summaries/final_thesis/adaptive_ldp_ablation_overview.md`。真实数据参数扫描覆盖见 `outputs/summaries/final_thesis/parameter_scan_coverage_audit.json`。Cooja 限制说明见 `outputs/summaries/final_thesis/cooja/cooja_limitations.md`。
 
 过程产物会继续保留用于追溯；论文引用应优先使用 `final_thesis` 目录中的最终汇总、审计与图表。
+
+## 产物结构标准化
+
+当前正式交付入口为：
+
+- `outputs/experiments/`
+- `outputs/summaries/final_thesis/`
+- `outputs/figures/summaries/final_thesis/`
+- `docs/ARTIFACT_LAYOUT.md`
+
+实验组合路径规则为 `outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/`，baseline 放在 `outputs/experiments/{dataset}/seed_{seed}/{model}/baseline/`。Cooja 与 `mock`、`uci_har`、`kasteren`、`casas_hh101` 同级，路径为 `outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/`。
+
+旧批次名路径已经迁移：`full_multiseed` 对应 `mock`，`real_public_benchmark/{dataset}` 对应 `{dataset}`，原 `outputs/reports/final_thesis/` 汇总移动到 `outputs/summaries/final_thesis/`。本轮只整理路径，不补真实能耗、真实端到端时延，也不伪造 Cooja packet/byte/IAT 指标。

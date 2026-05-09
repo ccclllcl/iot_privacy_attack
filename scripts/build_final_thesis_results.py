@@ -26,10 +26,11 @@ import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT_REPORT = ROOT / "outputs" / "reports" / "final_thesis"
-OUT_DEFENSE = ROOT / "outputs" / "defense" / "final_thesis"
-OUT_FIG = ROOT / "outputs" / "figures" / "final_thesis"
+OUT_REPORT = ROOT / "outputs" / "summaries" / "final_thesis"
+OUT_DEFENSE = ROOT / "outputs" / "experiments"
+OUT_FIG = ROOT / "outputs" / "figures" / "summaries" / "final_thesis"
 TMP_DIR = OUT_REPORT / "_tmp"
+DATA_ROOT = ROOT / "data" / "processed"
 
 SEEDS = [42, 123, 2026]
 MODELS = ["lstm", "mlp"]
@@ -68,6 +69,8 @@ def _run(cmd: list[str], cwd: Path | None = None, timeout: int | None = None) ->
 
 def _resolve_commit_metadata(current_head: str) -> dict[str, str]:
     prior_manifest = _safe_json(OUT_REPORT / "final_manifest.json")
+    if not isinstance(prior_manifest, dict):
+        prior_manifest = _safe_json(ROOT / "outputs" / "reports" / "final_thesis" / "final_manifest.json")
     if not isinstance(prior_manifest, dict):
         prior_manifest = {}
     experiment_commit = str(
@@ -194,83 +197,60 @@ def _render_confusion_from_json(conf_json: dict[str, Any], out_path: Path, title
 
 def _ensure_import_metas(missing: list[dict[str, Any]]) -> None:
     imports = [
-        (
-            "uci_har",
-            ROOT / "data" / "processed" / "imports" / "uci_har" / "meta.json",
-            [sys.executable, "experiments/real_public/run_import_uci_har.py", "--config", "configs/default.yaml", "--auto-download"],
-        ),
-        (
-            "kasteren",
-            ROOT / "data" / "processed" / "imports" / "kasteren" / "meta.json",
-            [sys.executable, "experiments/real_public/run_import_kasteren.py", "--config", "configs/default.yaml", "--auto-download"],
-        ),
-        (
-            "casas_hh101",
-            ROOT / "data" / "processed" / "imports" / "casas_hh101" / "meta.json",
-            [sys.executable, "experiments/real_public/run_import_casas.py", "--config", "configs/default.yaml", "--home", "hh101", "--auto-download"],
-        ),
+        ("uci_har", ROOT / "data" / "processed" / "imports" / "uci_har" / "meta.json"),
+        ("kasteren", ROOT / "data" / "processed" / "imports" / "kasteren" / "meta.json"),
+        ("casas_hh101", ROOT / "data" / "processed" / "imports" / "casas_hh101" / "meta.json"),
     ]
-    for ds, meta, cmd in imports:
+    for ds, meta in imports:
         if meta.exists():
             continue
-        rc, out, err = _run(cmd, cwd=ROOT, timeout=7200)
-        if rc != 0 or not meta.exists():
-            missing.append(
-                {
-                    "section": "real_imports",
-                    "dataset": ds,
-                    "reason": "import_meta_missing_or_import_failed",
-                    "expected_file": str(meta),
-                    "command": " ".join(cmd),
-                    "stdout_tail": out[-4000:],
-                    "stderr_tail": err[-4000:],
-                }
-            )
+        missing.append(
+            {
+                "section": "real_imports",
+                "dataset": ds,
+                "reason": "import_meta_missing",
+                "expected_file": _rel(meta),
+                "note": "Build is read-only for experiments/imports in the normalized artifact layout.",
+            }
+        )
 
 
 def _collect_mock(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     top_conf_rows: list[dict[str, Any]] = []
-    scan_ldp_rows: list[dict[str, Any]] = []
-    scan_noise_rows: list[dict[str, Any]] = []
     found_keys: set[tuple[int, str, str, str]] = set()
 
     for seed in SEEDS:
-        for method in METHODS:
-            base = ROOT / "outputs" / "defense" / "full_multiseed" / f"seed_{seed}" / method
-            report_path = base / "defense_report.json"
-            rep = _safe_json(report_path) or {}
-            dist = rep.get("distortion", {}) if isinstance(rep, dict) else {}
+        for model in MODELS:
+            baseline_path = OUT_DEFENSE / "mock" / f"seed_{seed}" / model / "baseline" / "baseline_confusion.json"
+            baseline = _safe_json(baseline_path)
+            if not isinstance(baseline, dict):
+                missing.append(
+                    {
+                        "section": "mock",
+                        "dataset": "mock",
+                        "seed": seed,
+                        "model_type": model,
+                        "method": "baseline",
+                        "mode": "baseline",
+                        "reason": "baseline_confusion_missing",
+                        "expected_file": _rel(baseline_path),
+                    }
+                )
+                continue
 
-            for model in MODELS:
-                baseline_path = base / "json_reports" / f"{model}_baseline_confusion_test.json"
-                fixed_path = base / "json_reports" / f"{model}_defended_confusion_test_fixed_attacker.json"
-                retrain_path = base / "json_reports" / f"{model}_defended_confusion_test_retrained_attacker.json"
-                baseline = _safe_json(baseline_path)
-                fixed = _safe_json(fixed_path)
-                retrain = _safe_json(retrain_path)
+            for method in METHODS:
+                for mode in MODES:
+                    combo_dir = OUT_DEFENSE / "mock" / f"seed_{seed}" / model / method / mode
+                    conf_path = combo_dir / "confusion.json"
+                    report_path = combo_dir / "defense_report.json"
+                    defended_obj = _safe_json(conf_path)
+                    rep = _safe_json(report_path) or {}
+                    dist = rep.get("distortion", {}) if isinstance(rep, dict) else {}
 
-                if not isinstance(baseline, dict):
-                    missing.append(
-                        {
-                            "section": "mock",
-                            "dataset": "mock",
-                            "seed": seed,
-                            "model_type": model,
-                            "method": method,
-                            "mode": "baseline",
-                            "reason": "baseline_confusion_missing",
-                            "expected_file": str(baseline_path),
-                        }
-                    )
-                    continue
-
-                for mode, defended_obj, conf_path in [
-                    ("fixed_attacker", fixed, fixed_path),
-                    ("retrain_attacker", retrain, retrain_path),
-                ]:
                     key = (seed, model, method, mode)
-                    if not isinstance(defended_obj, dict):
+                    absent = [name for name in ["confusion.json", "classification_report.txt", "trace.json", "defense_report.json", "metrics.json", "source_manifest.json"] if not (combo_dir / name).is_file()]
+                    if absent or not isinstance(defended_obj, dict):
                         missing.append(
                             {
                                 "section": "mock",
@@ -279,8 +259,9 @@ def _collect_mock(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                                 "model_type": model,
                                 "method": method,
                                 "mode": mode,
-                                "reason": "defended_confusion_missing",
-                                "expected_file": str(conf_path),
+                                "reason": "canonical_combo_missing_or_unreadable",
+                                "missing_files": absent,
+                                "expected_dir": _rel(combo_dir),
                             }
                         )
                         continue
@@ -317,33 +298,6 @@ def _collect_mock(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                     }
                     rows.append(row)
 
-                    # Copy to final thesis defense structure.
-                    dst_base = OUT_DEFENSE / "mock" / f"seed_{seed}" / model / method / mode
-                    dst_base.mkdir(parents=True, exist_ok=True)
-                    _safe_copy(conf_path, dst_base / "confusion.json")
-                    _safe_copy(report_path, dst_base / "defense_report.json")
-                    (dst_base / "classification_report.txt").write_text(
-                        f"dataset=mock\nseed={seed}\nmodel={model}\nmethod={method}\nmode={mode}\n"
-                        f"baseline_acc={baseline_acc:.6f}\ndefended_acc={defended_acc:.6f}\n"
-                        f"baseline_f1_macro={baseline_f1:.6f}\ndefended_f1_macro={defended_f1:.6f}\n",
-                        encoding="utf-8",
-                    )
-                    trace_path = dst_base / "trace.json"
-                    if not trace_path.exists():
-                        _write_json(
-                            trace_path,
-                            _extract_trace(
-                                dataset="mock",
-                                seed=seed,
-                                model=model,
-                                method=method,
-                                mode=mode,
-                                config=f"configs/generated_all_methods/default.seed_{seed}.{method}.yaml",
-                                command=f"python experiments/core/run_defense_eval.py --mode {mode}",
-                                env=env,
-                            ),
-                        )
-
                     for tc in defended_obj.get("top_confusions", [])[:10]:
                         top_conf_rows.append(
                             {
@@ -359,52 +313,10 @@ def _collect_mock(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                             }
                         )
 
-            for scan_method in ["ldp", "noise"]:
-                scan_path = ROOT / "outputs" / "defense" / "full_multiseed" / f"seed_{seed}" / scan_method / "comparisons" / "comparison_results.csv"
-                if not scan_path.exists():
-                    missing.append(
-                        {
-                            "section": "mock_parameter_scan",
-                            "dataset": "mock",
-                            "seed": seed,
-                            "method": scan_method,
-                            "reason": "comparison_results_missing",
-                            "expected_file": str(scan_path),
-                        }
-                    )
-                    continue
-                df = pd.read_csv(scan_path)
-                for _, r in df.iterrows():
-                    out_row = {
-                        "dataset": "mock",
-                        "seed": seed,
-                        "model_type": "lstm",  # run_compare in matrix scripts uses lstm baseline checkpoint
-                        "method": str(r.get("method", scan_method)),
-                        "mode": "fixed_attacker",
-                        "parameter_name": str(r.get("param_name")),
-                        "parameter_value": float(r.get("param_value")),
-                        "baseline_acc": float(r.get("baseline_accuracy")),
-                        "defended_acc": float(r.get("defended_accuracy")),
-                        "accuracy_drop": float(r.get("accuracy_drop")),
-                        "defended_f1_macro": float(r.get("defended_f1_macro")),
-                        "mse": float(r.get("mse")),
-                        "mae": float(r.get("mae")),
-                        "pearson_r": float(r.get("pearson_r")),
-                        "source_file": _rel(scan_path),
-                    }
-                    if scan_method == "ldp":
-                        scan_ldp_rows.append(out_row)
-                    else:
-                        scan_noise_rows.append(out_row)
-
-                # Mock scan requirement does not enforce retrain/MLP scans explicitly.
-
     rows = sorted(rows, key=lambda x: (x["seed"], x["model_type"], x["method"], x["mode"]))
     mock_report_dir = OUT_REPORT / "mock"
     _write_json(mock_report_dir / "mock_summary.json", rows)
     _write_csv(mock_report_dir / "mock_summary.csv", rows)
-    _write_csv(mock_report_dir / "mock_parameter_scan_ldp.csv", scan_ldp_rows)
-    _write_csv(mock_report_dir / "mock_parameter_scan_noise.csv", scan_noise_rows)
     _write_csv(mock_report_dir / "mock_top_confusions.csv", top_conf_rows)
 
     expected_keys = {(s, m, me, mo) for s in SEEDS for m in MODELS for me in METHODS for mo in MODES}
@@ -417,14 +329,14 @@ def _collect_mock(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
             {"seed": s, "model_type": m, "method": me, "mode": mo}
             for (s, m, me, mo) in missing_keys
         ],
-        "notes": "source=outputs/defense/full_multiseed/*",
+        "notes": "source=outputs/experiments/mock/*",
     }
     _write_json(mock_report_dir / "mock_coverage_audit.json", coverage)
     return {
         "rows": rows,
         "coverage": coverage,
-        "scan_ldp_rows": scan_ldp_rows,
-        "scan_noise_rows": scan_noise_rows,
+        "scan_ldp_rows": [],
+        "scan_noise_rows": [],
     }
 
 
@@ -441,14 +353,12 @@ def _npz_shape_stats(npz_path: Path) -> tuple[str, int, int, int]:
 def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     top_conf_rows: list[dict[str, Any]] = []
-    scan_ldp_rows: list[dict[str, Any]] = []
-    scan_noise_rows: list[dict[str, Any]] = []
     found_keys: set[tuple[str, int, str, str, str]] = set()
 
     datasets = ["uci_har", "kasteren", "casas_hh101"]
     for ds in datasets:
         for seed in SEEDS:
-            proc_dir = ROOT / "data" / "processed" / "real_public_benchmark" / ds / f"seed_{seed}"
+            proc_dir = DATA_ROOT / ds / f"seed_{seed}"
             meta = _safe_json(proc_dir / "meta.json")
             if not isinstance(meta, dict):
                 missing.append(
@@ -457,48 +367,42 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                         "dataset": ds,
                         "seed": seed,
                         "reason": "processed_meta_missing",
-                        "expected_file": str(proc_dir / "meta.json"),
+                        "expected_file": _rel(proc_dir / "meta.json"),
                     }
                 )
-            for method in METHODS:
-                base = ROOT / "outputs" / "defense" / "real_public_benchmark" / ds / f"seed_{seed}" / method
-                report_path = base / "defense_report.json"
-                rep = _safe_json(report_path) or {}
-                dist = rep.get("distortion", {}) if isinstance(rep, dict) else {}
+            for model in MODELS:
+                baseline_path = OUT_DEFENSE / ds / f"seed_{seed}" / model / "baseline" / "baseline_confusion.json"
+                baseline = _safe_json(baseline_path)
+                npz_path = proc_dir / ("sequences.npz" if model == "lstm" else "mlp_features.npz")
+                input_shape, train_size, val_size, test_size = _npz_shape_stats(npz_path)
+                num_classes = len((baseline or {}).get("class_names", [])) if isinstance(baseline, dict) else -1
 
-                for model in MODELS:
-                    baseline_path = base / "json_reports" / f"{model}_baseline_confusion_test.json"
-                    fixed_path = base / "json_reports" / f"{model}_defended_confusion_test_fixed_attacker.json"
-                    retrain_path = base / "json_reports" / f"{model}_defended_confusion_test_retrained_attacker.json"
-                    baseline = _safe_json(baseline_path)
-                    fixed = _safe_json(fixed_path)
-                    retrain = _safe_json(retrain_path)
+                if not isinstance(baseline, dict):
+                    missing.append(
+                        {
+                            "section": "real",
+                            "dataset": ds,
+                            "seed": seed,
+                            "model_type": model,
+                            "method": "baseline",
+                            "mode": "baseline",
+                            "reason": "baseline_confusion_missing",
+                            "expected_file": _rel(baseline_path),
+                        }
+                    )
+                    continue
 
-                    npz_path = proc_dir / ("sequences.npz" if model == "lstm" else "mlp_features.npz")
-                    input_shape, train_size, val_size, test_size = _npz_shape_stats(npz_path)
-                    num_classes = len((baseline or {}).get("class_names", [])) if isinstance(baseline, dict) else -1
-
-                    if not isinstance(baseline, dict):
-                        missing.append(
-                            {
-                                "section": "real",
-                                "dataset": ds,
-                                "seed": seed,
-                                "model_type": model,
-                                "method": method,
-                                "mode": "baseline",
-                                "reason": "baseline_confusion_missing",
-                                "expected_file": str(baseline_path),
-                            }
-                        )
-                        continue
-
-                    for mode, defended_obj, conf_path in [
-                        ("fixed_attacker", fixed, fixed_path),
-                        ("retrain_attacker", retrain, retrain_path),
-                    ]:
+                for method in METHODS:
+                    for mode in MODES:
+                        combo_dir = OUT_DEFENSE / ds / f"seed_{seed}" / model / method / mode
+                        conf_path = combo_dir / "confusion.json"
+                        report_path = combo_dir / "defense_report.json"
+                        defended_obj = _safe_json(conf_path)
+                        rep = _safe_json(report_path) or {}
+                        dist = rep.get("distortion", {}) if isinstance(rep, dict) else {}
+                        absent = [name for name in ["confusion.json", "classification_report.txt", "trace.json", "defense_report.json", "metrics.json", "source_manifest.json"] if not (combo_dir / name).is_file()]
                         key = (ds, seed, model, method, mode)
-                        if not isinstance(defended_obj, dict):
+                        if absent or not isinstance(defended_obj, dict):
                             missing.append(
                                 {
                                     "section": "real",
@@ -507,8 +411,9 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                                     "model_type": model,
                                     "method": method,
                                     "mode": mode,
-                                    "reason": "defended_confusion_missing",
-                                    "expected_file": str(conf_path),
+                                    "reason": "canonical_combo_missing_or_unreadable",
+                                    "missing_files": absent,
+                                    "expected_dir": _rel(combo_dir),
                                 }
                             )
                             continue
@@ -550,32 +455,6 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                             "source_files": ";".join(source_files),
                         }
                         rows.append(row)
-
-                        dst_base = OUT_DEFENSE / "real" / ds / f"seed_{seed}" / model / method / mode
-                        dst_base.mkdir(parents=True, exist_ok=True)
-                        _safe_copy(conf_path, dst_base / "confusion.json")
-                        _safe_copy(report_path, dst_base / "defense_report.json")
-                        (dst_base / "classification_report.txt").write_text(
-                            f"dataset={ds}\nseed={seed}\nmodel={model}\nmethod={method}\nmode={mode}\n"
-                            f"baseline_acc={baseline_acc:.6f}\ndefended_acc={defended_acc:.6f}\n"
-                            f"baseline_f1_macro={baseline_f1:.6f}\ndefended_f1_macro={defended_f1:.6f}\n",
-                            encoding="utf-8",
-                        )
-                        trace_path = dst_base / "trace.json"
-                        if not trace_path.exists():
-                            _write_json(
-                                trace_path,
-                                _extract_trace(
-                                    dataset=ds,
-                                    seed=seed,
-                                    model=model,
-                                    method=method,
-                                    mode=mode,
-                                    config=f"configs/generated_real_public/{ds}.seed_{seed}.{method}.yaml",
-                                    command=f"python experiments/core/run_defense_eval.py --mode {mode}",
-                                    env=env,
-                                ),
-                            )
                         for tc in defended_obj.get("top_confusions", [])[:10]:
                             top_conf_rows.append(
                                 {
@@ -591,83 +470,16 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                                 }
                             )
 
-            # scans per dataset/seed. UCI HAR has a stricter thesis-ready scan
-            # matrix with model/mode-specific CSVs; other datasets keep the
-            # legacy LSTM fixed-attacker scan as supporting evidence.
-            for scan_method in ["ldp", "noise"]:
-                comp_dir = ROOT / "outputs" / "defense" / "real_public_benchmark" / ds / f"seed_{seed}" / scan_method / "comparisons"
-                if ds == "uci_har":
-                    scan_specs = [
-                        (model, mode, comp_dir / f"{model}_{mode}_comparison_results.csv")
-                        for model in MODELS
-                        for mode in MODES
-                    ]
-                    legacy_scan = comp_dir / "comparison_results.csv"
-                    scan_specs = [
-                        (
-                            model,
-                            mode,
-                            legacy_scan
-                            if model == "lstm" and mode == "fixed_attacker" and not path.exists()
-                            else path,
-                        )
-                        for model, mode, path in scan_specs
-                    ]
-                else:
-                    scan_specs = [("lstm", "fixed_attacker", comp_dir / "comparison_results.csv")]
-
-                for model_type, scan_mode, scan_path in scan_specs:
-                    if not scan_path.exists():
-                        missing.append(
-                            {
-                                "section": "real_parameter_scan",
-                                "dataset": ds,
-                                "seed": seed,
-                                "model_type": model_type,
-                                "method": scan_method,
-                                "mode": scan_mode,
-                                "reason": "comparison_results_missing",
-                                "expected_file": str(scan_path),
-                            }
-                        )
-                        continue
-
-                    df = pd.read_csv(scan_path)
-                    for _, r in df.iterrows():
-                        out_row = {
-                            "dataset": str(r.get("dataset", ds)),
-                            "seed": int(r.get("seed", seed)),
-                            "model_type": str(r.get("model_type", model_type)),
-                            "method": str(r.get("method", scan_method)),
-                            "mode": str(r.get("mode", scan_mode)),
-                            "parameter_name": str(r.get("param_name")),
-                            "parameter_value": float(r.get("param_value")),
-                            "baseline_acc": float(r.get("baseline_accuracy")),
-                            "defended_acc": float(r.get("defended_accuracy")),
-                            "accuracy_drop": float(r.get("accuracy_drop")),
-                            "defended_f1_macro": float(r.get("defended_f1_macro")),
-                            "mse": float(r.get("mse")),
-                            "mae": float(r.get("mae")),
-                            "pearson_r": float(r.get("pearson_r")),
-                            "source_file": _rel(scan_path),
-                        }
-                        if scan_method == "ldp":
-                            scan_ldp_rows.append(out_row)
-                        else:
-                            scan_noise_rows.append(out_row)
-
     rows = sorted(rows, key=lambda x: (x["dataset"], x["seed"], x["model_type"], x["method"], x["mode"]))
     real_report_dir = OUT_REPORT / "real"
     _write_json(real_report_dir / "real_summary.json", rows)
     _write_csv(real_report_dir / "real_summary.csv", rows)
-    _write_csv(real_report_dir / "real_parameter_scan_ldp.csv", scan_ldp_rows)
-    _write_csv(real_report_dir / "real_parameter_scan_noise.csv", scan_noise_rows)
     _write_csv(real_report_dir / "real_top_confusions.csv", top_conf_rows)
 
     # import meta summary
     meta_rows: list[dict[str, Any]] = []
     for ds in ["uci_har", "kasteren", "casas_hh101"]:
-        meta_path = ROOT / "data" / "processed" / "imports" / ds / "meta.json"
+        meta_path = DATA_ROOT / "imports" / ds / "meta.json"
         meta = _safe_json(meta_path)
         if not isinstance(meta, dict):
             missing.append(
@@ -705,7 +517,7 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
             {"dataset": d, "seed": s, "model_type": m, "method": me, "mode": mo}
             for (d, s, m, me, mo) in missing_keys
         ],
-        "notes": "source=outputs/defense/real_public_benchmark/*",
+        "notes": "source=outputs/experiments/{dataset}/*",
     }
     _write_json(real_report_dir / "real_coverage_audit.json", coverage)
 
@@ -714,8 +526,8 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
     return {
         "rows": rows,
         "coverage": coverage,
-        "scan_ldp_rows": scan_ldp_rows,
-        "scan_noise_rows": scan_noise_rows,
+        "scan_ldp_rows": [],
+        "scan_noise_rows": [],
         "meta_rows": meta_rows,
     }
 
@@ -792,15 +604,13 @@ def _scan_csv_complete(path: Path, method: str) -> bool:
 
 
 def _scan_path(scope: str, dataset: str, seed: int, method: str, model: str, mode: str) -> Path:
-    if scope == "mock":
-        return ROOT / "outputs" / "defense" / "full_multiseed" / f"seed_{seed}" / method / "comparisons" / f"{model}_{mode}_comparison_results.csv"
-    return ROOT / "outputs" / "defense" / "real_public_benchmark" / dataset / f"seed_{seed}" / method / "comparisons" / f"{model}_{mode}_comparison_results.csv"
+    ds = "mock" if scope == "mock" else dataset
+    return OUT_DEFENSE / ds / f"seed_{seed}" / model / method / mode / "parameter_scan" / "comparison_results.csv"
 
 
 def _legacy_scan_path(scope: str, dataset: str, seed: int, method: str) -> Path:
-    if scope == "mock":
-        return ROOT / "outputs" / "defense" / "full_multiseed" / f"seed_{seed}" / method / "comparisons" / "comparison_results.csv"
-    return ROOT / "outputs" / "defense" / "real_public_benchmark" / dataset / f"seed_{seed}" / method / "comparisons" / "comparison_results.csv"
+    ds = "mock" if scope == "mock" else dataset
+    return OUT_DEFENSE / ds / f"seed_{seed}" / "lstm" / method / "fixed_attacker" / "parameter_scan" / "comparison_results.csv"
 
 
 def _fnum(value: Any) -> float:
@@ -1160,10 +970,10 @@ def _build_adaptive_ablation_outputs(missing: list[dict[str, Any]]) -> dict[str,
                 "",
                 "## Generated Files",
                 "",
-                "- `outputs/reports/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv`",
-                "- `outputs/reports/final_thesis/mock/mock_adaptive_ldp_ablation_summary.md`",
-                "- `outputs/reports/final_thesis/real/real_adaptive_ldp_ablation_summary.csv`",
-                "- `outputs/reports/final_thesis/real/real_adaptive_ldp_ablation_summary.md`",
+                "- `outputs/summaries/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv`",
+                "- `outputs/summaries/final_thesis/mock/mock_adaptive_ldp_ablation_summary.md`",
+                "- `outputs/summaries/final_thesis/real/real_adaptive_ldp_ablation_summary.csv`",
+                "- `outputs/summaries/final_thesis/real/real_adaptive_ldp_ablation_summary.md`",
             ]
         )
         + "\n",
@@ -1337,8 +1147,10 @@ def _cooja_summary_from_report(report_path: Path, missing: list[dict[str, Any]])
 
     _write_json(cooja_report_dir / "cooja_summary.json", rows)
     _write_csv(cooja_report_dir / "cooja_summary.csv", rows)
-    _write_csv(cooja_report_dir / "cooja_feature_importance.csv", feat_rows)
-    _write_csv(cooja_report_dir / "cooja_top_confusions.csv", top_conf_rows)
+    if feat_rows:
+        _write_csv(cooja_report_dir / "cooja_feature_importance.csv", feat_rows)
+    if top_conf_rows:
+        _write_csv(cooja_report_dir / "cooja_top_confusions.csv", top_conf_rows)
     _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", overhead_rows)
     _write_json(cooja_report_dir / "cooja_missing_outputs.json", [m for m in missing if m.get("section") == "cooja"])
     _export_cooja_detail_outputs(rep, missing)
@@ -1525,6 +1337,26 @@ def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any
     existing_report = OUT_DEFENSE / "cooja" / "eval" / "defense_eval_report.json"
     if existing_report.exists():
         return _cooja_summary_from_report(existing_report, missing)
+
+    missing.append(
+        {
+            "section": "cooja",
+            "reason": "canonical_cooja_eval_report_missing",
+            "expected_file": _rel(existing_report),
+            "note": "Build does not rerun Cooja while normalizing the artifact layout.",
+        }
+    )
+    _write_json(cooja_report_dir / "cooja_missing_outputs.json", [m for m in missing if m.get("section") == "cooja"])
+    _write_json(cooja_report_dir / "cooja_summary.json", rows)
+    _write_csv(cooja_report_dir / "cooja_summary.csv", rows)
+    _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", overhead_rows)
+    (cooja_report_dir / "cooja_limitations.md").write_text(
+        "# Cooja Limitations\n\n"
+        "- Cooja canonical evaluation report is missing from `outputs/experiments/cooja/eval/`.\n"
+        "- This build does not rerun Cooja or fabricate energy/delay/packet metrics.\n",
+        encoding="utf-8",
+    )
+    return {"rows": rows}
 
     dummy_manifest = ROOT / "configs" / "cooja_defense_dummy_logs.json"
     post_manifest = ROOT / "configs" / "cooja_defense_postprocess.json"
@@ -1714,8 +1546,10 @@ def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any
 
     _write_json(cooja_report_dir / "cooja_summary.json", rows)
     _write_csv(cooja_report_dir / "cooja_summary.csv", rows)
-    _write_csv(cooja_report_dir / "cooja_feature_importance.csv", feat_rows)
-    _write_csv(cooja_report_dir / "cooja_top_confusions.csv", top_conf_rows)
+    if feat_rows:
+        _write_csv(cooja_report_dir / "cooja_feature_importance.csv", feat_rows)
+    if top_conf_rows:
+        _write_csv(cooja_report_dir / "cooja_top_confusions.csv", top_conf_rows)
     _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", overhead_rows)
     _write_json(cooja_report_dir / "cooja_missing_outputs.json", [m for m in missing if m.get("section") == "cooja"])
     _export_cooja_detail_outputs(rep, missing)
@@ -1760,6 +1594,20 @@ def _build_figures(
     mock_scan_noise_df = pd.DataFrame(scan_mock_noise)
     real_scan_ldp_df = pd.DataFrame(scan_real_ldp)
     real_scan_noise_df = pd.DataFrame(scan_real_noise)
+    for df in [mock_df, real_df, cooja_df, mock_scan_ldp_df, mock_scan_noise_df, real_scan_ldp_df, real_scan_noise_df]:
+        for col in [
+            "seed",
+            "baseline_acc",
+            "defended_acc",
+            "accuracy_drop",
+            "defended_f1_macro",
+            "mse",
+            "mae",
+            "pearson_r",
+            "parameter_value",
+        ]:
+            if col in df.columns:
+                df[col] = pd.to_numeric(df[col], errors="coerce")
 
     # 1) mock baseline vs fixed/retrain accuracy
     if not mock_df.empty:
@@ -1788,7 +1636,7 @@ def _build_figures(
             {
                 "path": str(p),
                 "title": "Mock LSTM/MLP baseline vs fixed/retrain accuracy 对比图",
-                "source_files": "outputs/reports/final_thesis/mock/mock_summary.csv",
+                "source_files": "outputs/summaries/final_thesis/mock/mock_summary.csv",
                 "conclusion": "可用于展示 fixed_attacker 与 retrain_attacker 的差异趋势。",
                 "limitations": "均值汇总会掩盖个别 seed 波动。",
             }
@@ -1815,7 +1663,7 @@ def _build_figures(
             {
                 "path": str(p),
                 "title": "Mock 三种防御方法 MSE/MAE/Pearson 对比图",
-                "source_files": "outputs/reports/final_thesis/mock/mock_summary.csv",
+                "source_files": "outputs/summaries/final_thesis/mock/mock_summary.csv",
                 "conclusion": "可用于展示防御强度与信号保真度之间权衡。",
                 "limitations": "不同 mode 下共享同一 distortion 指标。",
             }
@@ -1858,7 +1706,7 @@ def _build_figures(
             {
                 "path": str(p),
                 "title": f"real {ds} LSTM/MLP baseline vs fixed/retrain accuracy 对比图",
-                "source_files": "outputs/reports/final_thesis/real/real_summary.csv",
+                "source_files": "outputs/summaries/final_thesis/real/real_summary.csv",
                 "conclusion": f"可用于展示 {ds} 数据集的防御效果。",
                 "limitations": "若样本不平衡，宏平均与准确率可能有偏差。",
             }
@@ -1885,7 +1733,7 @@ def _build_figures(
                 {
                     "path": str(p),
                     "title": "ldp epsilon 参数扫描曲线",
-                    "source_files": "outputs/reports/final_thesis/real/real_parameter_scan_ldp.csv",
+                    "source_files": "outputs/summaries/final_thesis/real/real_parameter_scan_ldp.csv",
                     "conclusion": "可用于展示 epsilon 变大时准确率恢复趋势。",
                     "limitations": "该图以 UCI HAR 作代表性曲线展示；完整 real 参数扫描矩阵已覆盖 UCI HAR、Kasteren 与 CASAS。",
                 }
@@ -1910,7 +1758,7 @@ def _build_figures(
                 {
                     "path": str(p),
                     "title": "noise scale 参数扫描曲线",
-                    "source_files": "outputs/reports/final_thesis/real/real_parameter_scan_noise.csv",
+                    "source_files": "outputs/summaries/final_thesis/real/real_parameter_scan_noise.csv",
                     "conclusion": "可用于展示噪声强度上升时攻击准确率下降趋势。",
                     "limitations": "该图以 UCI HAR 作代表性曲线展示；完整 real 参数扫描矩阵已覆盖 UCI HAR、Kasteren 与 CASAS。",
                 }
@@ -1919,9 +1767,9 @@ def _build_figures(
     # 8 representative confusion matrix for each dataset
     candidates = [
         ("mock", OUT_DEFENSE / "mock" / "seed_42" / "lstm" / "adaptive_ldp" / "fixed_attacker" / "confusion.json"),
-        ("uci_har", OUT_DEFENSE / "real" / "uci_har" / "seed_42" / "lstm" / "adaptive_ldp" / "fixed_attacker" / "confusion.json"),
-        ("kasteren", OUT_DEFENSE / "real" / "kasteren" / "seed_42" / "lstm" / "adaptive_ldp" / "fixed_attacker" / "confusion.json"),
-        ("casas_hh101", OUT_DEFENSE / "real" / "casas_hh101" / "seed_42" / "lstm" / "adaptive_ldp" / "fixed_attacker" / "confusion.json"),
+        ("uci_har", OUT_DEFENSE / "uci_har" / "seed_42" / "lstm" / "adaptive_ldp" / "fixed_attacker" / "confusion.json"),
+        ("kasteren", OUT_DEFENSE / "kasteren" / "seed_42" / "lstm" / "adaptive_ldp" / "fixed_attacker" / "confusion.json"),
+        ("casas_hh101", OUT_DEFENSE / "casas_hh101" / "seed_42" / "lstm" / "adaptive_ldp" / "fixed_attacker" / "confusion.json"),
     ]
     for ds, pjson in candidates:
         obj = _safe_json(pjson)
@@ -1957,7 +1805,7 @@ def _build_figures(
                 {
                     "path": str(p),
                     "title": "Cooja fixed/retrain accuracy 对比图",
-                    "source_files": "outputs/reports/final_thesis/cooja/cooja_summary.csv",
+                    "source_files": "outputs/summaries/final_thesis/cooja/cooja_summary.csv",
                     "conclusion": "可用于展示节点级防御在流量侧攻击下的变化。",
                     "limitations": "依赖 Cooja 日志质量与可获得性。",
                 }
@@ -1984,7 +1832,7 @@ def _build_figures(
                 {
                     "path": str(p),
                     "title": "Cooja 窗口数量代理开销图",
-                    "source_files": "outputs/reports/final_thesis/cooja/cooja_overhead_summary.csv",
+                    "source_files": "outputs/summaries/final_thesis/cooja/cooja_overhead_summary.csv",
                     "conclusion": "可用于说明当前日志只能支持窗口数量代理，而不能支持真实能耗或时延结论。",
                     "limitations": "该图不是能耗或时延实测，只反映当前导出日志形成的窗口规模差异。",
                 }
@@ -2320,7 +2168,7 @@ def _write_final_summary_md(
 
     lines.append("## 5. 文件口径风险")
     lines.append("- 覆盖风险: 原始 `outputs/reports/**/metrics.json`、`outputs/defense/**/defense_report.json` 可能被后续运行覆盖。")
-    lines.append("- 推荐论文引用: `outputs/reports/final_thesis/*.csv|*.json` 与 `outputs/defense/final_thesis/**`。")
+    lines.append("- 推荐论文引用: `outputs/summaries/final_thesis/*.csv|*.json` 与 `outputs/experiments/**/source_manifest.json`。")
     lines.append("- 不建议直接引用: 旧路径中未分 model/mode 的单文件报告。")
     lines.append("")
 
@@ -2363,6 +2211,10 @@ def main() -> None:
     cooja = _collect_cooja(env, missing)
     parameter_scans = _collect_parameter_scans(missing)
     adaptive_ablation = _build_adaptive_ablation_outputs(missing)
+    scan_mock_ldp = _read_csv_dicts(OUT_REPORT / "mock" / "mock_parameter_scan_ldp.csv") or []
+    scan_mock_noise = _read_csv_dicts(OUT_REPORT / "mock" / "mock_parameter_scan_noise.csv") or []
+    scan_real_ldp = _read_csv_dicts(OUT_REPORT / "real" / "real_parameter_scan_ldp.csv") or []
+    scan_real_noise = _read_csv_dicts(OUT_REPORT / "real" / "real_parameter_scan_noise.csv") or []
 
     # unified files
     final_rows = []
@@ -2378,10 +2230,10 @@ def main() -> None:
         "repository_cleanup_commit": env.repository_cleanup_commit,
         "latest_verified_commit": env.latest_verified_commit,
         "inputs": {
-            "mock_source_root": "outputs/defense/full_multiseed",
-            "real_source_root": "outputs/defense/real_public_benchmark",
+            "experiment_source_root": "outputs/experiments",
             "cooja_manifest_candidates": [
                 "configs/cooja_defense_dummy_logs.json",
+                "configs/cooja_defense_dummy_logs.template.json",
                 "configs/cooja_defense_postprocess.json",
                 "configs/cooja_defense_logs.json",
             ],
@@ -2419,17 +2271,17 @@ def main() -> None:
             "real": real["coverage"]["missing_combinations"],
         },
         "covered_risk_files": [
-            "outputs/reports/**/metrics.json",
-            "outputs/defense/**/defense_report.json",
+            "outputs/summaries/final_thesis/**/*.json",
+            "outputs/experiments/**/defense_report.json",
         ],
         "recommended_for_thesis": [
-            "outputs/reports/final_thesis/mock/mock_summary.csv",
-            "outputs/reports/final_thesis/real/real_summary.csv",
-            "outputs/reports/final_thesis/final_summary.csv",
+            "outputs/summaries/final_thesis/mock/mock_summary.csv",
+            "outputs/summaries/final_thesis/real/real_summary.csv",
+            "outputs/summaries/final_thesis/final_summary.csv",
         ],
         "not_recommended_for_thesis": [
-            "outputs/reports/**/metrics.json (legacy single-file outputs)",
-            "outputs/defense/**/defense_report.json (legacy overwritten paths)",
+            "outputs/reports/final_thesis/ (legacy summary path; migrated)",
+            "outputs/defense/full_multiseed and outputs/defense/real_public_benchmark (legacy batch roots; migrated)",
         ],
     }
     _write_json(OUT_REPORT / "final_coverage_audit.json", coverage)
@@ -2440,10 +2292,10 @@ def main() -> None:
         mock_rows=mock["rows"],
         real_rows=real["rows"],
         cooja_rows=cooja["rows"],
-        scan_mock_ldp=mock["scan_ldp_rows"],
-        scan_mock_noise=mock["scan_noise_rows"],
-        scan_real_ldp=real["scan_ldp_rows"],
-        scan_real_noise=real["scan_noise_rows"],
+        scan_mock_ldp=scan_mock_ldp,
+        scan_mock_noise=scan_mock_noise,
+        scan_real_ldp=scan_real_ldp,
+        scan_real_noise=scan_real_noise,
         missing=missing,
     )
     figures.extend(_adaptive_ablation_table_entries())
@@ -2470,11 +2322,11 @@ def main() -> None:
 
     if ready:
         print("FINAL_THESIS_RESULTS_READY=true")
-        print("final_summary_path=outputs/reports/final_thesis/final_summary.csv")
-        print("final_report_path=outputs/reports/final_thesis/final_thesis_summary.md")
+        print("final_summary_path=outputs/summaries/final_thesis/final_summary.csv")
+        print("final_report_path=outputs/summaries/final_thesis/final_thesis_summary.md")
     else:
         print("FINAL_THESIS_RESULTS_READY=false")
-        print("missing_outputs_path=outputs/reports/final_thesis/final_missing_outputs.json")
+        print("missing_outputs_path=outputs/summaries/final_thesis/final_missing_outputs.json")
 
 
 if __name__ == "__main__":

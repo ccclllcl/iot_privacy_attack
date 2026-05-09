@@ -1,0 +1,12 @@
+{
+  "dataset": "casas_hh101",
+  "seed": 2026,
+  "model": "lstm",
+  "method": "noise",
+  "mode": "retrain_attacker",
+  "row_count": 4,
+  "expected_rows": 4,
+  "complete": true,
+  "source_file": "outputs/experiments/casas_hh101/seed_2026/lstm/noise/retrain_attacker/parameter_scan/comparison_results.csv",
+  "old_path": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/comparisons/lstm_retrain_attacker_comparison_results.csv"
+}

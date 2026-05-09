@@ -17,19 +17,30 @@ Thumbs.db
 *.tmp
 *.bak
 
-# Project artifacts / datasets (do not commit)
+# Project artifacts / datasets
 data/raw/
 data/processed/
 data/defended/
 outputs/*
-!outputs/reports/
-outputs/reports/*
-!outputs/reports/final_thesis/
-!outputs/reports/final_thesis/**
+!outputs/experiments/
+!outputs/experiments/**
+!outputs/summaries/
+!outputs/summaries/**
 !outputs/figures/
 outputs/figures/*
-!outputs/figures/final_thesis/
-!outputs/figures/final_thesis/**
+!outputs/figures/experiments/
+!outputs/figures/experiments/**
+!outputs/figures/summaries/
+!outputs/figures/summaries/**
+!outputs/reports/
+outputs/reports/*
+!outputs/reports/README.md
+!configs/
+!configs/**
+!docs/
+!docs/**
+!scripts/
+!scripts/**
 
 # Model & array artifacts
 *.pt

@@ -1,0 +1,12 @@
+{
+  "dataset": "casas_hh101",
+  "seed": 123,
+  "model": "mlp",
+  "method": "adaptive_ldp",
+  "mode": "retrain_attacker",
+  "row_count": 6,
+  "expected_rows": 6,
+  "complete": true,
+  "source_file": "outputs/experiments/casas_hh101/seed_123/mlp/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
+  "old_path": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
+}

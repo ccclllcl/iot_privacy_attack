@@ -1,0 +1,12 @@
+{
+  "dataset": "mock",
+  "seed": 2026,
+  "model": "mlp",
+  "method": "adaptive_ldp",
+  "mode": "fixed_attacker",
+  "row_count": 6,
+  "expected_rows": 6,
+  "complete": true,
+  "source_file": "outputs/experiments/mock/seed_2026/mlp/adaptive_ldp/fixed_attacker/parameter_scan/comparison_results.csv",
+  "old_path": "outputs/defense/full_multiseed/seed_2026/adaptive_ldp/comparisons/mlp_fixed_attacker_comparison_results.csv"
+}

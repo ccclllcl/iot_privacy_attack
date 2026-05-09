@@ -1,5 +1,0 @@
-dataset,seed,model_type,mode,method,param_name,param_value,baseline_accuracy,defended_accuracy,accuracy_drop,defended_f1_macro,mse,mae,pearson_r,model_source
-uci_har,42,mlp,fixed_attacker,noise,noise_scale,0.1,0.7974211062097047,0.5598914149983033,0.23752969121140144,0.524265687948505,0.020005704539545116,0.10001070431663817,0.9428749518556957,outputs/models/real_public_benchmark/uci_har/seed_42/best_mlp.pt
-uci_har,42,mlp,fixed_attacker,noise,noise_scale,0.3,0.7974211062097047,0.2829996606718697,0.5144214455378351,0.199685553891233,0.18005134086116698,0.30003211294168003,0.6862032538576578,outputs/models/real_public_benchmark/uci_har/seed_42/best_mlp.pt
-uci_har,42,mlp,fixed_attacker,noise,noise_scale,0.5,0.7974211062097047,0.16864608076009502,0.6287750254496097,0.08489257030226288,0.5001426135508552,0.5000535215727714,0.492560356051882,outputs/models/real_public_benchmark/uci_har/seed_42/best_mlp.pt
-uci_har,42,mlp,fixed_attacker,noise,noise_scale,1.0,0.7974211062097047,0.14251781472684086,0.6549032914828639,0.04158004158004158,2.0005704541311173,1.0001070431622336,0.2722627174272455,outputs/models/real_public_benchmark/uci_har/seed_42/best_mlp.pt

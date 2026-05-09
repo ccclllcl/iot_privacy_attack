@@ -1,0 +1,12 @@
+{
+  "dataset": "kasteren",
+  "seed": 123,
+  "model": "lstm",
+  "method": "adaptive_ldp",
+  "mode": "retrain_attacker",
+  "row_count": 6,
+  "expected_rows": 6,
+  "complete": true,
+  "source_file": "outputs/experiments/kasteren/seed_123/lstm/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
+  "old_path": "outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
+}

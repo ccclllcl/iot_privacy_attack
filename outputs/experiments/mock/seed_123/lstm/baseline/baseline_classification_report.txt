@@ -1,0 +1,6 @@
+dataset=mock
+seed=123
+model=lstm
+baseline_acc=0.7831125827814569
+baseline_f1_macro=0.7699687346804808
+note=Derived from baseline_confusion.json; no separate legacy text report existed.

@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-05-09T16:07:18",
+  "experiment_result_commit": "a43cb0e28822124fcaea8df2f40ff6119b571299",
+  "repository_cleanup_commit": "22580d40585af923aa1180215098db4403d47b79",
+  "latest_verified_commit": "working_tree_before_final_commit",
+  "inputs": {
+    "experiment_source_root": "outputs/experiments",
+    "cooja_manifest_candidates": [
+      "configs/cooja_defense_dummy_logs.json",
+      "configs/cooja_defense_dummy_logs.template.json",
+      "configs/cooja_defense_postprocess.json",
+      "configs/cooja_defense_logs.json"
+    ]
+  },
+  "outputs": {
+    "mock_summary": "outputs/summaries/final_thesis/mock/mock_summary.csv",
+    "real_summary": "outputs/summaries/final_thesis/real/real_summary.csv",
+    "cooja_summary": "outputs/summaries/final_thesis/cooja/cooja_summary.csv",
+    "final_summary": "outputs/summaries/final_thesis/final_summary.csv",
+    "mock_adaptive_ldp_ablation": "outputs/summaries/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv",
+    "real_adaptive_ldp_ablation": "outputs/summaries/final_thesis/real/real_adaptive_ldp_ablation_summary.csv"
+  }
+}

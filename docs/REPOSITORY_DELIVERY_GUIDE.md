@@ -1,6 +1,6 @@
 # Repository Delivery Guide
 
-This repository keeps final thesis artifacts, source experiment outputs, and legacy/process artifacts in place for traceability.
+This repository now uses artifact paths that expose the experiment options directly.
 
 ## Primary Delivery Locations
 
@@ -11,45 +11,62 @@ Use these paths first when reviewing the project:
 - `experiments/`
 - `src/`
 - `scripts/`
-- `outputs/reports/final_thesis/`
-- `outputs/figures/final_thesis/`
+- `outputs/experiments/`
+- `outputs/summaries/final_thesis/`
+- `outputs/figures/summaries/final_thesis/`
+- `docs/ARTIFACT_LAYOUT.md`
 
 ## Preferred Thesis References
 
 For thesis tables, figures, and final numeric claims, prefer:
 
-- `outputs/reports/final_thesis/final_summary.csv`
-- `outputs/reports/final_thesis/final_summary.json`
-- `outputs/reports/final_thesis/final_coverage_audit.json`
-- `outputs/reports/final_thesis/final_symmetry_audit.json`
-- `outputs/reports/final_thesis/parameter_scan_coverage_audit.json`
-- `outputs/reports/final_thesis/mock/`
-- `outputs/reports/final_thesis/real/`
-- `outputs/reports/final_thesis/cooja/`
-- `outputs/figures/final_thesis/`
+- `outputs/summaries/final_thesis/final_summary.csv`
+- `outputs/summaries/final_thesis/final_summary.json`
+- `outputs/summaries/final_thesis/final_coverage_audit.json`
+- `outputs/summaries/final_thesis/final_symmetry_audit.json`
+- `outputs/summaries/final_thesis/parameter_scan_coverage_audit.json`
+- `outputs/summaries/final_thesis/mock/`
+- `outputs/summaries/final_thesis/real/`
+- `outputs/summaries/final_thesis/cooja/`
+- `outputs/figures/summaries/final_thesis/`
 
-## Process Artifacts Kept for Traceability
+## Canonical Source Artifacts
 
-These paths are retained but are not recommended as direct thesis citation paths:
+Core source artifacts live under:
 
-- `outputs/reports/full_multiseed/`
-- `outputs/reports/real_public_benchmark/`
-- `outputs/defense/full_multiseed/`
-- `outputs/defense/real_public_benchmark/`
-- `data/processed/`
-- `data/defended/`
-- `outputs/models/`
+- `outputs/experiments/mock/`
+- `outputs/experiments/uci_har/`
+- `outputs/experiments/kasteren/`
+- `outputs/experiments/casas_hh101/`
+- `outputs/experiments/cooja/`
 
-They are kept because:
+The normal experiment path is:
 
-- `final_thesis` summary rows contain `source_file` references back to source artifacts.
-- Parameter-scan summaries trace back to canonical scan CSV files.
-- Deleting these paths would break the review and reproduction chain.
+`outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/`
+
+The baseline path is:
+
+`outputs/experiments/{dataset}/seed_{seed}/{model}/baseline/`
+
+Cooja uses `random_forest` as the model slot:
+
+`outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/`
+
+## Legacy Paths
+
+The old batch-name paths were migrated and should not be cited as final paths:
+
+- `full_multiseed` -> `mock`
+- `real_public_benchmark/{dataset}` -> `{dataset}`
+- `outputs/reports/final_thesis/` -> `outputs/summaries/final_thesis/`
+- `outputs/figures/final_thesis/` -> `outputs/figures/summaries/final_thesis/`
+
+The migration map is stored at `outputs/summaries/layout/migration_map.csv`.
 
 ## Cooja Limitations
 
 - `cooja_summary.csv` and `cooja_per_seed.csv` can be used for attack-accuracy reporting.
-- If `cooja_traffic_metrics.csv` contains null or NaN traffic fields, read `cooja_limitations.md` before interpreting them.
+- Cooja traffic rows may contain null or NaN packet/byte/IAT fields; read `outputs/summaries/final_thesis/cooja/cooja_limitations.md` before interpreting them.
 - Do not claim that real energy consumption or real end-to-end latency has been measured.
-- Completed Cooja results keep local WSL log paths to document the evaluation source.
-- For reproduction, copy `configs/cooja_defense_dummy_logs.template.json`, set `COOJA_LOG_ROOT` to the local Cooja log directory, and keep the generated outputs under the existing final-thesis Cooja paths.
+- Completed Cooja results may keep local WSL log paths to document the evaluation source.
+- For reproduction, copy `configs/cooja_defense_dummy_logs.template.json`, set `COOJA_LOG_ROOT` to the local Cooja log directory, and keep generated outputs under the canonical Cooja experiment paths.

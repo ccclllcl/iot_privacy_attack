@@ -1,0 +1,6 @@
+dataset=mock
+seed=2026
+model=mlp
+baseline_acc=0.4718543046357616
+baseline_f1_macro=0.4247204184595225
+note=Derived from baseline_confusion.json; no separate legacy text report existed.

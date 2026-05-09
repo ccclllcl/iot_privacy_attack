@@ -1,0 +1,118 @@
+{
+  "generated_at": "2026-05-09T16:10:12",
+  "canonical_roots": {
+    "experiments": "outputs/experiments",
+    "summaries": "outputs/summaries/final_thesis",
+    "figures": "outputs/figures/summaries/final_thesis"
+  },
+  "complete_main_matrix_mock": true,
+  "complete_main_matrix_real": true,
+  "mock_main_matrix": {
+    "expected": 36,
+    "completed": 36,
+    "missing": 0
+  },
+  "real_main_matrix": {
+    "expected": 108,
+    "completed": 108,
+    "missing": 0
+  },
+  "missing_mock_main_matrix": [],
+  "missing_real_main_matrix": [],
+  "missing_mock_parameter_scans": [],
+  "missing_real_parameter_scans": [],
+  "parameter_scan_counts": {
+    "mock": {
+      "expected": 36,
+      "completed": 36,
+      "missing": 0
+    },
+    "real": {
+      "expected": 108,
+      "completed": 108,
+      "missing": 0
+    }
+  },
+  "adaptive_ldp_profile_count": {
+    "expected": 6,
+    "observed": {
+      "mock:mock:seed_42:lstm:fixed_attacker": 6,
+      "mock:mock:seed_42:lstm:retrain_attacker": 6,
+      "mock:mock:seed_42:mlp:fixed_attacker": 6,
+      "mock:mock:seed_42:mlp:retrain_attacker": 6,
+      "mock:mock:seed_123:lstm:fixed_attacker": 6,
+      "mock:mock:seed_123:lstm:retrain_attacker": 6,
+      "mock:mock:seed_123:mlp:fixed_attacker": 6,
+      "mock:mock:seed_123:mlp:retrain_attacker": 6,
+      "mock:mock:seed_2026:lstm:fixed_attacker": 6,
+      "mock:mock:seed_2026:lstm:retrain_attacker": 6,
+      "mock:mock:seed_2026:mlp:fixed_attacker": 6,
+      "mock:mock:seed_2026:mlp:retrain_attacker": 6,
+      "real:uci_har:seed_42:lstm:fixed_attacker": 6,
+      "real:uci_har:seed_42:lstm:retrain_attacker": 6,
+      "real:uci_har:seed_42:mlp:fixed_attacker": 6,
+      "real:uci_har:seed_42:mlp:retrain_attacker": 6,
+      "real:uci_har:seed_123:lstm:fixed_attacker": 6,
+      "real:uci_har:seed_123:lstm:retrain_attacker": 6,
+      "real:uci_har:seed_123:mlp:fixed_attacker": 6,
+      "real:uci_har:seed_123:mlp:retrain_attacker": 6,
+      "real:uci_har:seed_2026:lstm:fixed_attacker": 6,
+      "real:uci_har:seed_2026:lstm:retrain_attacker": 6,
+      "real:uci_har:seed_2026:mlp:fixed_attacker": 6,
+      "real:uci_har:seed_2026:mlp:retrain_attacker": 6,
+      "real:kasteren:seed_42:lstm:fixed_attacker": 6,
+      "real:kasteren:seed_42:lstm:retrain_attacker": 6,
+      "real:kasteren:seed_42:mlp:fixed_attacker": 6,
+      "real:kasteren:seed_42:mlp:retrain_attacker": 6,
+      "real:kasteren:seed_123:lstm:fixed_attacker": 6,
+      "real:kasteren:seed_123:lstm:retrain_attacker": 6,
+      "real:kasteren:seed_123:mlp:fixed_attacker": 6,
+      "real:kasteren:seed_123:mlp:retrain_attacker": 6,
+      "real:kasteren:seed_2026:lstm:fixed_attacker": 6,
+      "real:kasteren:seed_2026:lstm:retrain_attacker": 6,
+      "real:kasteren:seed_2026:mlp:fixed_attacker": 6,
+      "real:kasteren:seed_2026:mlp:retrain_attacker": 6,
+      "real:casas_hh101:seed_42:lstm:fixed_attacker": 6,
+      "real:casas_hh101:seed_42:lstm:retrain_attacker": 6,
+      "real:casas_hh101:seed_42:mlp:fixed_attacker": 6,
+      "real:casas_hh101:seed_42:mlp:retrain_attacker": 6,
+      "real:casas_hh101:seed_123:lstm:fixed_attacker": 6,
+      "real:casas_hh101:seed_123:lstm:retrain_attacker": 6,
+      "real:casas_hh101:seed_123:mlp:fixed_attacker": 6,
+      "real:casas_hh101:seed_123:mlp:retrain_attacker": 6,
+      "real:casas_hh101:seed_2026:lstm:fixed_attacker": 6,
+      "real:casas_hh101:seed_2026:lstm:retrain_attacker": 6,
+      "real:casas_hh101:seed_2026:mlp:fixed_attacker": 6,
+      "real:casas_hh101:seed_2026:mlp:retrain_attacker": 6
+    }
+  },
+  "missing_cooja_outputs": [],
+  "cooja": {
+    "per_seed_rows": 18,
+    "canonical_expected": 18,
+    "canonical_completed": 18,
+    "traffic_status": {
+      "rows_expected": 9,
+      "rows_observed": 9,
+      "numeric_metrics_available": false,
+      "reason": "Radio/app logs available for accuracy evaluation, but exported traffic rows do not expose enough labeled packet fields for packet/byte/IAT proxy metrics."
+    }
+  },
+  "cooja_traffic_metrics_status": {
+    "rows_expected": 9,
+    "rows_observed": 9,
+    "numeric_metrics_available": false,
+    "reason": "Radio/app logs available for accuracy evaluation, but exported traffic rows do not expose enough labeled packet fields for packet/byte/IAT proxy metrics."
+  },
+  "duplicated_rows_detected": [],
+  "delivery_docs_status": {
+    "repository_delivery_guide": true,
+    "artifact_layout": true,
+    "artifact_index": true,
+    "adaptive_ablation_overview": true,
+    "mock_adaptive_ablation_summary": true,
+    "real_adaptive_ablation_summary": true
+  },
+  "delivery_docs_missing": [],
+  "actions_recommended": []
+}

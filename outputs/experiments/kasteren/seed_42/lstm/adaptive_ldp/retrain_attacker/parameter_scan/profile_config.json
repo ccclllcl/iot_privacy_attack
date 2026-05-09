@@ -1,0 +1,58 @@
+{
+  "profiles": [
+    {
+      "profile_name": "adaptive_default",
+      "epsilon_min": "0.4",
+      "epsilon_max": "4.0",
+      "weight_sensitivity": "0.5",
+      "weight_traffic": "0.5",
+      "use_edge_budget_cap": "False",
+      "edge_inverse_budget_cap": ""
+    },
+    {
+      "profile_name": "adaptive_strong_privacy",
+      "epsilon_min": "0.2",
+      "epsilon_max": "1.0",
+      "weight_sensitivity": "0.5",
+      "weight_traffic": "0.5",
+      "use_edge_budget_cap": "False",
+      "edge_inverse_budget_cap": ""
+    },
+    {
+      "profile_name": "adaptive_weak_privacy",
+      "epsilon_min": "1.0",
+      "epsilon_max": "6.0",
+      "weight_sensitivity": "0.5",
+      "weight_traffic": "0.5",
+      "use_edge_budget_cap": "False",
+      "edge_inverse_budget_cap": ""
+    },
+    {
+      "profile_name": "adaptive_sensitivity_only",
+      "epsilon_min": "0.4",
+      "epsilon_max": "4.0",
+      "weight_sensitivity": "1.0",
+      "weight_traffic": "0.0",
+      "use_edge_budget_cap": "False",
+      "edge_inverse_budget_cap": ""
+    },
+    {
+      "profile_name": "adaptive_traffic_only",
+      "epsilon_min": "0.4",
+      "epsilon_max": "4.0",
+      "weight_sensitivity": "0.0",
+      "weight_traffic": "1.0",
+      "use_edge_budget_cap": "False",
+      "edge_inverse_budget_cap": ""
+    },
+    {
+      "profile_name": "adaptive_edge_cap_on",
+      "epsilon_min": "0.4",
+      "epsilon_max": "4.0",
+      "weight_sensitivity": "0.5",
+      "weight_traffic": "0.5",
+      "use_edge_budget_cap": "True",
+      "edge_inverse_budget_cap": "100000"
+    }
+  ]
+}

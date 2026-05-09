@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "model_type": "mlp",
+  "accuracy": 0.5836443841194435,
+  "f1_macro": 0.5761759148336169,
+  "precision_macro": 0.5926620269553354,
+  "recall_macro": 0.5720318420305132,
+  "per_class_recall": {
+    "walking": 0.43548387096774194,
+    "walking_upstairs": 0.3842887473460722,
+    "walking_downstairs": 0.4119047619047619,
+    "sitting": 0.6211812627291242,
+    "standing": 0.6203007518796992,
+    "laying": 0.9590316573556797
+  },
+  "confusion_matrix": [
+    [
+      216,
+      49,
+      50,
+      40,
+      141,
+      0
+    ],
+    [
+      116,
+      181,
+      102,
+      14,
+      58,
+      0
+    ],
+    [
+      110,
+      64,
+      173,
+      21,
+      52,
+      0
+    ],
+    [
+      26,
+      2,
+      15,
+      305,
+      143,
+      0
+    ],
+    [
+      99,
+      31,
+      7,
+      65,
+      330,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      4,
+      17,
+      515
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "sitting",
+      "pred": "standing",
+      "count": 143
+    },
+    {
+      "true": "walking",
+      "pred": "standing",
+      "count": 141
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking",
+      "count": 116
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking",
+      "count": 110
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking_downstairs",
+      "count": 102
+    },
+    {
+      "true": "standing",
+      "pred": "walking",
+      "count": 99
+    },
+    {
+      "true": "standing",
+      "pred": "sitting",
+      "count": 65
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking_upstairs",
+      "count": 64
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "standing",
+      "count": 58
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "standing",
+      "count": 52
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}

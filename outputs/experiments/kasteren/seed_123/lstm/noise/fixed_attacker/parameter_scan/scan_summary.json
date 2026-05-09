@@ -1,0 +1,12 @@
+{
+  "dataset": "kasteren",
+  "seed": 123,
+  "model": "lstm",
+  "method": "noise",
+  "mode": "fixed_attacker",
+  "row_count": 4,
+  "expected_rows": 4,
+  "complete": true,
+  "source_file": "outputs/experiments/kasteren/seed_123/lstm/noise/fixed_attacker/parameter_scan/comparison_results.csv",
+  "old_path": "outputs/defense/real_public_benchmark/kasteren/seed_123/noise/comparisons/lstm_fixed_attacker_comparison_results.csv"
+}

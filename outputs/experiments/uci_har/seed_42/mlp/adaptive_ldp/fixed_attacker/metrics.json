@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "model_type": "mlp",
+  "accuracy": 0.28537495758398373,
+  "f1_macro": 0.2025814756439499,
+  "precision_macro": 0.22347703778557673,
+  "recall_macro": 0.2791518007833474,
+  "per_class_recall": {
+    "walking": 0.0,
+    "walking_upstairs": 0.0,
+    "walking_downstairs": 0.12142857142857143,
+    "sitting": 0.9613034623217923,
+    "standing": 0.0,
+    "laying": 0.5921787709497207
+  },
+  "confusion_matrix": [
+    [
+      0,
+      0,
+      62,
+      434,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      91,
+      380,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      51,
+      369,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      19,
+      472,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      167,
+      365,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      3,
+      216,
+      0,
+      318
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "walking",
+      "pred": "sitting",
+      "count": 434
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "sitting",
+      "count": 380
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "sitting",
+      "count": 369
+    },
+    {
+      "true": "standing",
+      "pred": "sitting",
+      "count": 365
+    },
+    {
+      "true": "laying",
+      "pred": "sitting",
+      "count": 216
+    },
+    {
+      "true": "standing",
+      "pred": "walking_downstairs",
+      "count": 167
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking_downstairs",
+      "count": 91
+    },
+    {
+      "true": "walking",
+      "pred": "walking_downstairs",
+      "count": 62
+    },
+    {
+      "true": "sitting",
+      "pred": "walking_downstairs",
+      "count": 19
+    },
+    {
+      "true": "laying",
+      "pred": "walking_downstairs",
+      "count": 3
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}

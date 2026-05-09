@@ -1,0 +1,12 @@
+{
+  "dataset": "casas_hh101",
+  "seed": 123,
+  "model": "mlp",
+  "method": "ldp",
+  "mode": "fixed_attacker",
+  "row_count": 5,
+  "expected_rows": 5,
+  "complete": true,
+  "source_file": "outputs/experiments/casas_hh101/seed_123/mlp/ldp/fixed_attacker/parameter_scan/comparison_results.csv",
+  "old_path": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/comparisons/mlp_fixed_attacker_comparison_results.csv"
+}

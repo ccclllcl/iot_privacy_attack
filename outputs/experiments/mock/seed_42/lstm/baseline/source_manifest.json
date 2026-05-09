@@ -1,0 +1,16 @@
+{
+  "dataset": "mock",
+  "seed": 42,
+  "model": "lstm",
+  "role": "baseline",
+  "source_files": [
+    {
+      "role": "baseline_confusion",
+      "old_path": "outputs/defense/full_multiseed/seed_42/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json",
+      "new_path": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json"
+    }
+  ],
+  "unavailable_reason": {
+    "baseline_trace.json": "No separate baseline trace existed in the legacy artifacts."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "dataset": "cooja",
+  "seed": 123,
+  "model": "random_forest",
+  "method": "dummy_noise",
+  "mode": "fixed_attacker",
+  "role": "cooja_per_seed",
+  "source_files": [
+    {
+      "role": "per_seed_row",
+      "old_path": "outputs/summaries/final_thesis/cooja/cooja_per_seed.csv",
+      "new_path": "outputs/experiments/cooja/seed_123/random_forest/dummy_noise/fixed_attacker/metrics.json"
+    }
+  ],
+  "unavailable_reason": {
+    "packet_byte_iat_metrics": "Current Cooja logs do not expose enough labeled packet fields for packet/byte/IAT proxy metrics.",
+    "energy_delay_metrics": "No real energy or end-to-end delay measurements are available."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "dataset": "mock",
+  "seed": 123,
+  "model": "lstm",
+  "method": "ldp",
+  "mode": "retrain_attacker",
+  "row_count": 5,
+  "expected_rows": 5,
+  "complete": true,
+  "source_file": "outputs/experiments/mock/seed_123/lstm/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
+  "old_path": "outputs/defense/full_multiseed/seed_123/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
+}

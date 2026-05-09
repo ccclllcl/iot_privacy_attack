@@ -1,17 +1,19 @@
 # Project Structure
 
-This repository keeps the implementation, experiment entry points, configuration, and final thesis artifacts in separate areas.
+This repository separates implementation code, reproducible experiment entry points, canonical source artifacts, and final thesis summaries.
 
 ## Top-Level Directories
 
-- `src/`: core preprocessing, feature extraction, model, defense, evaluation, and comparison logic.
-- `experiments/`: command-line experiment entry points. Run them from the repository root.
-- `configs/`: default and generated experiment configuration files.
-- `scripts/`: final thesis aggregation, audit, and delivery helper scripts.
+- `src/`: core preprocessing, feature extraction, models, defenses, evaluation, and comparison logic.
+- `experiments/`: command-line experiment entry points.
+- `configs/`: default, Cooja, and generated experiment configuration files.
+- `scripts/`: aggregation, audit, migration, and delivery helper scripts.
 - `docs/`: repository structure and delivery notes.
-- `data/`: raw, processed, and defended datasets. These are generally not newly committed except for already tracked reproducibility artifacts.
-- `outputs/`: models, reports, figures, and defense outputs. Most runtime outputs are ignored, but `outputs/reports/final_thesis/` and `outputs/figures/final_thesis/` are the final delivery exceptions.
-- `apps/`, `tools/`, `web_assets/`: UI and maintenance utilities.
+- `data/`: processed and defended data organized by dataset and seed.
+- `outputs/experiments/`: canonical source artifacts organized by dataset, seed, model, method, and mode.
+- `outputs/summaries/final_thesis/`: final thesis CSV/JSON/Markdown summaries and audits.
+- `outputs/figures/summaries/final_thesis/`: final thesis figures.
+- `outputs/figures/experiments/`: per-combination diagnostic figures when available.
 
 ## Experiment Entrypoints
 
@@ -20,16 +22,35 @@ This repository keeps the implementation, experiment entry points, configuration
 - `experiments/core/run_defense.py`: generate defended data.
 - `experiments/core/run_defense_eval.py`: evaluate fixed and retrained attackers.
 - `experiments/core/run_compare.py`: parameter scans for `ldp`, `noise`, and `adaptive_ldp`.
-- `experiments/batches/`: mock multi-seed/multi-model/multi-method workflows.
+- `experiments/batches/`: batch helpers for missing or multi-seed runs.
 - `experiments/real_public/`: UCI HAR, van Kasteren, and CASAS real-data workflows.
 - `experiments/cooja/`: Cooja log evaluation and defense summaries.
+
+## Canonical Artifact Paths
+
+Normal defense experiment:
+
+`outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/`
+
+Baseline:
+
+`outputs/experiments/{dataset}/seed_{seed}/{model}/baseline/`
+
+Parameter scan:
+
+`outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/parameter_scan/`
+
+Cooja:
+
+`outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/`
 
 ## Final Delivery Paths
 
 For thesis submission, prioritize:
 
-- `outputs/reports/final_thesis/`
-- `outputs/figures/final_thesis/`
+- `outputs/summaries/final_thesis/`
+- `outputs/figures/summaries/final_thesis/`
 - `docs/REPOSITORY_DELIVERY_GUIDE.md`
+- `docs/ARTIFACT_LAYOUT.md`
 
-Process artifacts under `data/` and `outputs/` are retained only where they support reproduction or `source_file` traceability. New generated files should generally stay ignored unless they belong to the `final_thesis` delivery package.
+The old `outputs/reports/final_thesis/`, `outputs/figures/final_thesis/`, `outputs/defense/full_multiseed/`, and `outputs/defense/real_public_benchmark/` roots were migrated to reduce ambiguity.

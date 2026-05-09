@@ -1,0 +1,37 @@
+{
+  "dataset": "mock",
+  "seed": 2026,
+  "model": "mlp",
+  "method": "noise",
+  "mode": "fixed_attacker",
+  "role": "main_matrix",
+  "baseline_dir": "outputs/experiments/mock/seed_2026/mlp/baseline",
+  "source_files": [
+    {
+      "role": "confusion.json",
+      "old_path": "outputs/defense/final_thesis/mock/seed_2026/mlp/noise/fixed_attacker/confusion.json",
+      "new_path": "outputs/experiments/mock/seed_2026/mlp/noise/fixed_attacker/confusion.json"
+    },
+    {
+      "role": "classification_report.txt",
+      "old_path": "outputs/defense/final_thesis/mock/seed_2026/mlp/noise/fixed_attacker/classification_report.txt",
+      "new_path": "outputs/experiments/mock/seed_2026/mlp/noise/fixed_attacker/classification_report.txt"
+    },
+    {
+      "role": "trace.json",
+      "old_path": "outputs/defense/final_thesis/mock/seed_2026/mlp/noise/fixed_attacker/trace.json",
+      "new_path": "outputs/experiments/mock/seed_2026/mlp/noise/fixed_attacker/trace.json"
+    },
+    {
+      "role": "defense_report.json",
+      "old_path": "outputs/defense/final_thesis/mock/seed_2026/mlp/noise/fixed_attacker/defense_report.json",
+      "new_path": "outputs/experiments/mock/seed_2026/mlp/noise/fixed_attacker/defense_report.json"
+    },
+    {
+      "role": "metrics.json",
+      "old_path": "outputs/defense/final_thesis/mock/seed_2026/mlp/noise/fixed_attacker/confusion.json",
+      "new_path": "outputs/experiments/mock/seed_2026/mlp/noise/fixed_attacker/metrics.json"
+    }
+  ],
+  "unavailable_reason": {}
+}

@@ -1,0 +1,6 @@
+dataset=casas_hh101
+seed=42
+model=mlp
+baseline_acc=0.43469996111807147
+baseline_f1_macro=0.20435528226837654
+note=Derived from baseline_confusion.json; no separate legacy text report existed.

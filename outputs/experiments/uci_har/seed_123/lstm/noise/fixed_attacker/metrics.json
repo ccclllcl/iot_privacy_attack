@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "model_type": "lstm",
+  "accuracy": 0.32813030200203597,
+  "f1_macro": 0.28582783764887476,
+  "precision_macro": 0.31927787118300666,
+  "recall_macro": 0.32788252286958536,
+  "per_class_recall": {
+    "walking": 0.3870967741935484,
+    "walking_upstairs": 0.6348195329087049,
+    "walking_downstairs": 0.26666666666666666,
+    "sitting": 0.010183299389002037,
+    "standing": 0.0,
+    "laying": 0.6685288640595903
+  },
+  "confusion_matrix": [
+    [
+      192,
+      257,
+      47,
+      0,
+      0,
+      0
+    ],
+    [
+      131,
+      299,
+      41,
+      0,
+      0,
+      0
+    ],
+    [
+      151,
+      157,
+      112,
+      0,
+      0,
+      0
+    ],
+    [
+      252,
+      162,
+      71,
+      5,
+      1,
+      0
+    ],
+    [
+      201,
+      327,
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      6,
+      27,
+      123,
+      22,
+      0,
+      359
+    ]
+  ],
+  "top_confusions": [
+    {
+      "true": "standing",
+      "pred": "walking_upstairs",
+      "count": 327
+    },
+    {
+      "true": "walking",
+      "pred": "walking_upstairs",
+      "count": 257
+    },
+    {
+      "true": "sitting",
+      "pred": "walking",
+      "count": 252
+    },
+    {
+      "true": "standing",
+      "pred": "walking",
+      "count": 201
+    },
+    {
+      "true": "sitting",
+      "pred": "walking_upstairs",
+      "count": 162
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking_upstairs",
+      "count": 157
+    },
+    {
+      "true": "walking_downstairs",
+      "pred": "walking",
+      "count": 151
+    },
+    {
+      "true": "walking_upstairs",
+      "pred": "walking",
+      "count": 131
+    },
+    {
+      "true": "laying",
+      "pred": "walking_downstairs",
+      "count": 123
+    },
+    {
+      "true": "sitting",
+      "pred": "walking_downstairs",
+      "count": 71
+    }
+  ],
+  "class_names": [
+    "walking",
+    "walking_upstairs",
+    "walking_downstairs",
+    "sitting",
+    "standing",
+    "laying"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "dataset": "uci_har",
+  "seed": 42,
+  "model": "lstm",
+  "method": "ldp",
+  "mode": "fixed_attacker",
+  "row_count": 5,
+  "expected_rows": 5,
+  "complete": true,
+  "source_file": "outputs/experiments/uci_har/seed_42/lstm/ldp/fixed_attacker/parameter_scan/comparison_results.csv",
+  "old_path": "outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/comparisons/lstm_fixed_attacker_comparison_results.csv"
+}
