@@ -21,7 +21,15 @@ Thumbs.db
 data/raw/
 data/processed/
 data/defended/
-outputs/
+outputs/*
+!outputs/reports/
+outputs/reports/*
+!outputs/reports/final_thesis/
+!outputs/reports/final_thesis/**
+!outputs/figures/
+outputs/figures/*
+!outputs/figures/final_thesis/
+!outputs/figures/final_thesis/**
 
 # Model & array artifacts
 *.pt

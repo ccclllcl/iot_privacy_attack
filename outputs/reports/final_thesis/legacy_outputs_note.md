@@ -6,12 +6,21 @@ The repository intentionally keeps process artifacts and older output paths for 
 
 - `outputs/reports/full_multiseed/`
 - `outputs/reports/real_public_benchmark/`
-- `outputs/reports/dataset_matrix/`
 - `outputs/defense/full_multiseed/`
 - `outputs/defense/real_public_benchmark/`
 - `configs/generated_*`
 - `web_assets/`
 - Historical outputs from `apps/ui`
+
+## Cleaned Legacy Matrix Artifacts
+
+The old `dataset_matrix` matrix was an earlier real-data pass and is no longer the final delivery scope. Tracked `dataset_matrix` artifacts were cleaned when they were not referenced by `final_thesis` source paths.
+
+The current real-data delivery scope is:
+
+- `outputs/reports/final_thesis/real/`
+- `outputs/defense/final_thesis/real/`
+- `outputs/defense/real_public_benchmark/`
 
 ## How to Use Them
 

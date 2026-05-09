@@ -230,12 +230,14 @@ python experiments/cooja/run_cooja_defense_eval.py --manifest configs/cooja_defe
 - 目录说明：`docs/RESULTS_STRUCTURE.md`
 - 合成数据全矩阵清单：`outputs/reports/full_methods_multiseed_manifest.json`
 - 合成数据结果汇总：`outputs/reports/full_multiseed_summary.json`
-- 真实数据集全矩阵清单：`outputs/reports/dataset_matrix_manifest.json`
+- 真实数据集最终汇总：`outputs/reports/final_thesis/real/`
+- 最终交付索引：`outputs/reports/final_thesis/artifact_index.md`
 
 对应的核心结果目录：
 
 - 合成数据：`outputs/defense/full_multiseed/`
-- 真实数据集：`outputs/defense/dataset_matrix/`
+- 真实数据集：`outputs/defense/real_public_benchmark/`
+- 论文最终引用：`outputs/reports/final_thesis/` 与 `outputs/figures/final_thesis/`
 
 每个 `{seed}/{method}`（或 `{dataset}/seed_{seed}/{method}`）目录下均包含：
 

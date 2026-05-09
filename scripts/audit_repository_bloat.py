@@ -1,0 +1,247 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Audit tracked repository artifacts and cleanup candidates.
+
+This script is read-only. It does not delete files.
+"""
+
+from __future__ import annotations
+
+import csv
+import json
+import subprocess
+from datetime import datetime
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+OUT_DIR = ROOT / "outputs" / "reports" / "final_thesis"
+CSV_OUT = OUT_DIR / "repository_bloat_audit.csv"
+JSON_OUT = OUT_DIR / "repository_bloat_audit.json"
+MD_OUT = OUT_DIR / "repository_bloat_audit.md"
+
+LOCAL_PATH_PATTERNS = [
+    "D:\\",
+    "D:/",
+    "毕业设计毕业设计",
+    "\\\\wsl$",
+]
+
+
+def _run(cmd: list[str]) -> tuple[int, str, str]:
+    proc = subprocess.run(
+        cmd,
+        cwd=str(ROOT),
+        text=True,
+        capture_output=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    return proc.returncode, proc.stdout or "", proc.stderr or ""
+
+
+def _rel(path: Path) -> str:
+    try:
+        return path.resolve().relative_to(ROOT).as_posix()
+    except Exception:
+        return path.as_posix()
+
+
+def _tracked_files() -> list[str]:
+    rc, out, err = _run(["git", "ls-files"])
+    if rc != 0:
+        raise RuntimeError(err.strip() or "git ls-files failed")
+    return [line.strip() for line in out.splitlines() if line.strip()]
+
+
+def _last_commit(path: str) -> tuple[str, str]:
+    rc, out, _ = _run(["git", "log", "-1", "--format=%H|%cI", "--", path])
+    if rc != 0 or not out.strip():
+        return "", ""
+    commit_hash, _, commit_time = out.strip().partition("|")
+    return commit_time, commit_hash
+
+
+def _reference_files() -> list[Path]:
+    files: list[Path] = []
+    for pattern in ("*.csv", "*.json", "*.md"):
+        files.extend(OUT_DIR.rglob(pattern))
+    for path in [
+        ROOT / "scripts" / "build_final_thesis_results.py",
+        ROOT / "scripts" / "audit_experiment_symmetry.py",
+        ROOT / "README.md",
+    ]:
+        if path.exists():
+            files.append(path)
+    docs = ROOT / "docs"
+    if docs.exists():
+        files.extend(docs.glob("*.md"))
+    unique: dict[str, Path] = {}
+    for path in files:
+        unique[str(path.resolve())] = path
+    return list(unique.values())
+
+
+def _load_reference_texts() -> str:
+    chunks: list[str] = []
+    for path in _reference_files():
+        try:
+            chunks.append(path.read_text(encoding="utf-8", errors="replace"))
+        except Exception:
+            continue
+    return "\n".join(chunks)
+
+
+def _text_contains_local_path(path: Path) -> bool:
+    if path.stat().st_size > 8_000_000:
+        return False
+    try:
+        text = path.read_text(encoding="utf-8", errors="replace")
+    except Exception:
+        return False
+    return any(pattern in text for pattern in LOCAL_PATH_PATTERNS)
+
+
+def _category(path: str) -> str:
+    p = path.replace("\\", "/")
+    name = Path(p).name
+    if p.startswith("outputs/reports/final_thesis/"):
+        return "final_thesis_required"
+    if p.startswith("outputs/figures/final_thesis/"):
+        return "final_figure_required"
+    if p.startswith("outputs/reports/dataset_matrix/") or "/dataset_matrix/" in p:
+        return "legacy_dataset_matrix"
+    if p.startswith("configs/generated_"):
+        return "generated_config"
+    if p.startswith("outputs/ui/") or "run_history" in p:
+        return "ui_history"
+    if p.startswith("web_assets/"):
+        return "web_asset"
+    if name == "metrics.json" and p.startswith("outputs/reports/"):
+        return "legacy_metrics_json"
+    if "__pycache__" in p or ".pytest_cache" in p or name in {".DS_Store", "Thumbs.db"} or name.endswith((".tmp", ".bak")) or name.startswith("~"):
+        return "temp_or_cache"
+    if p.startswith(("outputs/defense/", "outputs/models/", "data/processed/", "data/defended/")):
+        return "source_artifact_referenced"
+    if p.startswith(("docs/",)) or name.lower().endswith((".md", ".docx")):
+        return "docs"
+    if p.endswith((".py", ".yaml", ".yml", ".toml", ".json", ".ps1", ".sh")) or p.startswith(("src/", "scripts/", "experiments/", "configs/", "apps/", "tools/")):
+        return "code"
+    return "unknown"
+
+
+def _recommendation(path: str, category: str, referenced: bool, hygiene: bool) -> tuple[str, str]:
+    p = path.replace("\\", "/")
+    if referenced:
+        return "keep", "Referenced by final_thesis or delivery documentation."
+    if category in {"final_thesis_required", "final_figure_required", "code", "docs"}:
+        reason = "Required delivery/code/documentation file."
+        if hygiene:
+            reason += " Contains local absolute path content that should be reviewed."
+        return "keep", reason
+    if category in {"legacy_dataset_matrix", "legacy_metrics_json", "temp_or_cache"}:
+        return "delete_candidate", "Legacy or temporary artifact and not referenced by final_thesis."
+    if category in {"generated_config", "ui_history", "web_asset"}:
+        return "review", "Generated or UI/web artifact; keep only if needed for reproduction or documentation."
+    if category == "source_artifact_referenced":
+        return "keep", "Source artifact class kept for traceability unless unreferenced cleanup is explicitly scoped."
+    return "review", "Unknown tracked file category."
+
+
+def build_audit() -> list[dict[str, Any]]:
+    reference_text = _load_reference_texts()
+    rows: list[dict[str, Any]] = []
+    for path in _tracked_files():
+        full = ROOT / path
+        size = full.stat().st_size if full.exists() else 0
+        last_time, last_hash = _last_commit(path)
+        category = _category(path)
+        referenced = path in reference_text or path.replace("/", "\\") in reference_text
+        hygiene = full.exists() and full.is_file() and _text_contains_local_path(full)
+        deletion_recommendation, reason = _recommendation(path, category, referenced, hygiene)
+        if hygiene:
+            reason = f"path_hygiene_issue; {reason}"
+        rows.append(
+            {
+                "path": path,
+                "file_size_bytes": size,
+                "git_last_commit_time": last_time,
+                "git_last_commit_hash": last_hash,
+                "category": category,
+                "referenced_by_final_thesis": referenced,
+                "deletion_recommendation": deletion_recommendation,
+                "reason": reason,
+            }
+        )
+    return rows
+
+
+def write_outputs(rows: list[dict[str, Any]]) -> None:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    fields = [
+        "path",
+        "file_size_bytes",
+        "git_last_commit_time",
+        "git_last_commit_hash",
+        "category",
+        "referenced_by_final_thesis",
+        "deletion_recommendation",
+        "reason",
+    ]
+    with CSV_OUT.open("w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(rows)
+    summary: dict[str, Any] = {
+        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "tracked_files": len(rows),
+        "total_tracked_bytes": sum(int(r["file_size_bytes"]) for r in rows),
+        "by_category": {},
+        "by_recommendation": {},
+        "path_hygiene_issues": [r for r in rows if "path_hygiene_issue" in str(r["reason"])],
+        "delete_candidates": [r for r in rows if r["deletion_recommendation"] == "delete_candidate"],
+    }
+    for key in ("category", "deletion_recommendation"):
+        counts: dict[str, int] = {}
+        for row in rows:
+            counts[str(row[key])] = counts.get(str(row[key]), 0) + 1
+        summary[f"by_{key.replace('deletion_', '')}"] = dict(sorted(counts.items()))
+    JSON_OUT.write_text(json.dumps({"summary": summary, "rows": rows}, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    lines = [
+        "# Repository Bloat Audit",
+        "",
+        f"- Generated at: `{summary['generated_at']}`",
+        f"- Tracked files: `{summary['tracked_files']}`",
+        f"- Total tracked bytes: `{summary['total_tracked_bytes']}`",
+        f"- Delete candidates: `{len(summary['delete_candidates'])}`",
+        f"- Path hygiene issues: `{len(summary['path_hygiene_issues'])}`",
+        "",
+        "## Category Counts",
+        "",
+    ]
+    for category, count in summary["by_category"].items():
+        lines.append(f"- `{category}`: {count}")
+    lines.extend(["", "## Recommendation Counts", ""])
+    for rec, count in summary["by_recommendation"].items():
+        lines.append(f"- `{rec}`: {count}")
+    lines.extend(["", "## Delete Candidates", ""])
+    for row in summary["delete_candidates"][:80]:
+        lines.append(f"- `{row['path']}` ({row['file_size_bytes']} bytes): {row['reason']}")
+    if len(summary["delete_candidates"]) > 80:
+        lines.append(f"- ... {len(summary['delete_candidates']) - 80} more rows in `{_rel(CSV_OUT)}`")
+    MD_OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def main() -> None:
+    rows = build_audit()
+    write_outputs(rows)
+    print(f"repository_bloat_audit_csv={_rel(CSV_OUT)}")
+    print(f"repository_bloat_audit_json={_rel(JSON_OUT)}")
+    print(f"repository_bloat_audit_md={_rel(MD_OUT)}")
+    print(f"tracked_files={len(rows)}")
+
+
+if __name__ == "__main__":
+    main()

@@ -14,7 +14,7 @@
     "mse": 0.8957119544972894,
     "mae": 0.39027860413277304,
     "pearson_r": 0.14704641567008098,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_42/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -32,7 +32,7 @@
     "mse": 0.8957119544972894,
     "mae": 0.39027860413277304,
     "pearson_r": 0.14704641567008098,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_42/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -50,7 +50,7 @@
     "mse": 1.0058371716019419,
     "mae": 0.5168689694140145,
     "pearson_r": 0.108581906577775,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_42/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -68,7 +68,7 @@
     "mse": 1.0058371716019419,
     "mae": 0.5168689694140145,
     "pearson_r": 0.108581906577775,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_42/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -86,7 +86,7 @@
     "mse": 0.4990515514628953,
     "mae": 0.4997777148464784,
     "pearson_r": 0.21107981852836696,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_42/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -104,7 +104,7 @@
     "mse": 0.4990515514628953,
     "mae": 0.4997777148464784,
     "pearson_r": 0.21107981852836696,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_42/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -122,7 +122,7 @@
     "mse": 0.8957119544972894,
     "mae": 0.39027860413277304,
     "pearson_r": 0.14704641567008098,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_42/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -140,7 +140,7 @@
     "mse": 0.8957119544972894,
     "mae": 0.39027860413277304,
     "pearson_r": 0.14704641567008098,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_42/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -158,7 +158,7 @@
     "mse": 1.0058371716019419,
     "mae": 0.5168689694140145,
     "pearson_r": 0.108581906577775,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_42/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -176,7 +176,7 @@
     "mse": 1.0058371716019419,
     "mae": 0.5168689694140145,
     "pearson_r": 0.108581906577775,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_42/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -194,7 +194,7 @@
     "mse": 0.4990515514628953,
     "mae": 0.4997777148464784,
     "pearson_r": 0.21107981852836696,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_42/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -212,7 +212,7 @@
     "mse": 0.4990515514628953,
     "mae": 0.4997777148464784,
     "pearson_r": 0.21107981852836696,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_42\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_42/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_42/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_42/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -230,7 +230,7 @@
     "mse": 0.9063319580707391,
     "mae": 0.3917225008424567,
     "pearson_r": 0.14640435311817862,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_123/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -248,7 +248,7 @@
     "mse": 0.9063319580707391,
     "mae": 0.3917225008424567,
     "pearson_r": 0.14640435311817862,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_123/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -266,7 +266,7 @@
     "mse": 1.0037463464963514,
     "mae": 0.5156768119323579,
     "pearson_r": 0.10782291804134839,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_123/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -284,7 +284,7 @@
     "mse": 1.0037463464963514,
     "mae": 0.5156768119323579,
     "pearson_r": 0.10782291804134839,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_123/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -302,7 +302,7 @@
     "mse": 0.4965272599019954,
     "mae": 0.4983800696929921,
     "pearson_r": 0.21006852069535115,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_123/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -320,7 +320,7 @@
     "mse": 0.4965272599019954,
     "mae": 0.4983800696929921,
     "pearson_r": 0.21006852069535115,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_123/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -338,7 +338,7 @@
     "mse": 0.9063319580707391,
     "mae": 0.3917225008424567,
     "pearson_r": 0.14640435311817862,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_123/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -356,7 +356,7 @@
     "mse": 0.9063319580707391,
     "mae": 0.3917225008424567,
     "pearson_r": 0.14640435311817862,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_123/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -374,7 +374,7 @@
     "mse": 1.0037463464963514,
     "mae": 0.5156768119323579,
     "pearson_r": 0.10782291804134839,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_123/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -392,7 +392,7 @@
     "mse": 1.0037463464963514,
     "mae": 0.5156768119323579,
     "pearson_r": 0.10782291804134839,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_123/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -410,7 +410,7 @@
     "mse": 0.4965272599019954,
     "mae": 0.4983800696929921,
     "pearson_r": 0.21006852069535115,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_123/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -428,7 +428,7 @@
     "mse": 0.4965272599019954,
     "mae": 0.4983800696929921,
     "pearson_r": 0.21006852069535115,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_123\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_123/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_123/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_123/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -446,7 +446,7 @@
     "mse": 0.8538681348697145,
     "mae": 0.373469471633857,
     "pearson_r": 0.14817638843065148,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_2026/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -464,7 +464,7 @@
     "mse": 0.8538681348697145,
     "mae": 0.373469471633857,
     "pearson_r": 0.14817638843065148,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_2026/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -482,7 +482,7 @@
     "mse": 1.0068559036453752,
     "mae": 0.5145102493540279,
     "pearson_r": 0.10612253290799217,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_2026/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -500,7 +500,7 @@
     "mse": 1.0068559036453752,
     "mae": 0.5145102493540279,
     "pearson_r": 0.10612253290799217,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_2026/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -518,7 +518,7 @@
     "mse": 0.5015420825948257,
     "mae": 0.5005296539653346,
     "pearson_r": 0.20880618344991742,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_2026/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -536,7 +536,7 @@
     "mse": 0.5015420825948257,
     "mae": 0.5005296539653346,
     "pearson_r": 0.20880618344991742,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_2026/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -554,7 +554,7 @@
     "mse": 0.8538681348697145,
     "mae": 0.373469471633857,
     "pearson_r": 0.14817638843065148,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_2026/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -572,7 +572,7 @@
     "mse": 0.8538681348697145,
     "mae": 0.373469471633857,
     "pearson_r": 0.14817638843065148,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\adaptive_ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_2026/adaptive_ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -590,7 +590,7 @@
     "mse": 1.0068559036453752,
     "mae": 0.5145102493540279,
     "pearson_r": 0.10612253290799217,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_2026/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -608,7 +608,7 @@
     "mse": 1.0068559036453752,
     "mae": 0.5145102493540279,
     "pearson_r": 0.10612253290799217,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\ldp\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_2026/ldp/defense_report.json",
     "section": "mock"
   },
   {
@@ -626,7 +626,7 @@
     "mse": 0.5015420825948257,
     "mae": 0.5005296539653346,
     "pearson_r": 0.20880618344991742,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/full_multiseed/seed_2026/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -644,7 +644,7 @@
     "mse": 0.5015420825948257,
     "mae": 0.5005296539653346,
     "pearson_r": 0.20880618344991742,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\full_multiseed\\seed_2026\\noise\\defense_report.json",
+    "source_files": "outputs/defense/full_multiseed/seed_2026/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/full_multiseed/seed_2026/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/full_multiseed/seed_2026/noise/defense_report.json",
     "section": "mock"
   },
   {
@@ -667,7 +667,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -690,7 +690,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -713,7 +713,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -736,7 +736,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -759,7 +759,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -782,7 +782,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -805,7 +805,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -828,7 +828,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -851,7 +851,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -874,7 +874,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -897,7 +897,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -920,7 +920,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -943,7 +943,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -966,7 +966,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -989,7 +989,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1012,7 +1012,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1035,7 +1035,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1058,7 +1058,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1081,7 +1081,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1104,7 +1104,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1127,7 +1127,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1150,7 +1150,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1173,7 +1173,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1196,7 +1196,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1219,7 +1219,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1242,7 +1242,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1265,7 +1265,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1288,7 +1288,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1311,7 +1311,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1334,7 +1334,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1357,7 +1357,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1380,7 +1380,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1403,7 +1403,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1426,7 +1426,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1449,7 +1449,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1472,7 +1472,7 @@
     "train_size": 108019,
     "val_size": 23147,
     "test_size": 23147,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\casas_hh101\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\casas_hh101\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/casas_hh101/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -1495,7 +1495,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1518,7 +1518,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1541,7 +1541,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1564,7 +1564,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1587,7 +1587,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1610,7 +1610,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1633,7 +1633,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1656,7 +1656,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1679,7 +1679,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1702,7 +1702,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1725,7 +1725,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1748,7 +1748,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_42/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_42/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -1771,7 +1771,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1794,7 +1794,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1817,7 +1817,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1840,7 +1840,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1863,7 +1863,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1886,7 +1886,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1909,7 +1909,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1932,7 +1932,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1955,7 +1955,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -1978,7 +1978,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2001,7 +2001,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2024,7 +2024,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_123/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_123/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2047,7 +2047,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2070,7 +2070,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2093,7 +2093,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2116,7 +2116,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2139,7 +2139,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2162,7 +2162,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2185,7 +2185,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2208,7 +2208,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2231,7 +2231,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2254,7 +2254,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2277,7 +2277,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2300,7 +2300,7 @@
     "train_size": 903,
     "val_size": 194,
     "test_size": 193,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\kasteren\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\kasteren\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/kasteren/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2323,7 +2323,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2346,7 +2346,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2369,7 +2369,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2392,7 +2392,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2415,7 +2415,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2438,7 +2438,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2461,7 +2461,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2484,7 +2484,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2507,7 +2507,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2530,7 +2530,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2553,7 +2553,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2576,7 +2576,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_42\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_42\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_42/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_42/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_42/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_42/meta.json",
     "section": "real"
   },
   {
@@ -2599,7 +2599,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2622,7 +2622,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2645,7 +2645,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2668,7 +2668,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2691,7 +2691,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2714,7 +2714,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2737,7 +2737,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2760,7 +2760,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2783,7 +2783,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2806,7 +2806,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2829,7 +2829,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2852,7 +2852,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_123\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_123\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_123/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_123/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_123/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_123/meta.json",
     "section": "real"
   },
   {
@@ -2875,7 +2875,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2898,7 +2898,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2921,7 +2921,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2944,7 +2944,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2967,7 +2967,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\json_reports\\lstm_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/json_reports/lstm_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -2990,7 +2990,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\json_reports\\lstm_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\json_reports\\lstm_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/json_reports/lstm_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/json_reports/lstm_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -3013,7 +3013,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -3036,7 +3036,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\adaptive_ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -3059,7 +3059,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -3082,7 +3082,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\ldp\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/ldp/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -3105,7 +3105,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\json_reports\\mlp_defended_confusion_test_fixed_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/json_reports/mlp_defended_confusion_test_fixed_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {
@@ -3128,7 +3128,7 @@
     "train_size": 5881,
     "val_size": 1471,
     "test_size": 2947,
-    "source_files": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\json_reports\\mlp_baseline_confusion_test.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\json_reports\\mlp_defended_confusion_test_retrained_attacker.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\defense\\real_public_benchmark\\uci_har\\seed_2026\\noise\\defense_report.json;D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\data\\processed\\real_public_benchmark\\uci_har\\seed_2026\\meta.json",
+    "source_files": "outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/json_reports/mlp_baseline_confusion_test.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/json_reports/mlp_defended_confusion_test_retrained_attacker.json;outputs/defense/real_public_benchmark/uci_har/seed_2026/noise/defense_report.json;data/processed/real_public_benchmark/uci_har/seed_2026/meta.json",
     "section": "real"
   },
   {

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-09T14:09:14",
+  "generated_at": "2026-05-09T14:43:22",
   "complete_main_matrix_mock": true,
   "complete_main_matrix_real": true,
   "main_matrix_counts": {
@@ -19,6 +19,12 @@
   "missing_mock_parameter_scans": [],
   "missing_real_parameter_scans": [],
   "missing_cooja_outputs": [],
+  "cooja_traffic_metrics_status": {
+    "rows_expected": 9,
+    "rows_observed": 9,
+    "numeric_metrics_available": false,
+    "reason": "Radio/app logs available for accuracy evaluation, but exported traffic rows do not expose enough labeled packet fields for packet/byte/IAT proxy metrics."
+  },
   "delivery_docs_status": {
     "repository_delivery_guide": true,
     "artifact_index": true,

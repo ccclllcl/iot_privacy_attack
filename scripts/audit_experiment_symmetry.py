@@ -289,6 +289,17 @@ def audit_cooja_outputs() -> list[dict[str, Any]]:
     return missing
 
 
+def audit_cooja_traffic_metrics_status() -> dict[str, Any]:
+    path = OUT_REPORT / "cooja" / "cooja_traffic_metrics.csv"
+    rows = _read_csv_rows(path) or []
+    return {
+        "rows_expected": 9,
+        "rows_observed": len(rows),
+        "numeric_metrics_available": False,
+        "reason": "Radio/app logs available for accuracy evaluation, but exported traffic rows do not expose enough labeled packet fields for packet/byte/IAT proxy metrics.",
+    }
+
+
 def detect_duplicates() -> list[dict[str, Any]]:
     duplicates: list[dict[str, Any]] = []
     files = [
@@ -359,6 +370,7 @@ def build_audit() -> dict[str, Any]:
     missing_mock_scans = audit_mock_parameter_scans()
     missing_real_scans = audit_real_parameter_scans()
     missing_cooja = audit_cooja_outputs()
+    cooja_traffic_status = audit_cooja_traffic_metrics_status()
     duplicates = detect_duplicates()
     delivery_docs_status, delivery_docs_missing = audit_delivery_docs()
 
@@ -384,6 +396,7 @@ def build_audit() -> dict[str, Any]:
         "missing_mock_parameter_scans": missing_mock_scans,
         "missing_real_parameter_scans": missing_real_scans,
         "missing_cooja_outputs": missing_cooja,
+        "cooja_traffic_metrics_status": cooja_traffic_status,
         "delivery_docs_status": delivery_docs_status,
         "delivery_docs_missing": delivery_docs_missing,
         "duplicated_rows_detected": duplicates,
@@ -407,6 +420,7 @@ def write_markdown(audit: dict[str, Any], path: Path) -> None:
         f"- Missing mock parameter scans: `{len(audit['missing_mock_parameter_scans'])}`",
         f"- Missing real parameter scans: `{len(audit['missing_real_parameter_scans'])}`",
         f"- Missing Cooja outputs: `{len(audit['missing_cooja_outputs'])}`",
+        f"- Cooja traffic rows: `{audit['cooja_traffic_metrics_status']['rows_observed']}/{audit['cooja_traffic_metrics_status']['rows_expected']}`",
         f"- Missing delivery docs: `{len(audit['delivery_docs_missing'])}`",
         f"- Duplicate row findings: `{len(audit['duplicated_rows_detected'])}`",
         "",

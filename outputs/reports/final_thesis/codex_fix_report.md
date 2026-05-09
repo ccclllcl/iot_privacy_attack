@@ -82,7 +82,7 @@ Canonical parameter-scan CSVs now exist at the original symmetric locations:
 
 - No `final_thesis_v2` directory was created.
 - No `supplemental` directory was created.
-- No old outputs were deleted.
+- During the symmetry-completion pass, no old outputs were deleted; legacy cleanup is documented in the later repository bloat cleanup section.
 - Main matrices remain complete: mock 36/36 and real 108/108.
 - Parameter-scan symmetry is complete: mock 36/36 and real 108/108.
 - Cooja aggregate, per-seed, and traffic-report outputs are present.
@@ -98,5 +98,18 @@ Canonical parameter-scan CSVs now exist at the original symmetric locations:
 - No `final_thesis_v2` directory was created.
 - No `supplemental` directory was created.
 - Core traceability artifacts were retained, including `outputs/defense/full_multiseed/`, `outputs/defense/real_public_benchmark/`, `data/processed/`, `data/defended/`, and `outputs/models/`.
-- Legacy/source paths remain available as process artifacts: `outputs/reports/full_multiseed/`, `outputs/reports/real_public_benchmark/`, `outputs/reports/dataset_matrix/`, `configs/generated_*`, `web_assets/`, and historical `apps/ui` outputs.
+- Legacy/source paths remain available as process artifacts: `outputs/reports/full_multiseed/`, `outputs/reports/real_public_benchmark/`, `outputs/defense/full_multiseed/`, `outputs/defense/real_public_benchmark/`, `configs/generated_*`, `web_assets/`, and historical `apps/ui` outputs.
 - Current repository structure is suitable for undergraduate thesis delivery: final references are centralized under `outputs/reports/final_thesis/` and `outputs/figures/final_thesis/`, while source artifacts remain available for review.
+
+## Repository bloat cleanup
+
+- No experiment was rerun in this cleanup pass.
+- Removed the old tracked `dataset_matrix` process package: `configs/generated_dataset_matrix/`, `data/processed/dataset_matrix/`, `data/defended/dataset_matrix/`, `outputs/defense/dataset_matrix/`, `outputs/figures/dataset_matrix/`, `outputs/models/dataset_matrix/`, `outputs/reports/dataset_matrix/`, and `outputs/reports/dataset_matrix_manifest.json`.
+- Removed old seed-level single-run reports: `outputs/reports/full_multiseed/seed_*/metrics.json`.
+- Removed untracked local live parameter-scan logs from `outputs/reports/final_thesis/` because they were not final deliverables and contained local absolute paths.
+- Removed local UI history: `outputs/ui/run_history.jsonl`.
+- Tracked cleanup removed 408 files, about 511.49 MiB.
+- `final_thesis` remains complete: mock main 36/36, real main 108/108, mock scans 36/36, real scans 108/108, `final_missing_outputs.json=[]`, and `parameter_scan_missing_outputs.json=[]`.
+- `.gitignore` now ignores broad runtime outputs while explicitly allowing `outputs/reports/final_thesis/` and `outputs/figures/final_thesis/`.
+- Retained source artifacts for traceability include `outputs/defense/full_multiseed/`, `outputs/defense/real_public_benchmark/`, `outputs/defense/final_thesis/`, `data/processed/`, `data/defended/`, and `outputs/models/`.
+- Cooja traffic limitations remain documented: traffic proxy fields may be NaN, dummy ratios are not fabricated, and no real energy or end-to-end delay is claimed.

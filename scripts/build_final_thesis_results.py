@@ -274,9 +274,9 @@ def _collect_mock(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                     rel_drop = (acc_drop / baseline_acc * 100.0) if baseline_acc and baseline_acc == baseline_acc else np.nan
 
                     source_files = [
-                        str(baseline_path),
-                        str(conf_path),
-                        str(report_path),
+                        _rel(baseline_path),
+                        _rel(conf_path),
+                        _rel(report_path),
                     ]
                     row = {
                         "dataset": "mock",
@@ -335,7 +335,7 @@ def _collect_mock(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                                 "true_label": tc.get("true"),
                                 "pred_label": tc.get("pred"),
                                 "count": tc.get("count"),
-                                "source_file": str(conf_path),
+                                "source_file": _rel(conf_path),
                             }
                         )
 
@@ -370,7 +370,7 @@ def _collect_mock(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                         "mse": float(r.get("mse")),
                         "mae": float(r.get("mae")),
                         "pearson_r": float(r.get("pearson_r")),
-                        "source_file": str(scan_path),
+                        "source_file": _rel(scan_path),
                     }
                     if scan_method == "ldp":
                         scan_ldp_rows.append(out_row)
@@ -501,7 +501,12 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                         acc_drop = baseline_acc - defended_acc
                         rel_drop = (acc_drop / baseline_acc * 100.0) if baseline_acc and baseline_acc == baseline_acc else np.nan
 
-                        source_files = [str(baseline_path), str(conf_path), str(report_path), str(proc_dir / "meta.json")]
+                        source_files = [
+                            _rel(baseline_path),
+                            _rel(conf_path),
+                            _rel(report_path),
+                            _rel(proc_dir / "meta.json"),
+                        ]
                         row = {
                             "dataset": ds,
                             "seed": seed,
@@ -562,7 +567,7 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                                     "true_label": tc.get("true"),
                                     "pred_label": tc.get("pred"),
                                     "count": tc.get("count"),
-                                    "source_file": str(conf_path),
+                                    "source_file": _rel(conf_path),
                                 }
                             )
 
@@ -624,7 +629,7 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                             "mse": float(r.get("mse")),
                             "mae": float(r.get("mae")),
                             "pearson_r": float(r.get("pearson_r")),
-                            "source_file": str(scan_path),
+                            "source_file": _rel(scan_path),
                         }
                         if scan_method == "ldp":
                             scan_ldp_rows.append(out_row)
@@ -657,7 +662,7 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
         meta_rows.append(
             {
                 "dataset": ds,
-                "meta_path": str(meta_path),
+                "meta_path": _rel(meta_path),
                 "source": meta.get("source"),
                 "seq_len": meta.get("seq_len"),
                 "freq": meta.get("freq"),
@@ -1403,9 +1408,13 @@ def _export_cooja_detail_outputs(rep: dict[str, Any], missing: list[dict[str, An
     limitations = [
         "# Cooja Limitations",
         "",
-        "- Cooja outputs in this package do not include real energy or delay measurements.",
-        "- `cooja_overhead_summary.csv` is a window-count proxy, not measured energy or latency.",
-        "- Radio log does not distinguish dummy packets from real packets, so dummy packet and byte ratios are reported as null.",
+        "- Cooja outputs can be used for fixed/retrain attacker accuracy reporting.",
+        "- Cooja currently does not provide real energy measurements.",
+        "- Cooja currently does not provide real end-to-end delay measurements.",
+        "- Radio/app log paths may point to local WSL-exported files; those paths document the local evaluation source and are not portable reproduction paths.",
+        "- Current radio logs do not distinguish dummy packets from real packets, so dummy packet and byte ratios are reported as null.",
+        "- Packet, byte, and IAT fields reported as NaN indicate unavailable log fields, not an unrun experiment.",
+        "- `cooja_overhead_summary.csv` remains a window-count proxy, not measured energy or latency.",
     ]
 
     for method_name, mobj in methods.items():
@@ -1913,7 +1922,7 @@ def _build_figures(
                 {
                     "path": str(out),
                     "title": f"{ds} 代表性 confusion matrix",
-                    "source_files": str(pjson),
+                    "source_files": _rel(pjson),
                     "conclusion": "可用于展示主要误分类模式。",
                     "limitations": "仅展示单个 seed/model/method 样本。",
                 }
@@ -2143,12 +2152,23 @@ def _build_symmetry_figures(missing: list[dict[str, Any]]) -> list[dict[str, Any
 
 
 def _write_figure_list(figures: list[dict[str, Any]]) -> None:
+    def normalize_display(value: Any) -> str:
+        parts = str(value).split(";")
+        normalized: list[str] = []
+        for part in parts:
+            item = part.strip()
+            if not item:
+                continue
+            path = Path(item)
+            normalized.append(_rel(path) if path.is_absolute() else item.replace("\\", "/"))
+        return ";".join(normalized)
+
     path = OUT_REPORT / "figure_table_list.md"
     lines = ["# 图表清单", ""]
     for i, fig in enumerate(figures, start=1):
         lines.append(f"## {i}. {fig['title']}")
-        lines.append(f"- 图路径: `{fig['path']}`")
-        lines.append(f"- 源文件: `{fig['source_files']}`")
+        lines.append(f"- 图路径: `{normalize_display(fig['path'])}`")
+        lines.append(f"- 源文件: `{normalize_display(fig['source_files'])}`")
         lines.append(f"- 可写入论文结论: {fig['conclusion']}")
         lines.append(f"- 口径限制: {fig['limitations']}")
         lines.append("")
@@ -2322,12 +2342,12 @@ def main() -> None:
             ],
         },
         "outputs": {
-            "mock_summary": str(OUT_REPORT / "mock" / "mock_summary.csv"),
-            "real_summary": str(OUT_REPORT / "real" / "real_summary.csv"),
-            "cooja_summary": str(OUT_REPORT / "cooja" / "cooja_summary.csv"),
-            "final_summary": str(OUT_REPORT / "final_summary.csv"),
-            "mock_adaptive_ldp_ablation": str(OUT_REPORT / "mock" / "mock_adaptive_ldp_ablation_summary.csv"),
-            "real_adaptive_ldp_ablation": str(OUT_REPORT / "real" / "real_adaptive_ldp_ablation_summary.csv"),
+            "mock_summary": _rel(OUT_REPORT / "mock" / "mock_summary.csv"),
+            "real_summary": _rel(OUT_REPORT / "real" / "real_summary.csv"),
+            "cooja_summary": _rel(OUT_REPORT / "cooja" / "cooja_summary.csv"),
+            "final_summary": _rel(OUT_REPORT / "final_summary.csv"),
+            "mock_adaptive_ldp_ablation": _rel(OUT_REPORT / "mock" / "mock_adaptive_ldp_ablation_summary.csv"),
+            "real_adaptive_ldp_ablation": _rel(OUT_REPORT / "real" / "real_adaptive_ldp_ablation_summary.csv"),
         },
     }
     _write_json(OUT_REPORT / "final_manifest.json", manifest)
