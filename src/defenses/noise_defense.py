@@ -10,7 +10,7 @@ from typing import Any, Dict, List
 
 import numpy as np
 
-from src.defenses.base_defense import BaseDefense
+from src.defenses.base import BaseDefense
 
 
 class NoiseDefense(BaseDefense):

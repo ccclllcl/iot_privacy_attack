@@ -1,0 +1,82 @@
+{
+  "scope": "code_structure_cleanup_only",
+  "experiments_rerun": false,
+  "canonical_artifact_layout_changed": false,
+  "new_src_structure": {
+    "src/core": "config, utilities, plotting",
+    "src/data": "preprocessing, features, datasets",
+    "src/models": "model definitions",
+    "src/training": "training loop and checkpoints",
+    "src/evaluation": "baseline evaluation, defense evaluation, parameter scans",
+    "src/defenses": "defense algorithms and pipeline",
+    "src/edge": "edge budget allocation",
+    "src/dashboard": "dashboard paths, IO, runner, history",
+    "src/artifacts": "canonical artifact paths and summary IO"
+  },
+  "moved_files": [
+    ["src/config.py", "src/core/config.py"],
+    ["src/utils.py", "src/core/utils.py"],
+    ["src/plotting.py", "src/core/plotting.py"],
+    ["src/preprocess.py", "src/data/preprocess.py"],
+    ["src/features.py", "src/data/features.py"],
+    ["src/dataset.py", "src/data/dataset.py"],
+    ["src/train.py", "src/training/trainer.py"],
+    ["src/evaluate.py", "src/evaluation/evaluator.py"],
+    ["src/defense_eval.py", "src/evaluation/defense_evaluator.py"],
+    ["src/experiment_compare.py", "src/evaluation/comparison.py"],
+    ["src/dashboard_paths.py", "src/dashboard/paths.py"],
+    ["src/dashboard_io.py", "src/dashboard/io.py"],
+    ["src/dashboard_runner.py", "src/dashboard/runner.py"],
+    ["src/ui_history.py", "src/dashboard/history.py"],
+    ["src/defenses/base_defense.py", "src/defenses/base.py"],
+    ["apps/ui_app.py", "apps/legacy/ui_app.py"],
+    ["scripts/build_final_thesis_results.py", "scripts/final_thesis/build_final_thesis_results.py"],
+    ["scripts/audit_experiment_symmetry.py", "scripts/audit/audit_experiment_symmetry.py"],
+    ["scripts/audit_repository_bloat.py", "scripts/audit/audit_repository_bloat.py"]
+  ],
+  "deleted_or_retired": [
+    "experiments/real_public/run_uci_har_missing_parameter_scans.py",
+    "tools/refresh_web_assets.py"
+  ],
+  "compatibility_wrappers_kept": [
+    "src/config.py",
+    "src/utils.py",
+    "src/plotting.py",
+    "src/preprocess.py",
+    "src/features.py",
+    "src/dataset.py",
+    "src/train.py",
+    "src/evaluate.py",
+    "src/defense_eval.py",
+    "src/experiment_compare.py",
+    "src/dashboard_paths.py",
+    "src/dashboard_io.py",
+    "src/dashboard_runner.py",
+    "src/ui_history.py",
+    "src/defenses/base_defense.py",
+    "scripts/build_final_thesis_results.py",
+    "scripts/audit_experiment_symmetry.py",
+    "scripts/audit_repository_bloat.py",
+    "scripts/audit_code_structure.py"
+  ],
+  "verification": {
+    "compileall": true,
+    "build_final_thesis_results": true,
+    "audit_experiment_symmetry": true,
+    "audit_repository_bloat": true,
+    "audit_code_structure": true,
+    "dashboard_import": true,
+    "dashboard_streamlit_start": true,
+    "demo_runner_help": true,
+    "dashboard_artifact_reads": true
+  },
+  "final_thesis_integrity": {
+    "final_missing_outputs": [],
+    "parameter_scan_missing_outputs": [],
+    "mock_main_matrix": "36/36",
+    "real_main_matrix": "108/108",
+    "mock_parameter_scans": "36/36",
+    "real_parameter_scans": "108/108",
+    "cooja_canonical": "18/18"
+  }
+}

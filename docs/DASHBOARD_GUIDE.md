@@ -14,6 +14,16 @@ python -m streamlit run apps/dashboard.py
 - Train / Evaluate Demo: runs one selected training or evaluation job and writes to the corresponding canonical path.
 - Run History: reads `outputs/ui/run_history.jsonl` and shows previous dashboard-triggered jobs.
 
+## Implementation Files
+
+- `apps/dashboard.py`: official Streamlit entry point.
+- `src/dashboard/paths.py`: dashboard selection and canonical path helpers.
+- `src/dashboard/io.py`: artifact loading and plotting helpers.
+- `src/dashboard/runner.py`: subprocess runner, demo config builder, and history writer.
+- `experiments/demo/run_dashboard_job.py`: command-line wrapper used by the dashboard for one selected job.
+
+Legacy UI code is kept under `apps/legacy/` only for reference and is not the recommended entry point.
+
 ## Data Policy
 
 The dashboard does not import or download data. It only uses existing processed data:

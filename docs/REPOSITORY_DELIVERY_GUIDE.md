@@ -12,6 +12,7 @@ Use these paths first when reviewing the project:
 - `src/`
 - `scripts/`
 - `apps/dashboard.py`
+- `docs/CODE_STRUCTURE.md`
 - `outputs/experiments/`
 - `outputs/summaries/final_thesis/`
 - `outputs/figures/summaries/final_thesis/`
@@ -64,6 +65,21 @@ Use the dashboard for quick review and single-combination demo runs:
 `python -m streamlit run apps/dashboard.py`
 
 The dashboard reads from `outputs/experiments/`, `outputs/summaries/final_thesis/`, and `outputs/figures/summaries/final_thesis/`. It does not import datasets, run full matrices, or run Cooja simulations.
+
+## Code Organization
+
+Implementation code is organized by responsibility:
+
+- `src/core/` for config, utilities, and plotting.
+- `src/data/` for preprocessing, features, and datasets.
+- `src/models/` for model definitions.
+- `src/training/` for training logic.
+- `src/evaluation/` for evaluation, defense evaluation, and parameter scans.
+- `src/defenses/` for defense algorithms and pipelines.
+- `src/dashboard/` for dashboard helpers and runner logic.
+- `src/artifacts/` for canonical artifact path helpers.
+
+Root-level `src/*.py` modules are compatibility wrappers only. See `docs/CODE_STRUCTURE.md`.
 
 ## Cooja Limitations
 

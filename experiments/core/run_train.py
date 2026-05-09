@@ -16,8 +16,8 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.config import ExperimentConfig
-from src.train import run_training
+from src.core.config import ExperimentConfig
+from src.training.trainer import run_training
 
 
 def main() -> None:

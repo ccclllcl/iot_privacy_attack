@@ -12,13 +12,13 @@ import numpy as np
 from sklearn.metrics import confusion_matrix
 from torch.utils.data import DataLoader
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.dataset import SequenceDataset, TabularDataset
-from src.evaluate import _plot_confusion, collect_predictions, load_model_from_checkpoint
-from src.utils import get_torch_device
+from src.data.dataset import SequenceDataset, TabularDataset
+from src.evaluation.evaluator import _plot_confusion, collect_predictions, load_model_from_checkpoint
+from src.core.utils import get_torch_device
 
 
 def main() -> None:

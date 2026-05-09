@@ -16,7 +16,7 @@ from typing import Any, Dict, List, Set, Tuple
 
 import numpy as np
 
-from src.defenses.base_defense import BaseDefense
+from src.defenses.base import BaseDefense
 from src.edge.budget_allocator import apply_edge_budget_cap
 
 

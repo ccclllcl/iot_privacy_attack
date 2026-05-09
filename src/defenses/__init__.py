@@ -1,7 +1,7 @@
 """数据防御/扰动子模块。"""
 
 from src.defenses.adaptive_ldp_defense import AdaptiveLDPDefense
-from src.defenses.base_defense import BaseDefense
+from src.defenses.base import BaseDefense
 from src.defenses.defense_pipeline import (
     build_defense,
     compute_distortion_metrics,

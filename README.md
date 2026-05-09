@@ -1,47 +1,41 @@
 # iot_privacy_attack
 
-本项目用于评估智能家居/物联网时序数据上的行为推断攻击，以及噪声、LDP、adaptive LDP 等数据侧隐私防御对攻击准确率和数据失真的影响。当前仓库已经完成最终实验交付整理，正式产物路径均采用 dataset / seed / model / method / mode 结构表达实验选项。
+This project evaluates behavior-inference attacks on IoT time-series data and the effect of privacy defenses such as noise injection, LDP, and adaptive LDP. The repository is organized as a final thesis delivery project: experiment artifacts use canonical paths that expose `dataset / seed / model / method / mode`, and source code is separated by responsibility.
 
-## 当前交付状态
+## Current Delivery Status
 
-- mock 主矩阵：36/36
-- real 主矩阵：108/108
-- mock 参数扫描：36/36
-- real 参数扫描：108/108
-- adaptive_ldp：每个 dataset / seed / model / mode 组合 6 个 profile
-- Cooja canonical 结果：18/18
-- `outputs/summaries/final_thesis/final_missing_outputs.json` 为 `[]`
-- `outputs/summaries/final_thesis/parameter_scan_missing_outputs.json` 为 `[]`
+- mock main matrix: 36/36
+- real main matrix: 108/108
+- mock parameter scans: 36/36
+- real parameter scans: 108/108
+- adaptive LDP: 6 profiles for each dataset / seed / model / mode combination
+- Cooja canonical results: 18/18
+- `outputs/summaries/final_thesis/final_missing_outputs.json`: `[]`
+- `outputs/summaries/final_thesis/parameter_scan_missing_outputs.json`: `[]`
 
-本仓库不建议重复全量重跑已完成实验。日常浏览、答辩展示和单组合训练/评估演示请优先使用 Dashboard。
+Do not rerun the full matrices for normal review. Use the dashboard for browsing artifacts and for single-combination training or evaluation demos.
 
 ## Web Dashboard
 
-正式演示入口：
+Official entry point:
 
 ```bash
 python -m streamlit run apps/dashboard.py
 ```
 
-Dashboard 包含：
+The dashboard includes:
 
-- Overview：查看主矩阵、参数扫描、Cooja 和缺失项状态；
-- Artifact Explorer：按 dataset / seed / model / method / mode 检索 canonical artifact；
-- Figures & Confusion Matrices：查看最终图、实时绘制混淆矩阵、查看参数扫描曲线；
-- Train / Evaluate Demo：只对用户选择的单个组合训练或评估，不导入数据、不跑全量矩阵；
-- Run History：查看 Dashboard 触发的单组合运行历史。
+- Overview: coverage, missing-output counts, summary tables, and Cooja limitations.
+- Artifact Explorer: browse canonical artifacts by dataset, seed, model, method, and mode.
+- Figures & Confusion Matrices: view final figures, draw confusion matrices from JSON, and plot parameter scans.
+- Train / Evaluate Demo: run one selected training or evaluation job without importing data or running a full matrix.
+- Run History: inspect dashboard-triggered jobs recorded in `outputs/ui/run_history.jsonl`.
 
-运行历史写入：
-
-```text
-outputs/ui/run_history.jsonl
-```
-
-旧的 `apps/ui_app.py` 仅作为 legacy 命令式 UI 保留，不再作为推荐入口；早期 simple UI 已移除。
+The old command-style UI is retained only as `apps/legacy/ui_app.py`; it is not the recommended entry point.
 
 ## Canonical Artifact Layout
 
-正式产物入口如下：
+Formal artifact roots:
 
 ```text
 outputs/
@@ -60,31 +54,31 @@ outputs/
     experiments/
 ```
 
-普通防御实验：
+Normal defense experiment:
 
 ```text
 outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/
 ```
 
-baseline：
+Baseline:
 
 ```text
 outputs/experiments/{dataset}/seed_{seed}/{model}/baseline/
 ```
 
-参数扫描：
+Parameter scan:
 
 ```text
 outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/parameter_scan/
 ```
 
-Cooja：
+Cooja:
 
 ```text
 outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/
 ```
 
-最终汇总与图：
+Final summaries and figures:
 
 ```text
 outputs/summaries/final_thesis/
@@ -92,18 +86,27 @@ outputs/figures/summaries/final_thesis/
 outputs/figures/experiments/
 ```
 
-更详细的结构说明见：
+Legacy batch paths were migrated. See `outputs/summaries/layout/migration_report.md` for the migration record.
 
-```text
-docs/ARTIFACT_LAYOUT.md
-docs/PROJECT_STRUCTURE.md
-docs/REPOSITORY_DELIVERY_GUIDE.md
-docs/DASHBOARD_GUIDE.md
-```
+## Code Layout
 
-## 最终结果导航
+The main source package is organized by responsibility:
 
-论文和答辩优先查看：
+- `src/core/`: configuration, shared utilities, and plotting helpers.
+- `src/data/`: preprocessing, feature extraction, and dataset wrappers.
+- `src/models/`: LSTM and MLP model definitions.
+- `src/training/`: training loops, early stopping, and checkpoint writing.
+- `src/evaluation/`: baseline evaluation, defense evaluation, and parameter scans.
+- `src/defenses/`: defense algorithms and the defense pipeline.
+- `src/edge/`: adaptive LDP edge-budget allocation.
+- `src/dashboard/`: dashboard paths, IO, plotting, subprocess runner, and history.
+- `src/artifacts/`: canonical artifact paths and summary IO helpers.
+
+Short compatibility wrappers remain at old `src/*.py` import paths so older scripts do not break immediately. New code should import from the structured packages above. See `docs/CODE_STRUCTURE.md` for details.
+
+## Final Result Navigation
+
+For thesis tables, figures, and delivery review, start with:
 
 - `outputs/summaries/final_thesis/final_summary.csv`
 - `outputs/summaries/final_thesis/final_summary.json`
@@ -114,25 +117,26 @@ docs/DASHBOARD_GUIDE.md
 - `outputs/summaries/final_thesis/cooja/cooja_limitations.md`
 - `outputs/figures/summaries/final_thesis/`
 
-旧批次路径已迁移，迁移记录见：
+Useful documentation:
 
-```text
-outputs/summaries/layout/migration_report.md
-outputs/summaries/layout/migration_map.csv
-```
+- `docs/ARTIFACT_LAYOUT.md`
+- `docs/CODE_STRUCTURE.md`
+- `docs/PROJECT_STRUCTURE.md`
+- `docs/REPOSITORY_DELIVERY_GUIDE.md`
+- `docs/DASHBOARD_GUIDE.md`
 
-## 单组合训练与评估
+## Single-Combination Demo Runs
 
-Dashboard 的 Train / Evaluate Demo 只使用已经存在的：
+The dashboard and demo runner use existing processed data only:
 
 ```text
 data/processed/{dataset}/seed_{seed}/
 data/defended/{dataset}/seed_{seed}/{method}/
 ```
 
-它不会自动下载、导入或生成数据。缺少 processed 或 defended data 时会提示缺失。
+They do not download, import, or generate datasets. If an input is missing, the run reports the missing path instead of filling it automatically.
 
-命令行等价入口：
+Equivalent command-line examples:
 
 ```bash
 python experiments/demo/run_dashboard_job.py --dataset mock --seed 42 --model lstm --job train_baseline --max-epochs 5 --device auto
@@ -140,38 +144,37 @@ python experiments/demo/run_dashboard_job.py --dataset mock --seed 42 --model ls
 python experiments/demo/run_dashboard_job.py --dataset mock --seed 42 --model lstm --job defense_eval_fixed --method ldp --overwrite
 ```
 
-默认不会覆盖已有 canonical 产物。需要覆盖时显式传入 `--overwrite`，Dashboard 页面还会要求二次确认。
+Existing artifacts are protected by default. Use `--overwrite` only for an intentional single-combination demo overwrite.
 
-## Core Scripts
+## Core Maintenance Commands
 
-保留的正式维护脚本：
+These commands are lightweight and do not run experiment matrices:
 
 ```bash
 python scripts/build_final_thesis_results.py
 python scripts/audit_experiment_symmetry.py
 python scripts/audit_repository_bloat.py
+python scripts/audit_code_structure.py
 ```
 
-`build_final_thesis_results.py` 从 `outputs/experiments/` 读取 canonical artifacts，并写入 `outputs/summaries/final_thesis/` 与 `outputs/figures/summaries/final_thesis/`。
+The root-level scripts are compatibility wrappers. The organized implementations live in `scripts/final_thesis/` and `scripts/audit/`.
 
-迁移和补缺阶段脚本已经不再作为最终项目入口。当前参数扫描已完整，若确需演示单组合训练或评估，请使用 Dashboard 或 `experiments/demo/run_dashboard_job.py`。
+## Cooja Notes
 
-## Cooja 说明
+Cooja results support fixed/retrain attack-accuracy reporting and functionality validation. The current delivery does not claim measured real energy consumption, measured real end-to-end delay, or distinguishable dummy/real packet ratios.
 
-Cooja 结果用于展示 fixed/retrain 攻击准确率和功能性验证。当前结果不声称真实能耗、真实端到端时延或可区分 dummy/real 包比例已测量。
-
-复现实验日志路径时，可复制：
+For reproducing Cooja log evaluation, copy:
 
 ```text
 configs/cooja_defense_dummy_logs.template.json
 ```
 
-并设置 `COOJA_LOG_ROOT`。已完成结果中的本地 WSL 日志路径仅用于记录当时的评估来源。
+and set `COOJA_LOG_ROOT` to the local Cooja log directory. Local WSL paths in completed result metadata only document the original evaluation source.
 
-## 环境
+## Environment
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Python 3.10+、pandas、numpy、scikit-learn、matplotlib、PyTorch 和 Streamlit 是主要依赖。GPU 训练可按 PyTorch 官方说明安装对应 CUDA 版本。
+Python 3.10+, pandas, numpy, scikit-learn, matplotlib, PyTorch, and Streamlit are the main dependencies. Install the matching CUDA-enabled PyTorch build only if GPU training is needed.

@@ -20,8 +20,8 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.config import ExperimentConfig
-from src.experiment_compare import run_parameter_compare
+from src.core.config import ExperimentConfig
+from src.evaluation.comparison import run_parameter_compare
 
 
 def main() -> None:

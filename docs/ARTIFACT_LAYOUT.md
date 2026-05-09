@@ -81,3 +81,7 @@ The official browsing and demonstration UI is:
 `python -m streamlit run apps/dashboard.py`
 
 It uses the same canonical paths described above. Demo runs write only the selected combination and record history in `outputs/ui/run_history.jsonl`.
+
+## Related Code Layout
+
+Canonical path helpers live in `src/artifacts/canonical_paths.py`. Dashboard-specific browsing helpers live in `src/dashboard/paths.py` and reuse the canonical path constants. Final summary builders and audit scripts should read canonical artifacts instead of legacy batch-name directories.

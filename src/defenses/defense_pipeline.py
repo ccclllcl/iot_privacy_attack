@@ -15,13 +15,13 @@ from typing import Any, Dict, List, Tuple
 
 import numpy as np
 
-from src.config import ExperimentConfig
+from src.core.config import ExperimentConfig
 from src.defenses.adaptive_ldp_defense import AdaptiveLDPDefense
-from src.defenses.base_defense import BaseDefense
+from src.defenses.base import BaseDefense
 from src.defenses.ldp_defense import LDPDefense
 from src.defenses.noise_defense import NoiseDefense
-from src.features import extract_stat_features_matrix
-from src.utils import ensure_dir, save_json
+from src.data.features import extract_stat_features_matrix
+from src.core.utils import ensure_dir, save_json
 
 logger = logging.getLogger(__name__)
 

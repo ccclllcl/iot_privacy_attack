@@ -1,0 +1,1688 @@
+{
+  "generated_at": "2026-05-09T17:46:01",
+  "files": [
+    {
+      "path": "apps/dashboard.py",
+      "size_bytes": 16963,
+      "category": "dashboard",
+      "imports": [
+        "__future__",
+        "json",
+        "pandas",
+        "pathlib",
+        "src.dashboard.io",
+        "src.dashboard.paths",
+        "src.dashboard.runner",
+        "streamlit",
+        "sys",
+        "time"
+      ],
+      "proposed_new_path": "apps/dashboard.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Formal Streamlit dashboard."
+    },
+    {
+      "path": "apps/legacy/__init__.py",
+      "size_bytes": 0,
+      "category": "legacy_ui",
+      "imports": [],
+      "proposed_new_path": "apps/legacy/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Retained legacy UI."
+    },
+    {
+      "path": "apps/legacy/ui_app.py",
+      "size_bytes": 593,
+      "category": "legacy_ui",
+      "imports": [
+        "__future__",
+        "streamlit"
+      ],
+      "proposed_new_path": "apps/legacy/ui_app.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Retained legacy UI."
+    },
+    {
+      "path": "docs/ARTIFACT_LAYOUT.md",
+      "size_bytes": 2254,
+      "category": "maintenance",
+      "imports": [],
+      "proposed_new_path": "docs/ARTIFACT_LAYOUT.md",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Documentation."
+    },
+    {
+      "path": "docs/CODE_STRUCTURE.md",
+      "size_bytes": 3052,
+      "category": "maintenance",
+      "imports": [],
+      "proposed_new_path": "docs/CODE_STRUCTURE.md",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Documentation."
+    },
+    {
+      "path": "docs/DASHBOARD_GUIDE.md",
+      "size_bytes": 2366,
+      "category": "maintenance",
+      "imports": [],
+      "proposed_new_path": "docs/DASHBOARD_GUIDE.md",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Documentation."
+    },
+    {
+      "path": "docs/PROJECT_STRUCTURE.md",
+      "size_bytes": 3781,
+      "category": "maintenance",
+      "imports": [],
+      "proposed_new_path": "docs/PROJECT_STRUCTURE.md",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Documentation."
+    },
+    {
+      "path": "docs/REPOSITORY_DELIVERY_GUIDE.md",
+      "size_bytes": 3419,
+      "category": "maintenance",
+      "imports": [],
+      "proposed_new_path": "docs/REPOSITORY_DELIVERY_GUIDE.md",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Documentation."
+    },
+    {
+      "path": "docs/RESULTS_STRUCTURE.md",
+      "size_bytes": 1083,
+      "category": "maintenance",
+      "imports": [],
+      "proposed_new_path": "docs/RESULTS_STRUCTURE.md",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Documentation."
+    },
+    {
+      "path": "experiments/README.md",
+      "size_bytes": 1621,
+      "category": "unknown",
+      "imports": [],
+      "proposed_new_path": "experiments/README.md",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "No specific classification rule."
+    },
+    {
+      "path": "experiments/__init__.py",
+      "size_bytes": 0,
+      "category": "unknown",
+      "imports": [],
+      "proposed_new_path": "experiments/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "No specific classification rule."
+    },
+    {
+      "path": "experiments/batches/__init__.py",
+      "size_bytes": 0,
+      "category": "batch_runner",
+      "imports": [],
+      "proposed_new_path": "experiments/batches/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Batch runner."
+    },
+    {
+      "path": "experiments/batches/run_all_data_multiseed.py",
+      "size_bytes": 6397,
+      "category": "batch_runner",
+      "imports": [
+        "__future__",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "typing",
+        "yaml"
+      ],
+      "proposed_new_path": "experiments/batches/run_all_data_multiseed.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Batch runner."
+    },
+    {
+      "path": "experiments/batches/run_all_methods_multiseed.py",
+      "size_bytes": 9201,
+      "category": "batch_runner",
+      "imports": [
+        "__future__",
+        "copy",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "typing",
+        "yaml"
+      ],
+      "proposed_new_path": "experiments/batches/run_all_methods_multiseed.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Batch runner."
+    },
+    {
+      "path": "experiments/cooja/__init__.py",
+      "size_bytes": 0,
+      "category": "cooja_eval",
+      "imports": [],
+      "proposed_new_path": "experiments/cooja/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Cooja evaluation."
+    },
+    {
+      "path": "experiments/cooja/run_cooja_baseline_attack.py",
+      "size_bytes": 11491,
+      "category": "cooja_eval",
+      "imports": [
+        "__future__",
+        "argparse",
+        "collections",
+        "json",
+        "math",
+        "matplotlib.pyplot",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "re",
+        "sklearn.ensemble",
+        "sklearn.metrics",
+        "sklearn.model_selection",
+        "typing"
+      ],
+      "proposed_new_path": "experiments/cooja/run_cooja_baseline_attack.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Cooja evaluation."
+    },
+    {
+      "path": "experiments/cooja/run_cooja_compare.py",
+      "size_bytes": 6320,
+      "category": "cooja_eval",
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "matplotlib.pyplot",
+        "numpy",
+        "pathlib",
+        "run_cooja_baseline_attack",
+        "statistics",
+        "typing"
+      ],
+      "proposed_new_path": "experiments/cooja/run_cooja_compare.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Cooja evaluation."
+    },
+    {
+      "path": "experiments/cooja/run_cooja_compare_wsl.ps1",
+      "size_bytes": 1589,
+      "category": "cooja_eval",
+      "imports": [],
+      "proposed_new_path": "experiments/cooja/run_cooja_compare_wsl.ps1",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Cooja evaluation."
+    },
+    {
+      "path": "experiments/cooja/run_cooja_defense_eval.py",
+      "size_bytes": 20222,
+      "category": "cooja_eval",
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "pandas",
+        "pathlib",
+        "run_cooja_baseline_attack",
+        "sklearn.ensemble",
+        "sklearn.metrics",
+        "sklearn.model_selection",
+        "statistics",
+        "typing"
+      ],
+      "proposed_new_path": "experiments/cooja/run_cooja_defense_eval.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Cooja evaluation."
+    },
+    {
+      "path": "experiments/core/__init__.py",
+      "size_bytes": 0,
+      "category": "experiment_cli",
+      "imports": [],
+      "proposed_new_path": "experiments/core/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Single-step experiment CLI."
+    },
+    {
+      "path": "experiments/core/collect_confusion.py",
+      "size_bytes": 3612,
+      "category": "experiment_cli",
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "numpy",
+        "pathlib",
+        "src.core.utils",
+        "src.evaluation.evaluator",
+        "sys",
+        "typing"
+      ],
+      "proposed_new_path": "experiments/core/collect_confusion.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Single-step experiment CLI."
+    },
+    {
+      "path": "experiments/core/generate_mock_data.py",
+      "size_bytes": 5145,
+      "category": "experiment_cli",
+      "imports": [
+        "__future__",
+        "argparse",
+        "datetime",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "typing",
+        "yaml"
+      ],
+      "proposed_new_path": "experiments/core/generate_mock_data.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Single-step experiment CLI."
+    },
+    {
+      "path": "experiments/core/run_compare.py",
+      "size_bytes": 1885,
+      "category": "experiment_cli",
+      "imports": [
+        "__future__",
+        "argparse",
+        "logging",
+        "pathlib",
+        "src.core.config",
+        "src.evaluation.comparison",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/core/run_compare.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Single-step experiment CLI."
+    },
+    {
+      "path": "experiments/core/run_defense.py",
+      "size_bytes": 1156,
+      "category": "experiment_cli",
+      "imports": [
+        "__future__",
+        "argparse",
+        "logging",
+        "pathlib",
+        "src.core.config",
+        "src.defenses.defense_pipeline",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/core/run_defense.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Single-step experiment CLI."
+    },
+    {
+      "path": "experiments/core/run_defense_eval.py",
+      "size_bytes": 2373,
+      "category": "experiment_cli",
+      "imports": [
+        "__future__",
+        "argparse",
+        "logging",
+        "pathlib",
+        "src.core.config",
+        "src.evaluation.defense_evaluator",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/core/run_defense_eval.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Single-step experiment CLI."
+    },
+    {
+      "path": "experiments/core/run_evaluate.py",
+      "size_bytes": 1393,
+      "category": "experiment_cli",
+      "imports": [
+        "__future__",
+        "argparse",
+        "logging",
+        "pathlib",
+        "src.core.config",
+        "src.evaluation.evaluator",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/core/run_evaluate.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Single-step experiment CLI."
+    },
+    {
+      "path": "experiments/core/run_preprocess.py",
+      "size_bytes": 1206,
+      "category": "experiment_cli",
+      "imports": [
+        "__future__",
+        "argparse",
+        "logging",
+        "pathlib",
+        "src.core.config",
+        "src.data.preprocess",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/core/run_preprocess.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Single-step experiment CLI."
+    },
+    {
+      "path": "experiments/core/run_train.py",
+      "size_bytes": 1596,
+      "category": "experiment_cli",
+      "imports": [
+        "__future__",
+        "argparse",
+        "logging",
+        "pathlib",
+        "src.core.config",
+        "src.training.trainer",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/core/run_train.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Single-step experiment CLI."
+    },
+    {
+      "path": "experiments/demo/run_dashboard_job.py",
+      "size_bytes": 800,
+      "category": "experiment_cli",
+      "imports": [
+        "__future__",
+        "json",
+        "pathlib",
+        "src.dashboard.runner",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/demo/run_dashboard_job.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Dashboard demo CLI."
+    },
+    {
+      "path": "experiments/real_public/__init__.py",
+      "size_bytes": 0,
+      "category": "real_dataset_import",
+      "imports": [],
+      "proposed_new_path": "experiments/real_public/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/benchmarks/__init__.py",
+      "size_bytes": 0,
+      "category": "real_dataset_import",
+      "imports": [],
+      "proposed_new_path": "experiments/real_public/benchmarks/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/benchmarks/run_full_matrix_real_datasets.py",
+      "size_bytes": 9096,
+      "category": "real_dataset_import",
+      "imports": [
+        "__future__",
+        "copy",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "typing",
+        "yaml"
+      ],
+      "proposed_new_path": "experiments/real_public/benchmarks/run_full_matrix_real_datasets.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/benchmarks/run_real_public_benchmark.py",
+      "size_bytes": 13682,
+      "category": "real_dataset_import",
+      "imports": [
+        "__future__",
+        "argparse",
+        "copy",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "typing",
+        "yaml"
+      ],
+      "proposed_new_path": "experiments/real_public/benchmarks/run_real_public_benchmark.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/benchmarks/summarize_real_public_benchmark.py",
+      "size_bytes": 5681,
+      "category": "real_dataset_import",
+      "imports": [
+        "__future__",
+        "collections",
+        "csv",
+        "json",
+        "pathlib",
+        "statistics",
+        "typing"
+      ],
+      "proposed_new_path": "experiments/real_public/benchmarks/summarize_real_public_benchmark.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/imports/__init__.py",
+      "size_bytes": 0,
+      "category": "real_dataset_import",
+      "imports": [],
+      "proposed_new_path": "experiments/real_public/imports/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/imports/run_import_casas.py",
+      "size_bytes": 9605,
+      "category": "real_dataset_import",
+      "imports": [
+        "__future__",
+        "argparse",
+        "csv",
+        "logging",
+        "numpy",
+        "pathlib",
+        "src.core.config",
+        "src.core.utils",
+        "src.data.features",
+        "sys",
+        "typing",
+        "urllib.request",
+        "zipfile"
+      ],
+      "proposed_new_path": "experiments/real_public/imports/run_import_casas.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/imports/run_import_kasteren.py",
+      "size_bytes": 7113,
+      "category": "real_dataset_import",
+      "imports": [
+        "__future__",
+        "argparse",
+        "logging",
+        "numpy",
+        "pathlib",
+        "src.core.config",
+        "src.core.utils",
+        "src.data.features",
+        "sys",
+        "typing",
+        "urllib.request"
+      ],
+      "proposed_new_path": "experiments/real_public/imports/run_import_kasteren.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/imports/run_import_uci_har.py",
+      "size_bytes": 10571,
+      "category": "real_dataset_import",
+      "imports": [
+        "__future__",
+        "argparse",
+        "datetime",
+        "logging",
+        "numpy",
+        "pathlib",
+        "sklearn.model_selection",
+        "src.core.config",
+        "src.core.utils",
+        "src.data.features",
+        "sys",
+        "typing",
+        "urllib.request",
+        "zipfile"
+      ],
+      "proposed_new_path": "experiments/real_public/imports/run_import_uci_har.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/run_full_matrix_real_datasets.py",
+      "size_bytes": 389,
+      "category": "real_dataset_import",
+      "imports": [
+        "experiments.real_public.benchmarks.run_full_matrix_real_datasets",
+        "pathlib",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/real_public/run_full_matrix_real_datasets.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/run_import_casas.py",
+      "size_bytes": 357,
+      "category": "real_dataset_import",
+      "imports": [
+        "experiments.real_public.imports.run_import_casas",
+        "pathlib",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/real_public/run_import_casas.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset import."
+    },
+    {
+      "path": "experiments/real_public/run_import_kasteren.py",
+      "size_bytes": 363,
+      "category": "real_dataset_import",
+      "imports": [
+        "experiments.real_public.imports.run_import_kasteren",
+        "pathlib",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/real_public/run_import_kasteren.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset import."
+    },
+    {
+      "path": "experiments/real_public/run_import_uci_har.py",
+      "size_bytes": 361,
+      "category": "real_dataset_import",
+      "imports": [
+        "experiments.real_public.imports.run_import_uci_har",
+        "pathlib",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/real_public/run_import_uci_har.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset import."
+    },
+    {
+      "path": "experiments/real_public/run_real_public_benchmark.py",
+      "size_bytes": 381,
+      "category": "real_dataset_import",
+      "imports": [
+        "experiments.real_public.benchmarks.run_real_public_benchmark",
+        "pathlib",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/real_public/run_real_public_benchmark.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/scans/__init__.py",
+      "size_bytes": 0,
+      "category": "real_dataset_import",
+      "imports": [],
+      "proposed_new_path": "experiments/real_public/scans/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "experiments/real_public/summarize_real_public_benchmark.py",
+      "size_bytes": 393,
+      "category": "real_dataset_import",
+      "imports": [
+        "experiments.real_public.benchmarks.summarize_real_public_benchmark",
+        "pathlib",
+        "sys"
+      ],
+      "proposed_new_path": "experiments/real_public/summarize_real_public_benchmark.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Real dataset workflow."
+    },
+    {
+      "path": "scripts/README.md",
+      "size_bytes": 561,
+      "category": "maintenance",
+      "imports": [],
+      "proposed_new_path": "scripts/README.md",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Compatibility wrapper or maintenance helper."
+    },
+    {
+      "path": "scripts/__init__.py",
+      "size_bytes": 62,
+      "category": "maintenance",
+      "imports": [],
+      "proposed_new_path": "scripts/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Compatibility wrapper or maintenance helper."
+    },
+    {
+      "path": "scripts/audit/__init__.py",
+      "size_bytes": 0,
+      "category": "audit",
+      "imports": [],
+      "proposed_new_path": "scripts/audit/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Audit script."
+    },
+    {
+      "path": "scripts/audit/audit_code_structure.py",
+      "size_bytes": 9645,
+      "category": "audit",
+      "imports": [
+        "__future__",
+        "ast",
+        "datetime",
+        "json",
+        "pathlib",
+        "typing"
+      ],
+      "proposed_new_path": "scripts/audit/audit_code_structure.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Audit script."
+    },
+    {
+      "path": "scripts/audit/audit_experiment_symmetry.py",
+      "size_bytes": 15053,
+      "category": "audit",
+      "imports": [
+        "__future__",
+        "collections",
+        "csv",
+        "datetime",
+        "json",
+        "pathlib",
+        "typing"
+      ],
+      "proposed_new_path": "scripts/audit/audit_experiment_symmetry.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Audit script."
+    },
+    {
+      "path": "scripts/audit/audit_repository_bloat.py",
+      "size_bytes": 9741,
+      "category": "audit",
+      "imports": [
+        "__future__",
+        "csv",
+        "datetime",
+        "json",
+        "pathlib",
+        "subprocess",
+        "typing"
+      ],
+      "proposed_new_path": "scripts/audit/audit_repository_bloat.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Audit script."
+    },
+    {
+      "path": "scripts/audit_code_structure.py",
+      "size_bytes": 333,
+      "category": "audit",
+      "imports": [],
+      "proposed_new_path": "scripts/audit_code_structure.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Audit script."
+    },
+    {
+      "path": "scripts/audit_experiment_symmetry.py",
+      "size_bytes": 339,
+      "category": "audit",
+      "imports": [
+        "pathlib",
+        "scripts.audit.audit_experiment_symmetry",
+        "sys"
+      ],
+      "proposed_new_path": "scripts/audit_experiment_symmetry.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Audit script."
+    },
+    {
+      "path": "scripts/audit_repository_bloat.py",
+      "size_bytes": 333,
+      "category": "audit",
+      "imports": [
+        "pathlib",
+        "scripts.audit.audit_repository_bloat",
+        "sys"
+      ],
+      "proposed_new_path": "scripts/audit_repository_bloat.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Audit script."
+    },
+    {
+      "path": "scripts/build_final_thesis_results.py",
+      "size_bytes": 355,
+      "category": "maintenance",
+      "imports": [
+        "pathlib",
+        "scripts.final_thesis.build_final_thesis_results",
+        "sys"
+      ],
+      "proposed_new_path": "scripts/build_final_thesis_results.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Compatibility wrapper or maintenance helper."
+    },
+    {
+      "path": "scripts/final_thesis/__init__.py",
+      "size_bytes": 0,
+      "category": "final_summary_build",
+      "imports": [],
+      "proposed_new_path": "scripts/final_thesis/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Final summary builder."
+    },
+    {
+      "path": "scripts/final_thesis/build_final_thesis_results.py",
+      "size_bytes": 105007,
+      "category": "final_summary_build",
+      "imports": [
+        "__future__",
+        "collections",
+        "csv",
+        "dataclasses",
+        "datetime",
+        "experiments.cooja.run_cooja_baseline_attack",
+        "json",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "pandas",
+        "pathlib",
+        "platform",
+        "shutil",
+        "subprocess",
+        "sys",
+        "typing"
+      ],
+      "proposed_new_path": "scripts/final_thesis/build_final_thesis_results.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Final summary builder."
+    },
+    {
+      "path": "src/__init__.py",
+      "size_bytes": 127,
+      "category": "unknown",
+      "imports": [],
+      "proposed_new_path": "src/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "No specific classification rule."
+    },
+    {
+      "path": "src/artifacts/__init__.py",
+      "size_bytes": 0,
+      "category": "artifact_paths",
+      "imports": [],
+      "proposed_new_path": "src/artifacts/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Canonical artifact helper."
+    },
+    {
+      "path": "src/artifacts/canonical_paths.py",
+      "size_bytes": 1813,
+      "category": "artifact_paths",
+      "imports": [
+        "__future__",
+        "pathlib"
+      ],
+      "proposed_new_path": "src/artifacts/canonical_paths.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Canonical artifact helper."
+    },
+    {
+      "path": "src/artifacts/summary_io.py",
+      "size_bytes": 571,
+      "category": "artifact_paths",
+      "imports": [
+        "__future__",
+        "json",
+        "pathlib",
+        "typing"
+      ],
+      "proposed_new_path": "src/artifacts/summary_io.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Canonical artifact helper."
+    },
+    {
+      "path": "src/config.py",
+      "size_bytes": 117,
+      "category": "config_core",
+      "imports": [
+        "src.core.config"
+      ],
+      "proposed_new_path": "src/core/config.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/core/__init__.py",
+      "size_bytes": 0,
+      "category": "config_core",
+      "imports": [],
+      "proposed_new_path": "src/core/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Core configuration or utility package."
+    },
+    {
+      "path": "src/core/config.py",
+      "size_bytes": 3284,
+      "category": "config_core",
+      "imports": [
+        "__future__",
+        "pathlib",
+        "typing",
+        "yaml"
+      ],
+      "proposed_new_path": "src/core/config.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Core configuration or utility package."
+    },
+    {
+      "path": "src/core/plotting.py",
+      "size_bytes": 522,
+      "category": "config_core",
+      "imports": [
+        "__future__",
+        "matplotlib"
+      ],
+      "proposed_new_path": "src/core/plotting.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Core configuration or utility package."
+    },
+    {
+      "path": "src/core/utils.py",
+      "size_bytes": 2511,
+      "category": "config_core",
+      "imports": [
+        "__future__",
+        "json",
+        "numpy",
+        "pathlib",
+        "random",
+        "torch",
+        "typing"
+      ],
+      "proposed_new_path": "src/core/utils.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Core configuration or utility package."
+    },
+    {
+      "path": "src/dashboard/__init__.py",
+      "size_bytes": 0,
+      "category": "unknown",
+      "imports": [],
+      "proposed_new_path": "src/dashboard/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "No specific classification rule."
+    },
+    {
+      "path": "src/dashboard/history.py",
+      "size_bytes": 6494,
+      "category": "unknown",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "datetime",
+        "json",
+        "os",
+        "pathlib",
+        "subprocess",
+        "time",
+        "typing"
+      ],
+      "proposed_new_path": "src/dashboard/history.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "No specific classification rule."
+    },
+    {
+      "path": "src/dashboard/io.py",
+      "size_bytes": 5908,
+      "category": "artifact_io",
+      "imports": [
+        "__future__",
+        "json",
+        "matplotlib.pyplot",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "typing"
+      ],
+      "proposed_new_path": "src/dashboard/io.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Dashboard artifact IO."
+    },
+    {
+      "path": "src/dashboard/paths.py",
+      "size_bytes": 2478,
+      "category": "artifact_paths",
+      "imports": [
+        "__future__",
+        "pathlib",
+        "src.artifacts.canonical_paths"
+      ],
+      "proposed_new_path": "src/dashboard/paths.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Dashboard path helper."
+    },
+    {
+      "path": "src/dashboard/runner.py",
+      "size_bytes": 21213,
+      "category": "dashboard_runner",
+      "imports": [
+        "__future__",
+        "argparse",
+        "copy",
+        "datetime",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "re",
+        "src.core.config",
+        "src.core.utils",
+        "src.dashboard.paths",
+        "src.evaluation.defense_evaluator",
+        "src.evaluation.evaluator",
+        "src.training.trainer",
+        "subprocess",
+        "sys",
+        "time",
+        "typing",
+        "yaml"
+      ],
+      "proposed_new_path": "src/dashboard/runner.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Dashboard single-combination runner."
+    },
+    {
+      "path": "src/dashboard_io.py",
+      "size_bytes": 119,
+      "category": "artifact_io",
+      "imports": [
+        "src.dashboard.io"
+      ],
+      "proposed_new_path": "src/dashboard/io.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/dashboard_paths.py",
+      "size_bytes": 125,
+      "category": "artifact_paths",
+      "imports": [
+        "src.dashboard.paths"
+      ],
+      "proposed_new_path": "src/dashboard/paths.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/dashboard_runner.py",
+      "size_bytes": 127,
+      "category": "dashboard_runner",
+      "imports": [
+        "src.dashboard.runner"
+      ],
+      "proposed_new_path": "src/dashboard/runner.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/data/__init__.py",
+      "size_bytes": 0,
+      "category": "unknown",
+      "imports": [],
+      "proposed_new_path": "src/data/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "No specific classification rule."
+    },
+    {
+      "path": "src/data/dataset.py",
+      "size_bytes": 1474,
+      "category": "dataset_wrappers",
+      "imports": [
+        "__future__",
+        "numpy",
+        "torch",
+        "torch.utils.data",
+        "typing"
+      ],
+      "proposed_new_path": "src/data/dataset.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Dataset wrappers."
+    },
+    {
+      "path": "src/data/features.py",
+      "size_bytes": 4488,
+      "category": "feature_engineering",
+      "imports": [
+        "__future__",
+        "numpy",
+        "typing"
+      ],
+      "proposed_new_path": "src/data/features.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Feature engineering."
+    },
+    {
+      "path": "src/data/preprocess.py",
+      "size_bytes": 17301,
+      "category": "data_processing",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "datetime",
+        "logging",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "sklearn.model_selection",
+        "sklearn.preprocessing",
+        "src.core.config",
+        "src.core.utils",
+        "src.data.features",
+        "typing"
+      ],
+      "proposed_new_path": "src/data/preprocess.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Data preprocessing."
+    },
+    {
+      "path": "src/dataset.py",
+      "size_bytes": 119,
+      "category": "dataset_wrappers",
+      "imports": [
+        "src.data.dataset"
+      ],
+      "proposed_new_path": "src/data/dataset.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/defense_eval.py",
+      "size_bytes": 151,
+      "category": "defense_evaluation",
+      "imports": [
+        "src.evaluation.defense_evaluator"
+      ],
+      "proposed_new_path": "src/evaluation/defense_evaluator.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/defenses/__init__.py",
+      "size_bytes": 571,
+      "category": "defense_algorithms",
+      "imports": [
+        "src.defenses.adaptive_ldp_defense",
+        "src.defenses.base",
+        "src.defenses.defense_pipeline",
+        "src.defenses.ldp_defense",
+        "src.defenses.noise_defense"
+      ],
+      "proposed_new_path": "src/defenses/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Defense algorithm package."
+    },
+    {
+      "path": "src/defenses/adaptive_ldp_defense.py",
+      "size_bytes": 6755,
+      "category": "defense_algorithms",
+      "imports": [
+        "__future__",
+        "numpy",
+        "src.defenses.base",
+        "src.edge.budget_allocator",
+        "typing"
+      ],
+      "proposed_new_path": "src/defenses/adaptive_ldp_defense.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Defense algorithm package."
+    },
+    {
+      "path": "src/defenses/base.py",
+      "size_bytes": 3407,
+      "category": "defense_algorithms",
+      "imports": [
+        "__future__",
+        "abc",
+        "json",
+        "numpy",
+        "pathlib",
+        "typing"
+      ],
+      "proposed_new_path": "src/defenses/base.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Defense algorithm package."
+    },
+    {
+      "path": "src/defenses/base_defense.py",
+      "size_bytes": 121,
+      "category": "defense_algorithms",
+      "imports": [
+        "src.defenses.base"
+      ],
+      "proposed_new_path": "src/defenses/base_defense.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Defense algorithm package."
+    },
+    {
+      "path": "src/defenses/defense_pipeline.py",
+      "size_bytes": 6839,
+      "category": "defense_pipeline",
+      "imports": [
+        "__future__",
+        "datetime",
+        "json",
+        "logging",
+        "numpy",
+        "pathlib",
+        "src.core.config",
+        "src.core.utils",
+        "src.data.features",
+        "src.defenses.adaptive_ldp_defense",
+        "src.defenses.base",
+        "src.defenses.ldp_defense",
+        "src.defenses.noise_defense",
+        "time",
+        "typing"
+      ],
+      "proposed_new_path": "src/defenses/defense_pipeline.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Defense pipeline package."
+    },
+    {
+      "path": "src/defenses/ldp_defense.py",
+      "size_bytes": 4817,
+      "category": "defense_algorithms",
+      "imports": [
+        "__future__",
+        "numpy",
+        "src.defenses.base",
+        "typing"
+      ],
+      "proposed_new_path": "src/defenses/ldp_defense.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Defense algorithm package."
+    },
+    {
+      "path": "src/defenses/noise_defense.py",
+      "size_bytes": 2243,
+      "category": "defense_algorithms",
+      "imports": [
+        "__future__",
+        "numpy",
+        "src.defenses.base",
+        "typing"
+      ],
+      "proposed_new_path": "src/defenses/noise_defense.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Defense algorithm package."
+    },
+    {
+      "path": "src/edge/__init__.py",
+      "size_bytes": 407,
+      "category": "defense_algorithms",
+      "imports": [
+        "src.edge.budget_allocator"
+      ],
+      "proposed_new_path": "src/edge/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Edge budget helper."
+    },
+    {
+      "path": "src/edge/budget_allocator.py",
+      "size_bytes": 1206,
+      "category": "defense_algorithms",
+      "imports": [
+        "__future__",
+        "numpy"
+      ],
+      "proposed_new_path": "src/edge/budget_allocator.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Edge budget helper."
+    },
+    {
+      "path": "src/evaluate.py",
+      "size_bytes": 135,
+      "category": "baseline_evaluation",
+      "imports": [
+        "src.evaluation.evaluator"
+      ],
+      "proposed_new_path": "src/evaluation/evaluator.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/evaluation/__init__.py",
+      "size_bytes": 0,
+      "category": "baseline_evaluation",
+      "imports": [],
+      "proposed_new_path": "src/evaluation/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Baseline evaluation."
+    },
+    {
+      "path": "src/evaluation/comparison.py",
+      "size_bytes": 13563,
+      "category": "parameter_scan",
+      "imports": [
+        "__future__",
+        "copy",
+        "csv",
+        "logging",
+        "matplotlib.pyplot",
+        "pathlib",
+        "src.core.config",
+        "src.core.plotting",
+        "src.core.utils",
+        "src.defenses.defense_pipeline",
+        "src.evaluation.defense_evaluator",
+        "typing"
+      ],
+      "proposed_new_path": "src/evaluation/comparison.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Parameter scan logic."
+    },
+    {
+      "path": "src/evaluation/defense_evaluator.py",
+      "size_bytes": 10817,
+      "category": "defense_evaluation",
+      "imports": [
+        "__future__",
+        "json",
+        "logging",
+        "matplotlib.pyplot",
+        "numpy",
+        "pathlib",
+        "src.core.config",
+        "src.core.plotting",
+        "src.core.utils",
+        "src.defenses.defense_pipeline",
+        "src.evaluation.evaluator",
+        "src.training.trainer",
+        "torch",
+        "typing"
+      ],
+      "proposed_new_path": "src/evaluation/defense_evaluator.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Defense-side attack evaluation."
+    },
+    {
+      "path": "src/evaluation/evaluator.py",
+      "size_bytes": 11055,
+      "category": "baseline_evaluation",
+      "imports": [
+        "__future__",
+        "json",
+        "logging",
+        "matplotlib.pyplot",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "src.core.config",
+        "src.core.plotting",
+        "src.core.utils",
+        "src.data.dataset",
+        "src.models.lstm_classifier",
+        "src.models.mlp_baseline",
+        "torch",
+        "torch.nn",
+        "torch.utils.data",
+        "typing"
+      ],
+      "proposed_new_path": "src/evaluation/evaluator.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Baseline evaluation."
+    },
+    {
+      "path": "src/experiment_compare.py",
+      "size_bytes": 137,
+      "category": "parameter_scan",
+      "imports": [
+        "src.evaluation.comparison"
+      ],
+      "proposed_new_path": "src/evaluation/comparison.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/features.py",
+      "size_bytes": 121,
+      "category": "feature_engineering",
+      "imports": [
+        "src.data.features"
+      ],
+      "proposed_new_path": "src/data/features.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/models/__init__.py",
+      "size_bytes": 181,
+      "category": "model_definitions",
+      "imports": [
+        ".lstm_classifier",
+        ".mlp_baseline"
+      ],
+      "proposed_new_path": "src/models/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Model definition package."
+    },
+    {
+      "path": "src/models/lstm_classifier.py",
+      "size_bytes": 1006,
+      "category": "model_definitions",
+      "imports": [
+        "__future__",
+        "torch",
+        "torch.nn"
+      ],
+      "proposed_new_path": "src/models/lstm_classifier.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Model definition package."
+    },
+    {
+      "path": "src/models/mlp_baseline.py",
+      "size_bytes": 882,
+      "category": "model_definitions",
+      "imports": [
+        "__future__",
+        "torch",
+        "torch.nn",
+        "typing"
+      ],
+      "proposed_new_path": "src/models/mlp_baseline.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Model definition package."
+    },
+    {
+      "path": "src/plotting.py",
+      "size_bytes": 121,
+      "category": "config_core",
+      "imports": [
+        "src.core.plotting"
+      ],
+      "proposed_new_path": "src/core/plotting.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/preprocess.py",
+      "size_bytes": 125,
+      "category": "data_processing",
+      "imports": [
+        "src.data.preprocess"
+      ],
+      "proposed_new_path": "src/data/preprocess.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/train.py",
+      "size_bytes": 127,
+      "category": "training",
+      "imports": [
+        "src.training.trainer"
+      ],
+      "proposed_new_path": "src/training/trainer.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "src/training/__init__.py",
+      "size_bytes": 0,
+      "category": "training",
+      "imports": [],
+      "proposed_new_path": "src/training/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Training logic."
+    },
+    {
+      "path": "src/training/trainer.py",
+      "size_bytes": 9964,
+      "category": "training",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "json",
+        "logging",
+        "matplotlib.pyplot",
+        "numpy",
+        "pathlib",
+        "src.core.config",
+        "src.core.plotting",
+        "src.core.utils",
+        "src.data.dataset",
+        "src.models.lstm_classifier",
+        "src.models.mlp_baseline",
+        "torch",
+        "torch.nn",
+        "torch.utils.data",
+        "tqdm",
+        "typing"
+      ],
+      "proposed_new_path": "src/training/trainer.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Training logic."
+    },
+    {
+      "path": "src/ui_history.py",
+      "size_bytes": 129,
+      "category": "unknown",
+      "imports": [
+        "src.dashboard.history"
+      ],
+      "proposed_new_path": "src/ui_history.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "No specific classification rule."
+    },
+    {
+      "path": "src/utils.py",
+      "size_bytes": 115,
+      "category": "config_core",
+      "imports": [
+        "src.core.utils"
+      ],
+      "proposed_new_path": "src/core/utils.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": true,
+      "reason": "Compatibility wrapper for old import path."
+    },
+    {
+      "path": "tools/cooja/__init__.py",
+      "size_bytes": 0,
+      "category": "maintenance",
+      "imports": [],
+      "proposed_new_path": "tools/cooja/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Cooja maintenance helper."
+    },
+    {
+      "path": "tools/cooja/rewrite_cooja_client_type.py",
+      "size_bytes": 2818,
+      "category": "maintenance",
+      "imports": [
+        "__future__",
+        "argparse",
+        "pathlib",
+        "xml.etree.ElementTree"
+      ],
+      "proposed_new_path": "tools/cooja/rewrite_cooja_client_type.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Cooja maintenance helper."
+    },
+    {
+      "path": "tools/maintenance/__init__.py",
+      "size_bytes": 0,
+      "category": "maintenance",
+      "imports": [],
+      "proposed_new_path": "tools/maintenance/__init__.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Maintenance helper."
+    },
+    {
+      "path": "tools/maintenance/refresh_confusion_matrices.py",
+      "size_bytes": 3132,
+      "category": "maintenance",
+      "imports": [
+        "__future__",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "src.core.utils",
+        "src.data.dataset",
+        "src.evaluation.evaluator",
+        "sys",
+        "torch.utils.data"
+      ],
+      "proposed_new_path": "tools/maintenance/refresh_confusion_matrices.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Maintenance helper."
+    },
+    {
+      "path": "tools/revise_thesis_docx.py",
+      "size_bytes": 27230,
+      "category": "maintenance",
+      "imports": [
+        "__future__",
+        "docx",
+        "pandas",
+        "pathlib",
+        "re",
+        "shutil",
+        "sys"
+      ],
+      "proposed_new_path": "tools/revise_thesis_docx.py",
+      "delete_recommended": false,
+      "compatibility_wrapper_needed": false,
+      "reason": "Maintenance helper."
+    }
+  ],
+  "src_root_mixed_responsibilities": [
+    "config.py: compatibility wrapper for configuration core",
+    "preprocess.py: compatibility wrapper for data processing",
+    "features.py: compatibility wrapper for feature engineering",
+    "dataset.py: compatibility wrapper for Dataset wrappers",
+    "train.py: compatibility wrapper for training",
+    "evaluate.py: compatibility wrapper for baseline evaluation",
+    "defense_eval.py: compatibility wrapper for defense-side attack evaluation",
+    "experiment_compare.py: compatibility wrapper for parameter scans",
+    "dashboard_paths.py/dashboard_io.py/dashboard_runner.py: compatibility wrappers for dashboard helpers",
+    "utils.py/plotting.py: compatibility wrappers for common utilities"
+  ]
+}

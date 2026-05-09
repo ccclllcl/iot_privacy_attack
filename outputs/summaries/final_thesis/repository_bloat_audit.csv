@@ -1,7 +1,9 @@
 path,file_size_bytes,git_last_commit_time,git_last_commit_hash,category,referenced_by_final_thesis,deletion_recommendation,reason
 .gitignore,731,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,unknown,True,keep,Referenced by final summaries or delivery documentation.
-README.md,5346,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,docs,True,keep,Referenced by final summaries or delivery documentation.
-apps/ui_app.py,50267,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+README.md,6292,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,docs,True,keep,Referenced by final summaries or delivery documentation.
+apps/dashboard.py,16963,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,code,True,keep,Referenced by final summaries or delivery documentation.
+apps/legacy/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+apps/legacy/ui_app.py,593,,,code,True,keep,Referenced by final summaries or delivery documentation.
 configs/cooja_defense_dummy_logs.json,1027,2026-04-25T16:04:28+08:00,f205eb9432ead74f9089d35e670f02c2f44d85e3,code,True,keep,path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed.
 configs/cooja_defense_dummy_logs.template.json,668,2026-05-09T15:07:25+08:00,e974046d0a128260764dd31ea07f669b142ed04b,code,True,keep,Referenced by final summaries or delivery documentation.
 configs/cooja_defense_logs.json,1535,2026-04-25T16:04:28+08:00,f205eb9432ead74f9089d35e670f02c2f44d85e3,code,True,keep,path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed.
@@ -196,9 +198,11 @@ configs/paper_uci_har_noise.yaml,2960,2026-04-23T13:30:03+08:00,c6549c00af9c55fc
 data/processed/imports/casas_hh101/meta.json,1139,2026-04-23T15:24:00+08:00,18f5353d28e3ea3604df49c89a906bb08f13568a,code,True,keep,Referenced by final summaries or delivery documentation.
 data/processed/imports/kasteren/meta.json,1517,2026-04-23T15:24:00+08:00,18f5353d28e3ea3604df49c89a906bb08f13568a,code,True,keep,Referenced by final summaries or delivery documentation.
 data/processed/imports/uci_har/meta.json,686,2026-04-23T15:24:00+08:00,18f5353d28e3ea3604df49c89a906bb08f13568a,code,True,keep,Referenced by final summaries or delivery documentation.
-docs/ARTIFACT_LAYOUT.md,1938,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,docs,True,keep,Referenced by final summaries or delivery documentation.
-docs/PROJECT_STRUCTURE.md,2707,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,docs,True,keep,Referenced by final summaries or delivery documentation.
-docs/REPOSITORY_DELIVERY_GUIDE.md,2789,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,docs,True,keep,Referenced by final summaries or delivery documentation.
+docs/ARTIFACT_LAYOUT.md,2254,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,docs,True,keep,Referenced by final summaries or delivery documentation.
+docs/CODE_STRUCTURE.md,3052,,,docs,True,keep,Referenced by final summaries or delivery documentation.
+docs/DASHBOARD_GUIDE.md,2366,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,docs,True,keep,Referenced by final summaries or delivery documentation.
+docs/PROJECT_STRUCTURE.md,3781,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,docs,True,keep,Referenced by final summaries or delivery documentation.
+docs/REPOSITORY_DELIVERY_GUIDE.md,3419,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,docs,True,keep,Referenced by final summaries or delivery documentation.
 docs/RESULTS_STRUCTURE.md,1083,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,docs,True,keep,Referenced by final summaries or delivery documentation.
 experiments/README.md,1621,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,docs,True,keep,Referenced by final summaries or delivery documentation.
 experiments/__init__.py,0,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
@@ -211,22 +215,31 @@ experiments/cooja/run_cooja_compare.py,6320,2026-05-04T15:54:36+08:00,b516557152
 experiments/cooja/run_cooja_compare_wsl.ps1,1589,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed.
 experiments/cooja/run_cooja_defense_eval.py,20222,2026-05-09T13:35:27+08:00,bb261f0f1373d8fc19995db4ba413bf671f5d5d6,code,True,keep,Referenced by final summaries or delivery documentation.
 experiments/core/__init__.py,0,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/core/collect_confusion.py,3581,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/core/collect_confusion.py,3612,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
 experiments/core/generate_mock_data.py,5145,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/core/run_compare.py,1874,2026-05-09T13:35:27+08:00,bb261f0f1373d8fc19995db4ba413bf671f5d5d6,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/core/run_defense.py,1151,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/core/run_defense_eval.py,2352,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/core/run_evaluate.py,1376,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/core/run_preprocess.py,1196,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/core/run_train.py,1580,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/core/run_compare.py,1885,2026-05-09T13:35:27+08:00,bb261f0f1373d8fc19995db4ba413bf671f5d5d6,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/core/run_defense.py,1156,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/core/run_defense_eval.py,2373,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/core/run_evaluate.py,1393,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/core/run_preprocess.py,1206,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/core/run_train.py,1596,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/demo/run_dashboard_job.py,800,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,code,True,keep,Referenced by final summaries or delivery documentation.
 experiments/real_public/__init__.py,0,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/real_public/run_full_matrix_real_datasets.py,9097,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/real_public/run_import_casas.py,9591,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/real_public/run_import_kasteren.py,7099,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/real_public/run_import_uci_har.py,10557,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/real_public/run_real_public_benchmark.py,13683,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/real_public/run_uci_har_missing_parameter_scans.py,11514,2026-05-07T13:41:40+08:00,97fa6a45c206f1a48b26adfbb9e23ef8c8ae786f,code,True,keep,Referenced by final summaries or delivery documentation.
-experiments/real_public/summarize_real_public_benchmark.py,5682,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/benchmarks/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/benchmarks/run_full_matrix_real_datasets.py,9096,,,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/benchmarks/run_real_public_benchmark.py,13682,,,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/benchmarks/summarize_real_public_benchmark.py,5681,,,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/imports/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/imports/run_import_casas.py,9605,,,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/imports/run_import_kasteren.py,7113,,,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/imports/run_import_uci_har.py,10571,,,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/run_full_matrix_real_datasets.py,389,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/run_import_casas.py,357,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/run_import_kasteren.py,363,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/run_import_uci_har.py,361,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/run_real_public_benchmark.py,381,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/scans/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+experiments/real_public/summarize_real_public_benchmark.py,393,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
 outputs/experiments/casas_hh101/seed_123/lstm/adaptive_ldp/fixed_attacker/classification_report.txt,187,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
 outputs/experiments/casas_hh101/seed_123/lstm/adaptive_ldp/fixed_attacker/confusion.json,15474,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
 outputs/experiments/casas_hh101/seed_123/lstm/adaptive_ldp/fixed_attacker/defense_report.json,5288,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
@@ -1432,10 +1445,12 @@ outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/parameter_sc
 outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/parameter_scan/scan_trace.json,299,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
 outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/source_manifest.json,1632,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
 outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/trace.json,390,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
-outputs/experiments/mock/seed_42/lstm/baseline/baseline_classification_report.txt,517,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
-outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json,1725,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
-outputs/experiments/mock/seed_42/lstm/baseline/baseline_metrics.json,1725,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
-outputs/experiments/mock/seed_42/lstm/baseline/source_manifest.json,546,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
+outputs/experiments/mock/seed_42/lstm/baseline/baseline_classification_report.txt,517,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
+outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json,1725,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
+outputs/experiments/mock/seed_42/lstm/baseline/baseline_metrics.json,1725,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
+outputs/experiments/mock/seed_42/lstm/baseline/baseline_trace.json,88,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
+outputs/experiments/mock/seed_42/lstm/baseline/source_manifest.json,546,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
+outputs/experiments/mock/seed_42/lstm/baseline/train_history.json,173,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
 outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/classification_report.txt,170,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
 outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json,1743,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
 outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/defense_report.json,1514,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,source_artifact_referenced,True,keep,Referenced by final summaries or delivery documentation.
@@ -2171,6 +2186,7 @@ outputs/figures/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/plot_a
 outputs/figures/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/plot_distortion.png,52864,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_figure_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/figures/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/plot_accuracy.png,66579,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_figure_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/figures/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/plot_distortion.png,52864,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_figure_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/figures/experiments/mock/seed_42/lstm/baseline/train_curve.png,42928,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_figure_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/figures/experiments/mock/seed_42/lstm/ldp/fixed_attacker/plot_accuracy.png,42705,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_figure_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/figures/experiments/mock/seed_42/lstm/ldp/fixed_attacker/plot_distortion.png,27493,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_figure_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/figures/experiments/mock/seed_42/lstm/ldp/retrain_attacker/plot_accuracy.png,36415,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_figure_required,True,keep,Referenced by final summaries or delivery documentation.
@@ -2287,7 +2303,11 @@ outputs/figures/summaries/final_thesis/real_uci_noise_scan.png,60745,2026-05-09T
 outputs/reports/README.md,191,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,docs,True,keep,Small redirect explaining the migrated reports path.
 outputs/summaries/final_thesis/adaptive_ldp_ablation_overview.md,1766,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/artifact_index.md,3620,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/codex_fix_report.md,3021,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/code_refactor_report.json,3158,,,final_thesis_required,False,keep,Required canonical delivery/code/documentation file.
+outputs/summaries/final_thesis/code_refactor_report.md,4986,,,final_thesis_required,False,keep,Required canonical delivery/code/documentation file.
+outputs/summaries/final_thesis/code_structure_audit.json,50500,,,final_thesis_required,False,keep,Required canonical delivery/code/documentation file.
+outputs/summaries/final_thesis/code_structure_audit.md,2371,,,final_thesis_required,False,keep,Required canonical delivery/code/documentation file.
+outputs/summaries/final_thesis/codex_fix_report.md,3021,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/completed_experiment_checklist.md,736,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/cooja/cooja_limitations.md,713,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/cooja/cooja_missing_outputs.json,2,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
@@ -2296,15 +2316,19 @@ outputs/summaries/final_thesis/cooja/cooja_per_seed.csv,5618,2026-05-09T16:13:31
 outputs/summaries/final_thesis/cooja/cooja_summary.csv,2653,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed.
 outputs/summaries/final_thesis/cooja/cooja_summary.json,5499,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed.
 outputs/summaries/final_thesis/cooja/cooja_traffic_metrics.csv,2126,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/dashboard_delivery_report.json,2085,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/dashboard_delivery_report.md,3330,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/dashboard_precheck_report.json,1704,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/dashboard_precheck_report.md,2374,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/figure_table_list.md,10647,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/final_coverage_audit.json,4327,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/final_manifest.json,1129,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/final_coverage_audit.json,4327,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/final_manifest.json,1129,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/final_missing_outputs.json,2,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/final_summary.csv,79085,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed.
-outputs/summaries/final_thesis/final_summary.json,140390,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed.
-outputs/summaries/final_thesis/final_symmetry_audit.json,4737,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/final_symmetry_audit.md,571,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/final_thesis_summary.md,3477,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/final_summary.csv,79085,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed.
+outputs/summaries/final_thesis/final_summary.json,140390,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed.
+outputs/summaries/final_thesis/final_symmetry_audit.json,4737,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/final_symmetry_audit.md,571,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/final_thesis_summary.md,3477,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/git_history_size_note.md,1180,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/legacy_outputs_note.md,760,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv,6994,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
@@ -2313,12 +2337,12 @@ outputs/summaries/final_thesis/mock/mock_coverage_audit.json,157,2026-05-09T16:1
 outputs/summaries/final_thesis/mock/mock_parameter_scan_adaptive_ldp.csv,28818,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/mock/mock_parameter_scan_ldp.csv,20709,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/mock/mock_parameter_scan_noise.csv,17038,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/mock/mock_summary.csv,16082,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/mock/mock_summary.json,27718,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/mock/mock_summary.csv,16082,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/mock/mock_summary.json,27718,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/mock/mock_top_confusions.csv,44039,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/parameter_scan_coverage_audit.json,3004,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/parameter_scan_missing_outputs.json,2,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/parameter_scan_run_log.json,13913,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/parameter_scan_run_log.json,13913,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/path_hygiene_remaining.json,810,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/real/real_adaptive_ldp_ablation_summary.csv,20918,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/real/real_adaptive_ldp_ablation_summary.md,1877,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
@@ -2331,9 +2355,9 @@ outputs/summaries/final_thesis/real/real_parameter_scan_noise.csv,52676,2026-05-
 outputs/summaries/final_thesis/real/real_summary.csv,57683,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/real/real_summary.json,103573,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/real/real_top_confusions.csv,156079,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/repository_bloat_audit.csv,601521,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/repository_bloat_audit.json,1203070,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
-outputs/summaries/final_thesis/repository_bloat_audit.md,451,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/repository_bloat_audit.csv,602168,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/repository_bloat_audit.json,1206331,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
+outputs/summaries/final_thesis/repository_bloat_audit.md,451,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/repository_cleanup_report.json,2633,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/repository_cleanup_report.md,3557,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/final_thesis/repository_delivery_check.md,1078,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,final_thesis_required,True,keep,Referenced by final summaries or delivery documentation.
@@ -2348,35 +2372,71 @@ outputs/summaries/layout/artifact_layout_before.md,753,2026-05-09T16:13:31+08:00
 outputs/summaries/layout/migration_map.csv,709540,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,unknown,True,keep,Referenced by final summaries or delivery documentation.
 outputs/summaries/layout/migration_report.md,1969,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,docs,True,keep,Referenced by final summaries or delivery documentation.
 requirements.txt,146,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,unknown,True,keep,Referenced by final summaries or delivery documentation.
-scripts/audit_experiment_symmetry.py,15053,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,code,True,keep,Referenced by final summaries or delivery documentation.
-scripts/audit_repository_bloat.py,9741,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,code,True,keep,path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed.
-scripts/build_final_thesis_results.py,105008,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,code,True,keep,Referenced by final summaries or delivery documentation.
+scripts/README.md,561,,,docs,True,keep,Referenced by final summaries or delivery documentation.
+scripts/__init__.py,62,,,code,True,keep,Referenced by final summaries or delivery documentation.
+scripts/audit/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+scripts/audit/audit_code_structure.py,9645,,,code,True,keep,Referenced by final summaries or delivery documentation.
+scripts/audit/audit_experiment_symmetry.py,15053,,,code,True,keep,Referenced by final summaries or delivery documentation.
+scripts/audit/audit_repository_bloat.py,9741,,,code,True,keep,path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed.
+scripts/audit_code_structure.py,333,,,code,True,keep,Referenced by final summaries or delivery documentation.
+scripts/audit_experiment_symmetry.py,339,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,code,True,keep,Referenced by final summaries or delivery documentation.
+scripts/audit_repository_bloat.py,333,2026-05-09T16:13:31+08:00,d63c422cd3fc1b84f6656e5aa2b39f86a4090fce,code,True,keep,Referenced by final summaries or delivery documentation.
+scripts/build_final_thesis_results.py,355,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,code,True,keep,Referenced by final summaries or delivery documentation.
+scripts/final_thesis/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+scripts/final_thesis/build_final_thesis_results.py,105007,,,code,True,keep,Referenced by final summaries or delivery documentation.
 src/__init__.py,127,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/config.py,3284,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/dataset.py,1474,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/defense_eval.py,10779,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/defenses/__init__.py,579,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/defenses/adaptive_ldp_defense.py,6763,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/defenses/base_defense.py,3407,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/defenses/defense_pipeline.py,6832,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/defenses/ldp_defense.py,4825,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/defenses/noise_defense.py,2251,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/artifacts/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/artifacts/canonical_paths.py,1813,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/artifacts/summary_io.py,571,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/config.py,117,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/core/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/core/config.py,3284,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/core/plotting.py,522,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/core/utils.py,2511,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/dashboard/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/dashboard/history.py,6494,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/dashboard/io.py,5908,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/dashboard/paths.py,2478,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/dashboard/runner.py,21213,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/dashboard_io.py,119,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,code,True,keep,Referenced by final summaries or delivery documentation.
+src/dashboard_paths.py,125,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,code,True,keep,Referenced by final summaries or delivery documentation.
+src/dashboard_runner.py,127,2026-05-09T17:10:16+08:00,de93dcaa73f1a515112feb61cd2e790a3bdeb5b4,code,True,keep,Referenced by final summaries or delivery documentation.
+src/data/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/data/dataset.py,1474,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/data/features.py,4488,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/data/preprocess.py,17301,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/dataset.py,119,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/defense_eval.py,151,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/defenses/__init__.py,571,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/defenses/adaptive_ldp_defense.py,6755,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/defenses/base.py,3407,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/defenses/base_defense.py,121,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/defenses/defense_pipeline.py,6839,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/defenses/ldp_defense.py,4817,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/defenses/noise_defense.py,2243,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
 src/edge/__init__.py,407,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
 src/edge/budget_allocator.py,1206,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/evaluate.py,11035,2026-04-27T16:42:43+08:00,3800e2b158b000cb2c08d0f38d78ab91d53d190e,code,True,keep,Referenced by final summaries or delivery documentation.
-src/experiment_compare.py,13378,2026-05-09T13:35:27+08:00,bb261f0f1373d8fc19995db4ba413bf671f5d5d6,code,True,keep,Referenced by final summaries or delivery documentation.
-src/features.py,4488,2026-04-21T16:08:05+08:00,7a0ee62bce85616f6ff0a74d25ceeb185190745f,code,True,keep,Referenced by final summaries or delivery documentation.
+src/evaluate.py,135,2026-04-27T16:42:43+08:00,3800e2b158b000cb2c08d0f38d78ab91d53d190e,code,True,keep,Referenced by final summaries or delivery documentation.
+src/evaluation/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/evaluation/comparison.py,13563,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/evaluation/defense_evaluator.py,10817,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/evaluation/evaluator.py,11055,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/experiment_compare.py,137,2026-05-09T13:35:27+08:00,bb261f0f1373d8fc19995db4ba413bf671f5d5d6,code,True,keep,Referenced by final summaries or delivery documentation.
+src/features.py,121,2026-04-21T16:08:05+08:00,7a0ee62bce85616f6ff0a74d25ceeb185190745f,code,True,keep,Referenced by final summaries or delivery documentation.
 src/models/__init__.py,181,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
 src/models/lstm_classifier.py,1006,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
 src/models/mlp_baseline.py,882,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/plotting.py,522,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/preprocess.py,17286,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/train.py,9944,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-src/ui_history.py,6494,2026-04-21T16:08:05+08:00,7a0ee62bce85616f6ff0a74d25ceeb185190745f,code,True,keep,Referenced by final summaries or delivery documentation.
-src/utils.py,2511,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
-tools/refresh_confusion_matrices.py,3111,2026-04-27T16:42:43+08:00,3800e2b158b000cb2c08d0f38d78ab91d53d190e,code,True,keep,Referenced by final summaries or delivery documentation.
-tools/refresh_web_assets.py,3385,2026-05-04T15:54:36+08:00,b516557152acf3268c3142f437183d7faf33d04a,code,True,keep,Referenced by final summaries or delivery documentation.
-tools/rewrite_cooja_client_type.py,2818,2026-04-25T16:04:28+08:00,f205eb9432ead74f9089d35e670f02c2f44d85e3,code,True,keep,Referenced by final summaries or delivery documentation.
+src/plotting.py,121,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/preprocess.py,125,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/train.py,127,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+src/training/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/training/trainer.py,9964,,,code,True,keep,Referenced by final summaries or delivery documentation.
+src/ui_history.py,129,2026-04-21T16:08:05+08:00,7a0ee62bce85616f6ff0a74d25ceeb185190745f,code,True,keep,Referenced by final summaries or delivery documentation.
+src/utils.py,115,2026-04-20T16:15:29+08:00,22d21d4d534959d0b8ffbf81be5e1213b05dcb60,code,True,keep,Referenced by final summaries or delivery documentation.
+tools/cooja/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+tools/cooja/rewrite_cooja_client_type.py,2818,,,code,True,keep,Referenced by final summaries or delivery documentation.
+tools/maintenance/__init__.py,0,,,code,True,keep,Referenced by final summaries or delivery documentation.
+tools/maintenance/refresh_confusion_matrices.py,3132,,,code,True,keep,Referenced by final summaries or delivery documentation.
 web_assets/images/README.txt,100,2026-04-27T16:42:43+08:00,3800e2b158b000cb2c08d0f38d78ab91d53d190e,web_asset,True,keep,Referenced by final summaries or delivery documentation.
 web_assets/images/mock/default_accuracy_comparison.png,23979,2026-04-27T16:42:43+08:00,3800e2b158b000cb2c08d0f38d78ab91d53d190e,web_asset,True,keep,Referenced by final summaries or delivery documentation.
 web_assets/images/mock/default_confusion_matrix.png,89882,2026-04-27T16:42:43+08:00,3800e2b158b000cb2c08d0f38d78ab91d53d190e,web_asset,True,keep,Referenced by final summaries or delivery documentation.

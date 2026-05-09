@@ -4,16 +4,31 @@ This repository separates implementation code, reproducible experiment entry poi
 
 ## Top-Level Directories
 
-- `src/`: core preprocessing, feature extraction, models, defenses, evaluation, and comparison logic.
+- `src/`: responsibility-based Python packages for config, data, models, training, evaluation, defenses, dashboard helpers, and artifact paths.
 - `experiments/`: command-line experiment entry points, including the single-combination dashboard runner.
 - `configs/`: default, Cooja, and generated experiment configuration files.
-- `scripts/`: final aggregation and audit scripts.
+- `scripts/`: final aggregation and audit wrappers; organized implementations live in `scripts/final_thesis/` and `scripts/audit/`.
+- `apps/`: Streamlit dashboard and legacy UI.
 - `docs/`: repository structure and delivery notes.
 - `data/`: processed and defended data organized by dataset and seed.
 - `outputs/experiments/`: canonical source artifacts organized by dataset, seed, model, method, and mode.
 - `outputs/summaries/final_thesis/`: final thesis CSV/JSON/Markdown summaries and audits.
 - `outputs/figures/summaries/final_thesis/`: final thesis figures.
 - `outputs/figures/experiments/`: per-combination diagnostic figures when available.
+
+## Source Packages
+
+- `src/core/`: configuration loading, shared utilities, and plotting helpers.
+- `src/data/`: preprocessing, feature extraction, and PyTorch dataset wrappers.
+- `src/models/`: LSTM and MLP model definitions.
+- `src/training/`: training loop and checkpoint logic.
+- `src/evaluation/`: baseline evaluation, defense evaluation, and parameter scans.
+- `src/defenses/`: noise, LDP, adaptive LDP, and defense pipeline code.
+- `src/edge/`: edge budget allocator for adaptive LDP.
+- `src/dashboard/`: dashboard path helpers, IO, plotting, runner, and history.
+- `src/artifacts/`: canonical artifact path helpers and summary IO.
+
+Old `src/*.py` entry points remain as short compatibility wrappers. New code should use the package paths above.
 
 ## Experiment Entrypoints
 
@@ -23,7 +38,8 @@ This repository separates implementation code, reproducible experiment entry poi
 - `experiments/core/run_defense_eval.py`: evaluate fixed and retrained attackers.
 - `experiments/core/run_compare.py`: parameter scans for `ldp`, `noise`, and `adaptive_ldp`.
 - `experiments/demo/run_dashboard_job.py`: dashboard-safe single-combination train/evaluate runner.
-- `experiments/real_public/`: UCI HAR, van Kasteren, and CASAS real-data workflows.
+- `experiments/real_public/imports/`: UCI HAR, van Kasteren, and CASAS import workflows.
+- `experiments/real_public/benchmarks/`: real-data benchmark runners and summaries.
 - `experiments/cooja/`: Cooja log evaluation and defense summaries.
 
 ## Dashboard
@@ -62,3 +78,5 @@ For thesis submission, prioritize:
 - `docs/ARTIFACT_LAYOUT.md`
 
 Legacy batch-name roots were migrated to reduce ambiguity. The migration record is kept in `outputs/summaries/layout/migration_report.md`.
+
+For the full code package map, see `docs/CODE_STRUCTURE.md`.

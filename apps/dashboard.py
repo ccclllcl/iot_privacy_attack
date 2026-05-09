@@ -12,7 +12,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.dashboard_io import (  # noqa: E402
+from src.dashboard.io import (  # noqa: E402
     list_artifacts,
     load_confusion,
     plot_confusion_matrix,
@@ -21,7 +21,7 @@ from src.dashboard_io import (  # noqa: E402
     read_json,
     read_text,
 )
-from src.dashboard_paths import (  # noqa: E402
+from src.dashboard.paths import (  # noqa: E402
     COOJA_METHODS,
     METHODS,
     MODES,
@@ -36,7 +36,7 @@ from src.dashboard_paths import (  # noqa: E402
     rel_path,
     summary_path,
 )
-from src.dashboard_runner import RUN_HISTORY, parse_epoch_progress, stream_subprocess  # noqa: E402
+from src.dashboard.runner import RUN_HISTORY, parse_epoch_progress, stream_subprocess  # noqa: E402
 
 
 SUMMARY_FIGURES = [

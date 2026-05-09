@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.dashboard_runner import build_arg_parser, run_dashboard_job
+from src.dashboard.runner import build_arg_parser, run_dashboard_job
 
 
 def main() -> None:

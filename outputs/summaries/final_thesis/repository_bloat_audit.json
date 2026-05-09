@@ -1,20 +1,20 @@
 {
   "summary": {
-    "generated_at": "2026-05-09T17:09:18",
-    "tracked_files": 2392,
-    "total_tracked_bytes": 46123088,
+    "generated_at": "2026-05-09T17:54:24",
+    "tracked_files": 2452,
+    "total_tracked_bytes": 46250434,
     "by_category": {
-      "code": 70,
-      "docs": 10,
-      "final_figure_required": 301,
-      "final_thesis_required": 54,
+      "code": 116,
+      "docs": 13,
+      "final_figure_required": 302,
+      "final_thesis_required": 62,
       "generated_config": 182,
-      "source_artifact_referenced": 1756,
+      "source_artifact_referenced": 1758,
       "unknown": 5,
       "web_asset": 14
     },
     "by_recommendation": {
-      "keep": 2392
+      "keep": 2452
     },
     "path_hygiene_issues": [
       {
@@ -340,8 +340,8 @@
       {
         "path": "outputs/summaries/final_thesis/final_summary.csv",
         "file_size_bytes": 79085,
-        "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-        "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+        "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+        "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
         "category": "final_thesis_required",
         "referenced_by_final_thesis": true,
         "deletion_recommendation": "keep",
@@ -350,18 +350,18 @@
       {
         "path": "outputs/summaries/final_thesis/final_summary.json",
         "file_size_bytes": 140390,
-        "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-        "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+        "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+        "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
         "category": "final_thesis_required",
         "referenced_by_final_thesis": true,
         "deletion_recommendation": "keep",
         "reason": "path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed."
       },
       {
-        "path": "scripts/audit_repository_bloat.py",
+        "path": "scripts/audit/audit_repository_bloat.py",
         "file_size_bytes": 9741,
-        "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-        "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+        "git_last_commit_time": "",
+        "git_last_commit_hash": "",
         "category": "code",
         "referenced_by_final_thesis": true,
         "deletion_recommendation": "keep",
@@ -383,19 +383,39 @@
     },
     {
       "path": "README.md",
-      "file_size_bytes": 5346,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "file_size_bytes": 6292,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "docs",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
-      "path": "apps/ui_app.py",
-      "file_size_bytes": 50267,
-      "git_last_commit_time": "2026-05-04T15:54:36+08:00",
-      "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
+      "path": "apps/dashboard.py",
+      "file_size_bytes": 16963,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "apps/legacy/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "apps/legacy/ui_app.py",
+      "file_size_bytes": 593,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
       "category": "code",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -2343,9 +2363,29 @@
     },
     {
       "path": "docs/ARTIFACT_LAYOUT.md",
-      "file_size_bytes": 1938,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "file_size_bytes": 2254,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "docs",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "docs/CODE_STRUCTURE.md",
+      "file_size_bytes": 3052,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "docs",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "docs/DASHBOARD_GUIDE.md",
+      "file_size_bytes": 2366,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "docs",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -2353,9 +2393,9 @@
     },
     {
       "path": "docs/PROJECT_STRUCTURE.md",
-      "file_size_bytes": 2707,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "file_size_bytes": 3781,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "docs",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -2363,9 +2403,9 @@
     },
     {
       "path": "docs/REPOSITORY_DELIVERY_GUIDE.md",
-      "file_size_bytes": 2789,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "file_size_bytes": 3419,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "docs",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -2493,7 +2533,7 @@
     },
     {
       "path": "experiments/core/collect_confusion.py",
-      "file_size_bytes": 3581,
+      "file_size_bytes": 3612,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
       "category": "code",
@@ -2513,7 +2553,7 @@
     },
     {
       "path": "experiments/core/run_compare.py",
-      "file_size_bytes": 1874,
+      "file_size_bytes": 1885,
       "git_last_commit_time": "2026-05-09T13:35:27+08:00",
       "git_last_commit_hash": "bb261f0f1373d8fc19995db4ba413bf671f5d5d6",
       "category": "code",
@@ -2523,7 +2563,7 @@
     },
     {
       "path": "experiments/core/run_defense.py",
-      "file_size_bytes": 1151,
+      "file_size_bytes": 1156,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
       "category": "code",
@@ -2533,7 +2573,7 @@
     },
     {
       "path": "experiments/core/run_defense_eval.py",
-      "file_size_bytes": 2352,
+      "file_size_bytes": 2373,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
       "category": "code",
@@ -2543,7 +2583,7 @@
     },
     {
       "path": "experiments/core/run_evaluate.py",
-      "file_size_bytes": 1376,
+      "file_size_bytes": 1393,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
       "category": "code",
@@ -2553,7 +2593,7 @@
     },
     {
       "path": "experiments/core/run_preprocess.py",
-      "file_size_bytes": 1196,
+      "file_size_bytes": 1206,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
       "category": "code",
@@ -2563,9 +2603,19 @@
     },
     {
       "path": "experiments/core/run_train.py",
-      "file_size_bytes": 1580,
+      "file_size_bytes": 1596,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "experiments/demo/run_dashboard_job.py",
+      "file_size_bytes": 800,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "code",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -2582,8 +2632,88 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
+      "path": "experiments/real_public/benchmarks/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "experiments/real_public/benchmarks/run_full_matrix_real_datasets.py",
+      "file_size_bytes": 9096,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "experiments/real_public/benchmarks/run_real_public_benchmark.py",
+      "file_size_bytes": 13682,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "experiments/real_public/benchmarks/summarize_real_public_benchmark.py",
+      "file_size_bytes": 5681,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "experiments/real_public/imports/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "experiments/real_public/imports/run_import_casas.py",
+      "file_size_bytes": 9605,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "experiments/real_public/imports/run_import_kasteren.py",
+      "file_size_bytes": 7113,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "experiments/real_public/imports/run_import_uci_har.py",
+      "file_size_bytes": 10571,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
       "path": "experiments/real_public/run_full_matrix_real_datasets.py",
-      "file_size_bytes": 9097,
+      "file_size_bytes": 389,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
       "category": "code",
@@ -2593,7 +2723,7 @@
     },
     {
       "path": "experiments/real_public/run_import_casas.py",
-      "file_size_bytes": 9591,
+      "file_size_bytes": 357,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
       "category": "code",
@@ -2603,7 +2733,7 @@
     },
     {
       "path": "experiments/real_public/run_import_kasteren.py",
-      "file_size_bytes": 7099,
+      "file_size_bytes": 363,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
       "category": "code",
@@ -2613,7 +2743,7 @@
     },
     {
       "path": "experiments/real_public/run_import_uci_har.py",
-      "file_size_bytes": 10557,
+      "file_size_bytes": 361,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
       "category": "code",
@@ -2623,7 +2753,7 @@
     },
     {
       "path": "experiments/real_public/run_real_public_benchmark.py",
-      "file_size_bytes": 13683,
+      "file_size_bytes": 381,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
       "category": "code",
@@ -2632,10 +2762,10 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
-      "path": "experiments/real_public/run_uci_har_missing_parameter_scans.py",
-      "file_size_bytes": 11514,
-      "git_last_commit_time": "2026-05-07T13:41:40+08:00",
-      "git_last_commit_hash": "97fa6a45c206f1a48b26adfbb9e23ef8c8ae786f",
+      "path": "experiments/real_public/scans/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
       "category": "code",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -2643,7 +2773,7 @@
     },
     {
       "path": "experiments/real_public/summarize_real_public_benchmark.py",
-      "file_size_bytes": 5682,
+      "file_size_bytes": 393,
       "git_last_commit_time": "2026-05-04T15:54:36+08:00",
       "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
       "category": "code",
@@ -14704,8 +14834,8 @@
     {
       "path": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_classification_report.txt",
       "file_size_bytes": 517,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "source_artifact_referenced",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -14714,8 +14844,8 @@
     {
       "path": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json",
       "file_size_bytes": 1725,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "source_artifact_referenced",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -14724,8 +14854,18 @@
     {
       "path": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_metrics.json",
       "file_size_bytes": 1725,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "source_artifact_referenced",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_trace.json",
+      "file_size_bytes": 88,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "source_artifact_referenced",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -14734,8 +14874,18 @@
     {
       "path": "outputs/experiments/mock/seed_42/lstm/baseline/source_manifest.json",
       "file_size_bytes": 546,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "source_artifact_referenced",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "outputs/experiments/mock/seed_42/lstm/baseline/train_history.json",
+      "file_size_bytes": 173,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "source_artifact_referenced",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -22092,6 +22242,16 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
+      "path": "outputs/figures/experiments/mock/seed_42/lstm/baseline/train_curve.png",
+      "file_size_bytes": 42928,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "final_figure_required",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
       "path": "outputs/figures/experiments/mock/seed_42/lstm/ldp/fixed_attacker/plot_accuracy.png",
       "file_size_bytes": 42705,
       "git_last_commit_time": "2026-05-09T16:13:31+08:00",
@@ -23252,10 +23412,50 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
+      "path": "outputs/summaries/final_thesis/code_refactor_report.json",
+      "file_size_bytes": 3158,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "final_thesis_required",
+      "referenced_by_final_thesis": false,
+      "deletion_recommendation": "keep",
+      "reason": "Required canonical delivery/code/documentation file."
+    },
+    {
+      "path": "outputs/summaries/final_thesis/code_refactor_report.md",
+      "file_size_bytes": 4986,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "final_thesis_required",
+      "referenced_by_final_thesis": false,
+      "deletion_recommendation": "keep",
+      "reason": "Required canonical delivery/code/documentation file."
+    },
+    {
+      "path": "outputs/summaries/final_thesis/code_structure_audit.json",
+      "file_size_bytes": 50500,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "final_thesis_required",
+      "referenced_by_final_thesis": false,
+      "deletion_recommendation": "keep",
+      "reason": "Required canonical delivery/code/documentation file."
+    },
+    {
+      "path": "outputs/summaries/final_thesis/code_structure_audit.md",
+      "file_size_bytes": 2371,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "final_thesis_required",
+      "referenced_by_final_thesis": false,
+      "deletion_recommendation": "keep",
+      "reason": "Required canonical delivery/code/documentation file."
+    },
+    {
       "path": "outputs/summaries/final_thesis/codex_fix_report.md",
       "file_size_bytes": 3021,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23342,6 +23542,46 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
+      "path": "outputs/summaries/final_thesis/dashboard_delivery_report.json",
+      "file_size_bytes": 2085,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "final_thesis_required",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "outputs/summaries/final_thesis/dashboard_delivery_report.md",
+      "file_size_bytes": 3330,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "final_thesis_required",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "outputs/summaries/final_thesis/dashboard_precheck_report.json",
+      "file_size_bytes": 1704,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "final_thesis_required",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "outputs/summaries/final_thesis/dashboard_precheck_report.md",
+      "file_size_bytes": 2374,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "final_thesis_required",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
       "path": "outputs/summaries/final_thesis/figure_table_list.md",
       "file_size_bytes": 10647,
       "git_last_commit_time": "2026-05-09T16:13:31+08:00",
@@ -23354,8 +23594,8 @@
     {
       "path": "outputs/summaries/final_thesis/final_coverage_audit.json",
       "file_size_bytes": 4327,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23364,8 +23604,8 @@
     {
       "path": "outputs/summaries/final_thesis/final_manifest.json",
       "file_size_bytes": 1129,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23384,8 +23624,8 @@
     {
       "path": "outputs/summaries/final_thesis/final_summary.csv",
       "file_size_bytes": 79085,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23394,8 +23634,8 @@
     {
       "path": "outputs/summaries/final_thesis/final_summary.json",
       "file_size_bytes": 140390,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23404,8 +23644,8 @@
     {
       "path": "outputs/summaries/final_thesis/final_symmetry_audit.json",
       "file_size_bytes": 4737,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23414,8 +23654,8 @@
     {
       "path": "outputs/summaries/final_thesis/final_symmetry_audit.md",
       "file_size_bytes": 571,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23424,8 +23664,8 @@
     {
       "path": "outputs/summaries/final_thesis/final_thesis_summary.md",
       "file_size_bytes": 3477,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23514,8 +23754,8 @@
     {
       "path": "outputs/summaries/final_thesis/mock/mock_summary.csv",
       "file_size_bytes": 16082,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23524,8 +23764,8 @@
     {
       "path": "outputs/summaries/final_thesis/mock/mock_summary.json",
       "file_size_bytes": 27718,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23564,8 +23804,8 @@
     {
       "path": "outputs/summaries/final_thesis/parameter_scan_run_log.json",
       "file_size_bytes": 13913,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23693,9 +23933,9 @@
     },
     {
       "path": "outputs/summaries/final_thesis/repository_bloat_audit.csv",
-      "file_size_bytes": 601521,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "file_size_bytes": 602168,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23703,9 +23943,9 @@
     },
     {
       "path": "outputs/summaries/final_thesis/repository_bloat_audit.json",
-      "file_size_bytes": 1203070,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "file_size_bytes": 1206331,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23714,8 +23954,8 @@
     {
       "path": "outputs/summaries/final_thesis/repository_bloat_audit.md",
       "file_size_bytes": 451,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
       "category": "final_thesis_required",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23862,8 +24102,78 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
-      "path": "scripts/audit_experiment_symmetry.py",
+      "path": "scripts/README.md",
+      "file_size_bytes": 561,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "docs",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "scripts/__init__.py",
+      "file_size_bytes": 62,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "scripts/audit/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "scripts/audit/audit_code_structure.py",
+      "file_size_bytes": 9645,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "scripts/audit/audit_experiment_symmetry.py",
       "file_size_bytes": 15053,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "scripts/audit/audit_repository_bloat.py",
+      "file_size_bytes": 9741,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed."
+    },
+    {
+      "path": "scripts/audit_code_structure.py",
+      "file_size_bytes": 333,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "scripts/audit_experiment_symmetry.py",
+      "file_size_bytes": 339,
       "git_last_commit_time": "2026-05-09T16:13:31+08:00",
       "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
       "category": "code",
@@ -23873,19 +24183,39 @@
     },
     {
       "path": "scripts/audit_repository_bloat.py",
-      "file_size_bytes": 9741,
+      "file_size_bytes": 333,
       "git_last_commit_time": "2026-05-09T16:13:31+08:00",
       "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
       "category": "code",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
-      "reason": "path_hygiene_issue; Referenced by final summaries or delivery documentation. Contains local path content that should be reviewed."
+      "reason": "Referenced by final summaries or delivery documentation."
     },
     {
       "path": "scripts/build_final_thesis_results.py",
-      "file_size_bytes": 105008,
-      "git_last_commit_time": "2026-05-09T16:13:31+08:00",
-      "git_last_commit_hash": "d63c422cd3fc1b84f6656e5aa2b39f86a4090fce",
+      "file_size_bytes": 355,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "scripts/final_thesis/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "scripts/final_thesis/build_final_thesis_results.py",
+      "file_size_bytes": 105007,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
       "category": "code",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
@@ -23902,8 +24232,38 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
+      "path": "src/artifacts/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/artifacts/canonical_paths.py",
+      "file_size_bytes": 1813,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/artifacts/summary_io.py",
+      "file_size_bytes": 571,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
       "path": "src/config.py",
-      "file_size_bytes": 3284,
+      "file_size_bytes": 117,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -23912,8 +24272,168 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
-      "path": "src/dataset.py",
+      "path": "src/core/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/core/config.py",
+      "file_size_bytes": 3284,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/core/plotting.py",
+      "file_size_bytes": 522,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/core/utils.py",
+      "file_size_bytes": 2511,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/dashboard/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/dashboard/history.py",
+      "file_size_bytes": 6494,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/dashboard/io.py",
+      "file_size_bytes": 5908,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/dashboard/paths.py",
+      "file_size_bytes": 2478,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/dashboard/runner.py",
+      "file_size_bytes": 21213,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/dashboard_io.py",
+      "file_size_bytes": 119,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/dashboard_paths.py",
+      "file_size_bytes": 125,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/dashboard_runner.py",
+      "file_size_bytes": 127,
+      "git_last_commit_time": "2026-05-09T17:10:16+08:00",
+      "git_last_commit_hash": "de93dcaa73f1a515112feb61cd2e790a3bdeb5b4",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/data/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/data/dataset.py",
       "file_size_bytes": 1474,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/data/features.py",
+      "file_size_bytes": 4488,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/data/preprocess.py",
+      "file_size_bytes": 17301,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/dataset.py",
+      "file_size_bytes": 119,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -23923,7 +24443,7 @@
     },
     {
       "path": "src/defense_eval.py",
-      "file_size_bytes": 10779,
+      "file_size_bytes": 151,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -23933,7 +24453,7 @@
     },
     {
       "path": "src/defenses/__init__.py",
-      "file_size_bytes": 579,
+      "file_size_bytes": 571,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -23943,7 +24463,7 @@
     },
     {
       "path": "src/defenses/adaptive_ldp_defense.py",
-      "file_size_bytes": 6763,
+      "file_size_bytes": 6755,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -23952,8 +24472,18 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
-      "path": "src/defenses/base_defense.py",
+      "path": "src/defenses/base.py",
       "file_size_bytes": 3407,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/defenses/base_defense.py",
+      "file_size_bytes": 121,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -23963,7 +24493,7 @@
     },
     {
       "path": "src/defenses/defense_pipeline.py",
-      "file_size_bytes": 6832,
+      "file_size_bytes": 6839,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -23973,7 +24503,7 @@
     },
     {
       "path": "src/defenses/ldp_defense.py",
-      "file_size_bytes": 4825,
+      "file_size_bytes": 4817,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -23983,7 +24513,7 @@
     },
     {
       "path": "src/defenses/noise_defense.py",
-      "file_size_bytes": 2251,
+      "file_size_bytes": 2243,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -24013,7 +24543,7 @@
     },
     {
       "path": "src/evaluate.py",
-      "file_size_bytes": 11035,
+      "file_size_bytes": 135,
       "git_last_commit_time": "2026-04-27T16:42:43+08:00",
       "git_last_commit_hash": "3800e2b158b000cb2c08d0f38d78ab91d53d190e",
       "category": "code",
@@ -24022,8 +24552,48 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
+      "path": "src/evaluation/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/evaluation/comparison.py",
+      "file_size_bytes": 13563,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/evaluation/defense_evaluator.py",
+      "file_size_bytes": 10817,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/evaluation/evaluator.py",
+      "file_size_bytes": 11055,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
       "path": "src/experiment_compare.py",
-      "file_size_bytes": 13378,
+      "file_size_bytes": 137,
       "git_last_commit_time": "2026-05-09T13:35:27+08:00",
       "git_last_commit_hash": "bb261f0f1373d8fc19995db4ba413bf671f5d5d6",
       "category": "code",
@@ -24033,7 +24603,7 @@
     },
     {
       "path": "src/features.py",
-      "file_size_bytes": 4488,
+      "file_size_bytes": 121,
       "git_last_commit_time": "2026-04-21T16:08:05+08:00",
       "git_last_commit_hash": "7a0ee62bce85616f6ff0a74d25ceeb185190745f",
       "category": "code",
@@ -24073,7 +24643,7 @@
     },
     {
       "path": "src/plotting.py",
-      "file_size_bytes": 522,
+      "file_size_bytes": 121,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -24083,7 +24653,7 @@
     },
     {
       "path": "src/preprocess.py",
-      "file_size_bytes": 17286,
+      "file_size_bytes": 125,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -24093,7 +24663,7 @@
     },
     {
       "path": "src/train.py",
-      "file_size_bytes": 9944,
+      "file_size_bytes": 127,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -24102,8 +24672,28 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
+      "path": "src/training/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "src/training/trainer.py",
+      "file_size_bytes": 9964,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
       "path": "src/ui_history.py",
-      "file_size_bytes": 6494,
+      "file_size_bytes": 129,
       "git_last_commit_time": "2026-04-21T16:08:05+08:00",
       "git_last_commit_hash": "7a0ee62bce85616f6ff0a74d25ceeb185190745f",
       "category": "code",
@@ -24113,7 +24703,7 @@
     },
     {
       "path": "src/utils.py",
-      "file_size_bytes": 2511,
+      "file_size_bytes": 115,
       "git_last_commit_time": "2026-04-20T16:15:29+08:00",
       "git_last_commit_hash": "22d21d4d534959d0b8ffbf81be5e1213b05dcb60",
       "category": "code",
@@ -24122,30 +24712,40 @@
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
-      "path": "tools/refresh_confusion_matrices.py",
-      "file_size_bytes": 3111,
-      "git_last_commit_time": "2026-04-27T16:42:43+08:00",
-      "git_last_commit_hash": "3800e2b158b000cb2c08d0f38d78ab91d53d190e",
+      "path": "tools/cooja/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
       "category": "code",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
       "reason": "Referenced by final summaries or delivery documentation."
     },
     {
-      "path": "tools/refresh_web_assets.py",
-      "file_size_bytes": 3385,
-      "git_last_commit_time": "2026-05-04T15:54:36+08:00",
-      "git_last_commit_hash": "b516557152acf3268c3142f437183d7faf33d04a",
-      "category": "code",
-      "referenced_by_final_thesis": true,
-      "deletion_recommendation": "keep",
-      "reason": "Referenced by final summaries or delivery documentation."
-    },
-    {
-      "path": "tools/rewrite_cooja_client_type.py",
+      "path": "tools/cooja/rewrite_cooja_client_type.py",
       "file_size_bytes": 2818,
-      "git_last_commit_time": "2026-04-25T16:04:28+08:00",
-      "git_last_commit_hash": "f205eb9432ead74f9089d35e670f02c2f44d85e3",
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "tools/maintenance/__init__.py",
+      "file_size_bytes": 0,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
+      "category": "code",
+      "referenced_by_final_thesis": true,
+      "deletion_recommendation": "keep",
+      "reason": "Referenced by final summaries or delivery documentation."
+    },
+    {
+      "path": "tools/maintenance/refresh_confusion_matrices.py",
+      "file_size_bytes": 3132,
+      "git_last_commit_time": "",
+      "git_last_commit_hash": "",
       "category": "code",
       "referenced_by_final_thesis": true,
       "deletion_recommendation": "keep",
