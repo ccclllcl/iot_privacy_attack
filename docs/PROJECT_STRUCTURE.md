@@ -5,9 +5,9 @@ This repository separates implementation code, reproducible experiment entry poi
 ## Top-Level Directories
 
 - `src/`: core preprocessing, feature extraction, models, defenses, evaluation, and comparison logic.
-- `experiments/`: command-line experiment entry points.
+- `experiments/`: command-line experiment entry points, including the single-combination dashboard runner.
 - `configs/`: default, Cooja, and generated experiment configuration files.
-- `scripts/`: aggregation, audit, migration, and delivery helper scripts.
+- `scripts/`: final aggregation and audit scripts.
 - `docs/`: repository structure and delivery notes.
 - `data/`: processed and defended data organized by dataset and seed.
 - `outputs/experiments/`: canonical source artifacts organized by dataset, seed, model, method, and mode.
@@ -22,9 +22,17 @@ This repository separates implementation code, reproducible experiment entry poi
 - `experiments/core/run_defense.py`: generate defended data.
 - `experiments/core/run_defense_eval.py`: evaluate fixed and retrained attackers.
 - `experiments/core/run_compare.py`: parameter scans for `ldp`, `noise`, and `adaptive_ldp`.
-- `experiments/batches/`: batch helpers for missing or multi-seed runs.
+- `experiments/demo/run_dashboard_job.py`: dashboard-safe single-combination train/evaluate runner.
 - `experiments/real_public/`: UCI HAR, van Kasteren, and CASAS real-data workflows.
 - `experiments/cooja/`: Cooja log evaluation and defense summaries.
+
+## Dashboard
+
+The recommended demonstration entry is:
+
+`python -m streamlit run apps/dashboard.py`
+
+The dashboard reads canonical artifacts, displays summary figures and confusion matrices, and can run one selected train/evaluate job at a time. It does not import data, run Cooja simulations, or launch a full experiment matrix.
 
 ## Canonical Artifact Paths
 
@@ -53,4 +61,4 @@ For thesis submission, prioritize:
 - `docs/REPOSITORY_DELIVERY_GUIDE.md`
 - `docs/ARTIFACT_LAYOUT.md`
 
-The old `outputs/reports/final_thesis/`, `outputs/figures/final_thesis/`, `outputs/defense/full_multiseed/`, and `outputs/defense/real_public_benchmark/` roots were migrated to reduce ambiguity.
+Legacy batch-name roots were migrated to reduce ambiguity. The migration record is kept in `outputs/summaries/layout/migration_report.md`.

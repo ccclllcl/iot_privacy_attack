@@ -6,214 +6,256 @@
     "targets_from_audit": 42
   },
   {
-    "target": "outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/uci_har/seed_42/lstm/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/uci_har/seed_42/mlp/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/uci_har/seed_42/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/uci_har/seed_123/lstm/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/uci_har/seed_123/mlp/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/uci_har/seed_123/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/uci_har/seed_2026/lstm/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/uci_har/seed_2026/mlp/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/uci_har/seed_2026/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_42/lstm/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_42/mlp/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_42/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_42/lstm/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_42/mlp/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_42/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_42/noise/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_42/lstm/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_42/noise/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_42/noise/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_42/mlp/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_42/noise/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_123/lstm/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_123/mlp/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_123/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_123/lstm/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_123/mlp/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_123/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_123/noise/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_123/lstm/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_123/noise/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_123/noise/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_123/mlp/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_123/noise/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_2026/lstm/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_2026/mlp/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_2026/lstm/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_2026/mlp/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_2026/lstm/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/kasteren/seed_2026/mlp/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/kasteren/seed_2026/noise/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_42/lstm/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_42/mlp/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_42/lstm/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_42/mlp/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_42/lstm/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_42/mlp/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_42/noise/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_123/lstm/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_123/mlp/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_123/lstm/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_123/mlp/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_123/lstm/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_123/mlp/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_123/noise/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_2026/lstm/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_2026/mlp/adaptive_ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 6
+    "rows": 6,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/adaptive_ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_2026/lstm/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_2026/mlp/ldp/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 5
+    "rows": 5,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/ldp/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/comparisons/lstm_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_2026/lstm/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/comparisons/lstm_retrain_attacker_comparison_results.csv"
   },
   {
-    "target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/comparisons/mlp_retrain_attacker_comparison_results.csv",
+    "target": "outputs/experiments/casas_hh101/seed_2026/mlp/noise/retrain_attacker/parameter_scan/comparison_results.csv",
     "action": "generated",
-    "rows": 4
+    "rows": 4,
+    "legacy_target": "outputs/defense/real_public_benchmark/casas_hh101/seed_2026/noise/comparisons/mlp_retrain_attacker_comparison_results.csv"
   },
   {
     "finished_at": "2026-05-09T13:27:57",

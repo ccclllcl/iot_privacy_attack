@@ -11,6 +11,7 @@ Use these paths first when reviewing the project:
 - `experiments/`
 - `src/`
 - `scripts/`
+- `apps/dashboard.py`
 - `outputs/experiments/`
 - `outputs/summaries/final_thesis/`
 - `outputs/figures/summaries/final_thesis/`
@@ -54,14 +55,15 @@ Cooja uses `random_forest` as the model slot:
 
 ## Legacy Paths
 
-The old batch-name paths were migrated and should not be cited as final paths:
+Old batch-name paths were migrated and should not be cited as final paths. The migration map is stored at `outputs/summaries/layout/migration_map.csv`, and the narrative report is stored at `outputs/summaries/layout/migration_report.md`.
 
-- `full_multiseed` -> `mock`
-- `real_public_benchmark/{dataset}` -> `{dataset}`
-- `outputs/reports/final_thesis/` -> `outputs/summaries/final_thesis/`
-- `outputs/figures/final_thesis/` -> `outputs/figures/summaries/final_thesis/`
+## Dashboard Entry
 
-The migration map is stored at `outputs/summaries/layout/migration_map.csv`.
+Use the dashboard for quick review and single-combination demo runs:
+
+`python -m streamlit run apps/dashboard.py`
+
+The dashboard reads from `outputs/experiments/`, `outputs/summaries/final_thesis/`, and `outputs/figures/summaries/final_thesis/`. It does not import datasets, run full matrices, or run Cooja simulations.
 
 ## Cooja Limitations
 

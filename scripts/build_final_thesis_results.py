@@ -2280,8 +2280,7 @@ def main() -> None:
             "outputs/summaries/final_thesis/final_summary.csv",
         ],
         "not_recommended_for_thesis": [
-            "outputs/reports/final_thesis/ (legacy summary path; migrated)",
-            "outputs/defense/full_multiseed and outputs/defense/real_public_benchmark (legacy batch roots; migrated)",
+            "legacy batch/report roots (see outputs/summaries/layout/migration_report.md)",
         ],
     }
     _write_json(OUT_REPORT / "final_coverage_audit.json", coverage)

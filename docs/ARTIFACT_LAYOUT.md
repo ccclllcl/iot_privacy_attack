@@ -72,11 +72,12 @@ The migration from legacy batch-name paths is documented in:
 - `outputs/summaries/layout/migration_map.csv`
 - `outputs/summaries/layout/migration_report.md`
 
-Old path names:
+Old batch-name paths are compatibility concepts only and should not be used as final citation roots.
 
-- `full_multiseed`
-- `real_public_benchmark`
-- `outputs/reports/final_thesis`
-- `outputs/figures/final_thesis`
+## Dashboard
 
-are compatibility concepts only and should not be used as final citation roots.
+The official browsing and demonstration UI is:
+
+`python -m streamlit run apps/dashboard.py`
+
+It uses the same canonical paths described above. Demo runs write only the selected combination and record history in `outputs/ui/run_history.jsonl`.

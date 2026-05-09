@@ -37,3 +37,14 @@
 ## Delivery Status
 
 The normalized repository structure is suitable for undergraduate thesis delivery. Final citation paths are centralized under `outputs/summaries/final_thesis/` and `outputs/figures/summaries/final_thesis/`, with source artifacts traceable through `outputs/experiments/**/source_manifest.json`.
+
+## Canonical dashboard delivery
+
+- No full experiment rerun was performed.
+- Added the formal dashboard entry `apps/dashboard.py`.
+- Added shared dashboard helpers in `src/dashboard_paths.py`, `src/dashboard_io.py`, and `src/dashboard_runner.py`.
+- Added the single-combination runner `experiments/demo/run_dashboard_job.py`.
+- Updated README and delivery docs so `outputs/experiments/`, `outputs/summaries/final_thesis/`, and `outputs/figures/summaries/final_thesis/` are the formal paths.
+- Removed migration-only scripts and the old simple UI entry.
+- Verified one mock `seed_42` `lstm` baseline train/evaluate demo with `max_epochs=1`; overwrite protection refused an existing artifact when overwrite was false.
+- Cooja remains display-only in the dashboard; no packet/byte/IAT, real energy, or real delay metrics were fabricated.
