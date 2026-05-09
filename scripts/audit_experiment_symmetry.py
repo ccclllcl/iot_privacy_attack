@@ -29,6 +29,13 @@ MAIN_FILES = [
 ]
 PARAM_ROWS = {"ldp": 5, "noise": 4, "adaptive_ldp": 6}
 COOJA_METHODS = ["dummy_noise", "dummy_ldp", "dummy_adaptive_ldp"]
+DELIVERY_DOCS = {
+    "repository_delivery_guide": ROOT / "docs" / "REPOSITORY_DELIVERY_GUIDE.md",
+    "artifact_index": OUT_REPORT / "artifact_index.md",
+    "adaptive_ablation_overview": OUT_REPORT / "adaptive_ldp_ablation_overview.md",
+    "mock_adaptive_ablation_summary": OUT_REPORT / "mock" / "mock_adaptive_ldp_ablation_summary.csv",
+    "real_adaptive_ablation_summary": OUT_REPORT / "real" / "real_adaptive_ldp_ablation_summary.csv",
+}
 
 
 def _rel(path: Path) -> str:
@@ -315,6 +322,21 @@ def detect_duplicates() -> list[dict[str, Any]]:
     return duplicates
 
 
+def audit_delivery_docs() -> tuple[dict[str, bool], list[dict[str, Any]]]:
+    status = {name: path.exists() and path.stat().st_size > 0 for name, path in DELIVERY_DOCS.items()}
+    missing = [
+        {
+            "section": "delivery_docs",
+            "name": name,
+            "reason": "delivery_doc_missing",
+            "expected_file": _rel(path),
+        }
+        for name, path in DELIVERY_DOCS.items()
+        if not status[name]
+    ]
+    return status, missing
+
+
 def _group_missing(items: list[dict[str, Any]]) -> dict[str, Any]:
     by_method: dict[str, int] = defaultdict(int)
     by_dataset: dict[str, int] = defaultdict(int)
@@ -338,6 +360,7 @@ def build_audit() -> dict[str, Any]:
     missing_real_scans = audit_real_parameter_scans()
     missing_cooja = audit_cooja_outputs()
     duplicates = detect_duplicates()
+    delivery_docs_status, delivery_docs_missing = audit_delivery_docs()
 
     actions: list[str] = []
     if missing_mock_scans or missing_real_scans:
@@ -346,6 +369,8 @@ def build_audit() -> dict[str, Any]:
         actions.append("Export Cooja per-seed and traffic CSVs from the existing defense_eval_report.json, or record missing logs if logs are inaccessible.")
     if duplicates:
         actions.append("Rebuild final thesis summaries with de-duplicated parameter scan aggregation.")
+    if delivery_docs_missing:
+        actions.append("Generate delivery documentation and adaptive_ldp ablation summaries without rerunning experiments.")
     if not actions:
         actions.append("No action required; audited outputs are symmetric.")
 
@@ -359,12 +384,15 @@ def build_audit() -> dict[str, Any]:
         "missing_mock_parameter_scans": missing_mock_scans,
         "missing_real_parameter_scans": missing_real_scans,
         "missing_cooja_outputs": missing_cooja,
+        "delivery_docs_status": delivery_docs_status,
+        "delivery_docs_missing": delivery_docs_missing,
         "duplicated_rows_detected": duplicates,
         "actions_recommended": actions,
         "summary": {
             "mock_parameter_scans": _group_missing(missing_mock_scans),
             "real_parameter_scans": _group_missing(missing_real_scans),
             "cooja": {"total": len(missing_cooja)},
+            "delivery_docs": {"total": len(delivery_docs_missing)},
         },
     }
 
@@ -379,6 +407,7 @@ def write_markdown(audit: dict[str, Any], path: Path) -> None:
         f"- Missing mock parameter scans: `{len(audit['missing_mock_parameter_scans'])}`",
         f"- Missing real parameter scans: `{len(audit['missing_real_parameter_scans'])}`",
         f"- Missing Cooja outputs: `{len(audit['missing_cooja_outputs'])}`",
+        f"- Missing delivery docs: `{len(audit['delivery_docs_missing'])}`",
         f"- Duplicate row findings: `{len(audit['duplicated_rows_detected'])}`",
         "",
         "## Recommended Actions",
@@ -394,6 +423,10 @@ def write_markdown(audit: dict[str, Any], path: Path) -> None:
         lines.extend(["", "## Cooja Missing Outputs", ""])
         for item in audit["missing_cooja_outputs"]:
             lines.append(f"- `{item.get('reason')}` {item.get('method', '')} {item.get('mode', '')} {item.get('seed', '')}".rstrip())
+    if audit["delivery_docs_missing"]:
+        lines.extend(["", "## Delivery Docs Missing", ""])
+        for item in audit["delivery_docs_missing"]:
+            lines.append(f"- `{item.get('name')}` -> `{item.get('expected_file')}`")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 

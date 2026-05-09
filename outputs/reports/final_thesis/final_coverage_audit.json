@@ -88,7 +88,9 @@
   "actual_completed": {
     "mock": 36,
     "real": 108,
-    "cooja": 6
+    "cooja": 6,
+    "mock_adaptive_ablation_rows": 24,
+    "real_adaptive_ablation_rows": 72
   },
   "missing_combinations": {
     "mock": [],

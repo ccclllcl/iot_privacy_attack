@@ -419,3 +419,15 @@ python scripts/build_final_thesis_results.py
 Cooja per-seed 与流量统计结果位于 `outputs/reports/final_thesis/cooja/`。参数扫描汇总位于 `outputs/reports/final_thesis/mock/` 和 `outputs/reports/final_thesis/real/`。
 
 Cooja 当前不提供真实能耗或时延测量，只提供窗口数量与流量统计代理；相关限制写入 `outputs/reports/final_thesis/cooja/cooja_limitations.md`。
+
+## 最终交付与产物索引
+
+主实验和参数扫描已经完成。最终交付优先查看：
+
+- `outputs/reports/final_thesis/`
+- `outputs/figures/final_thesis/`
+- `docs/REPOSITORY_DELIVERY_GUIDE.md`
+
+自适应 LDP 消融汇总见 `outputs/reports/final_thesis/adaptive_ldp_ablation_overview.md`。真实数据参数扫描覆盖见 `outputs/reports/final_thesis/parameter_scan_coverage_audit.json`。Cooja 限制说明见 `outputs/reports/final_thesis/cooja/cooja_limitations.md`。
+
+过程产物会继续保留用于追溯；论文引用应优先使用 `final_thesis` 目录中的最终汇总、审计与图表。

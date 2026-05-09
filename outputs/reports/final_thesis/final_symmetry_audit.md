@@ -1,11 +1,12 @@
 # Final Thesis Symmetry Audit
 
-- Generated at: `2026-05-09T13:33:42`
+- Generated at: `2026-05-09T14:09:14`
 - Mock main matrix complete: `True` (36/36)
 - Real main matrix complete: `True` (108/108)
 - Missing mock parameter scans: `0`
 - Missing real parameter scans: `0`
 - Missing Cooja outputs: `0`
+- Missing delivery docs: `0`
 - Duplicate row findings: `0`
 
 ## Recommended Actions

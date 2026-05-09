@@ -1,10 +1,10 @@
 # 最终实验总结（可追溯）
 
 ## 1. 本次运行环境
-- git commit: `97fa6a45c206f1a48b26adfbb9e23ef8c8ae786f`
+- git commit: `bb261f0f1373d8fc19995db4ba413bf671f5d5d6`
 - python version: `3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]`
 - OS: `Windows-11-10.0.26200-SP0`
-- start time / end time: `2026-05-09T13:33:31` / `2026-05-09T13:33:42`
+- start time / end time: `2026-05-09T14:07:37` / `2026-05-09T14:07:49`
 
 ## 2. mock 实验是否完整
 - 完成情况: 已收集 `36` / 期望 `36` 条（dataset=mock）。

@@ -13,6 +13,9 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+~$*
+*.tmp
+*.bak
 
 # Project artifacts / datasets (do not commit)
 data/raw/
@@ -27,3 +30,4 @@ outputs/
 
 # Streamlit / UI artifacts
 outputs/ui/
+outputs/ui/run_history.jsonl

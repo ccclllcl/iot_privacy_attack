@@ -87,3 +87,16 @@ Canonical parameter-scan CSVs now exist at the original symmetric locations:
 - Parameter-scan symmetry is complete: mock 36/36 and real 108/108.
 - Cooja aggregate, per-seed, and traffic-report outputs are present.
 - Current project reaches the symmetric-output requirement for undergraduate thesis delivery.
+
+## Repository cleanup and adaptive ablation finalization
+
+- Real-data parameter scans were rechecked and remain complete: 108/108.
+- adaptive_ldp profile coverage was rechecked: each mock/real dataset, seed, model, and mode combination has the expected 6 profiles.
+- Formal adaptive_ldp ablation summaries were generated from existing parameter-scan CSVs; no main matrix or completed scan was rerun.
+- `outputs/reports/final_thesis/artifact_index.md` was added as the final artifact index.
+- `docs/REPOSITORY_DELIVERY_GUIDE.md` was added as the repository delivery guide.
+- No `final_thesis_v2` directory was created.
+- No `supplemental` directory was created.
+- Core traceability artifacts were retained, including `outputs/defense/full_multiseed/`, `outputs/defense/real_public_benchmark/`, `data/processed/`, `data/defended/`, and `outputs/models/`.
+- Legacy/source paths remain available as process artifacts: `outputs/reports/full_multiseed/`, `outputs/reports/real_public_benchmark/`, `outputs/reports/dataset_matrix/`, `configs/generated_*`, `web_assets/`, and historical `apps/ui` outputs.
+- Current repository structure is suitable for undergraduate thesis delivery: final references are centralized under `outputs/reports/final_thesis/` and `outputs/figures/final_thesis/`, while source artifacts remain available for review.

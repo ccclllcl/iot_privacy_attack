@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-09T13:33:42",
+  "generated_at": "2026-05-09T14:09:14",
   "complete_main_matrix_mock": true,
   "complete_main_matrix_real": true,
   "main_matrix_counts": {
@@ -19,6 +19,14 @@
   "missing_mock_parameter_scans": [],
   "missing_real_parameter_scans": [],
   "missing_cooja_outputs": [],
+  "delivery_docs_status": {
+    "repository_delivery_guide": true,
+    "artifact_index": true,
+    "adaptive_ablation_overview": true,
+    "mock_adaptive_ablation_summary": true,
+    "real_adaptive_ablation_summary": true
+  },
+  "delivery_docs_missing": [],
   "duplicated_rows_detected": [],
   "actions_recommended": [
     "No action required; audited outputs are symmetric."
@@ -37,6 +45,9 @@
       "items": []
     },
     "cooja": {
+      "total": 0
+    },
+    "delivery_docs": {
       "total": 0
     }
   }

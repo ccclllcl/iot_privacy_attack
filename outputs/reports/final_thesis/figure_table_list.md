@@ -78,31 +78,73 @@
 - 可写入论文结论: 可用于说明当前日志只能支持窗口数量代理，而不能支持真实能耗或时延结论。
 - 口径限制: 该图不是能耗或时延实测，只反映当前导出日志形成的窗口规模差异。
 
-## 14. ldp parameter scans across available models/modes
+## 14. mock adaptive_ldp ablation summary table
+- 图路径: `outputs/reports/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv`
+- 源文件: `outputs/reports/final_thesis/mock/mock_parameter_scan_adaptive_ldp.csv`
+- 可写入论文结论: Profile-level mock adaptive_ldp ablation summary based on existing parameter scans.
+- 口径限制: Empirical profile aggregation across seeds; no new experiment was rerun.
+
+## 15. real adaptive_ldp ablation summary table
+- 图路径: `outputs/reports/final_thesis/real/real_adaptive_ldp_ablation_summary.csv`
+- 源文件: `outputs/reports/final_thesis/real/real_parameter_scan_adaptive_ldp.csv`
+- 可写入论文结论: Profile-level real-data adaptive_ldp ablation summary by dataset, model, and attacker mode.
+- 口径限制: Do not rank different datasets against each other by absolute value.
+
+## 16. adaptive_ldp ablation overview
+- 图路径: `outputs/reports/final_thesis/adaptive_ldp_ablation_overview.md`
+- 源文件: `outputs/reports/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv;outputs/reports/final_thesis/real/real_adaptive_ldp_ablation_summary.csv`
+- 可写入论文结论: Explains the six adaptive_ldp profiles and their cautious interpretation.
+- 口径限制: This overview is a delivery note, not a theoretical proof.
+
+## 17. ldp parameter scans across available models/modes
 - 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\parameter_scan_ldp_all_models_modes.png`
 - 源文件: `outputs/reports/final_thesis/mock/mock_parameter_scan_ldp.csv;outputs/reports/final_thesis/real/real_parameter_scan_ldp.csv`
 - 可写入论文结论: Shows parameter sensitivity separately by dataset; missing combinations are documented in parameter_scan_coverage_audit.json.
 - 口径限制: Curves average available seeds and do not rank different datasets against each other.
 
-## 15. noise parameter scans across available models/modes
+## 18. noise parameter scans across available models/modes
 - 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\parameter_scan_noise_all_models_modes.png`
 - 源文件: `outputs/reports/final_thesis/mock/mock_parameter_scan_noise.csv;outputs/reports/final_thesis/real/real_parameter_scan_noise.csv`
 - 可写入论文结论: Shows parameter sensitivity separately by dataset; missing combinations are documented in parameter_scan_coverage_audit.json.
 - 口径限制: Curves average available seeds and do not rank different datasets against each other.
 
-## 16. adaptive_ldp parameter scans across available models/modes
+## 19. adaptive_ldp parameter scans across available models/modes
 - 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\parameter_scan_adaptive_ldp_all_models_modes.png`
 - 源文件: `outputs/reports/final_thesis/mock/mock_parameter_scan_adaptive_ldp.csv;outputs/reports/final_thesis/real/real_parameter_scan_adaptive_ldp.csv`
 - 可写入论文结论: Shows parameter sensitivity separately by dataset; missing combinations are documented in parameter_scan_coverage_audit.json.
 - 口径限制: Curves average available seeds and do not rank different datasets against each other.
 
-## 17. Cooja per-seed accuracy
+## 20. adaptive_ldp ablation mock mean_defended_acc
+- 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\adaptive_ldp_ablation_mock_accuracy.png`
+- 源文件: `outputs/reports/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv`
+- 可写入论文结论: Shows profile-level adaptive_ldp ablation without mixing datasets for absolute ranking.
+- 口径限制: Averages model/mode rows within each dataset panel and remains an empirical profile scan.
+
+## 21. adaptive_ldp ablation mock mean_mse
+- 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\adaptive_ldp_ablation_mock_distortion.png`
+- 源文件: `outputs/reports/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv`
+- 可写入论文结论: Shows profile-level adaptive_ldp ablation without mixing datasets for absolute ranking.
+- 口径限制: Averages model/mode rows within each dataset panel and remains an empirical profile scan.
+
+## 22. adaptive_ldp ablation real mean_defended_acc
+- 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\adaptive_ldp_ablation_real_accuracy.png`
+- 源文件: `outputs/reports/final_thesis/real/real_adaptive_ldp_ablation_summary.csv`
+- 可写入论文结论: Shows profile-level adaptive_ldp ablation without mixing datasets for absolute ranking.
+- 口径限制: Averages model/mode rows within each dataset panel and remains an empirical profile scan.
+
+## 23. adaptive_ldp ablation real mean_mse
+- 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\adaptive_ldp_ablation_real_distortion.png`
+- 源文件: `outputs/reports/final_thesis/real/real_adaptive_ldp_ablation_summary.csv`
+- 可写入论文结论: Shows profile-level adaptive_ldp ablation without mixing datasets for absolute ranking.
+- 口径限制: Averages model/mode rows within each dataset panel and remains an empirical profile scan.
+
+## 24. Cooja per-seed accuracy
 - 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\cooja_per_seed_accuracy.png`
 - 源文件: `outputs/reports/final_thesis/cooja/cooja_per_seed.csv`
 - 可写入论文结论: Shows fixed/retrain attacker behavior per seed for each Cooja dummy method.
 - 口径限制: Depends on available Cooja radio/app logs and exported per-seed runs.
 
-## 18. Cooja traffic metrics
+## 25. Cooja traffic metrics
 - 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\cooja_traffic_metrics.png`
 - 源文件: `outputs/reports/final_thesis/cooja/cooja_traffic_metrics.csv`
 - 可写入论文结论: Shows available packet/byte overhead proxies from Cooja traffic windows.

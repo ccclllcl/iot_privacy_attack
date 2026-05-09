@@ -721,6 +721,34 @@ PARAM_SCAN_FIELDS = [
     "model_source",
     "source_file",
 ]
+ADAPTIVE_PROFILE_ORDER = [
+    "adaptive_default",
+    "adaptive_strong_privacy",
+    "adaptive_weak_privacy",
+    "adaptive_sensitivity_only",
+    "adaptive_traffic_only",
+    "adaptive_edge_cap_on",
+]
+ADAPTIVE_ABLATION_FIELDS = [
+    "dataset",
+    "profile_name",
+    "model_type",
+    "mode",
+    "epsilon_min",
+    "epsilon_max",
+    "weight_sensitivity",
+    "weight_traffic",
+    "use_edge_budget_cap",
+    "mean_baseline_acc",
+    "mean_defended_acc",
+    "mean_accuracy_drop",
+    "mean_defended_f1_macro",
+    "mean_mse",
+    "mean_mae",
+    "mean_pearson_r",
+    "num_seeds",
+    "source_file",
+]
 
 
 def _read_csv_dicts(path: Path) -> list[dict[str, Any]] | None:
@@ -931,6 +959,192 @@ def _collect_parameter_scans(missing: list[dict[str, Any]]) -> dict[str, Any]:
         "duplicate_rows_removed": duplicate_rows_removed,
         "missing": missing_parameter,
     }
+
+
+def _profile_sort_value(profile: Any) -> int:
+    name = str(profile)
+    return ADAPTIVE_PROFILE_ORDER.index(name) if name in ADAPTIVE_PROFILE_ORDER else len(ADAPTIVE_PROFILE_ORDER)
+
+
+def _build_adaptive_ablation_outputs(missing: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    outputs = {
+        "mock": {
+            "input": OUT_REPORT / "mock" / "mock_parameter_scan_adaptive_ldp.csv",
+            "csv": OUT_REPORT / "mock" / "mock_adaptive_ldp_ablation_summary.csv",
+            "md": OUT_REPORT / "mock" / "mock_adaptive_ldp_ablation_summary.md",
+            "title": "Mock adaptive_ldp profile ablation summary",
+        },
+        "real": {
+            "input": OUT_REPORT / "real" / "real_parameter_scan_adaptive_ldp.csv",
+            "csv": OUT_REPORT / "real" / "real_adaptive_ldp_ablation_summary.csv",
+            "md": OUT_REPORT / "real" / "real_adaptive_ldp_ablation_summary.md",
+            "title": "Real adaptive_ldp profile ablation summary",
+        },
+    }
+    result: dict[str, list[dict[str, Any]]] = {"mock": [], "real": []}
+
+    for scope, spec in outputs.items():
+        input_path = spec["input"]
+        if not input_path.exists() or input_path.stat().st_size == 0:
+            missing.append(
+                {
+                    "section": "adaptive_ablation",
+                    "scope": scope,
+                    "reason": "adaptive_ldp_parameter_scan_missing",
+                    "expected_file": _rel(input_path),
+                }
+            )
+            _write_csv(spec["csv"], [], ADAPTIVE_ABLATION_FIELDS)
+            spec["md"].write_text(f"# {spec['title']}\n\nNo input rows were available.\n", encoding="utf-8")
+            continue
+
+        df = pd.read_csv(input_path)
+        if df.empty:
+            missing.append(
+                {
+                    "section": "adaptive_ablation",
+                    "scope": scope,
+                    "reason": "adaptive_ldp_parameter_scan_empty",
+                    "expected_file": _rel(input_path),
+                }
+            )
+            _write_csv(spec["csv"], [], ADAPTIVE_ABLATION_FIELDS)
+            spec["md"].write_text(f"# {spec['title']}\n\nNo input rows were available.\n", encoding="utf-8")
+            continue
+
+        for col in [
+            "epsilon_min",
+            "epsilon_max",
+            "weight_sensitivity",
+            "weight_traffic",
+            "baseline_acc",
+            "defended_acc",
+            "accuracy_drop",
+            "defended_f1_macro",
+            "mse",
+            "mae",
+            "pearson_r",
+        ]:
+            if col in df.columns:
+                df[col] = pd.to_numeric(df[col], errors="coerce")
+        for col in ["dataset", "profile_name", "model_type", "mode", "use_edge_budget_cap"]:
+            df[col] = df[col].astype(str)
+
+        rows: list[dict[str, Any]] = []
+        group_cols = [
+            "dataset",
+            "profile_name",
+            "model_type",
+            "mode",
+            "epsilon_min",
+            "epsilon_max",
+            "weight_sensitivity",
+            "weight_traffic",
+            "use_edge_budget_cap",
+        ]
+        for keys, g in df.groupby(group_cols, dropna=False):
+            data = dict(zip(group_cols, keys))
+            rows.append(
+                {
+                    **data,
+                    "mean_baseline_acc": float(g["baseline_acc"].mean()),
+                    "mean_defended_acc": float(g["defended_acc"].mean()),
+                    "mean_accuracy_drop": float(g["accuracy_drop"].mean()),
+                    "mean_defended_f1_macro": float(g["defended_f1_macro"].mean()),
+                    "mean_mse": float(g["mse"].mean()),
+                    "mean_mae": float(g["mae"].mean()),
+                    "mean_pearson_r": float(g["pearson_r"].mean()),
+                    "num_seeds": int(g["seed"].nunique()) if "seed" in g.columns else int(len(g)),
+                    "source_file": _rel(input_path),
+                }
+            )
+        rows = sorted(
+            rows,
+            key=lambda r: (
+                str(r["dataset"]),
+                _profile_sort_value(r["profile_name"]),
+                str(r["model_type"]),
+                str(r["mode"]),
+            ),
+        )
+        _write_csv(spec["csv"], rows, ADAPTIVE_ABLATION_FIELDS)
+        result[scope] = rows
+
+        summary_df = pd.DataFrame(rows)
+        profile_summary = (
+            summary_df.groupby(["dataset", "profile_name"], as_index=False)[["mean_defended_acc", "mean_accuracy_drop", "mean_mse"]]
+            .mean(numeric_only=True)
+            .sort_values(["dataset", "profile_name"], key=lambda s: s.map(_profile_sort_value) if s.name == "profile_name" else s)
+        )
+        lines = [
+            f"# {spec['title']}",
+            "",
+            "This file summarizes existing adaptive_ldp profile scans. No experiment was rerun for this summary.",
+            "",
+            f"- Source: `{_rel(input_path)}`",
+            f"- Output rows: `{len(rows)}`",
+            "- Each profile is aggregated by dataset, model type, and attacker mode across available seeds.",
+            "",
+            "| dataset | profile_name | mean_defended_acc | mean_accuracy_drop | mean_mse |",
+            "|---|---:|---:|---:|---:|",
+        ]
+        for _, row in profile_summary.iterrows():
+            lines.append(
+                f"| {row['dataset']} | {row['profile_name']} | "
+                f"{row['mean_defended_acc']:.6f} | {row['mean_accuracy_drop']:.6f} | {row['mean_mse']:.6f} |"
+            )
+        lines.extend(
+            [
+                "",
+                "Interpretation should stay cautious: this is a profile-level empirical ablation summary, not a formal theoretical proof.",
+            ]
+        )
+        spec["md"].write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    overview = OUT_REPORT / "adaptive_ldp_ablation_overview.md"
+    overview.write_text(
+        "\n".join(
+            [
+                "# Adaptive LDP Ablation Overview",
+                "",
+                "This is not a newly rerun experiment. It organizes the existing adaptive_ldp profile parameter scans into a formal ablation summary.",
+                "",
+                "## Ablation Dimensions",
+                "",
+                "- `epsilon_min` / `epsilon_max`: adaptive privacy budget range.",
+                "- `weight_sensitivity`: weight for the window-variation proxy.",
+                "- `weight_traffic`: weight for the traffic-intensity proxy.",
+                "- `use_edge_budget_cap`: whether the edge budget clipping interface is enabled.",
+                "",
+                "## Profiles",
+                "",
+                "- `adaptive_default`: balanced sensitivity and traffic weighting.",
+                "- `adaptive_strong_privacy`: stronger perturbation through a smaller epsilon range.",
+                "- `adaptive_weak_privacy`: weaker perturbation through a larger epsilon range.",
+                "- `adaptive_sensitivity_only`: uses only the window-variation proxy.",
+                "- `adaptive_traffic_only`: uses only the traffic-intensity proxy.",
+                "- `adaptive_edge_cap_on`: enables the edge budget clipping interface.",
+                "",
+                "## Scope and Caution",
+                "",
+                "The summary covers mock, uci_har, kasteren, and casas_hh101; seeds 42, 123, and 2026; LSTM and MLP; fixed_attacker and retrain_attacker.",
+                "The results are empirical profile scans and should not be overstated as a formal theoretical proof.",
+                "",
+                "If thesis Section 5.2 still says that ablation experiments can be done later, revise it to: "
+                "\"Current results already include profile-level ablation summaries, while finer-grained real deployment ablations can remain future work.\"",
+                "",
+                "## Generated Files",
+                "",
+                "- `outputs/reports/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv`",
+                "- `outputs/reports/final_thesis/mock/mock_adaptive_ldp_ablation_summary.md`",
+                "- `outputs/reports/final_thesis/real/real_adaptive_ldp_ablation_summary.csv`",
+                "- `outputs/reports/final_thesis/real/real_adaptive_ldp_ablation_summary.md`",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    return result
 
 
 def _cooja_logs_available(manifest_path: Path) -> tuple[bool, list[Path]]:
@@ -1812,6 +2026,60 @@ def _build_symmetry_figures(missing: list[dict[str, Any]]) -> list[dict[str, Any
     plot_parameter_method("noise", "parameter_scan_noise_all_models_modes.png")
     plot_parameter_method("adaptive_ldp", "parameter_scan_adaptive_ldp_all_models_modes.png")
 
+    def plot_adaptive_ablation(scope: str, metric: str, out_name: str, ylabel: str) -> None:
+        if scope == "mock":
+            summary_path = OUT_REPORT / "mock" / "mock_adaptive_ldp_ablation_summary.csv"
+        else:
+            summary_path = OUT_REPORT / "real" / "real_adaptive_ldp_ablation_summary.csv"
+        df = read_csv(summary_path)
+        if df.empty:
+            missing.append({"section": "figures", "figure": out_name, "reason": "adaptive_ablation_rows_empty"})
+            return
+        df["dataset"] = df["dataset"].fillna("unknown").astype(str)
+        df["profile_name"] = df["profile_name"].astype(str)
+        datasets = ["mock"] if scope == "mock" else [d for d in ["uci_har", "kasteren", "casas_hh101"] if d in set(df["dataset"])]
+        fig, axes = plt.subplots(len(datasets), 1, figsize=(11, max(4, 3.3 * len(datasets))), squeeze=False)
+        x = np.arange(len(ADAPTIVE_PROFILE_ORDER))
+        for ax, dataset in zip(axes.ravel(), datasets):
+            sub = df[df["dataset"] == dataset].copy()
+            if sub.empty:
+                ax.set_visible(False)
+                continue
+            sub["_profile_order"] = sub["profile_name"].map(_profile_sort_value)
+            for (model, mode), g in sub.groupby(["model_type", "mode"]):
+                curve = (
+                    g.sort_values("_profile_order")
+                    .groupby("profile_name", as_index=False)[metric]
+                    .mean(numeric_only=True)
+                )
+                curve["_profile_order"] = curve["profile_name"].map(_profile_sort_value)
+                curve = curve.sort_values("_profile_order")
+                ax.plot(curve["_profile_order"], curve[metric], marker="o", label=f"{model} {mode}")
+            ax.set_xticks(x)
+            ax.set_xticklabels(ADAPTIVE_PROFILE_ORDER, rotation=25, ha="right")
+            ax.set_title(f"{dataset}: adaptive_ldp ablation")
+            ax.set_ylabel(ylabel)
+            ax.grid(alpha=0.3)
+            ax.legend(fontsize=8, ncols=2)
+        fig.tight_layout()
+        out = OUT_FIG / out_name
+        fig.savefig(out, dpi=180)
+        plt.close(fig)
+        figures.append(
+            {
+                "path": str(out),
+                "title": f"adaptive_ldp ablation {scope} {metric}",
+                "source_files": _rel(summary_path),
+                "conclusion": "Shows profile-level adaptive_ldp ablation without mixing datasets for absolute ranking.",
+                "limitations": "Averages model/mode rows within each dataset panel and remains an empirical profile scan.",
+            }
+        )
+
+    plot_adaptive_ablation("mock", "mean_defended_acc", "adaptive_ldp_ablation_mock_accuracy.png", "Mean defended accuracy")
+    plot_adaptive_ablation("mock", "mean_mse", "adaptive_ldp_ablation_mock_distortion.png", "Mean MSE")
+    plot_adaptive_ablation("real", "mean_defended_acc", "adaptive_ldp_ablation_real_accuracy.png", "Mean defended accuracy")
+    plot_adaptive_ablation("real", "mean_mse", "adaptive_ldp_ablation_real_distortion.png", "Mean MSE")
+
     per_seed_path = OUT_REPORT / "cooja" / "cooja_per_seed.csv"
     per_seed_df = read_csv(per_seed_path)
     if not per_seed_df.empty:
@@ -1886,6 +2154,35 @@ def _write_figure_list(figures: list[dict[str, Any]]) -> None:
         lines.append("")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def _adaptive_ablation_table_entries() -> list[dict[str, Any]]:
+    return [
+        {
+            "path": _rel(OUT_REPORT / "mock" / "mock_adaptive_ldp_ablation_summary.csv"),
+            "title": "mock adaptive_ldp ablation summary table",
+            "source_files": _rel(OUT_REPORT / "mock" / "mock_parameter_scan_adaptive_ldp.csv"),
+            "conclusion": "Profile-level mock adaptive_ldp ablation summary based on existing parameter scans.",
+            "limitations": "Empirical profile aggregation across seeds; no new experiment was rerun.",
+        },
+        {
+            "path": _rel(OUT_REPORT / "real" / "real_adaptive_ldp_ablation_summary.csv"),
+            "title": "real adaptive_ldp ablation summary table",
+            "source_files": _rel(OUT_REPORT / "real" / "real_parameter_scan_adaptive_ldp.csv"),
+            "conclusion": "Profile-level real-data adaptive_ldp ablation summary by dataset, model, and attacker mode.",
+            "limitations": "Do not rank different datasets against each other by absolute value.",
+        },
+        {
+            "path": _rel(OUT_REPORT / "adaptive_ldp_ablation_overview.md"),
+            "title": "adaptive_ldp ablation overview",
+            "source_files": (
+                f"{_rel(OUT_REPORT / 'mock' / 'mock_adaptive_ldp_ablation_summary.csv')};"
+                f"{_rel(OUT_REPORT / 'real' / 'real_adaptive_ldp_ablation_summary.csv')}"
+            ),
+            "conclusion": "Explains the six adaptive_ldp profiles and their cautious interpretation.",
+            "limitations": "This overview is a delivery note, not a theoretical proof.",
+        },
+    ]
 
 
 def _write_final_summary_md(
@@ -2002,6 +2299,7 @@ def main() -> None:
     real = _collect_real(env, missing)
     cooja = _collect_cooja(env, missing)
     parameter_scans = _collect_parameter_scans(missing)
+    adaptive_ablation = _build_adaptive_ablation_outputs(missing)
 
     # unified files
     final_rows = []
@@ -2028,6 +2326,8 @@ def main() -> None:
             "real_summary": str(OUT_REPORT / "real" / "real_summary.csv"),
             "cooja_summary": str(OUT_REPORT / "cooja" / "cooja_summary.csv"),
             "final_summary": str(OUT_REPORT / "final_summary.csv"),
+            "mock_adaptive_ldp_ablation": str(OUT_REPORT / "mock" / "mock_adaptive_ldp_ablation_summary.csv"),
+            "real_adaptive_ldp_ablation": str(OUT_REPORT / "real" / "real_adaptive_ldp_ablation_summary.csv"),
         },
     }
     _write_json(OUT_REPORT / "final_manifest.json", manifest)
@@ -2046,6 +2346,8 @@ def main() -> None:
             "mock": len(mock["rows"]),
             "real": len(real["rows"]),
             "cooja": len(cooja["rows"]),
+            "mock_adaptive_ablation_rows": len(adaptive_ablation["mock"]),
+            "real_adaptive_ablation_rows": len(adaptive_ablation["real"]),
         },
         "missing_combinations": {
             "mock": mock["coverage"]["missing_combinations"],
@@ -2079,6 +2381,7 @@ def main() -> None:
         scan_real_noise=real["scan_noise_rows"],
         missing=missing,
     )
+    figures.extend(_adaptive_ablation_table_entries())
     figures.extend(_build_symmetry_figures(missing))
     _write_figure_list(figures)
     _write_json(OUT_REPORT / "final_missing_outputs.json", missing)

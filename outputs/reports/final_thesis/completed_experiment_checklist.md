@@ -56,3 +56,7 @@ py -3 scripts/build_final_thesis_results.py
 - `outputs/defense/**/defense_report.json`
 
 上述旧路径可作为过程文件，但正文中的数值与图表应以 `final_thesis` 结果包为准。
+
+## 追加完成项
+
+- adaptive_ldp profile 级消融汇总：已完成，基于已有参数扫描整理，未重跑主矩阵。

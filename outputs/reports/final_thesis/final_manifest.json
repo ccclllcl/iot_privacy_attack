@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-09T13:33:37",
-  "git_commit": "97fa6a45c206f1a48b26adfbb9e23ef8c8ae786f",
+  "generated_at": "2026-05-09T14:07:43",
+  "git_commit": "bb261f0f1373d8fc19995db4ba413bf671f5d5d6",
   "inputs": {
     "mock_source_root": "outputs/defense/full_multiseed",
     "real_source_root": "outputs/defense/real_public_benchmark",
@@ -14,6 +14,8 @@
     "mock_summary": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\reports\\final_thesis\\mock\\mock_summary.csv",
     "real_summary": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\reports\\final_thesis\\real\\real_summary.csv",
     "cooja_summary": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\reports\\final_thesis\\cooja\\cooja_summary.csv",
-    "final_summary": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\reports\\final_thesis\\final_summary.csv"
+    "final_summary": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\reports\\final_thesis\\final_summary.csv",
+    "mock_adaptive_ldp_ablation": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\reports\\final_thesis\\mock\\mock_adaptive_ldp_ablation_summary.csv",
+    "real_adaptive_ldp_ablation": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\outputs\\reports\\final_thesis\\real\\real_adaptive_ldp_ablation_summary.csv"
   }
 }
