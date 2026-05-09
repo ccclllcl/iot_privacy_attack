@@ -405,3 +405,17 @@ python experiments/core/run_compare.py --config configs/default.yaml --method no
 ## 许可证与引用
 
 毕业设计自用项目。若使用 Smart* 等公开数据集，请在论文中按原数据集要求标注引用来源。
+
+## 最终结果对称性补齐
+
+主矩阵 mock 36/36 和 real 108/108 已完成，不建议重复重跑。参数扫描与最终汇总可按下面顺序只补缺口：
+
+```bash
+python scripts/audit_experiment_symmetry.py
+python experiments/batches/run_missing_parameter_scans.py --skip-existing
+python scripts/build_final_thesis_results.py
+```
+
+Cooja per-seed 与流量统计结果位于 `outputs/reports/final_thesis/cooja/`。参数扫描汇总位于 `outputs/reports/final_thesis/mock/` 和 `outputs/reports/final_thesis/real/`。
+
+Cooja 当前不提供真实能耗或时延测量，只提供窗口数量与流量统计代理；相关限制写入 `outputs/reports/final_thesis/cooja/cooja_limitations.md`。

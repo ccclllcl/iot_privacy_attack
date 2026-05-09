@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-05-09T13:33:42",
+  "complete_main_matrix_mock": true,
+  "complete_main_matrix_real": true,
+  "main_matrix_counts": {
+    "mock": {
+      "expected": 36,
+      "completed": 36,
+      "missing": 0
+    },
+    "real": {
+      "expected": 108,
+      "completed": 108,
+      "missing": 0
+    }
+  },
+  "missing_main_matrix_mock": [],
+  "missing_main_matrix_real": [],
+  "missing_mock_parameter_scans": [],
+  "missing_real_parameter_scans": [],
+  "missing_cooja_outputs": [],
+  "duplicated_rows_detected": [],
+  "actions_recommended": [
+    "No action required; audited outputs are symmetric."
+  ],
+  "summary": {
+    "mock_parameter_scans": {
+      "total": 0,
+      "by_method": {},
+      "by_dataset": {},
+      "items": []
+    },
+    "real_parameter_scans": {
+      "total": 0,
+      "by_method": {},
+      "by_dataset": {},
+      "items": []
+    },
+    "cooja": {
+      "total": 0
+    }
+  }
+}

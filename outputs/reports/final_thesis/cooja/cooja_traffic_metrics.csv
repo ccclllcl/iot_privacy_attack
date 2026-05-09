@@ -1,0 +1,10 @@
+method,seed,baseline_windows,defense_windows,baseline_pkt_count_mean,defense_pkt_count_mean,baseline_byte_count_mean,defense_byte_count_mean,packet_overhead_ratio,byte_overhead_ratio,baseline_mean_iat_ms,defense_mean_iat_ms,baseline_p95_iat_ms,defense_p95_iat_ms,dummy_packet_ratio,dummy_byte_ratio,energy_metric_available,delay_metric_available,limitations
+dummy_noise,42,4016,678,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,False,Radio log does not distinguish dummy packets from real packets; no real energy/delay metrics are available.
+dummy_noise,123,4016,678,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,False,Radio log does not distinguish dummy packets from real packets; no real energy/delay metrics are available.
+dummy_noise,2026,4016,678,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,False,Radio log does not distinguish dummy packets from real packets; no real energy/delay metrics are available.
+dummy_ldp,42,4016,1161,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,False,Radio log does not distinguish dummy packets from real packets; no real energy/delay metrics are available.
+dummy_ldp,123,4016,1161,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,False,Radio log does not distinguish dummy packets from real packets; no real energy/delay metrics are available.
+dummy_ldp,2026,4016,1161,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,False,Radio log does not distinguish dummy packets from real packets; no real energy/delay metrics are available.
+dummy_adaptive_ldp,42,4016,1140,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,False,Radio log does not distinguish dummy packets from real packets; no real energy/delay metrics are available.
+dummy_adaptive_ldp,123,4016,1140,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,False,Radio log does not distinguish dummy packets from real packets; no real energy/delay metrics are available.
+dummy_adaptive_ldp,2026,4016,1140,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,nan,False,False,Radio log does not distinguish dummy packets from real packets; no real energy/delay metrics are available.

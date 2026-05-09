@@ -22,6 +22,58 @@ from src.utils import ensure_dir
 
 logger = logging.getLogger(__name__)
 
+ADAPTIVE_LDP_PROFILES: List[Dict[str, Any]] = [
+    {
+        "profile_name": "adaptive_default",
+        "epsilon_min": 0.4,
+        "epsilon_max": 4.0,
+        "weight_sensitivity": 0.5,
+        "weight_traffic": 0.5,
+        "use_edge_budget_cap": False,
+    },
+    {
+        "profile_name": "adaptive_strong_privacy",
+        "epsilon_min": 0.2,
+        "epsilon_max": 1.0,
+        "weight_sensitivity": 0.5,
+        "weight_traffic": 0.5,
+        "use_edge_budget_cap": False,
+    },
+    {
+        "profile_name": "adaptive_weak_privacy",
+        "epsilon_min": 1.0,
+        "epsilon_max": 6.0,
+        "weight_sensitivity": 0.5,
+        "weight_traffic": 0.5,
+        "use_edge_budget_cap": False,
+    },
+    {
+        "profile_name": "adaptive_sensitivity_only",
+        "epsilon_min": 0.4,
+        "epsilon_max": 4.0,
+        "weight_sensitivity": 1.0,
+        "weight_traffic": 0.0,
+        "use_edge_budget_cap": False,
+    },
+    {
+        "profile_name": "adaptive_traffic_only",
+        "epsilon_min": 0.4,
+        "epsilon_max": 4.0,
+        "weight_sensitivity": 0.0,
+        "weight_traffic": 1.0,
+        "use_edge_budget_cap": False,
+    },
+    {
+        "profile_name": "adaptive_edge_cap_on",
+        "epsilon_min": 0.4,
+        "epsilon_max": 4.0,
+        "weight_sensitivity": 0.5,
+        "weight_traffic": 0.5,
+        "use_edge_budget_cap": True,
+        "edge_inverse_budget_cap": 100000,
+    },
+]
+
 
 def _clone_cfg(cfg: ExperimentConfig) -> ExperimentConfig:
     raw = copy.deepcopy(cfg.raw)
@@ -43,8 +95,8 @@ def run_parameter_compare(
     """
     configure_matplotlib_english()
     method = method.lower().strip()
-    if method not in ("ldp", "noise"):
-        raise ValueError("method 只能是 ldp 或 noise")
+    if method not in ("ldp", "noise", "adaptive_ldp"):
+        raise ValueError("method must be one of: ldp, noise, adaptive_ldp")
 
     cmp = cfg.nested("compare")
     defense_root = ensure_dir(cfg.path("paths", "defense_dir"))
@@ -94,6 +146,52 @@ def run_parameter_compare(
         _write_csv(csv_path, rows)
         _plot_epsilon_vs_accuracy(rows, comp_dir / "epsilon_vs_accuracy.png")
         _plot_epsilon_vs_distortion(rows, comp_dir / "epsilon_vs_distortion.png")
+        return csv_path
+
+    if method == "adaptive_ldp":
+        for idx, profile in enumerate(ADAPTIVE_LDP_PROFILES, start=1):
+            c = _clone_cfg(cfg)
+            c.raw.setdefault("defense", {})
+            c.raw["defense"]["method"] = "adaptive_ldp"
+            c.raw["defense"]["enabled"] = True
+            c.raw.setdefault("adaptive_ldp", {})
+            c.raw["adaptive_ldp"].update({k: v for k, v in profile.items() if k != "profile_name"})
+            summ = run_defense_pipeline(c)
+            distort = summ.get("distortion", {})
+            pair = compute_fixed_attacker_metrics(c, model_path)
+            b = pair["baseline"]
+            d = pair["defended"]
+            rows.append(
+                {
+                    "method": "adaptive_ldp",
+                    "profile_name": profile["profile_name"],
+                    "param_name": "profile",
+                    "param_value": idx,
+                    "epsilon_min": profile["epsilon_min"],
+                    "epsilon_max": profile["epsilon_max"],
+                    "weight_sensitivity": profile["weight_sensitivity"],
+                    "weight_traffic": profile["weight_traffic"],
+                    "use_edge_budget_cap": profile["use_edge_budget_cap"],
+                    "baseline_accuracy": b["accuracy"],
+                    "defended_accuracy": d["accuracy"],
+                    "accuracy_drop": b["accuracy"] - d["accuracy"],
+                    "defended_f1_macro": d["f1_macro"],
+                    "mse": distort.get("mse", 0.0),
+                    "mae": distort.get("mae", 0.0),
+                    "pearson_r": distort.get("pearson_r", 0.0),
+                }
+            )
+            logger.info(
+                "Adaptive LDP profile=%s | defended_acc=%.4f | mse=%.6f",
+                profile["profile_name"],
+                d["accuracy"],
+                distort.get("mse", 0.0),
+            )
+
+        csv_path = comp_dir / "comparison_results.csv"
+        _write_csv(csv_path, rows)
+        _plot_adaptive_profile_vs_accuracy(rows, comp_dir / "adaptive_profile_vs_accuracy.png")
+        _plot_adaptive_profile_vs_distortion(rows, comp_dir / "adaptive_profile_vs_distortion.png")
         return csv_path
 
     # noise
@@ -211,6 +309,46 @@ def _plot_noise_vs_accuracy(rows: List[Dict[str, Any]], out: Path) -> None:
     ax.set_xlabel("noise_scale")
     ax.set_ylabel("Accuracy")
     ax.set_title("Noise scale vs. defended accuracy")
+    ax.grid(True, alpha=0.3)
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(out, dpi=150)
+    plt.close(fig)
+
+
+def _plot_adaptive_profile_vs_accuracy(rows: List[Dict[str, Any]], out: Path) -> None:
+    xs = [int(r["param_value"]) for r in rows]
+    ys = [r["defended_accuracy"] for r in rows]
+    yb = rows[0]["baseline_accuracy"] if rows else 0.0
+    labels = [str(r["profile_name"]).replace("adaptive_", "") for r in rows]
+    fig, ax = plt.subplots(figsize=(8, 4.5))
+    ax.plot(xs, ys, marker="o", label="Defended accuracy")
+    ax.axhline(yb, color="gray", linestyle="--", label="Baseline")
+    ax.set_xticks(xs)
+    ax.set_xticklabels(labels, rotation=25, ha="right")
+    ax.set_xlabel("adaptive profile")
+    ax.set_ylabel("Accuracy")
+    ax.set_title("Adaptive LDP profile vs. defended accuracy")
+    ax.grid(True, alpha=0.3)
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(out, dpi=150)
+    plt.close(fig)
+
+
+def _plot_adaptive_profile_vs_distortion(rows: List[Dict[str, Any]], out: Path) -> None:
+    xs = [int(r["param_value"]) for r in rows]
+    mse = [r["mse"] for r in rows]
+    mae = [r["mae"] for r in rows]
+    labels = [str(r["profile_name"]).replace("adaptive_", "") for r in rows]
+    fig, ax = plt.subplots(figsize=(8, 4.5))
+    ax.plot(xs, mse, marker="s", label="MSE")
+    ax.plot(xs, mae, marker="o", label="MAE")
+    ax.set_xticks(xs)
+    ax.set_xticklabels(labels, rotation=25, ha="right")
+    ax.set_xlabel("adaptive profile")
+    ax.set_ylabel("Distortion")
+    ax.set_title("Adaptive LDP profile vs. distortion")
     ax.grid(True, alpha=0.3)
     ax.legend()
     fig.tight_layout()

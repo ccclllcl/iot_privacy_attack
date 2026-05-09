@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 from statistics import mean, pstdev
 from typing import Any
@@ -216,6 +217,59 @@ def load_manifest(path: Path) -> dict[str, Any]:
     return data
 
 
+def _cooja_log_candidates(name: str) -> tuple[str, str]:
+    mapping = {
+        "baseline": ("Radiomsg.txt", "loglistener.txt"),
+        "dummy_noise": ("Radiomsg_dummy_noise.txt", "loglistener_dummy_noise.txt"),
+        "dummy_ldp": ("Radiomsg_dummy_ldp.txt", "loglistener_dummy_ldp.txt"),
+        "dummy_adaptive_ldp": ("Radiomsg_dummy_adaptive.txt", "loglistener_dummy_adaptive.txt"),
+    }
+    return mapping.get(name, (f"Radiomsg_{name}.txt", f"loglistener_{name}.txt"))
+
+
+def _resolve_log_pair(item: dict[str, Any], name: str) -> dict[str, Any]:
+    out = dict(item)
+    radio = Path(str(out.get("radio_log", "")))
+    app = Path(str(out.get("app_log", "")))
+    if radio.exists() and app.exists():
+        return out
+
+    root_env = os.environ.get("COOJA_LOG_ROOT")
+    if root_env:
+        root = Path(root_env)
+        radio_name, app_name = _cooja_log_candidates(name)
+        radio_alt = root / radio_name
+        app_alt = root / app_name
+        if radio_alt.exists() and app_alt.exists():
+            out["radio_log"] = str(radio_alt)
+            out["app_log"] = str(app_alt)
+    return out
+
+
+def resolve_manifest_paths(manifest: dict[str, Any]) -> dict[str, Any]:
+    out = dict(manifest)
+    out["baseline"] = _resolve_log_pair(dict(manifest["baseline"]), "baseline")
+    out["methods"] = [
+        _resolve_log_pair(dict(m), str(m.get("name", "")))
+        for m in manifest.get("methods", [])
+    ]
+    return out
+
+
+def _missing_log_entries(manifest: dict[str, Any]) -> list[dict[str, Any]]:
+    entries: list[dict[str, Any]] = []
+    pairs = [("baseline", manifest.get("baseline", {}))]
+    pairs.extend((str(m.get("name", "")), m) for m in manifest.get("methods", []))
+    for name, item in pairs:
+        radio = Path(str(item.get("radio_log", "")))
+        app = Path(str(item.get("app_log", "")))
+        if not radio.exists():
+            entries.append({"name": name, "kind": "radio_log", "path": str(radio)})
+        if not app.exists():
+            entries.append({"name": name, "kind": "app_log", "path": str(app)})
+    return entries
+
+
 def plot_method_bars(summary: dict[str, Any], out_path: Path) -> None:
     methods = list(summary.keys())
     fixed_acc = [summary[m]["fixed_attacker"]["accuracy"]["mean"] for m in methods]
@@ -258,8 +312,25 @@ def main() -> None:
     manifest_path = Path(args.manifest)
     if not manifest_path.is_absolute():
         manifest_path = (root / manifest_path).resolve()
-    manifest = load_manifest(manifest_path)
+    manifest = resolve_manifest_paths(load_manifest(manifest_path))
     seeds = parse_seed_list(str(args.seeds))
+
+    missing_logs = _missing_log_entries(manifest)
+    if missing_logs:
+        (out_dir / "cooja_missing_logs.json").write_text(
+            json.dumps(
+                {
+                    "manifest": str(manifest_path),
+                    "cooja_log_root": os.environ.get("COOJA_LOG_ROOT"),
+                    "missing_logs": missing_logs,
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+        print(f"[MISSING] Cooja logs unavailable; wrote {out_dir / 'cooja_missing_logs.json'}")
+        return
 
     baseline_radio = Path(manifest["baseline"]["radio_log"]).resolve()
     baseline_app = Path(manifest["baseline"]["app_log"]).resolve()

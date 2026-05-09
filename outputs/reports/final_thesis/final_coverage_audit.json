@@ -14,6 +14,73 @@
     "notes": "source=outputs/defense/real_public_benchmark/*"
   },
   "cooja_rows": 6,
+  "parameter_scan": {
+    "mock": {
+      "expected": 36,
+      "completed": 36,
+      "missing": []
+    },
+    "real": {
+      "expected": 108,
+      "completed": 108,
+      "missing": []
+    },
+    "adaptive_ldp_profile_count": {
+      "expected": 6,
+      "observed": {
+        "mock:mock:seed_42:lstm:fixed_attacker": 6,
+        "mock:mock:seed_42:lstm:retrain_attacker": 6,
+        "mock:mock:seed_42:mlp:fixed_attacker": 6,
+        "mock:mock:seed_42:mlp:retrain_attacker": 6,
+        "mock:mock:seed_123:lstm:fixed_attacker": 6,
+        "mock:mock:seed_123:lstm:retrain_attacker": 6,
+        "mock:mock:seed_123:mlp:fixed_attacker": 6,
+        "mock:mock:seed_123:mlp:retrain_attacker": 6,
+        "mock:mock:seed_2026:lstm:fixed_attacker": 6,
+        "mock:mock:seed_2026:lstm:retrain_attacker": 6,
+        "mock:mock:seed_2026:mlp:fixed_attacker": 6,
+        "mock:mock:seed_2026:mlp:retrain_attacker": 6,
+        "real:uci_har:seed_42:lstm:fixed_attacker": 6,
+        "real:uci_har:seed_42:lstm:retrain_attacker": 6,
+        "real:uci_har:seed_42:mlp:fixed_attacker": 6,
+        "real:uci_har:seed_42:mlp:retrain_attacker": 6,
+        "real:uci_har:seed_123:lstm:fixed_attacker": 6,
+        "real:uci_har:seed_123:lstm:retrain_attacker": 6,
+        "real:uci_har:seed_123:mlp:fixed_attacker": 6,
+        "real:uci_har:seed_123:mlp:retrain_attacker": 6,
+        "real:uci_har:seed_2026:lstm:fixed_attacker": 6,
+        "real:uci_har:seed_2026:lstm:retrain_attacker": 6,
+        "real:uci_har:seed_2026:mlp:fixed_attacker": 6,
+        "real:uci_har:seed_2026:mlp:retrain_attacker": 6,
+        "real:kasteren:seed_42:lstm:fixed_attacker": 6,
+        "real:kasteren:seed_42:lstm:retrain_attacker": 6,
+        "real:kasteren:seed_42:mlp:fixed_attacker": 6,
+        "real:kasteren:seed_42:mlp:retrain_attacker": 6,
+        "real:kasteren:seed_123:lstm:fixed_attacker": 6,
+        "real:kasteren:seed_123:lstm:retrain_attacker": 6,
+        "real:kasteren:seed_123:mlp:fixed_attacker": 6,
+        "real:kasteren:seed_123:mlp:retrain_attacker": 6,
+        "real:kasteren:seed_2026:lstm:fixed_attacker": 6,
+        "real:kasteren:seed_2026:lstm:retrain_attacker": 6,
+        "real:kasteren:seed_2026:mlp:fixed_attacker": 6,
+        "real:kasteren:seed_2026:mlp:retrain_attacker": 6,
+        "real:casas_hh101:seed_42:lstm:fixed_attacker": 6,
+        "real:casas_hh101:seed_42:lstm:retrain_attacker": 6,
+        "real:casas_hh101:seed_42:mlp:fixed_attacker": 6,
+        "real:casas_hh101:seed_42:mlp:retrain_attacker": 6,
+        "real:casas_hh101:seed_123:lstm:fixed_attacker": 6,
+        "real:casas_hh101:seed_123:lstm:retrain_attacker": 6,
+        "real:casas_hh101:seed_123:mlp:fixed_attacker": 6,
+        "real:casas_hh101:seed_123:mlp:retrain_attacker": 6,
+        "real:casas_hh101:seed_2026:lstm:fixed_attacker": 6,
+        "real:casas_hh101:seed_2026:lstm:retrain_attacker": 6,
+        "real:casas_hh101:seed_2026:mlp:fixed_attacker": 6,
+        "real:casas_hh101:seed_2026:mlp:retrain_attacker": 6
+      }
+    },
+    "duplicate_rows_removed": 0,
+    "missing_combinations": []
+  },
   "should_have_experiments": {
     "mock": 36,
     "real": 108

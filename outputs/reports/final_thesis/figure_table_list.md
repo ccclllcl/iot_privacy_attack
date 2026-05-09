@@ -77,3 +77,33 @@
 - 源文件: `outputs/reports/final_thesis/cooja/cooja_overhead_summary.csv`
 - 可写入论文结论: 可用于说明当前日志只能支持窗口数量代理，而不能支持真实能耗或时延结论。
 - 口径限制: 该图不是能耗或时延实测，只反映当前导出日志形成的窗口规模差异。
+
+## 14. ldp parameter scans across available models/modes
+- 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\parameter_scan_ldp_all_models_modes.png`
+- 源文件: `outputs/reports/final_thesis/mock/mock_parameter_scan_ldp.csv;outputs/reports/final_thesis/real/real_parameter_scan_ldp.csv`
+- 可写入论文结论: Shows parameter sensitivity separately by dataset; missing combinations are documented in parameter_scan_coverage_audit.json.
+- 口径限制: Curves average available seeds and do not rank different datasets against each other.
+
+## 15. noise parameter scans across available models/modes
+- 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\parameter_scan_noise_all_models_modes.png`
+- 源文件: `outputs/reports/final_thesis/mock/mock_parameter_scan_noise.csv;outputs/reports/final_thesis/real/real_parameter_scan_noise.csv`
+- 可写入论文结论: Shows parameter sensitivity separately by dataset; missing combinations are documented in parameter_scan_coverage_audit.json.
+- 口径限制: Curves average available seeds and do not rank different datasets against each other.
+
+## 16. adaptive_ldp parameter scans across available models/modes
+- 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\parameter_scan_adaptive_ldp_all_models_modes.png`
+- 源文件: `outputs/reports/final_thesis/mock/mock_parameter_scan_adaptive_ldp.csv;outputs/reports/final_thesis/real/real_parameter_scan_adaptive_ldp.csv`
+- 可写入论文结论: Shows parameter sensitivity separately by dataset; missing combinations are documented in parameter_scan_coverage_audit.json.
+- 口径限制: Curves average available seeds and do not rank different datasets against each other.
+
+## 17. Cooja per-seed accuracy
+- 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\cooja_per_seed_accuracy.png`
+- 源文件: `outputs/reports/final_thesis/cooja/cooja_per_seed.csv`
+- 可写入论文结论: Shows fixed/retrain attacker behavior per seed for each Cooja dummy method.
+- 口径限制: Depends on available Cooja radio/app logs and exported per-seed runs.
+
+## 18. Cooja traffic metrics
+- 图路径: `D:\毕业设计毕业设计毕业设计毕业设计\Projects\iot_privacy_attack\outputs\figures\final_thesis\cooja_traffic_metrics.png`
+- 源文件: `outputs/reports/final_thesis/cooja/cooja_traffic_metrics.csv`
+- 可写入论文结论: Shows available packet/byte overhead proxies from Cooja traffic windows.
+- 口径限制: Not real energy or delay; dummy packet ratios are null when logs do not label dummy packets.

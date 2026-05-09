@@ -6,6 +6,7 @@
 用法:
   python experiments/core/run_compare.py --config configs/default.yaml --method ldp --model_path outputs/models/best_lstm.pt
   python experiments/core/run_compare.py --config configs/default.yaml --method noise --model_path outputs/models/best_lstm.pt
+  python experiments/core/run_compare.py --config configs/default.yaml --method adaptive_ldp --model_path outputs/models/best_lstm.pt
 """
 
 from __future__ import annotations
@@ -31,7 +32,7 @@ def main() -> None:
     logger = logging.getLogger(__name__)
     parser = argparse.ArgumentParser(description="防御参数批量对比实验")
     parser.add_argument("--config", type=str, default="configs/default.yaml")
-    parser.add_argument("--method", type=str, required=True, choices=["ldp", "noise"])
+    parser.add_argument("--method", type=str, required=True, choices=["ldp", "noise", "adaptive_ldp"])
     parser.add_argument("--model_path", type=str, required=True)
     args = parser.parse_args()
     cfg_path = Path(args.config)

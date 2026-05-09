@@ -14,6 +14,7 @@ import platform
 import shutil
 import subprocess
 import sys
+from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -103,6 +104,13 @@ def _write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str] | N
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
+
+
+def _rel(path: Path) -> str:
+    try:
+        return path.resolve().relative_to(ROOT).as_posix()
+    except Exception:
+        return path.as_posix()
 
 
 def _mean(vals: list[float]) -> float:
@@ -300,19 +308,21 @@ def _collect_mock(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                         f"baseline_f1_macro={baseline_f1:.6f}\ndefended_f1_macro={defended_f1:.6f}\n",
                         encoding="utf-8",
                     )
-                    _write_json(
-                        dst_base / "trace.json",
-                        _extract_trace(
-                            dataset="mock",
-                            seed=seed,
-                            model=model,
-                            method=method,
-                            mode=mode,
-                            config=f"configs/generated_all_methods/default.seed_{seed}.{method}.yaml",
-                            command=f"python experiments/core/run_defense_eval.py --mode {mode}",
-                            env=env,
-                        ),
-                    )
+                    trace_path = dst_base / "trace.json"
+                    if not trace_path.exists():
+                        _write_json(
+                            trace_path,
+                            _extract_trace(
+                                dataset="mock",
+                                seed=seed,
+                                model=model,
+                                method=method,
+                                mode=mode,
+                                config=f"configs/generated_all_methods/default.seed_{seed}.{method}.yaml",
+                                command=f"python experiments/core/run_defense_eval.py --mode {mode}",
+                                env=env,
+                            ),
+                        )
 
                     for tc in defended_obj.get("top_confusions", [])[:10]:
                         top_conf_rows.append(
@@ -526,19 +536,21 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
                             f"baseline_f1_macro={baseline_f1:.6f}\ndefended_f1_macro={defended_f1:.6f}\n",
                             encoding="utf-8",
                         )
-                        _write_json(
-                            dst_base / "trace.json",
-                            _extract_trace(
-                                dataset=ds,
-                                seed=seed,
-                                model=model,
-                                method=method,
-                                mode=mode,
-                                config=f"configs/generated_real_public/{ds}.seed_{seed}.{method}.yaml",
-                                command=f"python experiments/core/run_defense_eval.py --mode {mode}",
-                                env=env,
-                            ),
-                        )
+                        trace_path = dst_base / "trace.json"
+                        if not trace_path.exists():
+                            _write_json(
+                                trace_path,
+                                _extract_trace(
+                                    dataset=ds,
+                                    seed=seed,
+                                    model=model,
+                                    method=method,
+                                    mode=mode,
+                                    config=f"configs/generated_real_public/{ds}.seed_{seed}.{method}.yaml",
+                                    command=f"python experiments/core/run_defense_eval.py --mode {mode}",
+                                    env=env,
+                                ),
+                            )
                         for tc in defended_obj.get("top_confusions", [])[:10]:
                             top_conf_rows.append(
                                 {
@@ -683,26 +695,582 @@ def _collect_real(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]
     }
 
 
+PARAM_SCAN_ROWS = {"ldp": 5, "noise": 4, "adaptive_ldp": 6}
+PARAM_SCAN_FIELDS = [
+    "dataset",
+    "seed",
+    "model_type",
+    "mode",
+    "method",
+    "profile_name",
+    "parameter_name",
+    "parameter_value",
+    "epsilon_min",
+    "epsilon_max",
+    "weight_sensitivity",
+    "weight_traffic",
+    "use_edge_budget_cap",
+    "edge_inverse_budget_cap",
+    "baseline_acc",
+    "defended_acc",
+    "accuracy_drop",
+    "defended_f1_macro",
+    "mse",
+    "mae",
+    "pearson_r",
+    "model_source",
+    "source_file",
+]
+
+
+def _read_csv_dicts(path: Path) -> list[dict[str, Any]] | None:
+    if not path.exists() or path.stat().st_size == 0:
+        return None
+    try:
+        with path.open("r", encoding="utf-8-sig", newline="") as f:
+            return list(csv.DictReader(f))
+    except Exception:
+        return None
+
+
+def _scan_csv_complete(path: Path, method: str) -> bool:
+    rows = _read_csv_dicts(path)
+    return rows is not None and len(rows) == PARAM_SCAN_ROWS[method]
+
+
+def _scan_path(scope: str, dataset: str, seed: int, method: str, model: str, mode: str) -> Path:
+    if scope == "mock":
+        return ROOT / "outputs" / "defense" / "full_multiseed" / f"seed_{seed}" / method / "comparisons" / f"{model}_{mode}_comparison_results.csv"
+    return ROOT / "outputs" / "defense" / "real_public_benchmark" / dataset / f"seed_{seed}" / method / "comparisons" / f"{model}_{mode}_comparison_results.csv"
+
+
+def _legacy_scan_path(scope: str, dataset: str, seed: int, method: str) -> Path:
+    if scope == "mock":
+        return ROOT / "outputs" / "defense" / "full_multiseed" / f"seed_{seed}" / method / "comparisons" / "comparison_results.csv"
+    return ROOT / "outputs" / "defense" / "real_public_benchmark" / dataset / f"seed_{seed}" / method / "comparisons" / "comparison_results.csv"
+
+
+def _fnum(value: Any) -> float:
+    try:
+        return float(value)
+    except Exception:
+        return float("nan")
+
+
+def _normalize_scan_rows(
+    rows: list[dict[str, Any]],
+    *,
+    scope: str,
+    dataset: str,
+    seed: int,
+    method: str,
+    model: str,
+    mode: str,
+    source: Path,
+) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
+    for r in rows:
+        baseline = _fnum(r.get("baseline_accuracy", r.get("baseline_acc")))
+        defended = _fnum(r.get("defended_accuracy", r.get("defended_acc")))
+        param_name = str(r.get("parameter_name", r.get("param_name", "profile" if method == "adaptive_ldp" else "")))
+        param_value = r.get("parameter_value", r.get("param_value", ""))
+        out.append(
+            {
+                "dataset": str(r.get("dataset") or dataset),
+                "seed": int(float(r.get("seed", seed))),
+                "model_type": str(r.get("model_type") or model),
+                "mode": str(r.get("mode") or mode),
+                "method": str(r.get("method") or method),
+                "profile_name": str(r.get("profile_name", "")),
+                "parameter_name": param_name,
+                "parameter_value": param_value,
+                "epsilon_min": r.get("epsilon_min", ""),
+                "epsilon_max": r.get("epsilon_max", ""),
+                "weight_sensitivity": r.get("weight_sensitivity", ""),
+                "weight_traffic": r.get("weight_traffic", ""),
+                "use_edge_budget_cap": r.get("use_edge_budget_cap", ""),
+                "edge_inverse_budget_cap": r.get("edge_inverse_budget_cap", ""),
+                "baseline_acc": baseline,
+                "defended_acc": defended,
+                "accuracy_drop": _fnum(r.get("accuracy_drop", baseline - defended)),
+                "defended_f1_macro": _fnum(r.get("defended_f1_macro")),
+                "mse": _fnum(r.get("mse")),
+                "mae": _fnum(r.get("mae")),
+                "pearson_r": _fnum(r.get("pearson_r")),
+                "model_source": str(r.get("model_source", "")),
+                "source_file": _rel(source),
+            }
+        )
+    return out
+
+
+def _dedupe_scan_rows(rows: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
+    seen: set[tuple[Any, ...]] = set()
+    out: list[dict[str, Any]] = []
+    removed = 0
+    for row in rows:
+        key = (
+            row.get("dataset"),
+            str(row.get("seed")),
+            row.get("model_type"),
+            row.get("mode"),
+            row.get("method"),
+            row.get("parameter_name"),
+            row.get("profile_name"),
+            str(row.get("parameter_value")),
+            row.get("source_file"),
+        )
+        if key in seen:
+            removed += 1
+            continue
+        seen.add(key)
+        out.append(row)
+    return out, removed
+
+
+def _collect_parameter_scans(missing: list[dict[str, Any]]) -> dict[str, Any]:
+    rows_by_scope_method: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+    missing_parameter: list[dict[str, Any]] = []
+    completed: dict[str, int] = {"mock": 0, "real": 0}
+    adaptive_profile_counts: dict[str, int] = {}
+    duplicate_rows_removed = 0
+
+    expected_mock = 0
+    expected_real = 0
+    for scope, datasets in [("mock", ["mock"]), ("real", ["uci_har", "kasteren", "casas_hh101"])]:
+        for dataset in datasets:
+            for seed in SEEDS:
+                for method in METHODS:
+                    for model in MODELS:
+                        for mode in MODES:
+                            if scope == "mock":
+                                expected_mock += 1
+                            else:
+                                expected_real += 1
+                            path = _scan_path(scope, dataset, seed, method, model, mode)
+                            source = path
+                            if not _scan_csv_complete(path, method):
+                                legacy = _legacy_scan_path(scope, dataset, seed, method)
+                                if method in {"ldp", "noise"} and model == "lstm" and mode == "fixed_attacker" and _scan_csv_complete(legacy, method):
+                                    source = legacy
+                                else:
+                                    missing_parameter.append(
+                                        {
+                                            "section": f"{scope}_parameter_scan",
+                                            "dataset": dataset,
+                                            "seed": seed,
+                                            "method": method,
+                                            "model_type": model,
+                                            "mode": mode,
+                                            "reason": "comparison_results_missing_or_incomplete",
+                                            "expected_file": _rel(path),
+                                        }
+                                    )
+                                    continue
+                            raw_rows = _read_csv_dicts(source) or []
+                            completed[scope] += 1
+                            normalized = _normalize_scan_rows(
+                                raw_rows,
+                                scope=scope,
+                                dataset=dataset,
+                                seed=seed,
+                                method=method,
+                                model=model,
+                                mode=mode,
+                                source=source,
+                            )
+                            if method == "adaptive_ldp":
+                                profiles = {str(r.get("profile_name")) for r in normalized if r.get("profile_name")}
+                                adaptive_profile_counts[f"{scope}:{dataset}:seed_{seed}:{model}:{mode}"] = len(profiles)
+                            rows_by_scope_method[(scope, method)].extend(normalized)
+
+    for scope in ["mock", "real"]:
+        report_dir = OUT_REPORT / scope
+        for method in METHODS:
+            rows = rows_by_scope_method[(scope, method)]
+            rows, removed = _dedupe_scan_rows(rows)
+            duplicate_rows_removed += removed
+            rows = sorted(
+                rows,
+                key=lambda r: (
+                    str(r.get("dataset")),
+                    int(r.get("seed", 0)),
+                    str(r.get("model_type")),
+                    str(r.get("mode")),
+                    str(r.get("parameter_value")),
+                    str(r.get("profile_name")),
+                    str(r.get("source_file")),
+                ),
+            )
+            prefix = "mock" if scope == "mock" else "real"
+            _write_csv(report_dir / f"{prefix}_parameter_scan_{method}.csv", rows, PARAM_SCAN_FIELDS)
+
+    _write_json(OUT_REPORT / "parameter_scan_missing_outputs.json", missing_parameter)
+    missing.extend(missing_parameter)
+    coverage = {
+        "mock": {
+            "expected": expected_mock,
+            "completed": completed["mock"],
+            "missing": [m for m in missing_parameter if m["section"] == "mock_parameter_scan"],
+        },
+        "real": {
+            "expected": expected_real,
+            "completed": completed["real"],
+            "missing": [m for m in missing_parameter if m["section"] == "real_parameter_scan"],
+        },
+        "adaptive_ldp_profile_count": {
+            "expected": PARAM_SCAN_ROWS["adaptive_ldp"],
+            "observed": adaptive_profile_counts,
+        },
+        "duplicate_rows_removed": duplicate_rows_removed,
+        "missing_combinations": missing_parameter,
+    }
+    _write_json(OUT_REPORT / "parameter_scan_coverage_audit.json", coverage)
+    return {
+        "coverage": coverage,
+        "duplicate_rows_removed": duplicate_rows_removed,
+        "missing": missing_parameter,
+    }
+
+
 def _cooja_logs_available(manifest_path: Path) -> tuple[bool, list[Path]]:
     obj = _safe_json(manifest_path)
     if not isinstance(obj, dict):
         return False, []
+    root_env = None
+    try:
+        import os
+
+        root_env = os.environ.get("COOJA_LOG_ROOT")
+    except Exception:
+        root_env = None
+    fallback_names = {
+        "baseline": {"radio_log": "Radiomsg.txt", "app_log": "loglistener.txt"},
+        "dummy_noise": {"radio_log": "Radiomsg_dummy_noise.txt", "app_log": "loglistener_dummy_noise.txt"},
+        "dummy_ldp": {"radio_log": "Radiomsg_dummy_ldp.txt", "app_log": "loglistener_dummy_ldp.txt"},
+        "dummy_adaptive_ldp": {"radio_log": "Radiomsg_dummy_adaptive.txt", "app_log": "loglistener_dummy_adaptive.txt"},
+    }
+
+    def add_path(paths: list[Path], raw: Any, name: str, kind: str) -> None:
+        p = Path(str(raw))
+        if p.exists() or not root_env:
+            paths.append(p)
+            return
+        alt_name = fallback_names.get(name, {}).get(kind)
+        paths.append(Path(root_env) / alt_name if alt_name else p)
+
     paths: list[Path] = []
     baseline = obj.get("baseline", {})
     if isinstance(baseline, dict):
         for k in ["radio_log", "app_log"]:
             v = baseline.get(k)
             if v:
-                paths.append(Path(str(v)))
+                add_path(paths, v, "baseline", k)
     for m in obj.get("methods", []) or []:
         if not isinstance(m, dict):
             continue
         for k in ["radio_log", "app_log"]:
             v = m.get(k)
             if v:
-                paths.append(Path(str(v)))
+                add_path(paths, v, str(m.get("name", "")), k)
     exists = [p for p in paths if p.exists()]
     return len(paths) > 0 and len(exists) >= 2, paths
+
+
+COOJA_PER_SEED_FIELDS = [
+    "method",
+    "mode",
+    "seed",
+    "baseline_acc",
+    "defended_acc",
+    "accuracy_drop",
+    "baseline_f1_macro",
+    "defended_f1_macro",
+    "baseline_windows",
+    "defense_windows",
+    "source_radio_log",
+    "source_app_log",
+]
+COOJA_TRAFFIC_FIELDS = [
+    "method",
+    "seed",
+    "baseline_windows",
+    "defense_windows",
+    "baseline_pkt_count_mean",
+    "defense_pkt_count_mean",
+    "baseline_byte_count_mean",
+    "defense_byte_count_mean",
+    "packet_overhead_ratio",
+    "byte_overhead_ratio",
+    "baseline_mean_iat_ms",
+    "defense_mean_iat_ms",
+    "baseline_p95_iat_ms",
+    "defense_p95_iat_ms",
+    "dummy_packet_ratio",
+    "dummy_byte_ratio",
+    "energy_metric_available",
+    "delay_metric_available",
+    "limitations",
+]
+
+
+def _cooja_summary_from_report(report_path: Path, missing: list[dict[str, Any]]) -> dict[str, Any]:
+    cooja_report_dir = OUT_REPORT / "cooja"
+    rows: list[dict[str, Any]] = []
+    feat_rows: list[dict[str, Any]] = []
+    top_conf_rows: list[dict[str, Any]] = []
+    overhead_rows: list[dict[str, Any]] = []
+
+    rep = _safe_json(report_path) or {}
+    methods = rep.get("methods", {}) if isinstance(rep, dict) else {}
+    for method_name, mobj in methods.items():
+        if not isinstance(mobj, dict):
+            continue
+        b_mean = float(((mobj.get("baseline_test") or {}).get("accuracy") or {}).get("mean", np.nan))
+        f_mean = float(((mobj.get("fixed_attacker") or {}).get("accuracy") or {}).get("mean", np.nan))
+        r_mean = float(((mobj.get("retrain_attacker") or {}).get("accuracy") or {}).get("mean", np.nan))
+        f1_fixed = float(((mobj.get("fixed_attacker") or {}).get("f1_macro") or {}).get("mean", np.nan))
+        f1_retrain = float(((mobj.get("retrain_attacker") or {}).get("f1_macro") or {}).get("mean", np.nan))
+        dataset_meta = mobj.get("dataset", {}) if isinstance(mobj.get("dataset", {}), dict) else {}
+        baseline_windows = float(dataset_meta.get("baseline_windows", np.nan))
+        defense_windows = float(dataset_meta.get("defense_windows", np.nan))
+        window_ratio = defense_windows / baseline_windows if baseline_windows == baseline_windows and baseline_windows > 0 else np.nan
+        overhead_rows.append(
+            {
+                "method": method_name,
+                "baseline_windows": baseline_windows,
+                "defense_windows": defense_windows,
+                "defense_window_ratio": window_ratio,
+                "window_count_delta": defense_windows - baseline_windows
+                if baseline_windows == baseline_windows and defense_windows == defense_windows
+                else np.nan,
+                "energy_metric_available": False,
+                "delay_metric_available": False,
+                "note": "Cooja logs do not include real energy/delay fields; this is a window-count proxy only.",
+            }
+        )
+        for mode, defended_acc, f1 in [
+            ("fixed_attacker", f_mean, f1_fixed),
+            ("retrain_attacker", r_mean, f1_retrain),
+        ]:
+            rows.append(
+                {
+                    "method": method_name,
+                    "seed": "mean_over_seeds",
+                    "mode": mode,
+                    "baseline_acc": b_mean,
+                    "defended_acc": defended_acc,
+                    "accuracy_drop": b_mean - defended_acc,
+                    "f1_macro": f1,
+                    "pkt_count_mean": np.nan,
+                    "byte_count_mean": np.nan,
+                    "dummy_packet_ratio": np.nan,
+                    "packet_overhead_ratio": np.nan,
+                    "mean_iat_ms": np.nan,
+                    "p95_iat_ms": np.nan,
+                    "traffic_activity_correlation_before": np.nan,
+                    "traffic_activity_correlation_after": np.nan,
+                    "correlation_drop": np.nan,
+                    "energy_metric_available": False,
+                    "delay_proxy_available": False,
+                    "source_log_files": json.dumps((mobj.get("defense_log_paths") or {}), ensure_ascii=False),
+                }
+            )
+
+        for run in mobj.get("runs", []):
+            if not isinstance(run, dict):
+                continue
+            seed = int(run.get("seed", -1))
+            fixed = run.get("fixed_attacker_on_defense", {}) or {}
+            retr = run.get("retrain_attacker_on_defense", {}) or {}
+            for mode, obj in [("fixed_attacker", fixed), ("retrain_attacker", retr)]:
+                for tc in obj.get("top_confusions", [])[:5]:
+                    top_conf_rows.append(
+                        {
+                            "method": method_name,
+                            "seed": seed,
+                            "mode": mode,
+                            "true_label": tc.get("true"),
+                            "pred_label": tc.get("pred"),
+                            "count": tc.get("count"),
+                        }
+                    )
+
+    _write_json(cooja_report_dir / "cooja_summary.json", rows)
+    _write_csv(cooja_report_dir / "cooja_summary.csv", rows)
+    _write_csv(cooja_report_dir / "cooja_feature_importance.csv", feat_rows)
+    _write_csv(cooja_report_dir / "cooja_top_confusions.csv", top_conf_rows)
+    _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", overhead_rows)
+    _write_json(cooja_report_dir / "cooja_missing_outputs.json", [m for m in missing if m.get("section") == "cooja"])
+    _export_cooja_detail_outputs(rep, missing)
+    return {"rows": rows}
+
+
+def _cooja_manifest_with_fallback() -> dict[str, Any] | None:
+    manifest_path = ROOT / "configs" / "cooja_defense_dummy_logs.json"
+    obj = _safe_json(manifest_path)
+    if not isinstance(obj, dict):
+        return None
+    root_env = None
+    try:
+        import os
+
+        root_env = os.environ.get("COOJA_LOG_ROOT")
+    except Exception:
+        root_env = None
+    if not root_env:
+        return obj
+    root = Path(root_env)
+    names = {
+        "baseline": ("Radiomsg.txt", "loglistener.txt"),
+        "dummy_noise": ("Radiomsg_dummy_noise.txt", "loglistener_dummy_noise.txt"),
+        "dummy_ldp": ("Radiomsg_dummy_ldp.txt", "loglistener_dummy_ldp.txt"),
+        "dummy_adaptive_ldp": ("Radiomsg_dummy_adaptive.txt", "loglistener_dummy_adaptive.txt"),
+    }
+
+    def resolve_pair(item: dict[str, Any], name: str) -> dict[str, Any]:
+        radio = Path(str(item.get("radio_log", "")))
+        app = Path(str(item.get("app_log", "")))
+        if radio.exists() and app.exists():
+            return item
+        radio_name, app_name = names.get(name, (f"Radiomsg_{name}.txt", f"loglistener_{name}.txt"))
+        alt_radio = root / radio_name
+        alt_app = root / app_name
+        if alt_radio.exists() and alt_app.exists():
+            item = dict(item)
+            item["radio_log"] = str(alt_radio)
+            item["app_log"] = str(alt_app)
+        return item
+
+    obj = dict(obj)
+    obj["baseline"] = resolve_pair(dict(obj["baseline"]), "baseline")
+    obj["methods"] = [resolve_pair(dict(m), str(m.get("name", ""))) for m in obj.get("methods", [])]
+    return obj
+
+
+def _cooja_window_metrics(radio_log: Path, app_log: Path, config: dict[str, Any]) -> dict[str, float] | None:
+    try:
+        from experiments.cooja.run_cooja_baseline_attack import build_window_dataset, parse_app_requests, parse_radio
+
+        radio_df = parse_radio(radio_log)
+        app_df = parse_app_requests(app_log)
+        ds = build_window_dataset(
+            radio_df=radio_df,
+            app_df=app_df,
+            window_s=float(config.get("window_s", 8.0)),
+            step_s=float(config.get("step_s", 3.0)),
+            min_requests=int(config.get("min_requests", 2)),
+            dominance_threshold=float(config.get("dominance_threshold", 0.2)),
+        )
+        byte_count = ds["pkt_count"].astype(float) * ds["mean_len"].astype(float)
+        return {
+            "windows": float(len(ds)),
+            "pkt_count_mean": float(ds["pkt_count"].mean()),
+            "byte_count_mean": float(byte_count.mean()),
+            "mean_iat_ms": float(ds["mean_iat_ms"].mean()),
+            "p95_iat_ms": float(ds["p95_iat_ms"].mean()),
+        }
+    except Exception:
+        return None
+
+
+def _export_cooja_detail_outputs(rep: dict[str, Any], missing: list[dict[str, Any]]) -> None:
+    cooja_report_dir = OUT_REPORT / "cooja"
+    methods = rep.get("methods", {}) if isinstance(rep, dict) else {}
+    config = rep.get("config", {}) if isinstance(rep.get("config", {}), dict) else {}
+    manifest = _cooja_manifest_with_fallback()
+    baseline_logs = (manifest or {}).get("baseline", {}) if isinstance(manifest, dict) else {}
+    baseline_radio = Path(str(baseline_logs.get("radio_log", "")))
+    baseline_app = Path(str(baseline_logs.get("app_log", "")))
+    baseline_traffic = _cooja_window_metrics(baseline_radio, baseline_app, config) if baseline_radio.exists() and baseline_app.exists() else None
+
+    per_seed_rows: list[dict[str, Any]] = []
+    traffic_rows: list[dict[str, Any]] = []
+    limitations = [
+        "# Cooja Limitations",
+        "",
+        "- Cooja outputs in this package do not include real energy or delay measurements.",
+        "- `cooja_overhead_summary.csv` is a window-count proxy, not measured energy or latency.",
+        "- Radio log does not distinguish dummy packets from real packets, so dummy packet and byte ratios are reported as null.",
+    ]
+
+    for method_name, mobj in methods.items():
+        if not isinstance(mobj, dict):
+            continue
+        dataset_meta = mobj.get("dataset", {}) if isinstance(mobj.get("dataset", {}), dict) else {}
+        paths = mobj.get("defense_log_paths", {}) if isinstance(mobj.get("defense_log_paths", {}), dict) else {}
+        source_radio = str(paths.get("radio_log", ""))
+        source_app = str(paths.get("app_log", ""))
+        defense_radio = Path(source_radio)
+        defense_app = Path(source_app)
+        defense_traffic = _cooja_window_metrics(defense_radio, defense_app, config) if defense_radio.exists() and defense_app.exists() else None
+
+        for run in mobj.get("runs", []):
+            if not isinstance(run, dict):
+                continue
+            seed = int(run.get("seed", -1))
+            base = run.get("baseline_test", {}) or {}
+            fixed = run.get("fixed_attacker_on_defense", {}) or {}
+            retr = run.get("retrain_attacker_on_defense", {}) or {}
+            for mode, defended in [("fixed_attacker", fixed), ("retrain_attacker", retr)]:
+                b_acc = _fnum(base.get("accuracy"))
+                d_acc = _fnum(defended.get("accuracy"))
+                per_seed_rows.append(
+                    {
+                        "method": method_name,
+                        "mode": mode,
+                        "seed": seed,
+                        "baseline_acc": b_acc,
+                        "defended_acc": d_acc,
+                        "accuracy_drop": b_acc - d_acc,
+                        "baseline_f1_macro": _fnum(base.get("f1_macro")),
+                        "defended_f1_macro": _fnum(defended.get("f1_macro")),
+                        "baseline_windows": dataset_meta.get("baseline_windows", ""),
+                        "defense_windows": dataset_meta.get("defense_windows", ""),
+                        "source_radio_log": source_radio,
+                        "source_app_log": source_app,
+                    }
+                )
+
+            baseline_windows = dataset_meta.get("baseline_windows", "")
+            defense_windows = dataset_meta.get("defense_windows", "")
+            bp = baseline_traffic or {}
+            dp = defense_traffic or {}
+            b_pkt = bp.get("pkt_count_mean", np.nan)
+            d_pkt = dp.get("pkt_count_mean", np.nan)
+            b_byte = bp.get("byte_count_mean", np.nan)
+            d_byte = dp.get("byte_count_mean", np.nan)
+            traffic_rows.append(
+                {
+                    "method": method_name,
+                    "seed": seed,
+                    "baseline_windows": bp.get("windows", baseline_windows),
+                    "defense_windows": dp.get("windows", defense_windows),
+                    "baseline_pkt_count_mean": b_pkt,
+                    "defense_pkt_count_mean": d_pkt,
+                    "baseline_byte_count_mean": b_byte,
+                    "defense_byte_count_mean": d_byte,
+                    "packet_overhead_ratio": d_pkt / b_pkt if b_pkt == b_pkt and b_pkt else np.nan,
+                    "byte_overhead_ratio": d_byte / b_byte if b_byte == b_byte and b_byte else np.nan,
+                    "baseline_mean_iat_ms": bp.get("mean_iat_ms", np.nan),
+                    "defense_mean_iat_ms": dp.get("mean_iat_ms", np.nan),
+                    "baseline_p95_iat_ms": bp.get("p95_iat_ms", np.nan),
+                    "defense_p95_iat_ms": dp.get("p95_iat_ms", np.nan),
+                    "dummy_packet_ratio": np.nan,
+                    "dummy_byte_ratio": np.nan,
+                    "energy_metric_available": False,
+                    "delay_metric_available": False,
+                    "limitations": "Radio log does not distinguish dummy packets from real packets; no real energy/delay metrics are available.",
+                }
+            )
+
+    _write_csv(cooja_report_dir / "cooja_per_seed.csv", per_seed_rows, COOJA_PER_SEED_FIELDS)
+    _write_csv(cooja_report_dir / "cooja_traffic_metrics.csv", traffic_rows, COOJA_TRAFFIC_FIELDS)
+    (cooja_report_dir / "cooja_limitations.md").write_text("\n".join(limitations) + "\n", encoding="utf-8")
+    if not per_seed_rows:
+        missing.append({"section": "cooja", "reason": "cooja_per_seed_rows_empty", "expected_file": _rel(cooja_report_dir / "cooja_per_seed.csv")})
+    if not traffic_rows:
+        missing.append({"section": "cooja", "reason": "cooja_traffic_rows_empty", "expected_file": _rel(cooja_report_dir / "cooja_traffic_metrics.csv")})
 
 
 def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]:
@@ -711,6 +1279,9 @@ def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any
     feat_rows: list[dict[str, Any]] = []
     top_conf_rows: list[dict[str, Any]] = []
     overhead_rows: list[dict[str, Any]] = []
+    existing_report = OUT_DEFENSE / "cooja" / "eval" / "defense_eval_report.json"
+    if existing_report.exists():
+        return _cooja_summary_from_report(existing_report, missing)
 
     dummy_manifest = ROOT / "configs" / "cooja_defense_dummy_logs.json"
     post_manifest = ROOT / "configs" / "cooja_defense_postprocess.json"
@@ -738,6 +1309,11 @@ def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any
         _write_csv(cooja_report_dir / "cooja_feature_importance.csv", feat_rows)
         _write_csv(cooja_report_dir / "cooja_top_confusions.csv", top_conf_rows)
         _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", overhead_rows)
+        _write_json(cooja_report_dir / "cooja_missing_logs.json", [m for m in missing if m.get("section") == "cooja"])
+        (cooja_report_dir / "cooja_limitations.md").write_text(
+            "# Cooja Limitations\n\n- Cooja log paths are not accessible in the current environment.\n- No real energy or delay measurements are available.\n",
+            encoding="utf-8",
+        )
         return {"rows": rows}
 
     out_dir = OUT_DEFENSE / "cooja" / "eval"
@@ -778,6 +1354,11 @@ def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any
         _write_csv(cooja_report_dir / "cooja_feature_importance.csv", feat_rows)
         _write_csv(cooja_report_dir / "cooja_top_confusions.csv", top_conf_rows)
         _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", overhead_rows)
+        _write_json(cooja_report_dir / "cooja_missing_logs.json", [m for m in missing if m.get("section") == "cooja"])
+        (cooja_report_dir / "cooja_limitations.md").write_text(
+            "# Cooja Limitations\n\n- Cooja defense evaluation could not be regenerated from accessible logs.\n- No real energy or delay measurements are available.\n",
+            encoding="utf-8",
+        )
         return {"rows": rows}
 
     rep = _safe_json(report_path) or {}
@@ -894,6 +1475,7 @@ def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any
     _write_csv(cooja_report_dir / "cooja_top_confusions.csv", top_conf_rows)
     _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", overhead_rows)
     _write_json(cooja_report_dir / "cooja_missing_outputs.json", [m for m in missing if m.get("section") == "cooja"])
+    _export_cooja_detail_outputs(rep, missing)
     return {"rows": rows}
 
 
@@ -1170,6 +1752,128 @@ def _build_figures(
     return figures
 
 
+def _build_symmetry_figures(missing: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    figures: list[dict[str, Any]] = []
+    OUT_FIG.mkdir(parents=True, exist_ok=True)
+
+    def read_csv(path: Path) -> pd.DataFrame:
+        return pd.read_csv(path) if path.exists() and path.stat().st_size > 0 else pd.DataFrame()
+
+    def plot_parameter_method(method: str, out_name: str) -> None:
+        mock_path = OUT_REPORT / "mock" / f"mock_parameter_scan_{method}.csv"
+        real_path = OUT_REPORT / "real" / f"real_parameter_scan_{method}.csv"
+        df = pd.concat([read_csv(mock_path), read_csv(real_path)], ignore_index=True)
+        if df.empty:
+            missing.append({"section": "figures", "figure": out_name, "reason": "parameter_scan_rows_empty"})
+            return
+        df["dataset"] = df["dataset"].fillna("unknown").astype(str)
+        datasets = ["mock"] + [d for d in ["uci_har", "kasteren", "casas_hh101"] if d in set(df["dataset"])]
+        datasets = [d for d in datasets if d in set(df["dataset"])]
+        fig, axes = plt.subplots(len(datasets), 1, figsize=(10, max(4, 3.2 * len(datasets))), squeeze=False)
+        for ax, dataset in zip(axes.ravel(), datasets):
+            sub = df[df["dataset"] == dataset].copy()
+            if sub.empty:
+                ax.set_visible(False)
+                continue
+            if method == "adaptive_ldp":
+                xcol = "parameter_value"
+                xlabel = "adaptive profile"
+            elif method == "ldp":
+                xcol = "parameter_value"
+                xlabel = "epsilon"
+            else:
+                xcol = "parameter_value"
+                xlabel = "noise_scale"
+            for (model, mode), g in sub.groupby(["model_type", "mode"]):
+                curve = g.groupby(xcol, as_index=False)["defended_acc"].mean(numeric_only=True).sort_values(xcol)
+                ax.plot(curve[xcol], curve["defended_acc"], marker="o", label=f"{model} {mode}")
+            if method == "ldp":
+                ax.set_xscale("log")
+            ax.set_title(f"{dataset}: {method} parameter scan")
+            ax.set_xlabel(xlabel)
+            ax.set_ylabel("Mean defended accuracy")
+            ax.grid(alpha=0.3)
+            ax.legend(fontsize=8, ncols=2)
+        fig.tight_layout()
+        out = OUT_FIG / out_name
+        fig.savefig(out, dpi=180)
+        plt.close(fig)
+        figures.append(
+            {
+                "path": str(out),
+                "title": f"{method} parameter scans across available models/modes",
+                "source_files": f"{_rel(mock_path)};{_rel(real_path)}",
+                "conclusion": "Shows parameter sensitivity separately by dataset; missing combinations are documented in parameter_scan_coverage_audit.json.",
+                "limitations": "Curves average available seeds and do not rank different datasets against each other.",
+            }
+        )
+
+    plot_parameter_method("ldp", "parameter_scan_ldp_all_models_modes.png")
+    plot_parameter_method("noise", "parameter_scan_noise_all_models_modes.png")
+    plot_parameter_method("adaptive_ldp", "parameter_scan_adaptive_ldp_all_models_modes.png")
+
+    per_seed_path = OUT_REPORT / "cooja" / "cooja_per_seed.csv"
+    per_seed_df = read_csv(per_seed_path)
+    if not per_seed_df.empty:
+        fig, ax = plt.subplots(figsize=(10, 5))
+        for (method, mode), g in per_seed_df.groupby(["method", "mode"]):
+            g = g.sort_values("seed")
+            ax.plot(g["seed"], g["defended_acc"], marker="o", label=f"{method} {mode}")
+        ax.set_xlabel("seed")
+        ax.set_ylabel("Defended accuracy")
+        ax.set_title("Cooja per-seed defended accuracy")
+        ax.grid(alpha=0.3)
+        ax.legend(fontsize=8, ncols=2)
+        fig.tight_layout()
+        out = OUT_FIG / "cooja_per_seed_accuracy.png"
+        fig.savefig(out, dpi=180)
+        plt.close(fig)
+        figures.append(
+            {
+                "path": str(out),
+                "title": "Cooja per-seed accuracy",
+                "source_files": _rel(per_seed_path),
+                "conclusion": "Shows fixed/retrain attacker behavior per seed for each Cooja dummy method.",
+                "limitations": "Depends on available Cooja radio/app logs and exported per-seed runs.",
+            }
+        )
+    else:
+        missing.append({"section": "figures", "figure": "cooja_per_seed_accuracy", "reason": "cooja_per_seed_rows_empty"})
+
+    traffic_path = OUT_REPORT / "cooja" / "cooja_traffic_metrics.csv"
+    traffic_df = read_csv(traffic_path)
+    if not traffic_df.empty:
+        fig, ax = plt.subplots(figsize=(10, 5))
+        g = traffic_df.groupby("method", as_index=False)[["packet_overhead_ratio", "byte_overhead_ratio"]].mean(numeric_only=True)
+        x = np.arange(len(g))
+        ax.bar(x - 0.18, g["packet_overhead_ratio"], width=0.36, label="packet ratio")
+        ax.bar(x + 0.18, g["byte_overhead_ratio"], width=0.36, label="byte ratio")
+        ax.axhline(1.0, color="gray", linestyle="--", linewidth=1)
+        ax.set_xticks(x)
+        ax.set_xticklabels(g["method"], rotation=20, ha="right")
+        ax.set_ylabel("Defense / baseline ratio")
+        ax.set_title("Cooja traffic metrics")
+        ax.grid(axis="y", alpha=0.3)
+        ax.legend()
+        fig.tight_layout()
+        out = OUT_FIG / "cooja_traffic_metrics.png"
+        fig.savefig(out, dpi=180)
+        plt.close(fig)
+        figures.append(
+            {
+                "path": str(out),
+                "title": "Cooja traffic metrics",
+                "source_files": _rel(traffic_path),
+                "conclusion": "Shows available packet/byte overhead proxies from Cooja traffic windows.",
+                "limitations": "Not real energy or delay; dummy packet ratios are null when logs do not label dummy packets.",
+            }
+        )
+    else:
+        missing.append({"section": "figures", "figure": "cooja_traffic_metrics", "reason": "cooja_traffic_rows_empty"})
+
+    return figures
+
+
 def _write_figure_list(figures: list[dict[str, Any]]) -> None:
     path = OUT_REPORT / "figure_table_list.md"
     lines = ["# 图表清单", ""]
@@ -1297,6 +2001,7 @@ def main() -> None:
     mock = _collect_mock(env, missing)
     real = _collect_real(env, missing)
     cooja = _collect_cooja(env, missing)
+    parameter_scans = _collect_parameter_scans(missing)
 
     # unified files
     final_rows = []
@@ -1332,6 +2037,7 @@ def main() -> None:
         "mock": mock["coverage"],
         "real": real["coverage"],
         "cooja_rows": len(cooja["rows"]),
+        "parameter_scan": parameter_scans["coverage"],
         "should_have_experiments": {
             "mock": len(SEEDS) * len(MODELS) * len(METHODS) * len(MODES),
             "real": 3 * len(SEEDS) * len(MODELS) * len(METHODS) * len(MODES),
@@ -1373,6 +2079,7 @@ def main() -> None:
         scan_real_noise=real["scan_noise_rows"],
         missing=missing,
     )
+    figures.extend(_build_symmetry_figures(missing))
     _write_figure_list(figures)
     _write_json(OUT_REPORT / "final_missing_outputs.json", missing)
 
