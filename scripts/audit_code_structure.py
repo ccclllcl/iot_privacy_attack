@@ -1,5 +1,5 @@
 ﻿#!/usr/bin/env python3
-"""Compatibility wrapper for scripts.audit.audit_code_structure."""
+"""兼容入口：调用 scripts.audit.audit_code_structure。"""
 
 import sys
 from pathlib import Path

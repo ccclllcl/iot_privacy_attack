@@ -80,7 +80,7 @@ def _missing_count(path: Path) -> int:
 def _display_file(path: Path) -> None:
     st.caption(rel_path(path))
     if not path.exists():
-        st.info("File is not available.")
+        st.info("文件不可用。")
         return
     suffix = path.suffix.lower()
     if suffix == ".json":
@@ -104,24 +104,24 @@ def _overview_tab() -> None:
     real_summary = read_csv(summary_path("real/real_summary.csv"))
     cooja_summary = read_csv(summary_path("cooja/cooja_summary.csv"))
 
-    st.subheader("Coverage")
+    st.subheader("覆盖情况")
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("mock main matrix", f"{_metric_value(audit, 'mock_main_matrix', 'completed')}/{_metric_value(audit, 'mock_main_matrix', 'expected')}")
-    c2.metric("real main matrix", f"{_metric_value(audit, 'real_main_matrix', 'completed')}/{_metric_value(audit, 'real_main_matrix', 'expected')}")
-    c3.metric("mock scans", f"{_metric_value(audit, 'parameter_scan_counts', 'mock', 'completed')}/{_metric_value(audit, 'parameter_scan_counts', 'mock', 'expected')}")
-    c4.metric("real scans", f"{_metric_value(audit, 'parameter_scan_counts', 'real', 'completed')}/{_metric_value(audit, 'parameter_scan_counts', 'real', 'expected')}")
+    c1.metric("mock 主矩阵", f"{_metric_value(audit, 'mock_main_matrix', 'completed')}/{_metric_value(audit, 'mock_main_matrix', 'expected')}")
+    c2.metric("real 主矩阵", f"{_metric_value(audit, 'real_main_matrix', 'completed')}/{_metric_value(audit, 'real_main_matrix', 'expected')}")
+    c3.metric("mock 参数扫描", f"{_metric_value(audit, 'parameter_scan_counts', 'mock', 'completed')}/{_metric_value(audit, 'parameter_scan_counts', 'mock', 'expected')}")
+    c4.metric("real 参数扫描", f"{_metric_value(audit, 'parameter_scan_counts', 'real', 'completed')}/{_metric_value(audit, 'parameter_scan_counts', 'real', 'expected')}")
 
     c5, c6, c7, c8 = st.columns(4)
-    c5.metric("adaptive profiles", str(_metric_value(audit, "adaptive_ldp_profile_count", "expected")))
+    c5.metric("adaptive_ldp profile 数", str(_metric_value(audit, "adaptive_ldp_profile_count", "expected")))
     c6.metric("Cooja canonical", f"{_metric_value(audit, 'cooja', 'canonical_completed')}/{_metric_value(audit, 'cooja', 'canonical_expected')}")
-    c7.metric("final missing", str(_missing_count(summary_path("final_missing_outputs.json"))))
-    c8.metric("scan missing", str(_missing_count(summary_path("parameter_scan_missing_outputs.json"))))
+    c7.metric("最终缺失数", str(_missing_count(summary_path("final_missing_outputs.json"))))
+    c8.metric("参数扫描缺失数", str(_missing_count(summary_path("parameter_scan_missing_outputs.json"))))
 
-    st.info("Cooja is shown as functionality validation only; no real energy or end-to-end delay measurement is claimed.")
-    with st.expander("Cooja limitations", expanded=False):
-        st.markdown(read_text(summary_path("cooja/cooja_limitations.md")) or "No limitation note found.")
+    st.info("Cooja 仅作为功能性验证；当前结果不声称真实能耗或真实端到端时延已测量。")
+    with st.expander("Cooja 限制说明", expanded=False):
+        st.markdown(read_text(summary_path("cooja/cooja_limitations.md")) or "未找到限制说明。")
 
-    st.subheader("Grouped Summary")
+    st.subheader("分组汇总")
     for title, df in [
         ("final_summary.csv", final_summary),
         ("mock_summary.csv", mock_summary),
@@ -130,7 +130,7 @@ def _overview_tab() -> None:
     ]:
         with st.expander(title, expanded=False):
             if df.empty:
-                st.info("No rows available.")
+                st.info("没有可展示的行。")
                 continue
             st.dataframe(df.head(200), use_container_width=True)
             cols = [c for c in ["dataset", "method", "mode", "model_type", "baseline_acc", "defended_acc", "accuracy"] if c in df.columns]
@@ -143,14 +143,14 @@ def _overview_tab() -> None:
 
 
 def _artifact_explorer_tab() -> None:
-    st.subheader("Artifact Explorer")
+    st.subheader("产物检索")
     dataset = st.selectbox("dataset", list_datasets(), key="artifact_dataset")
     seed = st.selectbox("seed", list_seeds(dataset), key="artifact_seed")
     if dataset == "cooja":
         dummy_method = st.selectbox("dummy_method", COOJA_METHODS, key="artifact_dummy_method")
         mode = st.selectbox("mode", MODES, key="artifact_cooja_mode")
         path = cooja_path(int(seed), dummy_method, mode)
-        st.warning("Cooja packet/byte/IAT, real energy, and end-to-end delay are not fabricated; unavailable fields remain limitations.")
+        st.warning("Cooja 的 packet/byte/IAT、真实能耗和端到端时延不会被伪造；不可用字段会保留为限制。")
     else:
         model = st.selectbox("model", list_models(dataset), key="artifact_model")
         view_type = st.radio("view_type", ["baseline", "defense_result", "parameter_scan"], horizontal=True)
@@ -163,19 +163,19 @@ def _artifact_explorer_tab() -> None:
             if view_type == "parameter_scan":
                 path = parameter_scan_path(dataset, int(seed), model, method, mode)
 
-    st.markdown(f"**Selected path:** `{rel_path(path)}`")
+    st.markdown(f"**当前路径：** `{rel_path(path)}`")
     files = list_artifacts(path)
     if not files:
-        st.info("No files found at this path.")
+        st.info("该路径下没有文件。")
         return
-    selected = st.selectbox("artifact file", files, format_func=lambda p: p.name)
+    selected = st.selectbox("产物文件", files, format_func=lambda p: p.name)
     if selected.name.endswith("confusion.json") or selected.name == "baseline_confusion.json":
         st.session_state["selected_confusion_path"] = str(selected)
     _display_file(selected)
 
 
 def _figures_tab() -> None:
-    st.subheader("Summary Figures Gallery")
+    st.subheader("汇总图像")
     cols = st.columns(2)
     for idx, name in enumerate(SUMMARY_FIGURES):
         path = SUMMARY_FIGURE_ROOT / name
@@ -183,27 +183,27 @@ def _figures_tab() -> None:
             if path.exists():
                 st.image(str(path), caption=rel_path(path), use_container_width=True)
             else:
-                st.info(f"Missing: {name}")
+                st.info(f"缺少图像：{name}")
 
-    st.subheader("Confusion Matrix Viewer")
+    st.subheader("混淆矩阵查看器")
     default_conf_text = str(st.session_state.get("selected_confusion_path", ""))
     default_conf = Path(default_conf_text) if default_conf_text else Path("__none__")
     conf_path_text = st.text_input(
-        "confusion.json path",
+        "confusion.json 路径",
         value=rel_path(default_conf) if default_conf.is_file() else "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json",
     )
     conf_path = PROJECT_ROOT / conf_path_text if not Path(conf_path_text).is_absolute() else Path(conf_path_text)
-    normalize = st.checkbox("row-normalized", value=True)
-    max_labels = st.slider("max labels", min_value=8, max_value=60, value=30)
+    normalize = st.checkbox("按行归一化", value=True)
+    max_labels = st.slider("最大标签数", min_value=8, max_value=60, value=30)
     conf = load_confusion(conf_path)
     fig, top_df = plot_confusion_matrix(conf, normalize=normalize, max_labels=max_labels)
     if fig is not None:
         st.pyplot(fig, use_container_width=True)
         st.dataframe(top_df, use_container_width=True)
     else:
-        st.info("Choose a readable confusion JSON.")
+        st.info("请选择一个可读取的 confusion.json。")
 
-    st.subheader("Parameter Scan Viewer")
+    st.subheader("参数扫描查看器")
     c1, c2, c3, c4, c5 = st.columns(5)
     ds = c1.selectbox("scan dataset", [d for d in list_datasets() if d != "cooja"], key="scan_dataset")
     sd = c2.selectbox("scan seed", list_seeds(ds), key="scan_seed")
@@ -219,12 +219,12 @@ def _figures_tab() -> None:
         if not detail.empty:
             st.dataframe(detail, use_container_width=True)
     else:
-        st.info("No readable parameter scan CSV for this selection.")
+        st.info("当前选择缺少可读取的参数扫描 CSV。")
 
 
 def _train_eval_tab() -> None:
-    st.subheader("Train / Evaluate Demo")
-    st.caption("Runs one selected combination only. It does not import data, generate mock data, run Cooja, or run a full matrix.")
+    st.subheader("训练 / 评估演示")
+    st.caption("只运行用户选择的单个组合；不导入数据、不生成 mock 数据、不运行 Cooja，也不运行完整矩阵。")
     c1, c2, c3 = st.columns(3)
     dataset = c1.selectbox("dataset", ["mock", "uci_har", "kasteren", "casas_hh101"], key="run_dataset")
     seed = c2.selectbox("seed", [42, 123, 2026], key="run_seed")
@@ -237,10 +237,10 @@ def _train_eval_tab() -> None:
 
     c4, c5, c6 = st.columns(3)
     max_epochs = c4.number_input("max_epochs", min_value=1, max_value=20, value=5, step=1)
-    batch_size = c5.selectbox("batch_size", [None, 16, 32, 64, 128], format_func=lambda x: "config default" if x is None else str(x))
+    batch_size = c5.selectbox("batch_size", [None, 16, 32, 64, 128], format_func=lambda x: "配置默认值" if x is None else str(x))
     device = c6.selectbox("device", ["auto", "cpu", "cuda"])
-    overwrite = st.checkbox("overwrite existing artifacts", value=False)
-    confirmed = st.checkbox("I understand this writes to the selected canonical path", value=False)
+    overwrite = st.checkbox("覆盖已有产物", value=False)
+    confirmed = st.checkbox("我确认本次运行会写入所选 canonical path", value=False)
 
     cmd = [
         sys.executable,
@@ -266,9 +266,9 @@ def _train_eval_tab() -> None:
         cmd.append("--overwrite")
 
     st.code(" ".join(cmd), language="bash")
-    if st.button("Run selected job", type="primary"):
+    if st.button("运行所选任务", type="primary"):
         if overwrite and not confirmed:
-            st.error("Please confirm before overwriting canonical artifacts.")
+            st.error("覆盖 canonical artifacts 前请先勾选确认。")
             return
         progress = st.progress(0)
         output_box = st.empty()
@@ -300,11 +300,11 @@ def _train_eval_tab() -> None:
                 returncode = int(event["returncode"])
         if returncode == 0:
             progress.progress(100)
-            st.success("Job completed.")
+            st.success("任务已完成。")
             result_line = next((x for x in reversed(lines) if x.startswith("RESULT_JSON ")), "")
             if result_line:
                 result = json.loads(result_line.replace("RESULT_JSON ", "", 1))
-                st.markdown(f"Artifacts written to: `{result.get('output_path')}`")
+                st.markdown(f"产物已写入：`{result.get('output_path')}`")
                 out_path = PROJECT_ROOT / str(result.get("output_path", ""))
                 conf = out_path / ("baseline_confusion.json" if run_type.endswith("baseline") else "confusion.json")
                 report = out_path / ("baseline_classification_report.txt" if run_type.endswith("baseline") else "classification_report.txt")
@@ -315,13 +315,13 @@ def _train_eval_tab() -> None:
                 if report.exists():
                     st.code(read_text(report), language="text")
         else:
-            st.error("Job failed. See output above.")
+            st.error("任务失败，请查看上方输出。")
 
 
 def _run_history_tab() -> None:
-    st.subheader("Run History")
+    st.subheader("运行历史")
     if not RUN_HISTORY.exists():
-        st.info("No dashboard run history yet.")
+        st.info("暂无 Dashboard 运行历史。")
         return
     rows = []
     for line in RUN_HISTORY.read_text(encoding="utf-8", errors="replace").splitlines():
@@ -332,7 +332,7 @@ def _run_history_tab() -> None:
         except Exception:
             pass
     if not rows:
-        st.info("Run history is empty.")
+        st.info("运行历史为空。")
         return
     df = pd.DataFrame(rows)
     filters = st.columns(6)
@@ -345,34 +345,34 @@ def _run_history_tab() -> None:
         ("status", filters[5]),
     ]:
         if col_name in df.columns:
-            vals = ["all"] + sorted([str(x) for x in df[col_name].dropna().unique()])
+            vals = ["全部"] + sorted([str(x) for x in df[col_name].dropna().unique()])
             chosen = widget.selectbox(col_name, vals, key=f"hist_{col_name}")
-            if chosen != "all":
+            if chosen != "全部":
                 df = df[df[col_name].astype(str) == chosen]
     cols = [c for c in ["timestamp", "dataset", "seed", "model", "method", "mode", "job", "status", "duration_seconds", "command", "output_path"] if c in df.columns]
     st.dataframe(df[cols], use_container_width=True)
     if not df.empty:
-        idx = st.selectbox("record", list(df.index), format_func=lambda i: f"{df.loc[i].get('timestamp', '')} {df.loc[i].get('job', '')} {df.loc[i].get('status', '')}")
+        idx = st.selectbox("记录", list(df.index), format_func=lambda i: f"{df.loc[i].get('timestamp', '')} {df.loc[i].get('job', '')} {df.loc[i].get('status', '')}")
         st.json(df.loc[idx].to_dict())
         out = df.loc[idx].get("output_path")
         if isinstance(out, str) and out:
             path = PROJECT_ROOT / out
-            st.markdown(f"Output path: `{out}`")
+            st.markdown(f"输出路径：`{out}`")
             for file in list_artifacts(path):
                 with st.expander(file.name, expanded=False):
                     _display_file(file)
 
 
 def main() -> None:
-    st.set_page_config(page_title="IoT Privacy Artifact Dashboard", layout="wide")
-    st.title("IoT Privacy Artifact Dashboard")
-    st.caption("Canonical artifact browser and single-combination train/evaluate demo.")
+    st.set_page_config(page_title="IoT 隐私实验产物 Dashboard", layout="wide")
+    st.title("IoT 隐私实验产物 Dashboard")
+    st.caption("用于浏览 canonical artifacts，并演示单组合训练 / 评估。")
     tabs = st.tabs([
-        "Overview",
-        "Artifact Explorer",
-        "Figures & Confusion Matrices",
-        "Train / Evaluate Demo",
-        "Run History",
+        "总览",
+        "产物检索",
+        "图表与混淆矩阵",
+        "训练 / 评估演示",
+        "运行历史",
     ])
     with tabs[0]:
         _overview_tab()

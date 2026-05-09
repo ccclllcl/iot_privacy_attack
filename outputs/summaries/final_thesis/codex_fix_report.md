@@ -48,3 +48,15 @@ The normalized repository structure is suitable for undergraduate thesis deliver
 - Removed migration-only scripts and the old simple UI entry.
 - Verified one mock `seed_42` `lstm` baseline train/evaluate demo with `max_epochs=1`; overwrite protection refused an existing artifact when overwrite was false.
 - Cooja remains display-only in the dashboard; no packet/byte/IAT, real energy, or real delay metrics were fabricated.
+
+## 中文化与文件功能报告
+
+- 本次没有重跑 mock 主矩阵、real 主矩阵、参数扫描或 Cooja 仿真。
+- README 已改为中文，保留 `outputs/experiments/`、`outputs/summaries/final_thesis/`、`outputs/figures/summaries/final_thesis/` 等路径标识。
+- `docs/CODE_STRUCTURE.md`、`docs/PROJECT_STRUCTURE.md`、`docs/REPOSITORY_DELIVERY_GUIDE.md`、`docs/DASHBOARD_GUIDE.md`、`docs/ARTIFACT_LAYOUT.md` 已改为中文说明。
+- `apps/dashboard.py` 和 `apps/legacy/ui_app.py` 的页面标题、tab、按钮、提示和限制说明已中文化。
+- `src/dashboard/runner.py`、`src/dashboard/io.py`、`src/dashboard/paths.py`、`experiments/demo/run_dashboard_job.py` 等 Dashboard 后端提示和 docstring 已中文化。
+- 保留不翻译的英文标识包括：路径、命令、CLI 参数、JSON/CSV 字段名、`mock`、`uci_har`、`kasteren`、`casas_hh101`、`cooja`、`adaptive_ldp`、`ldp`、`noise`、`fixed_attacker`、`retrain_attacker`，以及机器进度标记 `CONFIG_PREPARED`、`TRAINING_STARTED`、`DEFENSE_EVALUATION_STARTED`、`EVALUATION_STARTED`、`WRITING_ARTIFACTS`、`DONE`、`RESULT_JSON`。
+- `scripts/audit/audit_code_structure.py` 已修正，不再把已完成移动写成待办；新报告区分 `completed_moves`、`compatibility_wrappers`、`legacy_files`、`unknown_files` 和 `pending_recommendations`。
+- 已生成 `docs/PROJECT_FILE_FUNCTION_REPORT.md`、`outputs/summaries/final_thesis/project_file_function_report.md`、`project_file_function_report.csv`、`project_file_function_report.json`。
+- 最终轻量审计仍通过，`final_missing_outputs.json` 与 `parameter_scan_missing_outputs.json` 均为 `[]`。

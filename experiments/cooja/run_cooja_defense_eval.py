@@ -155,7 +155,7 @@ def apply_radio_transform(
         t_new = t + rng.laplace(0.0, sens_t / np.maximum(eps_i, 1e-6), size=t.shape)
         len_new = frame_len + rng.laplace(0.0, sens_l / np.maximum(eps_i, 1e-6), size=frame_len.shape)
     else:
-        raise ValueError(f"Unknown transform kind: {kind}")
+        raise ValueError(f"未知 transform kind：{kind}")
 
     order = np.argsort(t_new)
     out = out.iloc[order].reset_index(drop=True)

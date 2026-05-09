@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compatibility wrapper for scripts.audit.audit_repository_bloat."""
+"""兼容入口：调用 scripts.audit.audit_repository_bloat。"""
 
 import sys
 from pathlib import Path

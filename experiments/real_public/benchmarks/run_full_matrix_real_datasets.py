@@ -71,7 +71,7 @@ def _run_import(dataset: str, cfg_path: Path) -> None:
     elif dataset == "kasteren":
         _run([sys.executable, "experiments/real_public/run_import_kasteren.py", "--config", _rel(cfg_path), "--auto-download"])
     else:
-        raise ValueError(f"unsupported dataset: {dataset}")
+        raise ValueError(f"不支持的 dataset：{dataset}")
 
 
 def run_one(dataset: str, seed: int) -> dict[str, Any]:

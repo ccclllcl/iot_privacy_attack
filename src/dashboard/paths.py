@@ -1,4 +1,4 @@
-"""Dashboard-facing canonical artifact path helpers."""
+"""Dashboard 使用的 canonical artifact 路径工具。"""
 
 from __future__ import annotations
 
@@ -80,13 +80,13 @@ def validate_selection(
     mode: str | None = None,
 ) -> tuple[bool, str]:
     if dataset not in DATASETS:
-        return False, f"Unsupported dataset: {dataset}"
+        return False, f"不支持的 dataset：{dataset}"
     if seed is not None and int(seed) not in SEEDS:
-        return False, f"Unsupported seed: {seed}"
+        return False, f"不支持的 seed：{seed}"
     if model is not None and model not in list_models(dataset):
-        return False, f"Unsupported model for {dataset}: {model}"
+        return False, f"{dataset} 不支持该 model：{model}"
     if method is not None and method not in list_methods(dataset):
-        return False, f"Unsupported method for {dataset}: {method}"
+        return False, f"{dataset} 不支持该 method：{method}"
     if mode is not None and mode not in MODES:
-        return False, f"Unsupported mode: {mode}"
+        return False, f"不支持的 mode：{mode}"
     return True, ""

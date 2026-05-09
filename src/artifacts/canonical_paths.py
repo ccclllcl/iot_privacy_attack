@@ -1,4 +1,4 @@
-"""Canonical artifact path constants shared by audits, builders, and dashboards."""
+"""审计、汇总构建和 Dashboard 共用的 canonical artifact 路径常量。"""
 
 from __future__ import annotations
 

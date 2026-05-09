@@ -1,4 +1,4 @@
-"""Small shared readers for canonical summary artifacts."""
+"""读取和写入 canonical summary artifacts 的小工具。"""
 
 from __future__ import annotations
 

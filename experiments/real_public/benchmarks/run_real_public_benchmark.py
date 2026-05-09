@@ -116,7 +116,7 @@ def _run_import(dataset_key: str, cfg_path: Path) -> None:
             ]
         )
         return
-    raise ValueError(f"Unsupported dataset key: {dataset_key}")
+    raise ValueError(f"不支持的 dataset key：{dataset_key}")
 
 
 def _maybe_run(cmd: list[str], outputs: list[Path], skip_existing: bool) -> None:

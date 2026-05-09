@@ -1,50 +1,53 @@
-# Code Structure
+# 代码结构说明
 
-The repository source code is organized by responsibility so that final delivery code is easier to inspect and maintain.
+本项目源码已经按职责分层，便于答辩评审、复现实验和后续维护时快速定位代码。
 
 ## `src/`
 
-- `src/core/`: configuration loading, path-aware config resolution, shared utility functions, and common plotting helpers.
-- `src/data/`: CSV/NPZ preprocessing, sliding-window sequence preparation, statistical feature extraction, and PyTorch dataset wrappers.
-- `src/models/`: model definitions, including the LSTM classifier and MLP baseline.
-- `src/training/`: training loop, early stopping, checkpoint writing, and training curve output.
-- `src/evaluation/`: baseline evaluation, model loading, prediction metrics, defense-after-attack evaluation, and parameter scans.
-- `src/defenses/`: base defense API, noise defense, LDP defense, adaptive LDP defense, and the defense pipeline.
-- `src/edge/`: adaptive LDP edge-budget allocation helpers.
-- `src/dashboard/`: dashboard canonical path lookup, artifact IO, plotting helpers, subprocess runner, and run-history utilities.
-- `src/artifacts/`: shared canonical artifact paths and summary IO helpers.
+- 配置核心（`src/core`）：负责配置加载、路径解析、通用工具和通用绘图函数。
+- 数据处理（`src/data`）：负责 CSV/NPZ 读取、滑窗、异常值处理、统计特征提取和 Dataset 封装。
+- 模型定义（`src/models`）：包含 LSTM 分类器和 MLP baseline。
+- 训练逻辑（`src/training`）：包含训练循环、早停、checkpoint 写入和训练曲线输出。
+- 评估逻辑（`src/evaluation`）：包含 baseline 评估、防御后攻击评估和参数扫描逻辑。
+- 防御算法（`src/defenses`）：包含 `noise`、`ldp`、`adaptive_ldp` 和防御流水线。
+- 边缘预算（`src/edge`）：包含 `adaptive_ldp` 使用的边缘预算分配逻辑。
+- Dashboard 工具（`src/dashboard`）：包含 Dashboard 的路径、IO、绘图、运行器和历史记录工具。
+- 产物路径工具（`src/artifacts`）：集中维护 canonical artifact 路径和 summary IO。
 
-Compatibility wrappers remain at old import paths such as `src/config.py`, `src/train.py`, and `src/evaluate.py`. They only re-export the new package modules and are kept so older scripts or notes do not fail immediately. New code should import from the structured packages.
+旧路径如 `src/config.py`、`src/train.py`、`src/evaluate.py` 仍保留为兼容 wrapper，只负责 re-export 新包中的实现。新代码应优先从上述分层包导入。
 
 ## `experiments/`
 
-- `experiments/core/`: single-step CLI entry points for preprocessing, training, evaluation, defense generation, defense evaluation, comparison scans, and confusion collection.
-- `experiments/batches/`: multi-seed and full-matrix batch runners retained for reproducibility. They are not part of routine review.
-- `experiments/real_public/imports/`: UCI HAR, van Kasteren, and CASAS import workflows.
-- `experiments/real_public/benchmarks/`: real public benchmark runners and summarizers.
-- `experiments/cooja/`: Cooja log evaluation and comparison scripts.
-- `experiments/demo/`: dashboard-safe single-combination runner.
+- `experiments/core/`：单步实验 CLI，包括预处理、训练、评估、防御生成、防御评估、参数比较和混淆矩阵收集。
+- `experiments/batches/`：多 seed / 全矩阵批处理入口，仅用于复现实验，不作为日常审查入口。
+- `experiments/real_public/imports/`：`uci_har`、`kasteren`、`casas_hh101` 的真实数据导入流程。
+- `experiments/real_public/benchmarks/`：真实数据 benchmark 运行和汇总脚本。
+- `experiments/cooja/`：Cooja 日志评估和比较脚本。
+- `experiments/demo/`：Dashboard 使用的单组合训练/评估 runner。
 
 ## `scripts/`
 
-- `scripts/final_thesis/`: final thesis summary builder.
-- `scripts/audit/`: experiment symmetry, repository bloat, and code-structure audits.
-- Root-level script files are compatibility wrappers so the documented commands still work:
+- `scripts/final_thesis/`：最终结果汇总构建逻辑。
+- `scripts/audit/`：实验对称性审计、仓库体积审计、代码结构审计、项目文件功能报告生成。
+- 根目录脚本保留为兼容入口，以下命令仍可直接运行：
   - `python scripts/build_final_thesis_results.py`
   - `python scripts/audit_experiment_symmetry.py`
   - `python scripts/audit_repository_bloat.py`
   - `python scripts/audit_code_structure.py`
+  - `python scripts/generate_project_file_report.py`
+
+这些脚本都是轻量维护或审计命令，不会运行完整实验矩阵。
 
 ## `apps/`
 
-- `apps/dashboard.py`: official Streamlit dashboard entry point.
-- `apps/legacy/ui_app.py`: older command-style UI kept for reference only.
+- `apps/dashboard.py`：正式 Streamlit Dashboard 入口。
+- `apps/legacy/ui_app.py`：旧式 UI 占位入口，仅用于历史说明，不推荐使用。
 
 ## `tools/`
 
-- `tools/cooja/`: external Cooja maintenance helpers.
-- `tools/maintenance/`: optional maintenance utilities that are not required for normal thesis review.
+- `tools/cooja/`：Cooja 相关外部维护工具。
+- `tools/maintenance/`：非日常入口的维护工具。
 
-## Artifact Policy
+## 产物路径原则
 
-Code refactoring does not change canonical artifact paths. Final source artifacts remain under `outputs/experiments/`, final summaries under `outputs/summaries/final_thesis/`, and final figures under `outputs/figures/summaries/final_thesis/`.
+代码结构重构不改变 canonical artifact layout。最终源产物仍位于 `outputs/experiments/`，最终汇总仍位于 `outputs/summaries/final_thesis/`，最终图像仍位于 `outputs/figures/summaries/final_thesis/`。

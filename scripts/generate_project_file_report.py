@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""兼容入口：调用 scripts.final_thesis.build_final_thesis_results。"""
+"""兼容入口：调用 scripts.audit.generate_project_file_report。"""
 
 import sys
 from pathlib import Path
@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.final_thesis.build_final_thesis_results import main
+from scripts.audit.generate_project_file_report import main
 
 
 if __name__ == "__main__":

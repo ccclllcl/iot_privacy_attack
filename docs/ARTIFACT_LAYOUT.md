@@ -1,14 +1,16 @@
-# Artifact Layout
+# 产物结构说明
 
-The canonical artifact layout encodes experiment choices in the path itself.
+canonical artifact layout 的核心原则是：路径本身表达实验选项。
 
-## Source Experiments
+## 源实验产物
 
-Normal experiment combination:
+普通实验组合：
 
-`outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/`
+```text
+outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/
+```
 
-Each combination contains:
+每个组合通常包含：
 
 - `metrics.json`
 - `confusion.json`
@@ -17,19 +19,23 @@ Each combination contains:
 - `defense_report.json`
 - `source_manifest.json`
 
-Baseline artifacts:
+baseline 产物：
 
-`outputs/experiments/{dataset}/seed_{seed}/{model}/baseline/`
+```text
+outputs/experiments/{dataset}/seed_{seed}/{model}/baseline/
+```
 
-Parameter scans:
+参数扫描：
 
-`outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/parameter_scan/`
+```text
+outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/parameter_scan/
+```
 
-Adaptive LDP profile scans contain `profile_config.json` in addition to `comparison_results.csv`, `scan_summary.json`, and `scan_trace.json`.
+`adaptive_ldp` profile 扫描除 `comparison_results.csv`、`scan_summary.json`、`scan_trace.json` 外，还包含 `profile_config.json`。
 
-## Datasets and Models
+## Dataset 和 Model
 
-Supported dataset slots:
+支持的 dataset slot：
 
 - `mock`
 - `uci_har`
@@ -37,51 +43,61 @@ Supported dataset slots:
 - `casas_hh101`
 - `cooja`
 
-Supported model slots:
+支持的 model slot：
 
 - `lstm`
 - `mlp`
-- `random_forest` for Cooja only
+- `random_forest`，仅用于 Cooja。
 
 ## Cooja
 
-Cooja uses:
+Cooja 使用：
 
-`outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/`
+```text
+outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/
+```
 
-This migration only normalizes paths. It does not fabricate packet counts, byte counts, IAT fields, real energy, or real end-to-end delay.
+该路径整理只规范已有结果，不伪造 packet counts、byte counts、IAT、真实能耗或真实端到端时延。
 
-## Summaries and Figures
+## 汇总与图像
 
-Final summaries:
+最终汇总：
 
-`outputs/summaries/final_thesis/`
+```text
+outputs/summaries/final_thesis/
+```
 
-Final summary figures:
+最终论文图像：
 
-`outputs/figures/summaries/final_thesis/`
+```text
+outputs/figures/summaries/final_thesis/
+```
 
-Per-combination diagnostic figures:
+单组合诊断图像：
 
-`outputs/figures/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/`
+```text
+outputs/figures/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/
+```
 
-## Migration Record
+## 迁移记录
 
-The migration from legacy batch-name paths is documented in:
+旧批次路径迁移记录保留在：
 
 - `outputs/summaries/layout/migration_map.csv`
 - `outputs/summaries/layout/migration_report.md`
 
-Old batch-name paths are compatibility concepts only and should not be used as final citation roots.
+旧批次路径只作为历史说明，不应作为最终论文引用路径。
 
 ## Dashboard
 
-The official browsing and demonstration UI is:
+正式浏览和演示入口：
 
-`python -m streamlit run apps/dashboard.py`
+```bash
+python -m streamlit run apps/dashboard.py
+```
 
-It uses the same canonical paths described above. Demo runs write only the selected combination and record history in `outputs/ui/run_history.jsonl`.
+Dashboard 使用本文件描述的 canonical paths。demo 运行只写入所选组合，并在 `outputs/ui/run_history.jsonl` 记录历史。
 
-## Related Code Layout
+## 相关代码
 
-Canonical path helpers live in `src/artifacts/canonical_paths.py`. Dashboard-specific browsing helpers live in `src/dashboard/paths.py` and reuse the canonical path constants. Final summary builders and audit scripts should read canonical artifacts instead of legacy batch-name directories.
+共享路径工具位于 `src/artifacts/canonical_paths.py`。Dashboard 选择和浏览工具位于 `src/dashboard/paths.py`，并复用 canonical path 常量。最终汇总和审计脚本应读取 canonical artifacts，不应再把旧 batch-name 目录作为正式路径。

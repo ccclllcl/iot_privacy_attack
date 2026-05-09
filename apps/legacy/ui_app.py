@@ -1,8 +1,6 @@
-"""Legacy Streamlit UI placeholder.
+"""legacy Streamlit UI 占位入口。
 
-The old command-style UI was retained only to avoid a surprising missing file
-for users who saw the historical path. The supported dashboard is
-`apps/dashboard.py`.
+旧式命令 UI 只为历史路径保留。正式 Dashboard 是 `apps/dashboard.py`。
 """
 
 from __future__ import annotations
@@ -11,11 +9,11 @@ import streamlit as st
 
 
 def main() -> None:
-    st.set_page_config(page_title="Legacy UI", layout="centered")
-    st.title("Legacy UI")
+    st.set_page_config(page_title="旧版 UI", layout="centered")
+    st.title("旧版 UI")
     st.info(
-        "This legacy entry point is retained for reference only. "
-        "Use `python -m streamlit run apps/dashboard.py` for the canonical dashboard."
+        "该入口仅作为历史说明保留。正式演示请使用 "
+        "`python -m streamlit run apps/dashboard.py`。"
     )
 
 

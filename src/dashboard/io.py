@@ -1,4 +1,4 @@
-"""Dashboard file loading and plotting helpers."""
+"""Dashboard 文件读取与绘图工具。"""
 
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ def read_text(path: Path, max_chars: int = 120_000) -> str:
         return ""
     text = path.read_text(encoding="utf-8", errors="replace")
     if len(text) > max_chars:
-        return text[:max_chars] + "\n\n...[truncated]...\n"
+        return text[:max_chars] + "\n\n...[内容已截断]...\n"
     return text
 
 
@@ -95,12 +95,12 @@ def plot_confusion_matrix(
         cm_show = cm
         names_show = names
 
-    title = "Confusion matrix"
+    title = "混淆矩阵"
     if normalize:
         denom = cm_show.sum(axis=1, keepdims=True)
         denom[denom == 0] = 1.0
         cm_show = cm_show / denom
-        title = "Confusion matrix (row-normalized)"
+        title = "混淆矩阵（按行归一化）"
 
     fig_size = max(6.0, min(14.0, 0.42 * len(names_show)))
     fig, ax = plt.subplots(figsize=(fig_size, fig_size))
@@ -112,8 +112,8 @@ def plot_confusion_matrix(
     ax.set_yticks(tick_idx)
     ax.set_xticklabels([names_show[i] for i in tick_idx], rotation=45, ha="right")
     ax.set_yticklabels([names_show[i] for i in tick_idx])
-    ax.set_xlabel("Predicted label")
-    ax.set_ylabel("True label")
+    ax.set_xlabel("预测标签")
+    ax.set_ylabel("真实标签")
     ax.set_title(title)
     fig.tight_layout()
     return fig, top_df

@@ -36,7 +36,7 @@ def _read_acc(path: Path) -> float:
 
 def main() -> None:
     if not MANIFEST.exists():
-        raise FileNotFoundError(f"Manifest not found: {MANIFEST}")
+        raise FileNotFoundError(f"未找到 manifest：{MANIFEST}")
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     manifest = _load_json(MANIFEST)

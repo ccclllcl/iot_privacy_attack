@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compatibility wrapper for scripts.audit.audit_experiment_symmetry."""
+"""兼容入口：调用 scripts.audit.audit_experiment_symmetry。"""
 
 import sys
 from pathlib import Path

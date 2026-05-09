@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit Python code layout and suggest responsibility-based packages."""
+"""审计当前代码职责分层，并生成中文结构报告。"""
 
 from __future__ import annotations
 
@@ -16,22 +16,46 @@ JSON_OUT = OUT_DIR / "code_structure_audit.json"
 MD_OUT = OUT_DIR / "code_structure_audit.md"
 SCAN_ROOTS = ["src", "apps", "experiments", "scripts", "tools", "docs"]
 
+WRAPPER_TARGETS = {
+    "src/config.py": "src/core/config.py",
+    "src/utils.py": "src/core/utils.py",
+    "src/plotting.py": "src/core/plotting.py",
+    "src/preprocess.py": "src/data/preprocess.py",
+    "src/features.py": "src/data/features.py",
+    "src/dataset.py": "src/data/dataset.py",
+    "src/train.py": "src/training/trainer.py",
+    "src/evaluate.py": "src/evaluation/evaluator.py",
+    "src/defense_eval.py": "src/evaluation/defense_evaluator.py",
+    "src/experiment_compare.py": "src/evaluation/comparison.py",
+    "src/dashboard_paths.py": "src/dashboard/paths.py",
+    "src/dashboard_io.py": "src/dashboard/io.py",
+    "src/dashboard_runner.py": "src/dashboard/runner.py",
+    "src/ui_history.py": "src/dashboard/history.py",
+    "src/defenses/base_defense.py": "src/defenses/base.py",
+    "scripts/build_final_thesis_results.py": "scripts/final_thesis/build_final_thesis_results.py",
+    "scripts/audit_experiment_symmetry.py": "scripts/audit/audit_experiment_symmetry.py",
+    "scripts/audit_repository_bloat.py": "scripts/audit/audit_repository_bloat.py",
+    "scripts/audit_code_structure.py": "scripts/audit/audit_code_structure.py",
+    "scripts/generate_project_file_report.py": "scripts/audit/generate_project_file_report.py",
+}
 
-CATEGORY_BY_PATH = [
-    ("src/config.py", "config_core", "src/core/config.py", True),
-    ("src/utils.py", "config_core", "src/core/utils.py", True),
-    ("src/plotting.py", "config_core", "src/core/plotting.py", True),
-    ("src/preprocess.py", "data_processing", "src/data/preprocess.py", True),
-    ("src/features.py", "feature_engineering", "src/data/features.py", True),
-    ("src/dataset.py", "dataset_wrappers", "src/data/dataset.py", True),
-    ("src/train.py", "training", "src/training/trainer.py", True),
-    ("src/evaluate.py", "baseline_evaluation", "src/evaluation/evaluator.py", True),
-    ("src/defense_eval.py", "defense_evaluation", "src/evaluation/defense_evaluator.py", True),
-    ("src/experiment_compare.py", "parameter_scan", "src/evaluation/comparison.py", True),
-    ("src/dashboard_paths.py", "artifact_paths", "src/dashboard/paths.py", True),
-    ("src/dashboard_io.py", "artifact_io", "src/dashboard/io.py", True),
-    ("src/dashboard_runner.py", "dashboard_runner", "src/dashboard/runner.py", True),
-]
+COMPLETED_MOVE_TARGETS = set(WRAPPER_TARGETS.values()) | {
+    "apps/legacy/ui_app.py",
+    "experiments/real_public/imports/run_import_uci_har.py",
+    "experiments/real_public/imports/run_import_kasteren.py",
+    "experiments/real_public/imports/run_import_casas.py",
+    "experiments/real_public/benchmarks/run_real_public_benchmark.py",
+    "experiments/real_public/benchmarks/run_full_matrix_real_datasets.py",
+    "experiments/real_public/benchmarks/summarize_real_public_benchmark.py",
+    "tools/cooja/rewrite_cooja_client_type.py",
+    "tools/maintenance/refresh_confusion_matrices.py",
+}
+
+LEGACY_FILES = {
+    "apps/legacy/ui_app.py": "旧 UI 占位入口，不作为正式 Dashboard。",
+    "experiments/batches/run_all_methods_multiseed.py": "完整矩阵复现脚本，日常审查不运行。",
+    "experiments/batches/run_all_data_multiseed.py": "批处理复现脚本，日常审查不运行。",
+}
 
 
 def rel(path: Path) -> str:
@@ -45,9 +69,8 @@ def iter_code_files() -> list[Path]:
     files: list[Path] = []
     for root_name in SCAN_ROOTS:
         root = ROOT / root_name
-        if not root.exists():
-            continue
-        files.extend(p for p in root.rglob("*") if p.is_file() and p.suffix in {".py", ".ps1", ".md"})
+        if root.exists():
+            files.extend(p for p in root.rglob("*") if p.is_file() and p.suffix in {".py", ".ps1", ".md"})
     return sorted(files, key=rel)
 
 
@@ -58,147 +81,182 @@ def imports_for(path: Path) -> list[str]:
         tree = ast.parse(path.read_text(encoding="utf-8", errors="replace"))
     except SyntaxError:
         return []
-    out: list[str] = []
+    imports: list[str] = []
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
-            out.extend(alias.name for alias in node.names)
+            imports.extend(alias.name for alias in node.names)
         elif isinstance(node, ast.ImportFrom):
-            module = "." * int(node.level or 0) + (node.module or "")
-            out.append(module)
-    return sorted(set(out))
+            imports.append("." * int(node.level or 0) + (node.module or ""))
+    return sorted(set(imports))
 
 
-def classify(path: Path) -> tuple[str, str, bool, bool, str]:
+def classify(path: Path) -> tuple[str, str]:
     p = rel(path)
-    for exact, category, proposed, wrapper in CATEGORY_BY_PATH:
-        if p == exact:
-            return category, proposed, False, wrapper, "Compatibility wrapper for old import path."
+    if p.endswith("__init__.py"):
+        return "package_init", "Python package 初始化文件。"
+    if p in WRAPPER_TARGETS:
+        return "compatibility_wrapper", "兼容旧 import 或旧命令入口。"
+    if p in LEGACY_FILES or p.startswith("apps/legacy/"):
+        return "legacy_file", LEGACY_FILES.get(p, "legacy 文件，保留但不是正式入口。")
     if p.startswith("src/core/"):
-        return "config_core", p, False, False, "Core configuration or utility package."
-    if p.startswith("src/data/preprocess.py"):
-        return "data_processing", p, False, False, "Data preprocessing."
-    if p.startswith("src/data/features.py"):
-        return "feature_engineering", p, False, False, "Feature engineering."
-    if p.startswith("src/data/dataset.py"):
-        return "dataset_wrappers", p, False, False, "Dataset wrappers."
-    if p.startswith("src/training/"):
-        return "training", p, False, False, "Training logic."
-    if p.startswith("src/evaluation/defense_evaluator.py"):
-        return "defense_evaluation", p, False, False, "Defense-side attack evaluation."
-    if p.startswith("src/evaluation/comparison.py"):
-        return "parameter_scan", p, False, False, "Parameter scan logic."
-    if p.startswith("src/evaluation/"):
-        return "baseline_evaluation", p, False, False, "Baseline evaluation."
-    if p.startswith("src/dashboard/paths.py"):
-        return "artifact_paths", p, False, False, "Dashboard path helper."
-    if p.startswith("src/dashboard/io.py"):
-        return "artifact_io", p, False, False, "Dashboard artifact IO."
-    if p.startswith("src/dashboard/runner.py"):
-        return "dashboard_runner", p, False, False, "Dashboard single-combination runner."
-    if p.startswith("src/artifacts/"):
-        return "artifact_paths", p, False, False, "Canonical artifact helper."
-    if p.startswith("src/defenses/defense_pipeline.py"):
-        return "defense_pipeline", p, False, False, "Defense pipeline package."
-    if p.startswith("src/defenses/"):
-        return "defense_algorithms", p, False, False, "Defense algorithm package."
+        return "config_core", "配置核心、通用工具或绘图工具。"
+    if p.startswith("src/data/"):
+        return "data_processing", "数据处理、特征工程或 Dataset 封装。"
     if p.startswith("src/models/"):
-        return "model_definitions", p, False, False, "Model definition package."
+        return "model_definitions", "模型定义。"
+    if p.startswith("src/training/"):
+        return "training", "训练逻辑。"
+    if p.startswith("src/evaluation/comparison.py"):
+        return "parameter_scan", "参数扫描和对比实验逻辑。"
+    if p.startswith("src/evaluation/defense_evaluator.py"):
+        return "defense_evaluation", "防御后攻击评估。"
+    if p.startswith("src/evaluation/"):
+        return "baseline_evaluation", "baseline 评估。"
+    if p.startswith("src/defenses/defense_pipeline.py"):
+        return "defense_pipeline", "防御流水线。"
+    if p.startswith("src/defenses/"):
+        return "defense_algorithms", "防御算法。"
     if p.startswith("src/edge/"):
-        return "defense_algorithms", p, False, False, "Edge budget helper."
-    if p.startswith("apps/dashboard.py"):
-        return "dashboard", p, False, False, "Formal Streamlit dashboard."
-    if p.startswith("apps/legacy/"):
-        return "legacy_ui", p, False, False, "Retained legacy UI."
-    if p.startswith("apps/"):
-        return "legacy_ui", "apps/legacy/" + Path(p).name, False, False, "Legacy UI should live under apps/legacy."
-    if p.startswith("experiments/demo/"):
-        return "experiment_cli", p, False, False, "Dashboard demo CLI."
+        return "defense_algorithms", "边缘预算分配。"
+    if p.startswith("src/dashboard/"):
+        return "dashboard", "Dashboard 工具。"
+    if p.startswith("src/artifacts/"):
+        return "artifact_paths", "canonical artifact 路径或 summary IO。"
+    if p == "apps/dashboard.py":
+        return "dashboard", "正式 Streamlit Dashboard。"
     if p.startswith("experiments/core/"):
-        return "experiment_cli", p, False, False, "Single-step experiment CLI."
+        return "experiment_cli", "单步实验 CLI。"
+    if p == "experiments/README.md":
+        return "docs", "experiments 目录说明。"
+    if p.startswith("experiments/demo/"):
+        return "experiment_cli", "Dashboard demo runner。"
     if p.startswith("experiments/batches/"):
-        return "batch_runner", p, False, False, "Batch runner."
-    if p.startswith("experiments/real_public/run_import"):
-        return "real_dataset_import", p, False, False, "Real dataset import."
+        return "batch_runner", "批处理复现脚本。"
+    if p.startswith("experiments/real_public/imports/"):
+        return "real_dataset_import", "真实数据导入流程。"
+    if p.startswith("experiments/real_public/benchmarks/"):
+        return "real_dataset_benchmark", "真实数据 benchmark 流程。"
     if p.startswith("experiments/real_public/"):
-        return "real_dataset_import", p, False, False, "Real dataset workflow."
+        return "compatibility_wrapper", "真实数据旧入口兼容 wrapper。"
     if p.startswith("experiments/cooja/"):
-        return "cooja_eval", p, False, False, "Cooja evaluation."
+        return "cooja_eval", "Cooja 日志评估。"
     if p.startswith("scripts/final_thesis/"):
-        return "final_summary_build", p, False, False, "Final summary builder."
-    if p.startswith("scripts/audit/") or p.startswith("scripts/audit_"):
-        return "audit", p, False, False, "Audit script."
+        return "final_summary_build", "最终结果汇总构建。"
+    if p.startswith("scripts/audit/"):
+        return "audit", "审计或报告生成脚本。"
     if p.startswith("scripts/"):
-        return "maintenance", p, False, False, "Compatibility wrapper or maintenance helper."
-    if p.startswith("tools/maintenance/refresh_web_assets.py"):
-        return "maintenance", p, True, False, "Old web-assets helper is not used by the dashboard."
+        return "compatibility_wrapper", "脚本兼容入口或脚本说明。"
     if p.startswith("tools/cooja/"):
-        return "maintenance", p, False, False, "Cooja maintenance helper."
+        return "maintenance", "Cooja 维护工具。"
+    if p.startswith("tools/maintenance/"):
+        return "maintenance", "维护工具。"
     if p.startswith("tools/"):
-        return "maintenance", p, False, False, "Maintenance helper."
+        return "maintenance", "维护工具或未跟踪辅助脚本。"
     if p.startswith("docs/"):
-        return "maintenance", p, False, False, "Documentation."
-    return "unknown", p, False, False, "No specific classification rule."
+        return "docs", "项目文档。"
+    return "unknown", "暂无明确分类规则。"
 
 
 def main() -> None:
     rows: list[dict[str, Any]] = []
     for path in iter_code_files():
-        category, proposed, delete, wrapper, reason = classify(path)
+        p = rel(path)
+        category, reason = classify(path)
+        target = WRAPPER_TARGETS.get(p, p)
         rows.append(
             {
-                "path": rel(path),
+                "path": p,
                 "size_bytes": path.stat().st_size,
                 "category": category,
                 "imports": imports_for(path),
-                "proposed_new_path": proposed,
-                "delete_recommended": delete,
-                "compatibility_wrapper_needed": wrapper,
+                "proposed_new_path": target,
                 "reason": reason,
+                "is_compatibility_wrapper": p in WRAPPER_TARGETS,
+                "is_completed_move_target": p in COMPLETED_MOVE_TARGETS,
+                "is_legacy_file": category == "legacy_file",
             }
         )
 
-    root_mix = [
-        "config.py: compatibility wrapper for configuration core",
-        "preprocess.py: compatibility wrapper for data processing",
-        "features.py: compatibility wrapper for feature engineering",
-        "dataset.py: compatibility wrapper for Dataset wrappers",
-        "train.py: compatibility wrapper for training",
-        "evaluate.py: compatibility wrapper for baseline evaluation",
-        "defense_eval.py: compatibility wrapper for defense-side attack evaluation",
-        "experiment_compare.py: compatibility wrapper for parameter scans",
-        "dashboard_paths.py/dashboard_io.py/dashboard_runner.py: compatibility wrappers for dashboard helpers",
-        "utils.py/plotting.py: compatibility wrappers for common utilities",
+    pending = [
+        row
+        for row in rows
+        if row["category"] == "unknown" or (row["path"] in WRAPPER_TARGETS and not (ROOT / row["proposed_new_path"]).exists())
     ]
-    payload = {
-        "generated_at": datetime.now().isoformat(timespec="seconds"),
-        "files": rows,
-        "src_root_mixed_responsibilities": root_mix,
-    }
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    JSON_OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    completed_moves = sorted(
+        [{"old_path": old, "new_path": new} for old, new in WRAPPER_TARGETS.items() if (ROOT / new).exists()],
+        key=lambda x: x["old_path"],
+    )
+    compatibility_wrappers = sorted(
+        [row for row in rows if row["is_compatibility_wrapper"]],
+        key=lambda x: x["path"],
+    )
+    unknown_files = sorted([row for row in rows if row["category"] == "unknown"], key=lambda x: x["path"])
+    legacy_files = sorted([row for row in rows if row["is_legacy_file"]], key=lambda x: x["path"])
 
     by_cat: dict[str, int] = {}
     for row in rows:
         by_cat[row["category"]] = by_cat.get(row["category"], 0) + 1
+
+    payload = {
+        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "files_scanned": len(rows),
+        "category_counts": dict(sorted(by_cat.items())),
+        "files": rows,
+        "completed_moves": completed_moves,
+        "compatibility_wrappers": compatibility_wrappers,
+        "legacy_files": legacy_files,
+        "unknown_files": unknown_files,
+        "pending_recommendations": pending,
+        "summary": "当前代码结构已完成职责分层，暂无必须移动的文件。" if not pending else "仍有文件需要人工确认。",
+    }
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    JSON_OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
     lines = [
-        "# Code Structure Audit",
+        "# 代码结构审计",
         "",
-        f"- Generated at: `{payload['generated_at']}`",
-        f"- Files scanned: `{len(rows)}`",
+        f"- 生成时间：`{payload['generated_at']}`",
+        f"- 扫描文件数：`{payload['files_scanned']}`",
+        f"- 结论：{payload['summary']}",
         "",
-        "## Category Counts",
+        "## 1. 分类统计",
         "",
     ]
-    for cat, count in sorted(by_cat.items()):
-        lines.append(f"- `{cat}`: {count}")
-    lines.extend(["", "## src Root Compatibility Wrappers", ""])
-    lines.extend([f"- {item}" for item in root_mix])
-    lines.extend(["", "## Move/Delete Recommendations", ""])
-    for row in rows:
-        if row["path"] != row["proposed_new_path"] or row["delete_recommended"] or row["compatibility_wrapper_needed"]:
-            action = "delete" if row["delete_recommended"] else "move"
-            wrapper_note = "; wrapper needed" if row["compatibility_wrapper_needed"] else ""
-            lines.append(f"- `{row['path']}` -> `{row['proposed_new_path']}` ({action}{wrapper_note})")
+    for cat, count in payload["category_counts"].items():
+        lines.append(f"- `{cat}`：{count}")
+
+    lines += ["", "## 2. 已完成的移动", ""]
+    if completed_moves:
+        for item in completed_moves:
+            lines.append(f"- `{item['old_path']}` -> `{item['new_path']}`")
+    else:
+        lines.append("- 暂无记录。")
+
+    lines += ["", "## 3. 兼容 wrapper", ""]
+    for row in compatibility_wrappers:
+        lines.append(f"- `{row['path']}`：指向 `{row['proposed_new_path']}`。")
+
+    lines += ["", "## 4. legacy 文件", ""]
+    if legacy_files:
+        for row in legacy_files:
+            lines.append(f"- `{row['path']}`：{row['reason']}")
+    else:
+        lines.append("- 暂无 legacy 文件。")
+
+    lines += ["", "## 5. unknown 文件", ""]
+    if unknown_files:
+        for row in unknown_files:
+            lines.append(f"- `{row['path']}`：{row['reason']}")
+    else:
+        lines.append("- 无 unknown 文件。")
+
+    lines += ["", "## 6. 仍待处理建议", ""]
+    if pending:
+        for row in pending:
+            lines.append(f"- `{row['path']}`：{row['reason']}")
+    else:
+        lines.append("- 当前代码结构已完成职责分层，暂无必须移动的文件。")
+
     MD_OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"code_structure_audit={rel(JSON_OUT)}")
 
