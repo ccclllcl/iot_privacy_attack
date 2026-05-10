@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
 import pandas as pd
 
@@ -27,6 +28,10 @@ PROFILE_ORDER = [
     "adaptive_traffic_only",
     "adaptive_edge_cap_on",
 ]
+CONFUSION_CMAP = LinearSegmentedColormap.from_list(
+    "paper_white_blue",
+    ["#ffffff", "#deebf7", "#9ecae1", "#3182bd", "#08306b"],
+)
 
 
 def rel(path: Path) -> str:
@@ -251,7 +256,7 @@ def generate_confusion(conf_path: str, output_name: str, title: str, normalize: 
         row_sums = plot_matrix.sum(axis=1, keepdims=True)
         plot_matrix = np.divide(plot_matrix, row_sums, out=np.zeros_like(plot_matrix), where=row_sums != 0)
     fig, ax = plt.subplots(figsize=(6.2, 5.5))
-    im = ax.imshow(plot_matrix, cmap="Blues")
+    im = ax.imshow(plot_matrix, cmap=CONFUSION_CMAP, vmin=0, vmax=max(1.0, float(plot_matrix.max())))
     ax.set_title(title)
     ax.set_xlabel("Predicted label")
     ax.set_ylabel("True label")
@@ -273,17 +278,17 @@ def generate_confusions() -> list[Path]:
         generate_confusion(
             "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json",
             "thesis_fig4_07_confusion_mock_baseline.png",
-            "Mock seed_42 LSTM baseline confusion matrix",
+            "Seed42 LSTM baseline",
         ),
         generate_confusion(
             "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/confusion.json",
             "thesis_fig4_08_confusion_mock_adaptive_lstm_fixed.png",
-            "Mock seed_42 LSTM adaptive_ldp fixed attacker",
+            "Seed42 adaptive_ldp LSTM fixed attacker",
         ),
         generate_confusion(
             "outputs/experiments/mock/seed_42/mlp/adaptive_ldp/fixed_attacker/confusion.json",
             "thesis_fig4_09_confusion_mock_mlp_fixed.png",
-            "Mock seed_42 MLP adaptive_ldp fixed attacker",
+            "Seed42 adaptive_ldp MLP fixed attacker",
         ),
     ]
 
@@ -451,6 +456,7 @@ def write_figure_audit(generated: list[Path]) -> None:
         "training_rerun_needed": False,
         "cooja_simulation_rerun_needed": False,
         "legend_notes": "All thesis parameter scan figures include legends for defended accuracy and MSE with axis labels.",
+        "confusion_matrix_style": "Unified white-to-deep-blue colormap for thesis confusion matrices.",
     }
     (SUMMARY_DIR / "thesis_chapter4_figure_audit.json").write_text(
         json.dumps(audit, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -480,6 +486,7 @@ def write_figure_audit(generated: list[Path]) -> None:
             "",
             "## 图例与索引检查",
             "- LDP、noise、adaptive_ldp 参数扫描论文图均已包含 defended accuracy 与 MSE 图例，并标明 left axis / right axis。",
+            "- 论文混淆矩阵统一使用白色到深蓝色的蓝白色带。",
             "- `artifact_index.md` 与 `figure_table_list.md` 已加入本次论文专用图路径。",
             "- 早期 `real_uci_ldp_scan.png` 与 `real_uci_noise_scan.png` 仍可作为历史汇总图存在，但第四章改用本次重新绘制的论文专用图。",
             "",

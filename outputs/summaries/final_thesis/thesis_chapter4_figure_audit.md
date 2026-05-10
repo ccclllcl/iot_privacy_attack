@@ -30,6 +30,7 @@
 
 ## 图例与索引检查
 - LDP、noise、adaptive_ldp 参数扫描论文图均已包含 defended accuracy 与 MSE 图例，并标明 left axis / right axis。
+- 论文混淆矩阵统一使用白色到深蓝色的蓝白色带。
 - `artifact_index.md` 与 `figure_table_list.md` 已加入本次论文专用图路径。
 - 早期 `real_uci_ldp_scan.png` 与 `real_uci_noise_scan.png` 仍可作为历史汇总图存在，但第四章改用本次重新绘制的论文专用图。
 

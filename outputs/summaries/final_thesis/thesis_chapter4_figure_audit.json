@@ -110,5 +110,6 @@
   },
   "training_rerun_needed": false,
   "cooja_simulation_rerun_needed": false,
-  "legend_notes": "All thesis parameter scan figures include legends for defended accuracy and MSE with axis labels."
+  "legend_notes": "All thesis parameter scan figures include legends for defended accuracy and MSE with axis labels.",
+  "confusion_matrix_style": "Unified white-to-deep-blue colormap for thesis confusion matrices."
 }

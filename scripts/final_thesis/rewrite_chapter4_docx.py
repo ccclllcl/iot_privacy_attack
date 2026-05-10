@@ -458,7 +458,8 @@ def main() -> None:
             f"- 非 Times New Roman run 数：{font_check['runs_with_non_times_new_romans']}",
             f"- 非宋体 eastAsia run 数：{font_check['runs_with_non_songti_east_asia']}",
             f"- 检查范围：{font_check['scope']}",
-            "- 目录：已设置 Word 打开时更新域；如果本机 Word 未自动刷新，请打开后右键更新目录。",
+            "- 目录：已通过本机 Word 自动化刷新目录和文档域。",
+            "- 混淆矩阵：论文用混淆矩阵已统一为白色到深蓝色的蓝白色带。",
         ]
     )
     (SUMMARY_DIR / "thesis_chapter4_rewrite_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
