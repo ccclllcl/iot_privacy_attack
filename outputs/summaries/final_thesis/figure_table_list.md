@@ -1,151 +1,99 @@
 # 图表清单
 
-## 1. Mock LSTM/MLP baseline vs fixed/retrain accuracy 对比图
-- 图路径: `outputs/figures/summaries/final_thesis/mock_model_mode_accuracy.png`
-- 源文件: `outputs/summaries/final_thesis/mock/mock_summary.csv`
-- 可写入论文结论: 可用于展示 fixed_attacker 与 retrain_attacker 的差异趋势。
-- 口径限制: 均值汇总会掩盖个别 seed 波动。
+本清单记录最终论文和答辩复核使用的核心图表。第四章论文专用图均由已有 CSV/JSON 结果重新绘制，没有重跑训练实验。
 
-## 2. Mock 三种防御方法 MSE/MAE/Pearson 对比图
-- 图路径: `outputs/figures/summaries/final_thesis/mock_method_distortion.png`
-- 源文件: `outputs/summaries/final_thesis/mock/mock_summary.csv`
-- 可写入论文结论: 可用于展示防御强度与信号保真度之间权衡。
-- 口径限制: 不同 mode 下共享同一 distortion 指标。
+## 第四章论文专用图
+### 图4.1 mock 场景准确率对比
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_01_mock_accuracy.png`
+- 数据来源：`outputs/summaries/final_thesis/mock/mock_summary.csv`
+- 适合章节：4.2、4.3
+- 主要说明：比较 LSTM/MLP 在 baseline、fixed_attacker、retrain_attacker 下的识别准确率变化。
+- 口径限制：不同 seed 已取均值，正文解释以趋势为主。
 
-## 3. real uci_har LSTM/MLP baseline vs fixed/retrain accuracy 对比图
-- 图路径: `outputs/figures/summaries/final_thesis/real_uci_har_model_mode_accuracy.png`
-- 源文件: `outputs/summaries/final_thesis/real/real_summary.csv`
-- 可写入论文结论: 可用于展示 uci_har 数据集的防御效果。
-- 口径限制: 若样本不平衡，宏平均与准确率可能有偏差。
+### 图4.2 mock 场景失真指标对比
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_02_mock_distortion.png`
+- 数据来源：`outputs/summaries/final_thesis/mock/mock_summary.csv`
+- 适合章节：4.4
+- 主要说明：展示 MSE、MAE、Pearson_r 对隐私—可用性权衡的支持。
+- 口径限制：Pearson 与误差指标分轴/分面展示，避免混合解释。
 
-## 4. real kasteren LSTM/MLP baseline vs fixed/retrain accuracy 对比图
-- 图路径: `outputs/figures/summaries/final_thesis/real_kasteren_model_mode_accuracy.png`
-- 源文件: `outputs/summaries/final_thesis/real/real_summary.csv`
-- 可写入论文结论: 可用于展示 kasteren 数据集的防御效果。
-- 口径限制: 若样本不平衡，宏平均与准确率可能有偏差。
+### 图4.3 LDP 参数扫描
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_03_ldp_parameter_scan.png`
+- 数据来源：`outputs/summaries/final_thesis/mock/mock_parameter_scan_ldp.csv`
+- 适合章节：4.3.3、4.4
+- 主要说明：展示 epsilon 增大时 defended_acc 与 MSE 的同步变化。
+- 口径限制：口径为 mock、LSTM、fixed_attacker，三组 seed 平均。
 
-## 5. real casas_hh101 LSTM/MLP baseline vs fixed/retrain accuracy 对比图
-- 图路径: `outputs/figures/summaries/final_thesis/real_casas_hh101_model_mode_accuracy.png`
-- 源文件: `outputs/summaries/final_thesis/real/real_summary.csv`
-- 可写入论文结论: 可用于展示 casas_hh101 数据集的防御效果。
-- 口径限制: 若样本不平衡，宏平均与准确率可能有偏差。
+### 图4.4 noise 参数扫描
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_04_noise_parameter_scan.png`
+- 数据来源：`outputs/summaries/final_thesis/mock/mock_parameter_scan_noise.csv`
+- 适合章节：4.3.3、4.4
+- 主要说明：展示 noise_scale 增大时攻击准确率和失真指标的变化。
+- 口径限制：口径为 mock、LSTM、fixed_attacker，三组 seed 平均。
 
-## 6. ldp epsilon 参数扫描曲线
-- 图路径: `outputs/figures/summaries/final_thesis/real_uci_ldp_scan.png`
-- 源文件: `outputs/summaries/final_thesis/real/real_parameter_scan_ldp.csv`
-- 可写入论文结论: 可用于展示 epsilon 变大时准确率恢复趋势。
-- 口径限制: 该图以 UCI HAR 作代表性曲线展示；完整 real 参数扫描矩阵已覆盖 UCI HAR、Kasteren 与 CASAS。
+### 图4.5 adaptive_ldp profile 参数扫描
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_05_adaptive_ldp_parameter_scan.png`
+- 数据来源：`outputs/summaries/final_thesis/mock/mock_parameter_scan_adaptive_ldp.csv`
+- 适合章节：4.3.3、4.4
+- 主要说明：展示 6 个 adaptive_ldp profile 的 defended_acc 与 MSE。
+- 口径限制：属于 profile 级实验观察，不作为形式化理论证明。
 
-## 7. noise scale 参数扫描曲线
-- 图路径: `outputs/figures/summaries/final_thesis/real_uci_noise_scan.png`
-- 源文件: `outputs/summaries/final_thesis/real/real_parameter_scan_noise.csv`
-- 可写入论文结论: 可用于展示噪声强度上升时攻击准确率下降趋势。
-- 口径限制: 该图以 UCI HAR 作代表性曲线展示；完整 real 参数扫描矩阵已覆盖 UCI HAR、Kasteren 与 CASAS。
+### 图4.6 adaptive_ldp 消融图
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_06_adaptive_ldp_ablation.png`
+- 数据来源：`outputs/summaries/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv`
+- 适合章节：4.4
+- 主要说明：展示不同预算范围、风险权重和边缘预算裁剪接口下的结果差异。
+- 口径限制：口径为 mock、LSTM、fixed_attacker。
 
-## 8. mock 代表性 confusion matrix
-- 图路径: `outputs/figures/summaries/final_thesis/confusion_mock.png`
-- 源文件: `outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/confusion.json`
-- 可写入论文结论: 可用于展示主要误分类模式。
-- 口径限制: 仅展示单个 seed/model/method 样本。
+### 图4.7 LSTM 基线混淆矩阵
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_07_confusion_mock_baseline.png`
+- 数据来源：`outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json`
+- 适合章节：4.5
+- 主要说明：展示无防御状态下的主要误分布。
+- 口径限制：单 seed 代表性样本，不替代全矩阵均值。
 
-## 9. uci_har 代表性 confusion matrix
-- 图路径: `outputs/figures/summaries/final_thesis/confusion_uci_har.png`
-- 源文件: `outputs/experiments/uci_har/seed_42/lstm/adaptive_ldp/fixed_attacker/confusion.json`
-- 可写入论文结论: 可用于展示主要误分类模式。
-- 口径限制: 仅展示单个 seed/model/method 样本。
+### 图4.8 adaptive_ldp 下 LSTM fixed_attacker 混淆矩阵
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_08_confusion_mock_adaptive_lstm_fixed.png`
+- 数据来源：`outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/confusion.json`
+- 适合章节：4.5
+- 主要说明：展示防御后类别预测分布如何变化。
+- 口径限制：单 seed 代表性样本。
 
-## 10. kasteren 代表性 confusion matrix
-- 图路径: `outputs/figures/summaries/final_thesis/confusion_kasteren.png`
-- 源文件: `outputs/experiments/kasteren/seed_42/lstm/adaptive_ldp/fixed_attacker/confusion.json`
-- 可写入论文结论: 可用于展示主要误分类模式。
-- 口径限制: 仅展示单个 seed/model/method 样本。
+### 图4.9 adaptive_ldp 下 MLP fixed_attacker 混淆矩阵
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_09_confusion_mock_mlp_fixed.png`
+- 数据来源：`outputs/experiments/mock/seed_42/mlp/adaptive_ldp/fixed_attacker/confusion.json`
+- 适合章节：4.5
+- 主要说明：展示 MLP 在相同防御下的错误集中情况。
+- 口径限制：如篇幅有限，正文可只选用 LSTM 相关矩阵。
 
-## 11. casas_hh101 代表性 confusion matrix
-- 图路径: `outputs/figures/summaries/final_thesis/confusion_casas_hh101.png`
-- 源文件: `outputs/experiments/casas_hh101/seed_42/lstm/adaptive_ldp/fixed_attacker/confusion.json`
-- 可写入论文结论: 可用于展示主要误分类模式。
-- 口径限制: 仅展示单个 seed/model/method 样本。
+### 图4.10 真实数据集准确率对比
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_10_real_dataset_accuracy.png`
+- 数据来源：`outputs/summaries/final_thesis/real/real_summary.csv`
+- 适合章节：4.7
+- 主要说明：展示 UCI HAR、Kasteren、CASAS 各自内部 baseline 到 defended 的变化。
+- 口径限制：不同数据集类别数和任务定义不同，不做绝对排名。
 
-## 12. Cooja fixed/retrain accuracy 对比图
-- 图路径: `outputs/figures/summaries/final_thesis/cooja_mode_accuracy.png`
-- 源文件: `outputs/summaries/final_thesis/cooja/cooja_summary.csv`
-- 可写入论文结论: 可用于展示节点级防御在流量侧攻击下的变化。
-- 口径限制: 依赖 Cooja 日志质量与可获得性。
+### 图4.11 真实数据集 LDP 参数扫描
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_11_real_dataset_parameter_scan.png`
+- 数据来源：`outputs/summaries/final_thesis/real/real_parameter_scan_ldp.csv`
+- 适合章节：4.7
+- 主要说明：展示真实数据上参数扫描覆盖后的趋势支持。
+- 口径限制：按数据集分面，口径为 LSTM fixed_attacker。
 
-## 13. Cooja 窗口数量代理开销图
-- 图路径: `outputs/figures/summaries/final_thesis/cooja_window_overhead_proxy.png`
-- 源文件: `outputs/summaries/final_thesis/cooja/cooja_overhead_summary.csv`
-- 可写入论文结论: 可用于说明当前日志只能支持窗口数量代理，而不能支持真实能耗或时延结论。
-- 口径限制: 该图不是能耗或时延实测，只反映当前导出日志形成的窗口规模差异。
+### 图4.12 Cooja 节点级准确率对比
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_12_cooja_accuracy.png`
+- 数据来源：`outputs/summaries/final_thesis/cooja/cooja_summary.csv`
+- 适合章节：4.6
+- 主要说明：展示 dummy_noise、dummy_ldp、dummy_adaptive_ldp 在 fixed/retrain 下的攻击准确率变化。
+- 口径限制：Cooja 部分只作节点侧功能性验证，不表示真实能耗或端到端时延测量。
 
-## 14. mock adaptive_ldp ablation summary table
-- 图路径: `outputs/summaries/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv`
-- 源文件: `outputs/summaries/final_thesis/mock/mock_parameter_scan_adaptive_ldp.csv`
-- 可写入论文结论: Profile-level mock adaptive_ldp ablation summary based on existing parameter scans.
-- 口径限制: Empirical profile aggregation across seeds; no new experiment was rerun.
-
-## 15. real adaptive_ldp ablation summary table
-- 图路径: `outputs/summaries/final_thesis/real/real_adaptive_ldp_ablation_summary.csv`
-- 源文件: `outputs/summaries/final_thesis/real/real_parameter_scan_adaptive_ldp.csv`
-- 可写入论文结论: Profile-level real-data adaptive_ldp ablation summary by dataset, model, and attacker mode.
-- 口径限制: Do not rank different datasets against each other by absolute value.
-
-## 16. adaptive_ldp ablation overview
-- 图路径: `outputs/summaries/final_thesis/adaptive_ldp_ablation_overview.md`
-- 源文件: `outputs/summaries/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv;outputs/summaries/final_thesis/real/real_adaptive_ldp_ablation_summary.csv`
-- 可写入论文结论: Explains the six adaptive_ldp profiles and their cautious interpretation.
-- 口径限制: This overview is a delivery note, not a theoretical proof.
-
-## 17. ldp parameter scans across available models/modes
-- 图路径: `outputs/figures/summaries/final_thesis/parameter_scan_ldp_all_models_modes.png`
-- 源文件: `outputs/summaries/final_thesis/mock/mock_parameter_scan_ldp.csv;outputs/summaries/final_thesis/real/real_parameter_scan_ldp.csv`
-- 可写入论文结论: Shows parameter sensitivity separately by dataset; missing combinations are documented in parameter_scan_coverage_audit.json.
-- 口径限制: Curves average available seeds and do not rank different datasets against each other.
-
-## 18. noise parameter scans across available models/modes
-- 图路径: `outputs/figures/summaries/final_thesis/parameter_scan_noise_all_models_modes.png`
-- 源文件: `outputs/summaries/final_thesis/mock/mock_parameter_scan_noise.csv;outputs/summaries/final_thesis/real/real_parameter_scan_noise.csv`
-- 可写入论文结论: Shows parameter sensitivity separately by dataset; missing combinations are documented in parameter_scan_coverage_audit.json.
-- 口径限制: Curves average available seeds and do not rank different datasets against each other.
-
-## 19. adaptive_ldp parameter scans across available models/modes
-- 图路径: `outputs/figures/summaries/final_thesis/parameter_scan_adaptive_ldp_all_models_modes.png`
-- 源文件: `outputs/summaries/final_thesis/mock/mock_parameter_scan_adaptive_ldp.csv;outputs/summaries/final_thesis/real/real_parameter_scan_adaptive_ldp.csv`
-- 可写入论文结论: Shows parameter sensitivity separately by dataset; missing combinations are documented in parameter_scan_coverage_audit.json.
-- 口径限制: Curves average available seeds and do not rank different datasets against each other.
-
-## 20. adaptive_ldp ablation mock mean_defended_acc
-- 图路径: `outputs/figures/summaries/final_thesis/adaptive_ldp_ablation_mock_accuracy.png`
-- 源文件: `outputs/summaries/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv`
-- 可写入论文结论: Shows profile-level adaptive_ldp ablation without mixing datasets for absolute ranking.
-- 口径限制: Averages model/mode rows within each dataset panel and remains an empirical profile scan.
-
-## 21. adaptive_ldp ablation mock mean_mse
-- 图路径: `outputs/figures/summaries/final_thesis/adaptive_ldp_ablation_mock_distortion.png`
-- 源文件: `outputs/summaries/final_thesis/mock/mock_adaptive_ldp_ablation_summary.csv`
-- 可写入论文结论: Shows profile-level adaptive_ldp ablation without mixing datasets for absolute ranking.
-- 口径限制: Averages model/mode rows within each dataset panel and remains an empirical profile scan.
-
-## 22. adaptive_ldp ablation real mean_defended_acc
-- 图路径: `outputs/figures/summaries/final_thesis/adaptive_ldp_ablation_real_accuracy.png`
-- 源文件: `outputs/summaries/final_thesis/real/real_adaptive_ldp_ablation_summary.csv`
-- 可写入论文结论: Shows profile-level adaptive_ldp ablation without mixing datasets for absolute ranking.
-- 口径限制: Averages model/mode rows within each dataset panel and remains an empirical profile scan.
-
-## 23. adaptive_ldp ablation real mean_mse
-- 图路径: `outputs/figures/summaries/final_thesis/adaptive_ldp_ablation_real_distortion.png`
-- 源文件: `outputs/summaries/final_thesis/real/real_adaptive_ldp_ablation_summary.csv`
-- 可写入论文结论: Shows profile-level adaptive_ldp ablation without mixing datasets for absolute ranking.
-- 口径限制: Averages model/mode rows within each dataset panel and remains an empirical profile scan.
-
-## 24. Cooja per-seed accuracy
-- 图路径: `outputs/figures/summaries/final_thesis/cooja_per_seed_accuracy.png`
-- 源文件: `outputs/summaries/final_thesis/cooja/cooja_per_seed.csv`
-- 可写入论文结论: Shows fixed/retrain attacker behavior per seed for each Cooja dummy method.
-- 口径限制: Depends on available Cooja radio/app logs and exported per-seed runs.
-
-## 25. Cooja traffic metrics
-- 图路径: `outputs/figures/summaries/final_thesis/cooja_traffic_metrics.png`
-- 源文件: `outputs/summaries/final_thesis/cooja/cooja_traffic_metrics.csv`
-- 可写入论文结论: Shows available packet/byte overhead proxies from Cooja traffic windows.
-- 口径限制: Not real energy or delay; dummy packet ratios are null when logs do not label dummy packets.
+## 其他汇总图
+- `outputs/figures/summaries/final_thesis/mock_model_mode_accuracy.png`
+- `outputs/figures/summaries/final_thesis/mock_method_distortion.png`
+- `outputs/figures/summaries/final_thesis/parameter_scan_ldp_all_models_modes.png`
+- `outputs/figures/summaries/final_thesis/parameter_scan_noise_all_models_modes.png`
+- `outputs/figures/summaries/final_thesis/parameter_scan_adaptive_ldp_all_models_modes.png`
+- `outputs/figures/summaries/final_thesis/adaptive_ldp_ablation_mock_accuracy.png`
+- `outputs/figures/summaries/final_thesis/adaptive_ldp_ablation_real_accuracy.png`
+- `outputs/figures/summaries/final_thesis/cooja_mode_accuracy.png`
+- `outputs/figures/summaries/final_thesis/cooja_per_seed_accuracy.png`

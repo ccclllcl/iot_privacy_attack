@@ -1,0 +1,114 @@
+{
+  "coverage_confirmed": {
+    "mock_main_matrix": "36/36",
+    "real_main_matrix": "108/108",
+    "mock_parameter_scans": "36/36",
+    "real_parameter_scans": "108/108",
+    "adaptive_ldp_profile_count": 6,
+    "cooja_canonical": "18/18"
+  },
+  "missing_arrays_empty": {
+    "final_missing_outputs": [],
+    "parameter_scan_missing_outputs": []
+  },
+  "figures_generated_from_existing_csv_json": [
+    "outputs/figures/summaries/final_thesis/thesis_fig4_01_mock_accuracy.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_02_mock_distortion.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_03_ldp_parameter_scan.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_04_noise_parameter_scan.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_05_adaptive_ldp_parameter_scan.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_06_adaptive_ldp_ablation.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_07_confusion_mock_baseline.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_08_confusion_mock_adaptive_lstm_fixed.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_09_confusion_mock_mlp_fixed.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_10_real_dataset_accuracy.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_11_real_dataset_parameter_scan.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_12_cooja_accuracy.png"
+  ],
+  "existing_figures_available": [
+    "adaptive_ldp_ablation_mock_accuracy.png",
+    "adaptive_ldp_ablation_mock_distortion.png",
+    "adaptive_ldp_ablation_real_accuracy.png",
+    "adaptive_ldp_ablation_real_distortion.png",
+    "confusion_casas_hh101.png",
+    "confusion_kasteren.png",
+    "confusion_mock.png",
+    "confusion_uci_har.png",
+    "cooja_mode_accuracy.png",
+    "cooja_per_seed_accuracy.png",
+    "cooja_traffic_metrics.png",
+    "cooja_window_overhead_proxy.png",
+    "mock_method_distortion.png",
+    "mock_model_mode_accuracy.png",
+    "parameter_scan_adaptive_ldp_all_models_modes.png",
+    "parameter_scan_ldp_all_models_modes.png",
+    "parameter_scan_noise_all_models_modes.png",
+    "real_casas_hh101_model_mode_accuracy.png",
+    "real_kasteren_model_mode_accuracy.png",
+    "real_uci_har_model_mode_accuracy.png",
+    "real_uci_ldp_scan.png",
+    "real_uci_noise_scan.png",
+    "thesis_fig4_01_mock_accuracy.png",
+    "thesis_fig4_02_mock_distortion.png",
+    "thesis_fig4_03_ldp_parameter_scan.png",
+    "thesis_fig4_04_noise_parameter_scan.png",
+    "thesis_fig4_05_adaptive_ldp_parameter_scan.png",
+    "thesis_fig4_06_adaptive_ldp_ablation.png",
+    "thesis_fig4_07_confusion_mock_baseline.png",
+    "thesis_fig4_08_confusion_mock_adaptive_lstm_fixed.png",
+    "thesis_fig4_09_confusion_mock_mlp_fixed.png",
+    "thesis_fig4_10_real_dataset_accuracy.png",
+    "thesis_fig4_11_real_dataset_parameter_scan.png",
+    "thesis_fig4_12_cooja_accuracy.png"
+  ],
+  "directly_usable_existing_figures": [
+    "outputs/figures/summaries/final_thesis/mock_model_mode_accuracy.png",
+    "outputs/figures/summaries/final_thesis/mock_method_distortion.png",
+    "outputs/figures/summaries/final_thesis/cooja_mode_accuracy.png"
+  ],
+  "existing_figures_needing_regeneration_for_thesis": [
+    {
+      "reason": "参数扫描论文图需要同时标明 defended accuracy 和 MSE 的图例及左右轴。",
+      "source_data": "outputs/summaries/final_thesis/mock/mock_parameter_scan_ldp.csv",
+      "new_figure": "outputs/figures/summaries/final_thesis/thesis_fig4_03_ldp_parameter_scan.png"
+    },
+    {
+      "reason": "参数扫描论文图需要同时标明 defended accuracy 和 MSE 的图例及左右轴。",
+      "source_data": "outputs/summaries/final_thesis/mock/mock_parameter_scan_noise.csv",
+      "new_figure": "outputs/figures/summaries/final_thesis/thesis_fig4_04_noise_parameter_scan.png"
+    },
+    {
+      "reason": "adaptive_ldp profile 名较长，论文图需要旋转标签并明确图例。",
+      "source_data": "outputs/summaries/final_thesis/mock/mock_parameter_scan_adaptive_ldp.csv",
+      "new_figure": "outputs/figures/summaries/final_thesis/thesis_fig4_05_adaptive_ldp_parameter_scan.png"
+    }
+  ],
+  "figures_regenerated_for_thesis": [
+    "outputs/figures/summaries/final_thesis/thesis_fig4_01_mock_accuracy.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_02_mock_distortion.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_03_ldp_parameter_scan.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_04_noise_parameter_scan.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_05_adaptive_ldp_parameter_scan.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_06_adaptive_ldp_ablation.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_07_confusion_mock_baseline.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_08_confusion_mock_adaptive_lstm_fixed.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_09_confusion_mock_mlp_fixed.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_10_real_dataset_accuracy.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_11_real_dataset_parameter_scan.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_12_cooja_accuracy.png"
+  ],
+  "figure_table_list_consistency": {
+    "checked_files": [
+      "outputs/summaries/final_thesis/artifact_index.md",
+      "outputs/summaries/final_thesis/figure_table_list.md"
+    ],
+    "missing_generated_figures_after_update": [],
+    "stale_example_paths_corrected_or_superseded": [
+      "outputs/figures/summaries/final_thesis/real_uci_ldp_scan.png",
+      "outputs/figures/summaries/final_thesis/real_uci_noise_scan.png"
+    ]
+  },
+  "training_rerun_needed": false,
+  "cooja_simulation_rerun_needed": false,
+  "legend_notes": "All thesis parameter scan figures include legends for defended accuracy and MSE with axis labels."
+}

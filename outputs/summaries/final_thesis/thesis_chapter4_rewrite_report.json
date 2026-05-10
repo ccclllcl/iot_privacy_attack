@@ -1,0 +1,44 @@
+{
+  "input_docx": "????_??????????.docx",
+  "output_docx": "????_?????????????.docx",
+  "removed_chapter4_blocks": 119,
+  "rewritten_sections": [
+    "4 实验设计与结果分析",
+    "4.1 实验环境与结果来源",
+    "4.2 攻击基线结果",
+    "4.3 多方法防御结果比较",
+    "4.3.1 LSTM 结果分析",
+    "4.3.2 MLP 结果分析",
+    "4.3.3 参数扫描结果",
+    "4.4 隐私—可用性权衡分析",
+    "4.5 混淆矩阵与错误类型分析",
+    "4.6 第二阶段节点级功能测试结果分析",
+    "4.7 真实数据扩展结果分析",
+    "4.8 本章小结"
+  ],
+  "figures_inserted": {
+    "mock_accuracy": "outputs/figures/summaries/final_thesis/thesis_fig4_01_mock_accuracy.png",
+    "mock_distortion": "outputs/figures/summaries/final_thesis/thesis_fig4_02_mock_distortion.png",
+    "ldp_scan": "outputs/figures/summaries/final_thesis/thesis_fig4_03_ldp_parameter_scan.png",
+    "noise_scan": "outputs/figures/summaries/final_thesis/thesis_fig4_04_noise_parameter_scan.png",
+    "adaptive_scan": "outputs/figures/summaries/final_thesis/thesis_fig4_05_adaptive_ldp_parameter_scan.png",
+    "confusion_baseline": "outputs/figures/summaries/final_thesis/thesis_fig4_07_confusion_mock_baseline.png",
+    "confusion_adaptive": "outputs/figures/summaries/final_thesis/thesis_fig4_08_confusion_mock_adaptive_lstm_fixed.png",
+    "real_accuracy": "outputs/figures/summaries/final_thesis/thesis_fig4_10_real_dataset_accuracy.png",
+    "cooja_accuracy": "outputs/figures/summaries/final_thesis/thesis_fig4_12_cooja_accuracy.png"
+  },
+  "outdated_phrase_replacements": [],
+  "training_rerun": false,
+  "parameter_scan_rerun": false,
+  "cooja_simulation_rerun": false,
+  "toc_update": "已通过本机 Word 自动化刷新目录和文档域。",
+  "font_check": {
+    "runs_checked": 37,
+    "runs_with_non_times_new_romans": 0,
+    "runs_with_non_songti_east_asia": 0,
+    "body_font_target": "中文宋体小四；英文和数字 Times New Roman 小四",
+    "scope": "仅检查本次重写的第四章正文与图题"
+  },
+  "open_check": "本机 Word 自动化能够打开、更新并保存输出稿；PNG 渲染预览工具因当前环境缺少 LibreOffice 未执行成功。",
+  "output_location_note": "Word ????????????????????????"
+}

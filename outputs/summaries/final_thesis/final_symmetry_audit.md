@@ -1,6 +1,6 @@
 # Final Symmetry Audit
 
-- Generated at: `2026-05-09T20:24:39`
+- Generated at: `2026-05-10T21:07:56`
 - Canonical experiment root: `outputs/experiments`
 - Mock main matrix: `36` / `36`
 - Real main matrix: `108` / `108`
