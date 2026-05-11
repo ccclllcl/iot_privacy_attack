@@ -49,22 +49,22 @@
 - 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_07_confusion_mock_baseline.png`
 - 数据来源：`outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json`
 - 适合章节：4.5
-- 主要说明：展示无防御状态下的主要误分布。
-- 口径限制：单 seed 代表性样本，不替代全矩阵均值。
+- 主要说明：展示无防御状态下的主要误分布；论文专用图已修复 colorbar 覆盖问题。
+- 口径限制：单 seed 代表性样本，不替代全矩阵均值；图像由 scripts/final_thesis/generate_chapter4_figures.py 生成。
 
 ### 图4.8 adaptive_ldp 下 LSTM fixed_attacker 混淆矩阵
 - 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_08_confusion_mock_adaptive_lstm_fixed.png`
 - 数据来源：`outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/confusion.json`
 - 适合章节：4.5
-- 主要说明：展示防御后类别预测分布如何变化。
-- 口径限制：单 seed 代表性样本。
+- 主要说明：展示防御后类别预测分布如何变化；论文专用图已修复 colorbar 覆盖问题。
+- 口径限制：单 seed 代表性样本；图像由 scripts/final_thesis/generate_chapter4_figures.py 生成。
 
 ### 图4.9 adaptive_ldp 下 MLP fixed_attacker 混淆矩阵
 - 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_09_confusion_mock_mlp_fixed.png`
 - 数据来源：`outputs/experiments/mock/seed_42/mlp/adaptive_ldp/fixed_attacker/confusion.json`
 - 适合章节：4.5
-- 主要说明：展示 MLP 在相同防御下的错误集中情况。
-- 口径限制：如篇幅有限，正文可只选用 LSTM 相关矩阵。
+- 主要说明：展示 MLP 在相同防御下的错误集中情况；论文专用图已修复 colorbar 覆盖问题。
+- 口径限制：如篇幅有限，正文可只选用 LSTM 相关矩阵；图像由 scripts/final_thesis/generate_chapter4_figures.py 生成。
 
 ### 图4.10 真实数据集准确率对比
 - 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_10_real_dataset_accuracy.png`

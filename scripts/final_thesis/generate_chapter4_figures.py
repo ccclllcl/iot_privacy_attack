@@ -5,10 +5,10 @@
 from __future__ import annotations
 
 import json
+from datetime import datetime
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
 import pandas as pd
 
@@ -28,10 +28,7 @@ PROFILE_ORDER = [
     "adaptive_traffic_only",
     "adaptive_edge_cap_on",
 ]
-CONFUSION_CMAP = LinearSegmentedColormap.from_list(
-    "paper_white_blue",
-    ["#ffffff", "#deebf7", "#9ecae1", "#3182bd", "#08306b"],
-)
+CONFUSION_CMAP = "Blues"
 
 
 def rel(path: Path) -> str:
@@ -255,22 +252,49 @@ def generate_confusion(conf_path: str, output_name: str, title: str, normalize: 
     if normalize:
         row_sums = plot_matrix.sum(axis=1, keepdims=True)
         plot_matrix = np.divide(plot_matrix, row_sums, out=np.zeros_like(plot_matrix), where=row_sums != 0)
-    fig, ax = plt.subplots(figsize=(6.2, 5.5))
-    im = ax.imshow(plot_matrix, cmap=CONFUSION_CMAP, vmin=0, vmax=max(1.0, float(plot_matrix.max())))
-    ax.set_title(title)
-    ax.set_xlabel("Predicted label")
-    ax.set_ylabel("True label")
+
+    vmax = max(1.0, float(plot_matrix.max()))
+    fig = plt.figure(figsize=(6.9, 5.8), constrained_layout=False)
+    gs = fig.add_gridspec(1, 2, width_ratios=[1.0, 0.045], wspace=0.18)
+    ax = fig.add_subplot(gs[0, 0])
+    cax = fig.add_subplot(gs[0, 1])
+
+    im = ax.imshow(plot_matrix, cmap=CONFUSION_CMAP, vmin=0, vmax=vmax)
+    ax.set_title(title, fontsize=11)
+    ax.set_xlabel("Predicted label", fontsize=10)
+    ax.set_ylabel("True label", fontsize=10)
     ax.set_xticks(np.arange(len(names)))
     ax.set_yticks(np.arange(len(names)))
-    ax.set_xticklabels(names, rotation=35, ha="right")
-    ax.set_yticklabels(names)
+    ax.set_xticklabels(names, rotation=42, ha="right", rotation_mode="anchor", fontsize=9)
+    ax.set_yticklabels(names, fontsize=9)
+    ax.tick_params(axis="both", length=3)
+    ax.set_aspect("equal")
+
+    threshold = vmax * 0.55
     for i in range(plot_matrix.shape[0]):
         for j in range(plot_matrix.shape[1]):
             value = plot_matrix[i, j]
-            if matrix.shape[0] <= 10 and (value > 0 or not normalize):
-                ax.text(j, i, label_fmt.format(value), ha="center", va="center", fontsize=8)
-    fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-    return savefig(output_name)
+            if matrix.shape[0] <= 10 and value > 0:
+                text_color = "white" if value >= threshold else "black"
+                ax.text(
+                    j,
+                    i,
+                    label_fmt.format(value),
+                    ha="center",
+                    va="center",
+                    fontsize=9,
+                    color=text_color,
+                )
+
+    cbar = fig.colorbar(im, cax=cax)
+    cbar.set_label("Count" if not normalize else "Row-normalized value", fontsize=9)
+    cbar.ax.tick_params(labelsize=8)
+    fig.subplots_adjust(left=0.18, right=0.93, bottom=0.27, top=0.88)
+
+    path = FIG_DIR / output_name
+    fig.savefig(path, dpi=300, bbox_inches="tight", pad_inches=0.08)
+    plt.close(fig)
+    return path
 
 
 def generate_confusions() -> list[Path]:
@@ -526,7 +550,10 @@ def write_figure_audit(generated: list[Path]) -> None:
         "training_rerun_needed": False,
         "cooja_simulation_rerun_needed": False,
         "legend_notes": "All thesis parameter scan figures include legends for defended accuracy and MSE with axis labels.",
-        "confusion_matrix_style": "Unified white-to-deep-blue colormap for thesis confusion matrices.",
+        "confusion_matrix_style": (
+            "Unified Blues colormap for thesis confusion matrices; colorbar uses an independent axis and "
+            "does not overlap the heatmap body."
+        ),
     }
     (SUMMARY_DIR / "thesis_chapter4_figure_audit.json").write_text(
         json.dumps(audit, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -625,24 +652,24 @@ def update_indexes(generated: list[Path]) -> None:
             "thesis_fig4_07_confusion_mock_baseline.png",
             "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json",
             "4.5",
-            "展示无防御状态下的主要误分布。",
-            "单 seed 代表性样本，不替代全矩阵均值。",
+            "展示无防御状态下的主要误分布；论文专用图已修复 colorbar 覆盖问题。",
+            "单 seed 代表性样本，不替代全矩阵均值；图像由 scripts/final_thesis/generate_chapter4_figures.py 生成。",
         ),
         (
             "图4.8 adaptive_ldp 下 LSTM fixed_attacker 混淆矩阵",
             "thesis_fig4_08_confusion_mock_adaptive_lstm_fixed.png",
             "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/confusion.json",
             "4.5",
-            "展示防御后类别预测分布如何变化。",
-            "单 seed 代表性样本。",
+            "展示防御后类别预测分布如何变化；论文专用图已修复 colorbar 覆盖问题。",
+            "单 seed 代表性样本；图像由 scripts/final_thesis/generate_chapter4_figures.py 生成。",
         ),
         (
             "图4.9 adaptive_ldp 下 MLP fixed_attacker 混淆矩阵",
             "thesis_fig4_09_confusion_mock_mlp_fixed.png",
             "outputs/experiments/mock/seed_42/mlp/adaptive_ldp/fixed_attacker/confusion.json",
             "4.5",
-            "展示 MLP 在相同防御下的错误集中情况。",
-            "如篇幅有限，正文可只选用 LSTM 相关矩阵。",
+            "展示 MLP 在相同防御下的错误集中情况；论文专用图已修复 colorbar 覆盖问题。",
+            "如篇幅有限，正文可只选用 LSTM 相关矩阵；图像由 scripts/final_thesis/generate_chapter4_figures.py 生成。",
         ),
         (
             "图4.10 真实数据集准确率对比",
@@ -741,13 +768,79 @@ def update_indexes(generated: list[Path]) -> None:
     artifact_index.write_text(original.rstrip() + "\n\n" + "\n".join(add) + "\n", encoding="utf-8")
 
 
+def write_confusion_fix_report(confusion_paths: list[Path]) -> None:
+    image_rows: list[dict[str, object]] = []
+    for path in confusion_paths:
+        row: dict[str, object] = {
+            "path": rel(path),
+            "exists": path.exists(),
+            "width_px": None,
+            "height_px": None,
+            "dpi": None,
+        }
+        if path.exists():
+            try:
+                from PIL import Image
+
+                with Image.open(path) as image:
+                    dpi = image.info.get("dpi")
+                    row.update(
+                        {
+                            "width_px": image.width,
+                            "height_px": image.height,
+                            "dpi": [round(float(v), 2) for v in dpi] if dpi else None,
+                        }
+                    )
+            except Exception as exc:  # pragma: no cover - report should not fail figure generation
+                row["image_probe_error"] = str(exc)
+        image_rows.append(row)
+
+    report = {
+        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "modified_script": "scripts/final_thesis/generate_chapter4_figures.py",
+        "regenerated_confusion_figures": [rel(path) for path in confusion_paths],
+        "uses_independent_colorbar_axis": True,
+        "colorbar_removed": False,
+        "colormap": "Blues",
+        "layout_method": "matplotlib GridSpec with a separate cax column for colorbar",
+        "overlap_risk_check": "Colorbar is rendered on a dedicated axis outside the heatmap body.",
+        "image_dimensions": image_rows,
+        "experiments_rerun": False,
+        "word_document_modified": False,
+    }
+    (SUMMARY_DIR / "chapter4_confusion_figure_fix_report.json").write_text(
+        json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+    lines = [
+        "# 第四章混淆矩阵图修复报告",
+        "",
+        "- 修改脚本: `scripts/final_thesis/generate_chapter4_figures.py`",
+        "- 修复方式: 使用 GridSpec 为 colorbar 单独预留轴，避免色条覆盖混淆矩阵主体。",
+        "- colorbar 是否取消: 否。",
+        "- 色彩方案: `Blues` 蓝白色。",
+        "- 是否重跑实验: 否，仅基于已有 `confusion.json` 重新绘图。",
+        "- 是否修改 Word 文档: 否。",
+        "",
+        "## 重新生成的混淆矩阵图",
+        "",
+    ]
+    for row in image_rows:
+        lines.append(f"- `{row['path']}`")
+        lines.append(f"  - 尺寸: `{row.get('width_px')} x {row.get('height_px')}` px")
+        lines.append(f"  - DPI: `{row.get('dpi')}`")
+        lines.append("  - 遮挡风险: colorbar 位于独立轴，不覆盖热力图格子或数字标注。")
+    (SUMMARY_DIR / "chapter4_confusion_figure_fix_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     generated: list[Path] = []
     generated.append(generate_mock_accuracy())
     generated.append(generate_mock_distortion())
     generated.extend(generate_mock_parameter_scans())
     generated.append(generate_adaptive_ablation())
-    generated.extend(generate_confusions())
+    confusion_paths = generate_confusions()
+    generated.extend(confusion_paths)
     generated.append(generate_real_accuracy())
     generated.append(generate_real_parameter_scan())
     generated.append(generate_cooja_accuracy())
@@ -756,6 +849,7 @@ def main() -> None:
     generated.append(generate_cooja_energy_delay())
     write_figure_audit(generated)
     update_indexes(generated)
+    write_confusion_fix_report(confusion_paths)
     print(json.dumps({"generated": [rel(p) for p in generated]}, ensure_ascii=False, indent=2))
 
 

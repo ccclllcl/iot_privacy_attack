@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-05-11T11:30:03",
+  "modified_script": "scripts/final_thesis/generate_chapter4_figures.py",
+  "regenerated_confusion_figures": [
+    "outputs/figures/summaries/final_thesis/thesis_fig4_07_confusion_mock_baseline.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_08_confusion_mock_adaptive_lstm_fixed.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_09_confusion_mock_mlp_fixed.png"
+  ],
+  "uses_independent_colorbar_axis": true,
+  "colorbar_removed": false,
+  "colormap": "Blues",
+  "layout_method": "matplotlib GridSpec with a separate cax column for colorbar",
+  "overlap_risk_check": "Colorbar is rendered on a dedicated axis outside the heatmap body.",
+  "image_dimensions": [
+    {
+      "path": "outputs/figures/summaries/final_thesis/thesis_fig4_07_confusion_mock_baseline.png",
+      "exists": true,
+      "width_px": 1981,
+      "height_px": 1483,
+      "dpi": [
+        300.0,
+        300.0
+      ]
+    },
+    {
+      "path": "outputs/figures/summaries/final_thesis/thesis_fig4_08_confusion_mock_adaptive_lstm_fixed.png",
+      "exists": true,
+      "width_px": 1981,
+      "height_px": 1483,
+      "dpi": [
+        300.0,
+        300.0
+      ]
+    },
+    {
+      "path": "outputs/figures/summaries/final_thesis/thesis_fig4_09_confusion_mock_mlp_fixed.png",
+      "exists": true,
+      "width_px": 1981,
+      "height_px": 1483,
+      "dpi": [
+        300.0,
+        300.0
+      ]
+    }
+  ],
+  "experiments_rerun": false,
+  "word_document_modified": false
+}

@@ -120,5 +120,5 @@
   "training_rerun_needed": false,
   "cooja_simulation_rerun_needed": false,
   "legend_notes": "All thesis parameter scan figures include legends for defended accuracy and MSE with axis labels.",
-  "confusion_matrix_style": "Unified white-to-deep-blue colormap for thesis confusion matrices."
+  "confusion_matrix_style": "Unified Blues colormap for thesis confusion matrices; colorbar uses an independent axis and does not overlap the heatmap body."
 }
