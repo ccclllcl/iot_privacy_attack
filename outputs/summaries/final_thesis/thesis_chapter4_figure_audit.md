@@ -27,6 +27,9 @@
 - `outputs/figures/summaries/final_thesis/thesis_fig4_10_real_dataset_accuracy.png`
 - `outputs/figures/summaries/final_thesis/thesis_fig4_11_real_dataset_parameter_scan.png`
 - `outputs/figures/summaries/final_thesis/thesis_fig4_12_cooja_accuracy.png`
+- `outputs/figures/summaries/final_thesis/thesis_fig4_13_cooja_overhead_metrics.png`
+- `outputs/figures/summaries/final_thesis/thesis_fig4_14_cooja_dummy_ratio.png`
+- `outputs/figures/summaries/final_thesis/thesis_fig4_15_cooja_energy_delay.png`
 
 ## 图例与索引检查
 - LDP、noise、adaptive_ldp 参数扫描论文图均已包含 defended accuracy 与 MSE 图例，并标明 left axis / right axis。

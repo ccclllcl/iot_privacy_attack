@@ -23,7 +23,10 @@
     "outputs/figures/summaries/final_thesis/thesis_fig4_09_confusion_mock_mlp_fixed.png",
     "outputs/figures/summaries/final_thesis/thesis_fig4_10_real_dataset_accuracy.png",
     "outputs/figures/summaries/final_thesis/thesis_fig4_11_real_dataset_parameter_scan.png",
-    "outputs/figures/summaries/final_thesis/thesis_fig4_12_cooja_accuracy.png"
+    "outputs/figures/summaries/final_thesis/thesis_fig4_12_cooja_accuracy.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_13_cooja_overhead_metrics.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_14_cooja_dummy_ratio.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_15_cooja_energy_delay.png"
   ],
   "existing_figures_available": [
     "adaptive_ldp_ablation_mock_accuracy.png",
@@ -59,7 +62,10 @@
     "thesis_fig4_09_confusion_mock_mlp_fixed.png",
     "thesis_fig4_10_real_dataset_accuracy.png",
     "thesis_fig4_11_real_dataset_parameter_scan.png",
-    "thesis_fig4_12_cooja_accuracy.png"
+    "thesis_fig4_12_cooja_accuracy.png",
+    "thesis_fig4_13_cooja_overhead_metrics.png",
+    "thesis_fig4_14_cooja_dummy_ratio.png",
+    "thesis_fig4_15_cooja_energy_delay.png"
   ],
   "directly_usable_existing_figures": [
     "outputs/figures/summaries/final_thesis/mock_model_mode_accuracy.png",
@@ -95,7 +101,10 @@
     "outputs/figures/summaries/final_thesis/thesis_fig4_09_confusion_mock_mlp_fixed.png",
     "outputs/figures/summaries/final_thesis/thesis_fig4_10_real_dataset_accuracy.png",
     "outputs/figures/summaries/final_thesis/thesis_fig4_11_real_dataset_parameter_scan.png",
-    "outputs/figures/summaries/final_thesis/thesis_fig4_12_cooja_accuracy.png"
+    "outputs/figures/summaries/final_thesis/thesis_fig4_12_cooja_accuracy.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_13_cooja_overhead_metrics.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_14_cooja_dummy_ratio.png",
+    "outputs/figures/summaries/final_thesis/thesis_fig4_15_cooja_energy_delay.png"
   ],
   "figure_table_list_consistency": {
     "checked_files": [

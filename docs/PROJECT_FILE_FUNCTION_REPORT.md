@@ -1,6 +1,6 @@
 # 项目文件功能与产物对应报告
 
-生成时间：`2026-05-09T20:52:53`
+生成时间：`2026-05-11T10:44:29`
 
 ## 1. 顶层文件
 
@@ -36,11 +36,11 @@
 
 ### `configs/cooja*.json`
 - 类型：Cooja 配置
-- 作用：记录 Cooja 日志路径或模板路径。
+- 作用：记录 Cooja 日志路径、复现模板和 Energest 能耗换算参数。
 - 读取：COOJA_LOG_ROOT 或本地 WSL 路径
 - 写入：outputs/experiments/cooja/
 - 相关产物：outputs/summaries/final_thesis/cooja/
-- 备注：本地 WSL 路径仅记录原实验来源。
+- 备注：本地 WSL 路径仅记录原实验来源；能耗参数用于仿真估计。
 
 ## 3. 应用入口 apps/
 
@@ -156,10 +156,10 @@
 
 ### `experiments/cooja/`
 - 类型：Cooja 实验入口
-- 作用：读取 Cooja 日志，生成攻击准确率和防御评估结果。
-- 读取：configs/cooja*.json; Cooja 日志
+- 作用：读取或运行 Cooja 日志实验，生成攻击准确率、防御评估和节点级开销指标。
+- 读取：configs/cooja*.json; Cooja 日志; cooja/contiki-ng/
 - 写入：outputs/experiments/cooja/; outputs/summaries/final_thesis/cooja/
-- 相关产物：cooja_limitations.md
+- 相关产物：cooja_limitations.md; cooja_overhead_metrics.csv
 
 ### `experiments/demo/run_dashboard_job.py`
 - 类型：Dashboard demo
@@ -276,9 +276,9 @@
 
 ### `outputs/summaries/final_thesis/cooja/`
 - 类型：最终汇总
-- 作用：Cooja summary、per-seed 结果、traffic metrics 和限制说明。
+- 作用：Cooja summary、per-seed 结果、traffic metrics、overhead metrics 和限制说明。
 - 读取：outputs/experiments/cooja/
-- 写入：cooja_summary.csv; cooja_per_seed.csv; cooja_traffic_metrics.csv; cooja_limitations.md
+- 写入：cooja_summary.csv; cooja_per_seed.csv; cooja_traffic_metrics.csv; cooja_overhead_metrics.csv; cooja_limitations.md
 - 相关产物：final_summary.csv
 
 ## 10. 图像产物 outputs/figures/

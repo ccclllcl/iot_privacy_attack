@@ -1,0 +1,125 @@
+{
+  "copied_sources": [
+    "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\contiki-ng\\examples\\rpl-udp\\project-conf.h",
+    "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\contiki-ng\\examples\\rpl-udp\\udp-client-baseline.c",
+    "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\contiki-ng\\examples\\rpl-udp\\udp-client-mix-adaptive.c",
+    "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\contiki-ng\\examples\\rpl-udp\\udp-client-mix-ldp.c",
+    "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\contiki-ng\\examples\\rpl-udp\\udp-client-mix-noise.c",
+    "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\contiki-ng\\examples\\rpl-udp\\udp-client-mix.c",
+    "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\contiki-ng\\examples\\rpl-udp\\udp-client.c",
+    "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\contiki-ng\\examples\\rpl-udp\\udp-metric-common.h",
+    "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\contiki-ng\\examples\\rpl-udp\\udp-server-metrics.c",
+    "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\contiki-ng\\examples\\rpl-udp\\udp-server.c"
+  ],
+  "results": [
+    {
+      "method": "baseline",
+      "seed": 42,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_42/random_forest/baseline/overhead_metrics.json",
+      "events": 2134,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_noise",
+      "seed": 42,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_42/random_forest/dummy_noise/overhead_metrics.json",
+      "events": 2504,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_ldp",
+      "seed": 42,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_42/random_forest/dummy_ldp/overhead_metrics.json",
+      "events": 2822,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_adaptive_ldp",
+      "seed": 42,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_42/random_forest/dummy_adaptive_ldp/overhead_metrics.json",
+      "events": 2680,
+      "unavailable_reason": []
+    },
+    {
+      "method": "baseline",
+      "seed": 123,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_123/random_forest/baseline/overhead_metrics.json",
+      "events": 2128,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_noise",
+      "seed": 123,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_123/random_forest/dummy_noise/overhead_metrics.json",
+      "events": 2572,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_ldp",
+      "seed": 123,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_123/random_forest/dummy_ldp/overhead_metrics.json",
+      "events": 2896,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_adaptive_ldp",
+      "seed": 123,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_123/random_forest/dummy_adaptive_ldp/overhead_metrics.json",
+      "events": 2712,
+      "unavailable_reason": []
+    },
+    {
+      "method": "baseline",
+      "seed": 2026,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_2026/random_forest/baseline/overhead_metrics.json",
+      "events": 2122,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_noise",
+      "seed": 2026,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_2026/random_forest/dummy_noise/overhead_metrics.json",
+      "events": 2558,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_ldp",
+      "seed": 2026,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_2026/random_forest/dummy_ldp/overhead_metrics.json",
+      "events": 2902,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_adaptive_ldp",
+      "seed": 2026,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_2026/random_forest/dummy_adaptive_ldp/overhead_metrics.json",
+      "events": 2684,
+      "unavailable_reason": []
+    }
+  ],
+  "output_root": "outputs/experiments/cooja"
+}

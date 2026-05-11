@@ -10,7 +10,7 @@
 
 - `mock`：可控模拟场景，用于系统性验证攻击与防御流程。
 - `uci_har`、`kasteren`、`casas_hh101`：真实公开数据集，用于验证防御效果是否能迁移到真实行为数据。
-- `cooja`：节点侧 dummy 流量功能性验证，用于观察 Cooja 日志场景下 fixed/retrain 攻击准确率变化。
+- `cooja`：节点侧 dummy 流量功能性验证，用于观察 Cooja 日志场景下 fixed/retrain 攻击准确率变化，并给出仿真级 packet/byte overhead、dummy/real 包比例、Cooja 仿真时延和 Energest 能耗估计。
 
 ## 2. 核心结论复核
 
@@ -107,10 +107,10 @@ outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/
 
 ## 7. Cooja 结果边界
 
-Cooja 部分用于 fixed/retrain 攻击准确率展示和节点侧 dummy 流量功能性验证。当前结果不声称真实能耗已测量，不声称真实端到端时延已测量，也不伪造 dummy/real 包比例。相关限制集中说明在：
+Cooja 部分用于 fixed/retrain 攻击准确率展示和节点侧 dummy 流量功能性验证。当前结果已经基于显式 `METRIC_TX` / `METRIC_RX` 日志补充 dummy/real 包比例与 packet/byte overhead，并基于 Contiki-NG Energest 计数器给出仿真能耗估计。相关限制集中说明在：
 
 ```text
 outputs/summaries/final_thesis/cooja/cooja_limitations.md
 ```
 
-复现 Cooja 日志评估时，可复制 `configs/cooja_defense_dummy_logs.template.json` 并设置 `COOJA_LOG_ROOT`。已完成结果中的本地 WSL 路径仅记录原实验来源。
+复现 Cooja 日志评估时，可复制 `configs/cooja_defense_dummy_logs.template.json` 并设置 `COOJA_LOG_ROOT`。开销实验使用的 Energest 换算参数见 `configs/cooja_energy_model.json`。已完成结果中的本地 WSL 路径仅记录原实验来源；能耗数值是 Cooja/Contiki-NG 仿真估计，不是硬件功耗仪测量。

@@ -4,7 +4,7 @@
 - 输出 Word：`毕业论文_第四章图表与结果最终重写版.docx`
 - 输出位置：本地指定路径，未作为仓库实验产物提交。
 - 删除旧第四章 XML block 数：119
-- 本次没有重跑训练实验、参数扫描或 Cooja 仿真。
+- 本次没有重跑训练实验或参数扫描；Cooja 节点级开销实验已在后续补充报告中单独记录。
 
 ## 使用的 CSV/JSON 结果
 - `outputs/summaries/final_thesis/mock/mock_summary.csv`
@@ -31,7 +31,7 @@
 - 第四章已按最终完整实验矩阵重新组织。
 - 真实数据参数扫描表述已更新为覆盖 UCI HAR、Kasteren 与 CASAS。
 - adaptive_ldp 已加入 6-profile 级消融解释。
-- Cooja 部分只写 fixed/retrain 攻击准确率与节点侧功能性验证，不写真实能耗、真实端到端时延或 dummy/real 包比例量化。
+- Cooja 第四章重写版当时只写 fixed/retrain 攻击准确率与节点侧功能性验证；后续已补充 Cooja 仿真时延、Energest 能耗估计和 dummy/real 包比例，详见 `cooja_overhead_completion_report.md`。
 
 ## 格式检查
 - 字体目标：中文宋体小四；英文和数字 Times New Roman 小四

@@ -28,7 +28,7 @@ outputs/figures/experiments/
 
 ## Cooja 约定
 
-Cooja 结果用于 fixed/retrain 攻击准确率和节点侧 dummy 流量功能性验证。当前结果不量化真实能耗、真实端到端时延或 dummy/real 包比例。复现日志评估时，可基于 `configs/cooja_defense_dummy_logs.template.json` 和 `COOJA_LOG_ROOT` 配置本地日志路径。
+Cooja 结果用于 fixed/retrain 攻击准确率和节点侧 dummy 流量功能性验证。当前节点级开销实验已经量化 dummy/real 包比例、packet/byte overhead、Cooja 仿真时间端到端时延和 Contiki-NG Energest 仿真能耗估计。复现日志评估时，可基于 `configs/cooja_defense_dummy_logs.template.json` 和 `COOJA_LOG_ROOT` 配置本地日志路径；复现开销实验时还需要 `configs/cooja_energy_model.json` 中的电压/电流参数。能耗估计不等同于硬件功耗仪测量。
 
 ## 轻量审计命令
 

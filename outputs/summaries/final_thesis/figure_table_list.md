@@ -87,6 +87,27 @@
 - 主要说明：展示 dummy_noise、dummy_ldp、dummy_adaptive_ldp 在 fixed/retrain 下的攻击准确率变化。
 - 口径限制：Cooja 部分只作节点侧功能性验证，不表示真实能耗或端到端时延测量。
 
+### 图4.13 Cooja packet/byte overhead 对比
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_13_cooja_overhead_metrics.png`
+- 数据来源：`outputs/summaries/final_thesis/cooja/cooja_overhead_summary.csv`
+- 适合章节：4.6
+- 主要说明：展示 dummy_noise、dummy_ldp、dummy_adaptive_ldp 的 packet overhead 与 byte overhead。
+- 口径限制：开销来自 Cooja 仿真结构化日志，不等同于真实硬件链路测量。
+
+### 图4.14 Cooja dummy/real 包比例
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_14_cooja_dummy_ratio.png`
+- 数据来源：`outputs/summaries/final_thesis/cooja/cooja_overhead_metrics.csv`
+- 适合章节：4.6
+- 主要说明：展示不同 seed 下 dummy_packet_ratio 的变化。
+- 口径限制：dummy/real 比例来自 METRIC_TX/METRIC_RX 标签，不推断未标注旧日志。
+
+### 图4.15 Cooja Energest 能耗估计与仿真时延
+- 图路径：`outputs/figures/summaries/final_thesis/thesis_fig4_15_cooja_energy_delay.png`
+- 数据来源：`outputs/summaries/final_thesis/cooja/cooja_overhead_summary.csv`
+- 适合章节：4.6
+- 主要说明：展示 Contiki-NG Energest 仿真能耗估计和 Cooja 仿真端到端时延。
+- 口径限制：能耗不是功耗仪硬件测量，时延不是实机部署端到端时延。
+
 ## 其他汇总图
 - `outputs/figures/summaries/final_thesis/mock_model_mode_accuracy.png`
 - `outputs/figures/summaries/final_thesis/mock_method_distortion.png`

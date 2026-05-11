@@ -391,6 +391,76 @@ def generate_cooja_accuracy() -> Path:
     return savefig("thesis_fig4_12_cooja_accuracy.png")
 
 
+def generate_cooja_overhead_metrics() -> Path:
+    df = read_csv("outputs/summaries/final_thesis/cooja/cooja_overhead_summary.csv")
+    methods = ["dummy_noise", "dummy_ldp", "dummy_adaptive_ldp"]
+    d = df[df["method"].isin(methods)].set_index("method").reindex(methods)
+    x = np.arange(len(methods))
+    width = 0.34
+    fig, ax = plt.subplots(figsize=(8.4, 4.8))
+    ax.bar(x - width / 2, d["packet_overhead_ratio_mean"], width, label="Packet overhead ratio", color="#4c78a8")
+    ax.bar(x + width / 2, d["byte_overhead_ratio_mean"], width, label="Byte overhead ratio", color="#f58518")
+    ax.set_xticks(x)
+    ax.set_xticklabels(methods, rotation=20, ha="right")
+    ax.set_ylabel("Overhead ratio")
+    ax.set_title("Cooja packet/byte overhead, mean over seeds")
+    ax.legend(loc="best", frameon=True)
+    ax.grid(axis="y", linestyle="--", alpha=0.3)
+    add_value_labels(ax, "{:.2f}")
+    return savefig("thesis_fig4_13_cooja_overhead_metrics.png")
+
+
+def generate_cooja_dummy_ratio() -> Path:
+    df = read_csv("outputs/summaries/final_thesis/cooja/cooja_overhead_metrics.csv")
+    methods = ["dummy_noise", "dummy_ldp", "dummy_adaptive_ldp"]
+    grouped = (
+        df[df["method"].isin(methods)]
+        .pivot_table(index="method", columns="seed", values="dummy_packet_ratio", aggfunc="mean")
+        .reindex(methods)
+    )
+    fig, ax = plt.subplots(figsize=(8.4, 4.8))
+    grouped.plot(kind="bar", ax=ax, width=0.75)
+    ax.set_ylabel("Dummy packet ratio")
+    ax.set_xlabel("")
+    ax.set_title("Cooja dummy/real packet ratio by seed")
+    ax.set_xticklabels(methods, rotation=20, ha="right")
+    ax.legend(title="Seed", loc="best", frameon=True)
+    ax.grid(axis="y", linestyle="--", alpha=0.3)
+    add_value_labels(ax, "{:.2f}", rotation=90)
+    return savefig("thesis_fig4_14_cooja_dummy_ratio.png")
+
+
+def generate_cooja_energy_delay() -> Path:
+    df = read_csv("outputs/summaries/final_thesis/cooja/cooja_overhead_summary.csv")
+    methods = ["baseline", "dummy_noise", "dummy_ldp", "dummy_adaptive_ldp"]
+    d = df[df["method"].isin(methods)].set_index("method").reindex(methods)
+    x = np.arange(len(methods))
+    fig, ax1 = plt.subplots(figsize=(8.8, 4.8))
+    ax2 = ax1.twinx()
+    ax1.bar(x, d["energy_mj_mean"], width=0.5, color="#4c78a8", alpha=0.78, label="Energy (Energest estimate, left axis)")
+    ax2.plot(x, d["mean_delay_ms_mean"], marker="o", color="#d62728", linewidth=2.2, label="Mean delay (Cooja time, right axis)")
+    ax2.plot(x, d["p95_delay_ms_mean"], marker="s", linestyle="--", color="#9467bd", linewidth=2.0, label="P95 delay (Cooja time, right axis)")
+    ax1.set_xticks(x)
+    ax1.set_xticklabels(methods, rotation=20, ha="right")
+    ax1.set_ylabel("Energy estimate (mJ)")
+    ax2.set_ylabel("Delay (ms)")
+    ax1.set_title("Cooja Energest estimate and simulation-time delay")
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc="best", frameon=True, fontsize=8)
+    ax1.grid(axis="y", linestyle="--", alpha=0.3)
+    ax1.text(
+        0.5,
+        -0.30,
+        "Energy is Contiki-NG Energest simulation estimate; delay is Cooja simulation time, not hardware measurement.",
+        transform=ax1.transAxes,
+        ha="center",
+        va="top",
+        fontsize=8,
+    )
+    return savefig("thesis_fig4_15_cooja_energy_delay.png")
+
+
 def write_figure_audit(generated: list[Path]) -> None:
     required_inputs = {
         "final_symmetry_audit": SUMMARY_DIR / "final_symmetry_audit.json",
@@ -598,6 +668,30 @@ def update_indexes(generated: list[Path]) -> None:
             "展示 dummy_noise、dummy_ldp、dummy_adaptive_ldp 在 fixed/retrain 下的攻击准确率变化。",
             "Cooja 部分只作节点侧功能性验证，不表示真实能耗或端到端时延测量。",
         ),
+        (
+            "图4.13 Cooja packet/byte overhead 对比",
+            "thesis_fig4_13_cooja_overhead_metrics.png",
+            "outputs/summaries/final_thesis/cooja/cooja_overhead_summary.csv",
+            "4.6",
+            "展示 dummy_noise、dummy_ldp、dummy_adaptive_ldp 的 packet overhead 与 byte overhead。",
+            "开销来自 Cooja 仿真结构化日志，不等同于真实硬件链路测量。",
+        ),
+        (
+            "图4.14 Cooja dummy/real 包比例",
+            "thesis_fig4_14_cooja_dummy_ratio.png",
+            "outputs/summaries/final_thesis/cooja/cooja_overhead_metrics.csv",
+            "4.6",
+            "展示不同 seed 下 dummy_packet_ratio 的变化。",
+            "dummy/real 比例来自 METRIC_TX/METRIC_RX 标签，不推断未标注旧日志。",
+        ),
+        (
+            "图4.15 Cooja Energest 能耗估计与仿真时延",
+            "thesis_fig4_15_cooja_energy_delay.png",
+            "outputs/summaries/final_thesis/cooja/cooja_overhead_summary.csv",
+            "4.6",
+            "展示 Contiki-NG Energest 仿真能耗估计和 Cooja 仿真端到端时延。",
+            "能耗不是功耗仪硬件测量，时延不是实机部署端到端时延。",
+        ),
     ]
     md = [
         "# 图表清单",
@@ -657,6 +751,9 @@ def main() -> None:
     generated.append(generate_real_accuracy())
     generated.append(generate_real_parameter_scan())
     generated.append(generate_cooja_accuracy())
+    generated.append(generate_cooja_overhead_metrics())
+    generated.append(generate_cooja_dummy_ratio())
+    generated.append(generate_cooja_energy_delay())
     write_figure_audit(generated)
     update_indexes(generated)
     print(json.dumps({"generated": [rel(p) for p in generated]}, ensure_ascii=False, indent=2))

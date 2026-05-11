@@ -1,0 +1,37 @@
+{
+  "missing_before_completion": [
+    "dummy_real_packet_ratio",
+    "packet_overhead_ratio",
+    "byte_overhead_ratio",
+    "simulation_end_to_end_delay",
+    "energest_energy_estimate"
+  ],
+  "root_causes": [
+    "old radio/app logs did not label REAL versus DUMMY packets",
+    "old node program did not emit METRIC_TX/METRIC_RX records",
+    "old node program did not emit ENERGEST counters"
+  ],
+  "node_log_fields_added": [
+    "METRIC_TX",
+    "METRIC_RX",
+    "ENERGEST"
+  ],
+  "metrics_computable_from_cooja": [
+    "dummy_packet_ratio",
+    "packet_overhead_ratio",
+    "byte_overhead_ratio",
+    "mean_delay_ms",
+    "p95_delay_ms",
+    "energy_mj",
+    "energy_overhead_ratio_vs_baseline"
+  ],
+  "simulation_estimate_not_hardware_measurement": [
+    "energy_mj",
+    "energy_overhead_ratio_vs_baseline"
+  ],
+  "simulation_time_not_real_deployment_latency": [
+    "mean_delay_ms",
+    "median_delay_ms",
+    "p95_delay_ms"
+  ]
+}

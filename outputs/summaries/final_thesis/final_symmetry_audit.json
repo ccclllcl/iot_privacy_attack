@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-10T21:07:56",
+  "generated_at": "2026-05-11T10:50:11",
   "canonical_roots": {
     "experiments": "outputs/experiments",
     "summaries": "outputs/summaries/final_thesis",
@@ -94,15 +94,61 @@
     "traffic_status": {
       "rows_expected": 9,
       "rows_observed": 9,
-      "numeric_metrics_available": false,
-      "reason": "Radio/app logs available for accuracy evaluation, but exported traffic rows do not expose enough labeled packet fields for packet/byte/IAT proxy metrics."
+      "numeric_metrics_available": true,
+      "reason": "Cooja traffic metrics are computed from labeled METRIC_TX/METRIC_RX and ENERGEST logs."
+    },
+    "overhead_metrics_status": {
+      "methods": [
+        "baseline",
+        "dummy_noise",
+        "dummy_ldp",
+        "dummy_adaptive_ldp"
+      ],
+      "seeds": [
+        42,
+        123,
+        2026
+      ],
+      "rows_expected": 12,
+      "rows_observed": 12,
+      "missing": [],
+      "dummy_real_ratio_available": true,
+      "packet_byte_overhead_available": true,
+      "simulation_delay_available": true,
+      "energest_energy_estimate_available": true,
+      "hardware_energy_measurement_available": false,
+      "metric_type": "cooja_simulation_and_energest_estimate",
+      "reason": "Cooja overhead metrics are complete for baseline and dummy methods across seeds."
     }
   },
   "cooja_traffic_metrics_status": {
     "rows_expected": 9,
     "rows_observed": 9,
-    "numeric_metrics_available": false,
-    "reason": "Radio/app logs available for accuracy evaluation, but exported traffic rows do not expose enough labeled packet fields for packet/byte/IAT proxy metrics."
+    "numeric_metrics_available": true,
+    "reason": "Cooja traffic metrics are computed from labeled METRIC_TX/METRIC_RX and ENERGEST logs."
+  },
+  "cooja_overhead_metrics_status": {
+    "methods": [
+      "baseline",
+      "dummy_noise",
+      "dummy_ldp",
+      "dummy_adaptive_ldp"
+    ],
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "rows_expected": 12,
+    "rows_observed": 12,
+    "missing": [],
+    "dummy_real_ratio_available": true,
+    "packet_byte_overhead_available": true,
+    "simulation_delay_available": true,
+    "energest_energy_estimate_available": true,
+    "hardware_energy_measurement_available": false,
+    "metric_type": "cooja_simulation_and_energest_estimate",
+    "reason": "Cooja overhead metrics are complete for baseline and dummy methods across seeds."
   },
   "duplicated_rows_detected": [],
   "delivery_docs_status": {

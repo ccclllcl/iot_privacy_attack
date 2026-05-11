@@ -1,0 +1,12 @@
+{
+  "voltage_v": 3.0,
+  "current_ma": {
+    "cpu": 1.8,
+    "lpm": 0.0545,
+    "tx": 17.4,
+    "rx": 18.8
+  },
+  "tick_unit": "rtimer_ticks",
+  "rtimer_second": 1000000,
+  "metric_note": "Cooja/Contiki-NG Energest based simulation-level energy estimate, not hardware power-meter measurement."
+}

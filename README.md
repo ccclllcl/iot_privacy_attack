@@ -38,7 +38,7 @@
 
 在 `uci_har`、`kasteren`、`casas_hh101` 真实数据上，防御后攻击准确率均出现下降，说明防御效果不只存在于 `mock` 场景，也能在真实行为数据中观察到。
 
-Cooja 结果支持节点侧 dummy 流量机制的功能性验证，可用于分析 fixed/retrain 攻击准确率变化；当前结果不声称真实能耗、真实端到端时延或 dummy/real 包比例已经被量化。
+Cooja 结果支持节点侧 dummy 流量机制的功能性验证，可用于分析 fixed/retrain 攻击准确率变化；本项目进一步基于结构化 `METRIC_TX` / `METRIC_RX` 日志和 Contiki-NG Energest 计数器补充了 dummy/real 包比例、packet/byte overhead、Cooja 仿真时延和 Energest 仿真能耗估计。这些能耗值是仿真估计，不是硬件功耗仪测量。
 
 ## 实验覆盖情况
 
@@ -83,6 +83,7 @@ Dashboard 包含五个页面：
 - 参数扫描覆盖审计：`outputs/summaries/final_thesis/parameter_scan_coverage_audit.json`
 - 结果产物索引：`outputs/summaries/final_thesis/artifact_index.md`
 - `adaptive_ldp` 消融总览：`outputs/summaries/final_thesis/adaptive_ldp_ablation_overview.md`
+- Cooja 开销指标：`outputs/summaries/final_thesis/cooja/cooja_overhead_metrics.csv`
 - Cooja 限制说明：`outputs/summaries/final_thesis/cooja/cooja_limitations.md`
 - 最终图像目录：`outputs/figures/summaries/final_thesis/`
 - 单组合源产物：`outputs/experiments/`
@@ -188,7 +189,14 @@ pip install -r requirements.txt
 
 ## Cooja 限制说明
 
-Cooja 结果用于 fixed/retrain 攻击准确率展示和节点侧 dummy 流量功能性验证。当前交付不声称已经测量真实能耗、真实端到端时延，也不伪造 dummy/real 包比例。
+Cooja 结果用于 fixed/retrain 攻击准确率展示和节点侧 dummy 流量功能性验证。节点级开销表已经包含 dummy/real 包比例、packet/byte overhead、Cooja 仿真时间下的端到端时延，以及 Contiki-NG Energest 计数器换算得到的仿真能耗估计。
+
+这些指标的口径如下：
+
+- `dummy_packet_ratio`、`packet_overhead_ratio` 和 `byte_overhead_ratio` 来自显式标记的 `METRIC_TX` / `METRIC_RX` 日志。
+- `mean_delay_ms` 和 `p95_delay_ms` 是 Cooja 仿真时间下 REAL 包的端到端时延。
+- `energy_mj` 是 Energest 计数器结合 `configs/cooja_energy_model.json` 中电压/电流参数换算得到的仿真估计。
+- `is_hardware_measurement=false`，因此这些能耗数值不代表真实硬件功耗仪测量。
 
 复现 Cooja 日志评估时，可复制：
 

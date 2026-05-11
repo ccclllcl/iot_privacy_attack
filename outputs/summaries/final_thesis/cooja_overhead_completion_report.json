@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-05-11T10:54:25",
+  "modified_contiki_sources": [
+    "cooja/contiki-ng/udp-client-baseline.c",
+    "cooja/contiki-ng/udp-client-mix.c",
+    "cooja/contiki-ng/udp-server-metrics.c",
+    "cooja/contiki-ng/udp-metric-common.h"
+  ],
+  "structured_log_fields": [
+    "METRIC_TX",
+    "METRIC_RX",
+    "ENERGEST"
+  ],
+  "methods": [
+    "baseline",
+    "dummy_noise",
+    "dummy_ldp",
+    "dummy_adaptive_ldp"
+  ],
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "metrics_generated": [
+    "dummy_packet_ratio",
+    "packet_overhead_ratio",
+    "byte_overhead_ratio",
+    "mean_delay_ms",
+    "p95_delay_ms",
+    "energy_mj",
+    "energy_overhead_ratio_vs_baseline"
+  ],
+  "missing": [],
+  "success": true,
+  "word_document_modified": false,
+  "metric_note": "Energy is an Energest simulation estimate; delay is Cooja simulation-time end-to-end delay."
+}

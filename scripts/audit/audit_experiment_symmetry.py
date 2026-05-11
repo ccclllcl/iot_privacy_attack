@@ -24,6 +24,7 @@ DATASETS = ["uci_har", "kasteren", "casas_hh101"]
 MAIN_FILES = ["metrics.json", "confusion.json", "classification_report.txt", "trace.json", "defense_report.json", "source_manifest.json"]
 PARAM_ROWS = {"ldp": 5, "noise": 4, "adaptive_ldp": 6}
 COOJA_METHODS = ["dummy_noise", "dummy_ldp", "dummy_adaptive_ldp"]
+COOJA_OVERHEAD_METHODS = ["baseline", "dummy_noise", "dummy_ldp", "dummy_adaptive_ldp"]
 
 
 def _rel(path: Path) -> str:
@@ -176,9 +177,54 @@ def audit_cooja_outputs() -> tuple[list[dict[str, Any]], dict[str, Any]]:
         "rows_expected": 9,
         "rows_observed": len(traffic_rows),
         "numeric_metrics_available": numeric_available,
-        "reason": "Radio/app logs available for accuracy evaluation, but exported traffic rows do not expose enough labeled packet fields for packet/byte/IAT proxy metrics.",
+        "reason": (
+            "Cooja traffic metrics are computed from labeled METRIC_TX/METRIC_RX and ENERGEST logs."
+            if numeric_available
+            else "Radio/app logs available for accuracy evaluation, but exported traffic rows do not expose enough labeled packet fields for packet/byte/IAT proxy metrics."
+        ),
     }
-    return missing, {"per_seed_rows": len(per_rows), "canonical_expected": expected_dirs, "canonical_completed": observed_dirs, "traffic_status": traffic_status}
+    overhead_status = audit_cooja_overhead_metrics()
+    return missing, {
+        "per_seed_rows": len(per_rows),
+        "canonical_expected": expected_dirs,
+        "canonical_completed": observed_dirs,
+        "traffic_status": traffic_status,
+        "overhead_metrics_status": overhead_status,
+    }
+
+
+def _non_empty_number(row: dict[str, str], key: str) -> bool:
+    value = str(row.get(key, "")).strip().lower()
+    return bool(value and value not in {"nan", "none", "null", ""})
+
+
+def audit_cooja_overhead_metrics() -> dict[str, Any]:
+    path = OUT_REPORT / "cooja" / "cooja_overhead_metrics.csv"
+    rows = _read_csv_rows(path) or []
+    observed = {(str(r.get("method")), str(r.get("seed"))) for r in rows}
+    expected = {(m, str(seed)) for m in COOJA_OVERHEAD_METHODS for seed in SEEDS}
+    missing = sorted(expected - observed)
+    dummy_rows = [r for r in rows if str(r.get("method")) in COOJA_METHODS]
+    all_rows = [r for r in rows if str(r.get("method")) in COOJA_OVERHEAD_METHODS]
+    return {
+        "methods": COOJA_OVERHEAD_METHODS,
+        "seeds": SEEDS,
+        "rows_expected": len(expected),
+        "rows_observed": len(rows),
+        "missing": [{"method": method, "seed": int(seed)} for method, seed in missing],
+        "dummy_real_ratio_available": bool(dummy_rows) and all(_non_empty_number(r, "dummy_packet_ratio") for r in dummy_rows),
+        "packet_byte_overhead_available": bool(dummy_rows)
+        and all(_non_empty_number(r, "packet_overhead_ratio") and _non_empty_number(r, "byte_overhead_ratio") for r in dummy_rows),
+        "simulation_delay_available": bool(all_rows) and all(_non_empty_number(r, "mean_delay_ms") for r in all_rows),
+        "energest_energy_estimate_available": bool(all_rows) and all(_non_empty_number(r, "energy_mj") for r in all_rows),
+        "hardware_energy_measurement_available": False,
+        "metric_type": "cooja_simulation_and_energest_estimate",
+        "reason": (
+            "Cooja overhead metrics are complete for baseline and dummy methods across seeds."
+            if rows and not missing
+            else "Cooja overhead metrics are missing one or more method/seed rows."
+        ),
+    }
 
 
 def detect_duplicates() -> list[dict[str, Any]]:
@@ -264,6 +310,7 @@ def build_audit() -> dict[str, Any]:
         "missing_cooja_outputs": cooja_missing,
         "cooja": cooja,
         "cooja_traffic_metrics_status": cooja["traffic_status"],
+        "cooja_overhead_metrics_status": cooja["overhead_metrics_status"],
         "duplicated_rows_detected": duplicates,
         "delivery_docs_status": docs_status,
         "delivery_docs_missing": docs_missing,
@@ -291,12 +338,13 @@ def write_markdown(audit: dict[str, Any]) -> None:
         f"- Missing mock parameter scans: `{len(audit['missing_mock_parameter_scans'])}`",
         f"- Missing real parameter scans: `{len(audit['missing_real_parameter_scans'])}`",
         f"- Cooja canonical dirs: `{audit['cooja']['canonical_completed']}` / `{audit['cooja']['canonical_expected']}`",
+        f"- Cooja overhead rows: `{audit['cooja_overhead_metrics_status']['rows_observed']}` / `{audit['cooja_overhead_metrics_status']['rows_expected']}`",
         f"- Duplicate scan rows detected: `{len(audit['duplicated_rows_detected'])}`",
         "",
         "## Notes",
         "",
         "- This audit checks the normalized artifact layout only.",
-        "- Cooja unavailable traffic metrics are treated as limitations, not missing experiments.",
+        "- Cooja overhead metrics are simulation-time and Energest estimates, not hardware measurements.",
     ]
     (OUT_REPORT / "final_symmetry_audit.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 

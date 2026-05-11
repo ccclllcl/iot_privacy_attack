@@ -17,7 +17,7 @@ Dashboard 支持从多个角度复核实验发现：
 - fixed/retrain 威胁模型比较：展示固定攻击者与重训练攻击者下的防御稳定性差异。
 - 参数扫描趋势：展示 epsilon、noise_scale 和 adaptive profile 对隐私—可用性折中的影响。
 - 真实数据集内部变化：在 `uci_har`、`kasteren`、`casas_hh101` 内部比较 baseline 与 defended 结果。
-- Cooja 功能性验证：展示节点侧 dummy 流量场景中的攻击准确率变化，并说明能耗、端到端时延和 dummy/real 包比例的当前边界。
+- Cooja 功能性验证：展示节点侧 dummy 流量场景中的攻击准确率变化，并查看 dummy/real 包比例、packet/byte overhead、Cooja 仿真时延和 Energest 仿真能耗估计。
 
 ## 2. 页面结构
 
@@ -83,4 +83,6 @@ outputs/ui/run_history.jsonl
 
 ## 6. Cooja
 
-Dashboard 展示已有 Cooja 结果，用于说明节点侧 dummy 流量机制的功能性验证。Cooja 页面中的 packet/byte/IAT、真实能耗和真实端到端时延字段保持限制说明，不以 Dashboard 演示补充或推断这些指标。
+Dashboard 展示已有 Cooja 结果，用于说明节点侧 dummy 流量机制的功能性验证。当前 Cooja 汇总已经包含结构化日志计算得到的 dummy/real 包比例、packet/byte overhead、Cooja 仿真时间端到端时延，以及 Contiki-NG Energest 仿真能耗估计。
+
+Dashboard 中的 Cooja 能耗字段仍按 `is_hardware_measurement=false` 解释：它们不是硬件功耗仪测量值。时延字段为 Cooja simulation-time delay，不代表真实部署网络时延。

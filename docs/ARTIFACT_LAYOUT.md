@@ -59,7 +59,7 @@ Cooja 使用：
 outputs/experiments/cooja/seed_{seed}/random_forest/{dummy_method}/{mode}/
 ```
 
-Cooja 产物用于节点侧 dummy 流量功能性验证和 fixed/retrain 攻击准确率分析。当前结果不量化真实能耗、真实端到端时延或 dummy/real 包比例；相关说明见 `outputs/summaries/final_thesis/cooja/cooja_limitations.md`。
+Cooja 产物用于节点侧 dummy 流量功能性验证和 fixed/retrain 攻击准确率分析。当前结果同时提供 dummy/real 包比例、packet/byte overhead、Cooja 仿真时延和 Contiki-NG Energest 仿真能耗估计；这些能耗与时延不等同于真实硬件部署测量，相关说明见 `outputs/summaries/final_thesis/cooja/cooja_limitations.md`。
 
 ## 4. 汇总与图像
 

@@ -1556,6 +1556,24 @@ def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any
     return {"rows": rows}
 
 
+def _apply_cooja_overhead_metrics(cooja: dict[str, Any], missing: list[dict[str, Any]]) -> dict[str, Any]:
+    """把可选 Cooja 开销指标合并回最终 Cooja 汇总。"""
+    overhead_root = OUT_DEFENSE / "cooja"
+    any_metrics = any(overhead_root.glob("seed_*/random_forest/*/overhead_metrics.json"))
+    if not any_metrics:
+        return cooja
+    try:
+        from experiments.cooja.summarize_cooja_overhead_metrics import summarize
+
+        summarize(overhead_root)
+        rows = _read_csv_dicts(OUT_REPORT / "cooja" / "cooja_summary.csv") or []
+        if rows:
+            return {**cooja, "rows": rows}
+    except Exception as exc:
+        missing.append({"section": "cooja", "reason": "cooja_overhead_merge_failed", "error": str(exc)})
+    return cooja
+
+
 def _plot_bar_by_mode(df: pd.DataFrame, out_path: Path, title: str) -> bool:
     if df.empty:
         return False
@@ -1833,8 +1851,8 @@ def _build_figures(
                     "path": str(p),
                     "title": "Cooja 窗口数量代理开销图",
                     "source_files": "outputs/summaries/final_thesis/cooja/cooja_overhead_summary.csv",
-                    "conclusion": "可用于说明当前日志只能支持窗口数量代理，而不能支持真实能耗或时延结论。",
-                    "limitations": "该图不是能耗或时延实测，只反映当前导出日志形成的窗口规模差异。",
+                    "conclusion": "可用于补充展示 Cooja 窗口规模变化；节点级 packet/byte、仿真时延和 Energest 开销见论文专用 Cooja 开销图。",
+                    "limitations": "该图仍是窗口数量代理图，不等同于硬件功耗仪测量或真实部署端到端时延。",
                 }
             )
     else:
@@ -2209,6 +2227,7 @@ def main() -> None:
     mock = _collect_mock(env, missing)
     real = _collect_real(env, missing)
     cooja = _collect_cooja(env, missing)
+    cooja = _apply_cooja_overhead_metrics(cooja, missing)
     parameter_scans = _collect_parameter_scans(missing)
     adaptive_ablation = _build_adaptive_ablation_outputs(missing)
     scan_mock_ldp = _read_csv_dicts(OUT_REPORT / "mock" / "mock_parameter_scan_ldp.csv") or []
