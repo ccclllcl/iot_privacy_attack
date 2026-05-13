@@ -5,10 +5,10 @@
 ## 顶层目录
 
 - `src/`：按职责分层的核心源码，包括配置、数据、模型、训练、评估、防御、Dashboard 工具和产物路径工具。
-- `experiments/`：命令行实验入口，包括单步实验、批处理实验、真实数据流程、Cooja 流程和 Dashboard demo runner。
+- `experiments/`：命令行实验入口，包括单步实验、真实数据流程、Cooja 流程和 Dashboard demo runner。
 - `configs/`：默认配置、Cooja 配置和 generated 配置。
 - `scripts/`：最终汇总构建与审计入口。
-- `apps/`：正式 Dashboard 和 legacy UI。
+- `apps/`：正式 Dashboard。
 - `docs/`：项目结构、产物结构、交付说明和 Dashboard 使用说明。
 - `data/`：按 dataset / seed 组织的 processed data 和 defended data。
 - `outputs/experiments/`：按 dataset / seed / model / method / mode 组织的单组合源产物。
@@ -27,7 +27,7 @@
 - Dashboard 工具（`src/dashboard`）：路径、IO、运行器和历史记录。
 - 产物路径工具（`src/artifacts`）：标准产物路径和 summary IO。
 
-旧 `src/*.py` 文件作为兼容 wrapper 保留，用于连接早期脚本与当前分层源码。
+`src/` 根目录不再保留旧兼容 wrapper，正式代码全部位于分层子包中。
 
 ## 实验入口
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Aggregate real-public benchmark outputs into concise summary files."""
+"""Aggregate real-public benchmark manifests into concise summary files."""
 
 from __future__ import annotations
 
@@ -13,8 +13,8 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[3]
-MANIFEST = ROOT / "outputs" / "reports" / "real_public_benchmark" / "real_public_benchmark_manifest.json"
-OUT_DIR = ROOT / "outputs" / "reports" / "real_public_benchmark"
+OUT_DIR = ROOT / "outputs" / "summaries" / "final_thesis" / "real"
+MANIFEST = OUT_DIR / "real_public_benchmark_manifest.json"
 
 
 def _f(x: Any) -> float:

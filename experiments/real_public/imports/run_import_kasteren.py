@@ -7,7 +7,7 @@
 https://github.com/aitoralmeida/c4a_activity_recognition
 
 用法:
-  python experiments/real_public/run_import_kasteren.py --config configs/default.yaml --auto-download
+  python experiments/real_public/imports/run_import_kasteren.py --config configs/default.yaml --auto-download
 """
 
 from __future__ import annotations

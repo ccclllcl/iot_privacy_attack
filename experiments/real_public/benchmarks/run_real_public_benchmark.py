@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Run full benchmark matrix on real public datasets.
+"""Run the real-public-dataset benchmark matrix with canonical output paths.
 
 Matrix coverage:
 - datasets: uci_har, kasteren, casas_hh101
@@ -11,11 +11,11 @@ Matrix coverage:
 - parameter scans: ldp epsilon + noise scale (on lstm baseline checkpoint)
 
 All outputs are written under:
-- data/processed/real_public_benchmark/
-- data/defended/real_public_benchmark/
-- outputs/models/real_public_benchmark/
-- outputs/defense/real_public_benchmark/
-- outputs/reports/real_public_benchmark/
+- data/processed/{dataset}/seed_{seed}/
+- data/defended/{dataset}/seed_{seed}/{method}/
+- outputs/models/{dataset}/seed_{seed}/
+- outputs/experiments/{dataset}/seed_{seed}/
+- outputs/summaries/final_thesis/real/
 """
 
 from __future__ import annotations
@@ -33,9 +33,9 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[3]
 BASE_CONFIG = ROOT / "configs" / "default.yaml"
-GEN_DIR = ROOT / "configs" / "generated_real_public"
+GEN_DIR = ROOT / "configs" / "generated" / "real_public"
 
-DEFAULT_DATASETS = ["uci_har", "kasteren"]
+DEFAULT_DATASETS = ["uci_har", "kasteren", "casas_hh101"]
 DEFAULT_SEEDS = [42, 123, 2026]
 DEFAULT_MODELS = ["lstm", "mlp"]
 METHODS = ["adaptive_ldp", "ldp", "noise"]
@@ -82,12 +82,12 @@ def _base_cfg(dataset_key: str, seed: int, max_epochs: int) -> dict[str, Any]:
     ds_tag = _dataset_tag(dataset_key)
     run_tag = f"{ds_tag}/seed_{seed}"
     p = cfg.setdefault("paths", {})
-    p["processed_dir"] = f"data/processed/real_public_benchmark/{run_tag}"
-    p["defended_dir"] = f"data/defended/real_public_benchmark/{run_tag}/adaptive_ldp"
-    p["models_dir"] = f"outputs/models/real_public_benchmark/{run_tag}"
-    p["figures_dir"] = f"outputs/figures/real_public_benchmark/{run_tag}"
-    p["reports_dir"] = f"outputs/reports/real_public_benchmark/{run_tag}"
-    p["defense_dir"] = f"outputs/defense/real_public_benchmark/{run_tag}/adaptive_ldp"
+    p["processed_dir"] = f"data/processed/{run_tag}"
+    p["defended_dir"] = f"data/defended/{run_tag}/adaptive_ldp"
+    p["models_dir"] = f"outputs/models/{run_tag}"
+    p["figures_dir"] = f"outputs/figures/experiments/{run_tag}"
+    p["reports_dir"] = f"outputs/experiments/{run_tag}/baseline"
+    p["defense_dir"] = f"outputs/experiments/{run_tag}/adaptive_ldp"
 
     # Keep runs practical but still representative.
     train = cfg.setdefault("train", {})
@@ -98,16 +98,16 @@ def _base_cfg(dataset_key: str, seed: int, max_epochs: int) -> dict[str, Any]:
 
 def _run_import(dataset_key: str, cfg_path: Path) -> None:
     if dataset_key == "uci_har":
-        _run([sys.executable, "experiments/real_public/run_import_uci_har.py", "--config", _rel(cfg_path), "--auto-download"])
+        _run([sys.executable, "experiments/real_public/imports/run_import_uci_har.py", "--config", _rel(cfg_path), "--auto-download"])
         return
     if dataset_key == "kasteren":
-        _run([sys.executable, "experiments/real_public/run_import_kasteren.py", "--config", _rel(cfg_path), "--auto-download"])
+        _run([sys.executable, "experiments/real_public/imports/run_import_kasteren.py", "--config", _rel(cfg_path), "--auto-download"])
         return
     if dataset_key == "casas_hh101":
         _run(
             [
                 sys.executable,
-                "experiments/real_public/run_import_casas.py",
+                "experiments/real_public/imports/run_import_casas.py",
                 "--config",
                 _rel(cfg_path),
                 "--home",
@@ -161,8 +161,8 @@ def run_one(
         method_cfg = copy.deepcopy(base)
         method_cfg["defense"]["method"] = method
         tag = f"{ds_tag}/seed_{seed}/{method}"
-        method_cfg["paths"]["defended_dir"] = f"data/defended/real_public_benchmark/{tag}"
-        method_cfg["paths"]["defense_dir"] = f"outputs/defense/real_public_benchmark/{tag}"
+        method_cfg["paths"]["defended_dir"] = f"data/defended/{tag}"
+        method_cfg["paths"]["defense_dir"] = f"outputs/experiments/{tag}"
         method_cfg_path = _save_cfg(method_cfg, f"{ds_tag}.seed_{seed}.{method}")
 
         defended_seq = ROOT / method_cfg["paths"]["defended_dir"] / "defended_sequences.npz"
@@ -349,7 +349,7 @@ def main() -> None:
                 )
             )
 
-    manifest_path = ROOT / "outputs" / "reports" / "real_public_benchmark" / "real_public_benchmark_manifest.json"
+    manifest_path = ROOT / "outputs" / "summaries" / "final_thesis" / "real" / "real_public_benchmark_manifest.json"
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\nAll done. Manifest written: {manifest_path.as_posix()}", flush=True)

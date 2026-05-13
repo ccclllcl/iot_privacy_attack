@@ -35,7 +35,7 @@ Cooja 结果用于 fixed/retrain 攻击准确率和节点侧 dummy 流量功能�
 以下命令用于复核最终结果包和代码结构：
 
 ```bash
-python scripts/audit_experiment_symmetry.py
-python scripts/audit_repository_bloat.py
-python scripts/audit_code_structure.py
+python scripts/audit/audit_experiment_symmetry.py
+python scripts/audit/audit_repository_bloat.py
+python scripts/audit/audit_code_structure.py
 ```

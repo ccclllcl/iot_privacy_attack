@@ -89,7 +89,7 @@ def run_parameter_compare(
     method: ldp -> 扫描 compare.ldp_epsilon_list；noise -> 扫描 compare.noise_scale_list。
 
     输出：
-    - outputs/defense/comparisons/comparison_results.csv
+    - outputs/experiments/{dataset}/seed_{seed}/{model}/{method}/{mode}/parameter_scan/comparison_results.csv
     - epsilon_vs_accuracy.png（LDP）或 noise 相关曲线
     - distortion_vs_noise.png（噪声扫描时：噪声强度 vs 失真 & 准确率）
     """

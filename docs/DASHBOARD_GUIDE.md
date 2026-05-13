@@ -35,7 +35,6 @@ Dashboard 支持从多个角度复核实验发现：
 - `src/dashboard/runner.py`：子进程运行器、demo config 构建和 history 写入。
 - `experiments/demo/run_dashboard_job.py`：Dashboard 调用的单组合命令行 runner。
 
-早期 UI 保留在 `apps/legacy/`，用于记录项目演示入口的历史演进。
 
 ## 4. 数据与输出
 

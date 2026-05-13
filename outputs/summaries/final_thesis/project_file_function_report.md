@@ -1,18 +1,18 @@
 # 项目文件功能与产物对应报告
 
-生成时间：`2026-05-11T10:44:29`
+生成时间：`2026-05-13T18:41:24`
 
 ## 1. 顶层文件
 
 ### `README.md`
 - 类型：顶层说明
-- 作用：项目入口说明，介绍交付状态、Dashboard、标准产物结构、代码结构和注意事项。
+- 作用：项目入口说明，概述研究问题、核心结论、Dashboard 和最终产物结构。
 - 相关产物：docs/*; outputs/summaries/final_thesis/*
 
 ### `requirements.txt`
 - 类型：依赖清单
-- 作用：记录 Python 运行依赖。
-- 相关产物：所有训练、评估、Dashboard 脚本
+- 作用：记录训练、评估、绘图和 Dashboard 使用的 Python 依赖。
+- 相关产物：src/; experiments/; apps/dashboard.py
 
 ### `.gitignore`
 - 类型：仓库配置
@@ -29,7 +29,7 @@
 
 ### `configs/generated/{dataset}/seed_{seed}/{model}/`
 - 类型：generated 配置
-- 作用：按 dataset / seed / model / method / mode 保存已整理的实验配置。
+- 作用：按 dataset / seed / model / method / mode 保存整理后的实验配置。
 - 读取：configs/default.yaml
 - 写入：单组合运行使用临时副本
 - 相关产物：outputs/experiments/{dataset}/seed_{seed}/
@@ -40,7 +40,7 @@
 - 读取：COOJA_LOG_ROOT 或本地 WSL 路径
 - 写入：outputs/experiments/cooja/
 - 相关产物：outputs/summaries/final_thesis/cooja/
-- 备注：本地 WSL 路径仅记录原实验来源；能耗参数用于仿真估计。
+- 备注：本地 WSL 路径只记录原实验来源；能耗参数用于仿真估计。
 
 ## 3. 应用入口 apps/
 
@@ -50,11 +50,6 @@
 - 读取：outputs/experiments/; outputs/summaries/final_thesis/; outputs/figures/summaries/final_thesis/
 - 写入：outputs/ui/run_history.jsonl; outputs/ui/tmp_configs/
 - 相关产物：src/dashboard/*; experiments/demo/run_dashboard_job.py
-
-### `apps/legacy/ui_app.py`
-- 类型：legacy UI
-- 作用：旧 UI 占位入口，仅保留历史说明，不推荐使用。
-- 相关产物：apps/dashboard.py
 
 ## 4. 源码 src/
 
@@ -68,13 +63,13 @@
 ### `src/data/`
 - 类型：源码模块
 - 作用：数据预处理、特征工程和 Dataset 封装。
-- 读取：data/processed/{dataset}/seed_{seed}/
+- 读取：data/raw/; data/processed/{dataset}/seed_{seed}/
 - 写入：data/processed/{dataset}/seed_{seed}/
 - 相关产物：experiments/core/run_preprocess.py
 
 ### `src/models/`
 - 类型：源码模块
-- 作用：LSTM 和 MLP 模型定义。
+- 作用：LSTM 和 MLP 攻击模型定义。
 - 写入：outputs/models/{dataset}/seed_{seed}/{model}/
 - 相关产物：src/training/trainer.py; src/evaluation/evaluator.py
 
@@ -94,14 +89,14 @@
 
 ### `src/defenses/`
 - 类型：源码模块
-- 作用：实现 `noise`、`ldp`、`adaptive_ldp` 和防御流水线。
+- 作用：实现 noise、ldp、adaptive_ldp 和防御流水线。
 - 读取：data/processed/{dataset}/seed_{seed}/
 - 写入：data/defended/{dataset}/seed_{seed}/{method}/
 - 相关产物：experiments/core/run_defense.py
 
 ### `src/edge/`
 - 类型：源码模块
-- 作用：`adaptive_ldp` 使用的边缘预算分配工具。
+- 作用：adaptive_ldp 使用的边缘预算分配工具。
 - 读取：configs/default.yaml 中 adaptive_ldp 配置
 - 写入：defense_report.json
 - 相关产物：src/defenses/adaptive_ldp_defense.py
@@ -115,14 +110,8 @@
 
 ### `src/artifacts/`
 - 类型：源码模块
-- 作用：集中维护标准产物路径和 summary IO，使汇总、审计和 Dashboard 指向同一套实验结果。
+- 作用：集中维护标准产物路径和 summary IO，使汇总、审计和 Dashboard 指向同一套结果。
 - 相关产物：scripts/audit/*; apps/dashboard.py
-
-### `src/*.py`
-- 类型：兼容 wrapper
-- 作用：旧 import 路径的兼容层，只 re-export 新分层包。
-- 读取：src/core/; src/data/; src/evaluation/; src/dashboard/
-- 相关产物：历史脚本
 
 ## 5. 实验入口 experiments/
 
@@ -133,26 +122,26 @@
 - 写入：outputs/experiments/; data/defended/; outputs/models/; outputs/figures/experiments/
 - 相关产物：src/*
 
-### `experiments/batches/`
-- 类型：批处理入口
-- 作用：多 seed / 全矩阵复现脚本，日常交付审查不运行。
-- 读取：configs/default.yaml
-- 写入：outputs/experiments/ 等批量产物
-- 相关产物：README.md 中不作为常规命令
-
 ### `experiments/real_public/imports/`
 - 类型：真实数据导入
-- 作用：导入 `uci_har`、`kasteren`、`casas_hh101` 原始数据并生成 processed data。
+- 作用：导入 uci_har、kasteren、casas_hh101 原始数据并生成 processed data。
 - 读取：data/raw/; 外部公开数据集
 - 写入：data/processed/{dataset}/seed_{seed}/
 - 相关产物：experiments/real_public/benchmarks/
 
-### `experiments/real_public/benchmarks/`
+### `experiments/real_public/benchmarks/run_real_public_benchmark.py`
 - 类型：真实数据 benchmark
-- 作用：真实数据完整 benchmark 和汇总脚本。
+- 作用：真实数据完整 benchmark 入口，按标准产物结构写入结果。
 - 读取：data/processed/{dataset}/seed_{seed}/; configs/generated/
-- 写入：outputs/experiments/{dataset}/; outputs/summaries/final_thesis/real/
+- 写入：outputs/experiments/{dataset}/; outputs/models/{dataset}/; data/defended/{dataset}/
 - 相关产物：outputs/summaries/final_thesis/parameter_scan_coverage_audit.json
+
+### `experiments/real_public/benchmarks/summarize_real_public_benchmark.py`
+- 类型：真实数据汇总
+- 作用：汇总真实数据 benchmark manifest，生成便于复核的运行索引。
+- 读取：outputs/summaries/final_thesis/real/real_public_benchmark_manifest.json
+- 写入：outputs/summaries/final_thesis/real/
+- 相关产物：run_real_public_benchmark.py
 
 ### `experiments/cooja/`
 - 类型：Cooja 实验入口
@@ -175,35 +164,30 @@
 - 作用：从标准实验产物构建最终 summary 和 figure。
 - 读取：outputs/experiments/
 - 写入：outputs/summaries/final_thesis/; outputs/figures/summaries/final_thesis/
-- 相关产物：scripts/build_final_thesis_results.py
 
 ### `scripts/audit/audit_experiment_symmetry.py`
 - 类型：审计脚本
 - 作用：检查主矩阵、参数扫描和 Cooja 标准产物完整性。
 - 读取：outputs/experiments/; outputs/summaries/final_thesis/
 - 写入：outputs/summaries/final_thesis/final_symmetry_audit.*
-- 相关产物：scripts/audit_experiment_symmetry.py
 
 ### `scripts/audit/audit_repository_bloat.py`
 - 类型：审计脚本
-- 作用：按需检查仓库 tracked 文件、路径卫生和删除候选。
+- 作用：检查 tracked 文件、路径卫生、跳转占位文件和删除候选。
 - 读取：git ls-files; outputs/summaries/final_thesis/
 - 写入：按需生成仓库清理审计输出
-- 相关产物：scripts/audit_repository_bloat.py
 
 ### `scripts/audit/audit_code_structure.py`
 - 类型：审计脚本
-- 作用：按需检查代码职责分层、兼容 wrapper、legacy 文件和 unknown 文件。
+- 作用：检查代码职责分层、unknown 文件和已移除的旧兼容入口。
 - 读取：src/; apps/; experiments/; scripts/; tools/; docs/
-- 写入：按需生成代码结构审计输出
-- 相关产物：scripts/audit_code_structure.py
+- 写入：outputs/summaries/final_thesis/code_structure_audit.*
 
 ### `scripts/audit/generate_project_file_report.py`
 - 类型：报告脚本
 - 作用：生成本文件功能与产物对应报告。
 - 读取：git ls-files; 项目目录结构
 - 写入：docs/PROJECT_FILE_FUNCTION_REPORT.md; outputs/summaries/final_thesis/project_file_function_report.*
-- 相关产物：scripts/generate_project_file_report.py
 
 ## 7. 数据产物 data/
 

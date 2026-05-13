@@ -104,7 +104,7 @@ def run_defense_evaluation(
     skip_pipeline: bool = False,
 ) -> Dict[str, Any]:
     """
-    主入口：根据模式运行评估并写入 outputs/defense/ 下报告与图表。
+    主入口：根据模式运行评估并写入标准实验产物目录下的报告与图表。
 
     skip_pipeline: 若已为当前配置生成过防御数据，可跳过再次扰动以节省时间。
     """

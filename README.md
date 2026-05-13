@@ -71,7 +71,6 @@ Dashboard 包含五个页面：
 - 训练 / 评估演示：基于已有处理数据运行单组合训练或评估任务。
 - 运行历史：展示 Dashboard 触发过的单组合任务记录，记录文件为 `outputs/ui/run_history.jsonl`。
 
-旧式命令 UI 保留在 `apps/legacy/ui_app.py`，用于说明项目早期演示入口的演进。
 
 ## 结果复核与产物索引
 

@@ -16,12 +16,11 @@
 
 这些模块共同形成攻击—防御闭环：`src/data` 产生模型输入，`src/models` 与 `src/training` 构建攻击者，`src/defenses` 生成防御数据，`src/evaluation` 衡量攻击抑制与数据失真，`src/dashboard` 和汇总脚本展示最终结论。
 
-根目录下的 `src/config.py`、`src/train.py`、`src/evaluate.py` 等文件保留为兼容 wrapper，负责 re-export 新分层包中的实现，方便历史脚本继续解析。
+`src/` 根目录不再保留旧兼容 wrapper。所有正式实现都按职责放入 `src/core/`、`src/data/`、`src/models/`、`src/training/`、`src/evaluation/`、`src/defenses/`、`src/edge/`、`src/dashboard/` 和 `src/artifacts/`。
 
 ## 2. `experiments/` 实验入口
 
 - `experiments/core/`：单步实验 CLI，包括预处理、训练、评估、防御生成、防御评估、参数比较和混淆矩阵收集。
-- `experiments/batches/`：多 seed / 全矩阵批处理入口，用于完整复现实验矩阵。
 - `experiments/real_public/imports/`：`uci_har`、`kasteren`、`casas_hh101` 的真实数据导入流程。
 - `experiments/real_public/benchmarks/`：真实数据 benchmark 运行和汇总脚本。
 - `experiments/cooja/`：Cooja 日志评估和比较脚本，用于节点侧 dummy 流量功能性验证。
@@ -31,19 +30,18 @@
 
 - `scripts/final_thesis/`：构建最终汇总结果、覆盖审计、参数扫描汇总和最终图像。
 - `scripts/audit/`：实验对称性审计、仓库体积审计、代码结构审计、项目文件功能报告生成。
-- 根目录脚本提供命令兼容入口：
-  - `python scripts/build_final_thesis_results.py`
-  - `python scripts/audit_experiment_symmetry.py`
-  - `python scripts/audit_repository_bloat.py`
-  - `python scripts/audit_code_structure.py`
-  - `python scripts/generate_project_file_report.py`
+- 正式维护命令直接使用分层脚本：
+  - `python scripts/final_thesis/build_final_thesis_results.py`
+  - `python scripts/audit/audit_experiment_symmetry.py`
+  - `python scripts/audit/audit_repository_bloat.py`
+  - `python scripts/audit/audit_code_structure.py`
+  - `python scripts/audit/generate_project_file_report.py`
 
 这些脚本用于维护最终结果包和复核材料，不承担论文结论之外的新实验解释。
 
 ## 4. `apps/`
 
 - `apps/dashboard.py`：正式 Streamlit Dashboard 入口，面向结果浏览、图表展示、混淆矩阵查看和单组合演示。
-- `apps/legacy/ui_app.py`：早期 UI 的历史占位入口，记录项目演示方式的演进。
 
 ## 5. `tools/`
 

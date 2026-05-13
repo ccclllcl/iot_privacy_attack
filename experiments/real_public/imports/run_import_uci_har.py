@@ -9,7 +9,7 @@
 - 可选生成 mlp_features.npz（复用本项目的统计特征提取）
 
 用法:
-  python experiments/real_public/run_import_uci_har.py --config configs/default.yaml
+  python experiments/real_public/imports/run_import_uci_har.py --config configs/default.yaml
 """
 
 from __future__ import annotations

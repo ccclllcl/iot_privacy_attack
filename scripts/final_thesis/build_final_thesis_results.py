@@ -26,6 +26,8 @@ import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 OUT_REPORT = ROOT / "outputs" / "summaries" / "final_thesis"
 OUT_DEFENSE = ROOT / "outputs" / "experiments"
 OUT_FIG = ROOT / "outputs" / "figures" / "summaries" / "final_thesis"
@@ -608,11 +610,6 @@ def _scan_path(scope: str, dataset: str, seed: int, method: str, model: str, mod
     return OUT_DEFENSE / ds / f"seed_{seed}" / model / method / mode / "parameter_scan" / "comparison_results.csv"
 
 
-def _legacy_scan_path(scope: str, dataset: str, seed: int, method: str) -> Path:
-    ds = "mock" if scope == "mock" else dataset
-    return OUT_DEFENSE / ds / f"seed_{seed}" / "lstm" / method / "fixed_attacker" / "parameter_scan" / "comparison_results.csv"
-
-
 def _fnum(value: Any) -> float:
     try:
         return float(value)
@@ -711,25 +708,21 @@ def _collect_parameter_scans(missing: list[dict[str, Any]]) -> dict[str, Any]:
                             else:
                                 expected_real += 1
                             path = _scan_path(scope, dataset, seed, method, model, mode)
-                            source = path
                             if not _scan_csv_complete(path, method):
-                                legacy = _legacy_scan_path(scope, dataset, seed, method)
-                                if method in {"ldp", "noise"} and model == "lstm" and mode == "fixed_attacker" and _scan_csv_complete(legacy, method):
-                                    source = legacy
-                                else:
-                                    missing_parameter.append(
-                                        {
-                                            "section": f"{scope}_parameter_scan",
-                                            "dataset": dataset,
-                                            "seed": seed,
-                                            "method": method,
-                                            "model_type": model,
-                                            "mode": mode,
-                                            "reason": "comparison_results_missing_or_incomplete",
-                                            "expected_file": _rel(path),
-                                        }
-                                    )
-                                    continue
+                                missing_parameter.append(
+                                    {
+                                        "section": f"{scope}_parameter_scan",
+                                        "dataset": dataset,
+                                        "seed": seed,
+                                        "method": method,
+                                        "model_type": model,
+                                        "mode": mode,
+                                        "reason": "comparison_results_missing_or_incomplete",
+                                        "expected_file": _rel(path),
+                                    }
+                                )
+                                continue
+                            source = path
                             raw_rows = _read_csv_dicts(source) or []
                             completed[scope] += 1
                             normalized = _normalize_scan_rows(
@@ -1330,10 +1323,6 @@ def _export_cooja_detail_outputs(rep: dict[str, Any], missing: list[dict[str, An
 
 def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any]:
     cooja_report_dir = OUT_REPORT / "cooja"
-    rows: list[dict[str, Any]] = []
-    feat_rows: list[dict[str, Any]] = []
-    top_conf_rows: list[dict[str, Any]] = []
-    overhead_rows: list[dict[str, Any]] = []
     existing_report = OUT_DEFENSE / "cooja" / "eval" / "defense_eval_report.json"
     if existing_report.exists():
         return _cooja_summary_from_report(existing_report, missing)
@@ -1343,217 +1332,20 @@ def _collect_cooja(env: EnvInfo, missing: list[dict[str, Any]]) -> dict[str, Any
             "section": "cooja",
             "reason": "canonical_cooja_eval_report_missing",
             "expected_file": _rel(existing_report),
-            "note": "Build does not rerun Cooja while normalizing the artifact layout.",
+            "note": "Build reads canonical Cooja artifacts only and does not rerun Cooja.",
         }
     )
     _write_json(cooja_report_dir / "cooja_missing_outputs.json", [m for m in missing if m.get("section") == "cooja"])
-    _write_json(cooja_report_dir / "cooja_summary.json", rows)
-    _write_csv(cooja_report_dir / "cooja_summary.csv", rows)
-    _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", overhead_rows)
+    _write_json(cooja_report_dir / "cooja_summary.json", [])
+    _write_csv(cooja_report_dir / "cooja_summary.csv", [])
+    _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", [])
     (cooja_report_dir / "cooja_limitations.md").write_text(
         "# Cooja Limitations\n\n"
         "- Cooja canonical evaluation report is missing from `outputs/experiments/cooja/eval/`.\n"
-        "- This build does not rerun Cooja or fabricate energy/delay/packet metrics.\n",
+        "- This build reads canonical Cooja artifacts only and does not fabricate energy, delay, packet, or byte metrics.\n",
         encoding="utf-8",
     )
-    return {"rows": rows}
-
-    dummy_manifest = ROOT / "configs" / "cooja_defense_dummy_logs.json"
-    post_manifest = ROOT / "configs" / "cooja_defense_postprocess.json"
-    legacy_manifest = ROOT / "configs" / "cooja_defense_logs.json"
-
-    chosen_manifest: Path | None = None
-    for cand in [dummy_manifest, post_manifest, legacy_manifest]:
-        ok, _ = _cooja_logs_available(cand)
-        if ok:
-            chosen_manifest = cand
-            break
-
-    if chosen_manifest is None:
-        missing.append(
-            {
-                "section": "cooja",
-                "reason": "no_accessible_cooja_logs",
-                "checked_manifests": [str(dummy_manifest), str(post_manifest), str(legacy_manifest)],
-                "note": "WSL/UNC log paths are not available from current workspace.",
-            }
-        )
-        _write_json(cooja_report_dir / "cooja_missing_outputs.json", [m for m in missing if m.get("section") == "cooja"])
-        _write_json(cooja_report_dir / "cooja_summary.json", rows)
-        _write_csv(cooja_report_dir / "cooja_summary.csv", rows)
-        _write_csv(cooja_report_dir / "cooja_feature_importance.csv", feat_rows)
-        _write_csv(cooja_report_dir / "cooja_top_confusions.csv", top_conf_rows)
-        _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", overhead_rows)
-        _write_json(cooja_report_dir / "cooja_missing_logs.json", [m for m in missing if m.get("section") == "cooja"])
-        (cooja_report_dir / "cooja_limitations.md").write_text(
-            "# Cooja Limitations\n\n- Cooja log paths are not accessible in the current environment.\n- No real energy or delay measurements are available.\n",
-            encoding="utf-8",
-        )
-        return {"rows": rows}
-
-    out_dir = OUT_DEFENSE / "cooja" / "eval"
-    cmd = [
-        sys.executable,
-        "experiments/cooja/run_cooja_defense_eval.py",
-        "--manifest",
-        str(chosen_manifest),
-        "--out_dir",
-        str(out_dir),
-        "--seeds",
-        "42,123,2026",
-        "--window_s",
-        "8",
-        "--step_s",
-        "3",
-        "--min_requests",
-        "2",
-        "--dominance_threshold",
-        "0.2",
-    ]
-    rc, out, err = _run(cmd, cwd=ROOT, timeout=7200)
-    report_path = out_dir / "defense_eval_report.json"
-    if rc != 0 or not report_path.exists():
-        missing.append(
-            {
-                "section": "cooja",
-                "reason": "cooja_eval_run_failed",
-                "manifest": str(chosen_manifest),
-                "command": " ".join(cmd),
-                "stdout_tail": out[-4000:],
-                "stderr_tail": err[-4000:],
-            }
-        )
-        _write_json(cooja_report_dir / "cooja_missing_outputs.json", [m for m in missing if m.get("section") == "cooja"])
-        _write_json(cooja_report_dir / "cooja_summary.json", rows)
-        _write_csv(cooja_report_dir / "cooja_summary.csv", rows)
-        _write_csv(cooja_report_dir / "cooja_feature_importance.csv", feat_rows)
-        _write_csv(cooja_report_dir / "cooja_top_confusions.csv", top_conf_rows)
-        _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", overhead_rows)
-        _write_json(cooja_report_dir / "cooja_missing_logs.json", [m for m in missing if m.get("section") == "cooja"])
-        (cooja_report_dir / "cooja_limitations.md").write_text(
-            "# Cooja Limitations\n\n- Cooja defense evaluation could not be regenerated from accessible logs.\n- No real energy or delay measurements are available.\n",
-            encoding="utf-8",
-        )
-        return {"rows": rows}
-
-    rep = _safe_json(report_path) or {}
-    methods = rep.get("methods", {}) if isinstance(rep, dict) else {}
-    for method_name, mobj in methods.items():
-        if not isinstance(mobj, dict):
-            continue
-        b_mean = float(((mobj.get("baseline_test") or {}).get("accuracy") or {}).get("mean", np.nan))
-        f_mean = float(((mobj.get("fixed_attacker") or {}).get("accuracy") or {}).get("mean", np.nan))
-        r_mean = float(((mobj.get("retrain_attacker") or {}).get("accuracy") or {}).get("mean", np.nan))
-        f1_fixed = float(((mobj.get("fixed_attacker") or {}).get("f1_macro") or {}).get("mean", np.nan))
-        f1_retrain = float(((mobj.get("retrain_attacker") or {}).get("f1_macro") or {}).get("mean", np.nan))
-        dataset_meta = mobj.get("dataset", {}) if isinstance(mobj.get("dataset", {}), dict) else {}
-        baseline_windows = float(dataset_meta.get("baseline_windows", np.nan))
-        defense_windows = float(dataset_meta.get("defense_windows", np.nan))
-        window_ratio = (
-            defense_windows / baseline_windows
-            if baseline_windows == baseline_windows and baseline_windows > 0
-            else np.nan
-        )
-        overhead_rows.append(
-            {
-                "method": method_name,
-                "baseline_windows": baseline_windows,
-                "defense_windows": defense_windows,
-                "defense_window_ratio": window_ratio,
-                "window_count_delta": defense_windows - baseline_windows
-                if baseline_windows == baseline_windows and defense_windows == defense_windows
-                else np.nan,
-                "energy_metric_available": False,
-                "delay_metric_available": False,
-                "note": "Cooja logs do not include real energy/delay fields; this is a window-count proxy only.",
-            }
-        )
-        rows.append(
-            {
-                "method": method_name,
-                "seed": "mean_over_seeds",
-                "mode": "fixed_attacker",
-                "baseline_acc": b_mean,
-                "defended_acc": f_mean,
-                "accuracy_drop": b_mean - f_mean,
-                "f1_macro": f1_fixed,
-                "pkt_count_mean": np.nan,
-                "byte_count_mean": np.nan,
-                "dummy_packet_ratio": np.nan,
-                "packet_overhead_ratio": np.nan,
-                "mean_iat_ms": np.nan,
-                "p95_iat_ms": np.nan,
-                "traffic_activity_correlation_before": np.nan,
-                "traffic_activity_correlation_after": np.nan,
-                "correlation_drop": np.nan,
-                "energy_metric_available": False,
-                "delay_proxy_available": False,
-                "source_log_files": json.dumps((mobj.get("defense_log_paths") or {}), ensure_ascii=False),
-            }
-        )
-        rows.append(
-            {
-                "method": method_name,
-                "seed": "mean_over_seeds",
-                "mode": "retrain_attacker",
-                "baseline_acc": b_mean,
-                "defended_acc": r_mean,
-                "accuracy_drop": b_mean - r_mean,
-                "f1_macro": f1_retrain,
-                "pkt_count_mean": np.nan,
-                "byte_count_mean": np.nan,
-                "dummy_packet_ratio": np.nan,
-                "packet_overhead_ratio": np.nan,
-                "mean_iat_ms": np.nan,
-                "p95_iat_ms": np.nan,
-                "traffic_activity_correlation_before": np.nan,
-                "traffic_activity_correlation_after": np.nan,
-                "correlation_drop": np.nan,
-                "energy_metric_available": False,
-                "delay_proxy_available": False,
-                "source_log_files": json.dumps((mobj.get("defense_log_paths") or {}), ensure_ascii=False),
-            }
-        )
-
-        for run in mobj.get("runs", []):
-            if not isinstance(run, dict):
-                continue
-            seed = int(run.get("seed", -1))
-            fixed = run.get("fixed_attacker_on_defense", {}) or {}
-            retr = run.get("retrain_attacker_on_defense", {}) or {}
-            for tc in fixed.get("top_confusions", [])[:5]:
-                top_conf_rows.append(
-                    {
-                        "method": method_name,
-                        "seed": seed,
-                        "mode": "fixed_attacker",
-                        "true_label": tc.get("true"),
-                        "pred_label": tc.get("pred"),
-                        "count": tc.get("count"),
-                    }
-                )
-            for tc in retr.get("top_confusions", [])[:5]:
-                top_conf_rows.append(
-                    {
-                        "method": method_name,
-                        "seed": seed,
-                        "mode": "retrain_attacker",
-                        "true_label": tc.get("true"),
-                        "pred_label": tc.get("pred"),
-                        "count": tc.get("count"),
-                    }
-                )
-
-    _write_json(cooja_report_dir / "cooja_summary.json", rows)
-    _write_csv(cooja_report_dir / "cooja_summary.csv", rows)
-    if feat_rows:
-        _write_csv(cooja_report_dir / "cooja_feature_importance.csv", feat_rows)
-    if top_conf_rows:
-        _write_csv(cooja_report_dir / "cooja_top_confusions.csv", top_conf_rows)
-    _write_csv(cooja_report_dir / "cooja_overhead_summary.csv", overhead_rows)
-    _write_json(cooja_report_dir / "cooja_missing_outputs.json", [m for m in missing if m.get("section") == "cooja"])
-    _export_cooja_detail_outputs(rep, missing)
-    return {"rows": rows}
+    return {"rows": []}
 
 
 def _apply_cooja_overhead_metrics(cooja: dict[str, Any], missing: list[dict[str, Any]]) -> dict[str, Any]:
