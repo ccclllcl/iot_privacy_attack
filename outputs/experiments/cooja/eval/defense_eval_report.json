@@ -1,6 +1,7 @@
 {
   "config": {
-    "manifest": "D:\\毕业设计毕业设计毕业设计毕业设计\\Projects\\iot_privacy_attack\\configs\\cooja_defense_dummy_logs.json",
+    "source": "outputs/experiments/cooja/seed_{seed}/random_forest/{method}/COOJA.testlog",
+    "metric_log_experiment_root": "outputs/experiments/cooja",
     "window_s": 8.0,
     "step_s": 3.0,
     "min_requests": 2,
@@ -10,22 +11,40 @@
       42,
       123,
       2026
-    ]
+    ],
+    "methods": [
+      "dummy_noise",
+      "dummy_ldp",
+      "dummy_adaptive_ldp"
+    ],
+    "log_type": "cooja_metric_log"
   },
   "methods": {
     "dummy_noise": {
       "defense_log_paths": {
-        "radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg_dummy_noise.txt",
-        "app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener_dummy_noise.txt"
+        "radio_log": null,
+        "app_log": "outputs/experiments/cooja/seed_42/random_forest/dummy_noise/COOJA.testlog",
+        "log_pattern": "outputs/experiments/cooja/seed_{seed}/random_forest/dummy_noise/COOJA.testlog",
+        "log_type": "cooja_metric_log"
       },
       "generation": {
-        "mode": "from_defense_logs",
+        "mode": "from_metric_logs",
         "transform": null,
         "transform_config": null
       },
       "dataset": {
-        "baseline_windows": 4016,
-        "defense_windows": 678,
+        "baseline_windows": 449,
+        "defense_windows": 437,
+        "baseline_windows_by_seed": {
+          "42": 419,
+          "123": 468,
+          "2026": 460
+        },
+        "defense_windows_by_seed": {
+          "42": 426,
+          "123": 438,
+          "2026": 446
+        },
         "baseline_labels": [
           "client_2",
           "client_3",
@@ -45,57 +64,57 @@
       },
       "baseline_test": {
         "accuracy": {
-          "mean": 0.24896265560165975,
-          "std": 0.006534446368474548,
-          "min": 0.24315352697095435,
-          "max": 0.25809128630705397
+          "mean": 0.16289052366758194,
+          "std": 0.007871758568746392,
+          "min": 0.15602836879432624,
+          "max": 0.17391304347826086
         },
         "f1_macro": {
-          "mean": 0.24641538784679787,
-          "std": 0.006628544085565602,
-          "min": 0.2411207688402276,
-          "max": 0.2557620743526765
+          "mean": 0.16557449628520152,
+          "std": 0.012075413118767774,
+          "min": 0.15657287157287159,
+          "max": 0.1826431830593873
         }
       },
       "fixed_attacker": {
         "accuracy": {
-          "mean": 0.18627450980392157,
-          "std": 0.032761336038829116,
-          "min": 0.15196078431372548,
-          "max": 0.23039215686274508
+          "mean": 0.13201746947082768,
+          "std": 0.013006119172100105,
+          "min": 0.11363636363636363,
+          "max": 0.1417910447761194
         },
         "f1_macro": {
-          "mean": 0.17706634544107944,
-          "std": 0.031713089185137426,
-          "min": 0.14716640272784343,
-          "max": 0.22096584369893754
+          "mean": 0.12442609795544447,
+          "std": 0.014153999804614289,
+          "min": 0.10444290867441769,
+          "max": 0.13542152292152293
         },
-        "delta_vs_baseline_accuracy_mean": -0.06268814579773818,
-        "delta_vs_baseline_f1_mean": -0.06934904240571843
+        "delta_vs_baseline_accuracy_mean": -0.030873054196754263,
+        "delta_vs_baseline_f1_mean": -0.041148398329757044
       },
       "retrain_attacker": {
         "accuracy": {
-          "mean": 0.25980392156862747,
-          "std": 0.02801703954163766,
-          "min": 0.22549019607843138,
-          "max": 0.29411764705882354
+          "mean": 0.23433848748680838,
+          "std": 0.04489162315959737,
+          "min": 0.1791044776119403,
+          "max": 0.2890625
         },
         "f1_macro": {
-          "mean": 0.23965556899217483,
-          "std": 0.02982122810145052,
-          "min": 0.20685832208797558,
-          "max": 0.27901533167661347
+          "mean": 0.22545367662732113,
+          "std": 0.04355627460542742,
+          "min": 0.17090775102594144,
+          "max": 0.2775113138553999
         },
-        "delta_vs_baseline_accuracy_mean": 0.010841265966967717,
-        "delta_vs_baseline_f1_mean": -0.00675981885462304
+        "delta_vs_baseline_accuracy_mean": 0.07144796381922644,
+        "delta_vs_baseline_f1_mean": 0.059879180342119614
       },
       "runs": [
         {
           "seed": 42,
-          "baseline_test": {
-            "accuracy": 0.24564315352697094,
-            "f1_macro": 0.2423633203474895,
-            "labels": [
+          "dataset": {
+            "baseline_windows": 419,
+            "defense_windows": 426,
+            "baseline_labels": [
               "client_2",
               "client_3",
               "client_4",
@@ -103,60 +122,24 @@
               "client_6",
               "client_7"
             ],
-            "confusion_matrix": [
-              [
-                62,
-                23,
-                34,
-                22,
-                36,
-                40
-              ],
-              [
-                35,
-                30,
-                31,
-                40,
-                27,
-                33
-              ],
-              [
-                37,
-                24,
-                56,
-                26,
-                18,
-                30
-              ],
-              [
-                26,
-                30,
-                29,
-                34,
-                33,
-                37
-              ],
-              [
-                47,
-                27,
-                34,
-                26,
-                57,
-                24
-              ],
-              [
-                34,
-                26,
-                22,
-                26,
-                32,
-                57
-              ]
+            "defense_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
             ]
           },
-          "fixed_attacker_on_defense": {
-            "accuracy": 0.17647058823529413,
-            "f1_macro": 0.16306678989645734,
+          "source_log_paths": {
+            "baseline_app_log": "outputs/experiments/cooja/seed_42/random_forest/baseline/COOJA.testlog",
+            "defense_app_log": "outputs/experiments/cooja/seed_42/random_forest/dummy_noise/COOJA.testlog",
+            "defense_radio_log": null,
+            "log_type": "cooja_metric_log"
+          },
+          "baseline_test": {
+            "accuracy": 0.15873015873015872,
+            "f1_macro": 0.15657287157287159,
             "labels": [
               "client_2",
               "client_3",
@@ -169,56 +152,56 @@
               [
                 4,
                 2,
-                0,
+                5,
+                2,
+                3,
+                4
+              ],
+              [
+                2,
+                2,
+                5,
+                2,
+                1,
+                3
+              ],
+              [
+                5,
+                3,
+                2,
+                2,
+                7,
+                3
+              ],
+              [
+                2,
+                2,
+                5,
+                2,
                 4,
-                12,
-                8
+                6
               ],
               [
                 9,
                 1,
                 3,
                 3,
-                14,
-                6
+                4,
+                3
               ],
               [
-                9,
+                8,
+                0,
+                6,
+                3,
                 2,
-                7,
-                5,
-                16,
-                9
-              ],
-              [
-                4,
-                3,
-                5,
-                5,
-                13,
-                6
-              ],
-              [
-                3,
-                4,
-                4,
-                0,
-                13,
-                4
-              ],
-              [
-                4,
-                0,
-                0,
-                4,
-                12,
                 6
               ]
             ]
           },
-          "retrain_attacker_on_defense": {
-            "accuracy": 0.22549019607843138,
-            "f1_macro": 0.20685832208797558,
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.140625,
+            "f1_macro": 0.13542152292152293,
             "labels": [
               "client_2",
               "client_3",
@@ -229,51 +212,113 @@
             ],
             "confusion_matrix": [
               [
-                12,
                 4,
+                8,
+                6,
+                1,
+                6,
+                5
+              ],
+              [
+                5,
+                3,
+                3,
+                5,
+                6,
+                4
+              ],
+              [
+                0,
+                3,
+                1,
+                2,
+                1,
+                4
+              ],
+              [
+                5,
+                1,
+                6,
                 2,
                 7,
+                2
+              ],
+              [
+                4,
+                3,
+                3,
+                2,
+                5,
+                5
+              ],
+              [
+                4,
+                1,
+                3,
+                4,
+                1,
+                3
+              ]
+            ]
+          },
+          "retrain_attacker_on_defense": {
+            "accuracy": 0.2890625,
+            "f1_macro": 0.2775113138553999,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                9,
+                6,
+                2,
+                4,
+                5,
+                4
+              ],
+              [
+                3,
+                8,
+                0,
+                2,
+                9,
+                4
+              ],
+              [
+                3,
+                3,
+                2,
+                2,
+                1,
+                0
+              ],
+              [
+                4,
+                3,
+                3,
+                8,
                 4,
                 1
               ],
               [
-                4,
-                4,
-                17,
-                6,
-                3,
-                2
-              ],
-              [
-                8,
-                9,
-                18,
-                7,
-                4,
-                2
-              ],
-              [
-                6,
-                4,
-                10,
-                6,
-                8,
-                2
-              ],
-              [
-                3,
-                3,
-                12,
-                6,
-                2,
-                2
-              ],
-              [
-                7,
-                5,
                 3,
                 5,
                 2,
+                4,
+                6,
+                2
+              ],
+              [
+                2,
+                3,
+                2,
+                2,
+                3,
                 4
               ]
             ]
@@ -281,9 +326,35 @@
         },
         {
           "seed": 123,
+          "dataset": {
+            "baseline_windows": 468,
+            "defense_windows": 438,
+            "baseline_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "defense_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ]
+          },
+          "source_log_paths": {
+            "baseline_app_log": "outputs/experiments/cooja/seed_123/random_forest/baseline/COOJA.testlog",
+            "defense_app_log": "outputs/experiments/cooja/seed_123/random_forest/dummy_noise/COOJA.testlog",
+            "defense_radio_log": null,
+            "log_type": "cooja_metric_log"
+          },
           "baseline_test": {
-            "accuracy": 0.25809128630705397,
-            "f1_macro": 0.2557620743526765,
+            "accuracy": 0.15602836879432624,
+            "f1_macro": 0.1575074342233457,
             "labels": [
               "client_2",
               "client_3",
@@ -294,58 +365,58 @@
             ],
             "confusion_matrix": [
               [
-                70,
-                26,
-                34,
-                25,
-                31,
-                31
+                4,
+                4,
+                3,
+                7,
+                3,
+                2
               ],
               [
-                30,
-                35,
-                32,
-                35,
-                23,
-                41
+                4,
+                2,
+                1,
+                8,
+                4,
+                10
               ],
               [
-                38,
-                27,
-                51,
-                27,
-                24,
-                24
+                3,
+                4,
+                4,
+                2,
+                5,
+                5
               ],
               [
-                25,
-                30,
-                28,
-                44,
-                31,
-                31
+                2,
+                2,
+                3,
+                3,
+                3,
+                7
               ],
               [
-                42,
-                26,
-                28,
-                24,
-                58,
-                37
+                3,
+                5,
+                4,
+                1,
+                5,
+                5
               ],
               [
-                31,
-                30,
-                20,
-                22,
-                41,
-                53
+                3,
+                3,
+                7,
+                2,
+                4,
+                4
               ]
             ]
           },
           "fixed_attacker_on_defense": {
-            "accuracy": 0.23039215686274508,
-            "f1_macro": 0.22096584369893754,
+            "accuracy": 0.11363636363636363,
+            "f1_macro": 0.10444290867441769,
             "labels": [
               "client_2",
               "client_3",
@@ -356,58 +427,58 @@
             ],
             "confusion_matrix": [
               [
-                3,
-                5,
                 0,
+                6,
                 3,
-                18,
-                1
+                1,
+                7,
+                4
+              ],
+              [
+                2,
+                5,
+                2,
+                1,
+                2,
+                5
               ],
               [
                 3,
-                6,
-                2,
                 5,
-                17,
+                4,
+                2,
+                8,
+                4
+              ],
+              [
+                6,
+                3,
+                4,
+                0,
+                10,
                 3
               ],
               [
-                5,
-                8,
-                5,
-                5,
-                20,
+                4,
+                6,
+                3,
+                2,
+                3,
                 5
               ],
               [
                 1,
-                2,
-                4,
-                8,
-                17,
-                4
-              ],
-              [
-                4,
-                0,
-                4,
-                0,
-                18,
-                2
-              ],
-              [
-                5,
-                2,
+                7,
                 3,
                 1,
-                8,
-                7
+                4,
+                3
               ]
             ]
           },
           "retrain_attacker_on_defense": {
-            "accuracy": 0.25980392156862747,
-            "f1_macro": 0.2330930532119354,
+            "accuracy": 0.23484848484848486,
+            "f1_macro": 0.22794196500062203,
             "labels": [
               "client_2",
               "client_3",
@@ -418,61 +489,87 @@
             ],
             "confusion_matrix": [
               [
-                6,
-                8,
                 5,
+                0,
+                5,
+                4,
                 3,
-                7,
-                1
-              ],
-              [
-                6,
-                5,
-                11,
-                5,
-                5,
                 4
               ],
               [
-                1,
-                11,
-                26,
-                4,
-                4,
-                2
-              ],
-              [
-                5,
-                5,
-                5,
-                7,
-                6,
-                8
-              ],
-              [
-                8,
                 3,
-                4,
-                8,
-                3,
-                2
-              ],
-              [
-                3,
-                5,
-                6,
-                4,
                 2,
+                2,
+                2,
+                5,
+                3
+              ],
+              [
+                2,
+                5,
+                9,
+                7,
+                1,
+                2
+              ],
+              [
+                2,
+                2,
+                6,
+                5,
+                5,
                 6
+              ],
+              [
+                2,
+                0,
+                8,
+                5,
+                6,
+                2
+              ],
+              [
+                0,
+                2,
+                5,
+                4,
+                4,
+                4
               ]
             ]
           }
         },
         {
           "seed": 2026,
+          "dataset": {
+            "baseline_windows": 460,
+            "defense_windows": 446,
+            "baseline_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "defense_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ]
+          },
+          "source_log_paths": {
+            "baseline_app_log": "outputs/experiments/cooja/seed_2026/random_forest/baseline/COOJA.testlog",
+            "defense_app_log": "outputs/experiments/cooja/seed_2026/random_forest/dummy_noise/COOJA.testlog",
+            "defense_radio_log": null,
+            "log_type": "cooja_metric_log"
+          },
           "baseline_test": {
-            "accuracy": 0.24315352697095435,
-            "f1_macro": 0.2411207688402276,
+            "accuracy": 0.17391304347826086,
+            "f1_macro": 0.1826431830593873,
             "labels": [
               "client_2",
               "client_3",
@@ -483,58 +580,58 @@
             ],
             "confusion_matrix": [
               [
-                68,
-                25,
-                33,
-                29,
-                27,
-                35
+                4,
+                4,
+                5,
+                2,
+                4,
+                3
               ],
               [
-                27,
-                41,
-                31,
-                39,
-                20,
-                38
+                3,
+                5,
+                2,
+                0,
+                7,
+                3
               ],
               [
-                28,
-                27,
-                52,
-                31,
-                29,
-                24
+                3,
+                4,
+                1,
+                3,
+                7,
+                10
               ],
               [
-                26,
-                33,
-                30,
-                30,
-                34,
-                36
+                2,
+                2,
+                5,
+                5,
+                4,
+                3
               ],
               [
-                41,
-                33,
-                22,
-                30,
-                51,
-                38
+                3,
+                2,
+                7,
+                3,
+                3,
+                3
               ],
               [
-                35,
-                27,
-                26,
-                28,
-                30,
-                51
+                5,
+                3,
+                5,
+                2,
+                5,
+                6
               ]
             ]
           },
           "fixed_attacker_on_defense": {
-            "accuracy": 0.15196078431372548,
-            "f1_macro": 0.14716640272784343,
+            "accuracy": 0.1417910447761194,
+            "f1_macro": 0.1334138622703928,
             "labels": [
               "client_2",
               "client_3",
@@ -545,58 +642,58 @@
             ],
             "confusion_matrix": [
               [
+                3,
+                1,
+                4,
+                0,
+                4,
+                4
+              ],
+              [
+                3,
+                3,
+                5,
+                1,
+                1,
+                4
+              ],
+              [
+                5,
+                4,
+                6,
+                0,
+                2,
+                4
+              ],
+              [
+                4,
+                5,
+                8,
+                2,
+                3,
+                4
+              ],
+              [
+                3,
+                6,
                 8,
                 2,
                 0,
-                2,
-                9,
-                9
-              ],
-              [
-                2,
-                5,
-                1,
-                5,
-                15,
-                8
-              ],
-              [
-                10,
-                1,
-                4,
-                9,
-                16,
-                8
-              ],
-              [
-                8,
-                4,
-                3,
-                2,
-                12,
-                7
+                6
               ],
               [
                 4,
                 5,
-                3,
+                7,
                 4,
-                9,
-                3
-              ],
-              [
-                10,
-                2,
-                0,
-                1,
-                10,
-                3
+                4,
+                5
               ]
             ]
           },
           "retrain_attacker_on_defense": {
-            "accuracy": 0.29411764705882354,
-            "f1_macro": 0.27901533167661347,
+            "accuracy": 0.1791044776119403,
+            "f1_macro": 0.17090775102594144,
             "labels": [
               "client_2",
               "client_3",
@@ -607,52 +704,52 @@
             ],
             "confusion_matrix": [
               [
-                4,
-                4,
-                9,
-                4,
                 3,
-                6
-              ],
-              [
-                6,
-                10,
-                10,
-                3,
-                5,
-                2
+                1,
+                1,
+                8,
+                0,
+                3
               ],
               [
                 1,
-                7,
-                20,
-                5,
-                10,
+                2,
+                1,
+                4,
+                2,
+                7
+              ],
+              [
+                2,
+                2,
+                2,
+                6,
+                4,
                 5
               ],
               [
+                1,
+                2,
+                3,
                 5,
-                7,
-                5,
-                13,
-                5,
-                1
+                9,
+                6
+              ],
+              [
+                4,
+                3,
+                2,
+                4,
+                4,
+                8
               ],
               [
                 3,
-                5,
-                7,
-                6,
-                6,
-                1
-              ],
-              [
-                5,
-                3,
                 4,
+                5,
+                6,
                 3,
-                4,
-                7
+                8
               ]
             ]
           }
@@ -661,17 +758,29 @@
     },
     "dummy_ldp": {
       "defense_log_paths": {
-        "radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg_dummy_ldp.txt",
-        "app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener_dummy_ldp.txt"
+        "radio_log": null,
+        "app_log": "outputs/experiments/cooja/seed_42/random_forest/dummy_ldp/COOJA.testlog",
+        "log_pattern": "outputs/experiments/cooja/seed_{seed}/random_forest/dummy_ldp/COOJA.testlog",
+        "log_type": "cooja_metric_log"
       },
       "generation": {
-        "mode": "from_defense_logs",
+        "mode": "from_metric_logs",
         "transform": null,
         "transform_config": null
       },
       "dataset": {
-        "baseline_windows": 4016,
-        "defense_windows": 1161,
+        "baseline_windows": 449,
+        "defense_windows": 436,
+        "baseline_windows_by_seed": {
+          "42": 419,
+          "123": 468,
+          "2026": 460
+        },
+        "defense_windows_by_seed": {
+          "42": 428,
+          "123": 443,
+          "2026": 438
+        },
         "baseline_labels": [
           "client_2",
           "client_3",
@@ -691,56 +800,82 @@
       },
       "baseline_test": {
         "accuracy": {
-          "mean": 0.24896265560165975,
-          "std": 0.006534446368474548,
-          "min": 0.24315352697095435,
-          "max": 0.25809128630705397
+          "mean": 0.16289052366758194,
+          "std": 0.007871758568746392,
+          "min": 0.15602836879432624,
+          "max": 0.17391304347826086
         },
         "f1_macro": {
-          "mean": 0.24641538784679787,
-          "std": 0.006628544085565602,
-          "min": 0.2411207688402276,
-          "max": 0.2557620743526765
+          "mean": 0.16557449628520152,
+          "std": 0.012075413118767774,
+          "min": 0.15657287157287159,
+          "max": 0.1826431830593873
         }
       },
       "fixed_attacker": {
         "accuracy": {
-          "mean": 0.2139446036294174,
-          "std": 0.015221945989025053,
-          "min": 0.19484240687679083,
-          "max": 0.23209169054441262
+          "mean": 0.1721838952561107,
+          "std": 0.032179783902507295,
+          "min": 0.13178294573643412,
+          "max": 0.21052631578947367
         },
         "f1_macro": {
-          "mean": 0.19967997259897008,
-          "std": 0.020200536002604415,
-          "min": 0.17439604343738638,
-          "max": 0.22383865011370227
+          "mean": 0.16230584522677058,
+          "std": 0.03622756687605438,
+          "min": 0.12095441784137251,
+          "max": 0.209176968680172
         },
-        "delta_vs_baseline_accuracy_mean": -0.035018051972242364,
-        "delta_vs_baseline_f1_mean": -0.04673541524782779
+        "delta_vs_baseline_accuracy_mean": 0.009293371588528748,
+        "delta_vs_baseline_f1_mean": -0.003268651058430938
       },
       "retrain_attacker": {
         "accuracy": {
-          "mean": 0.22922636103151864,
-          "std": 0.014230816070440628,
-          "min": 0.2177650429799427,
-          "max": 0.2492836676217765
+          "mean": 0.2334377169138491,
+          "std": 0.007196914394911346,
+          "min": 0.2248062015503876,
+          "max": 0.24242424242424243
         },
         "f1_macro": {
-          "mean": 0.2247362445321789,
-          "std": 0.013520700260767996,
-          "min": 0.21501983927376914,
-          "max": 0.24385655096668046
+          "mean": 0.2212372966328632,
+          "std": 0.009623008272554237,
+          "min": 0.21342901805532952,
+          "max": 0.23479423456048046
         },
-        "delta_vs_baseline_accuracy_mean": -0.019736294570141116,
-        "delta_vs_baseline_f1_mean": -0.021679143314618954
+        "delta_vs_baseline_accuracy_mean": 0.07054719324626715,
+        "delta_vs_baseline_f1_mean": 0.05566280034766169
       },
       "runs": [
         {
           "seed": 42,
+          "dataset": {
+            "baseline_windows": 419,
+            "defense_windows": 428,
+            "baseline_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "defense_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ]
+          },
+          "source_log_paths": {
+            "baseline_app_log": "outputs/experiments/cooja/seed_42/random_forest/baseline/COOJA.testlog",
+            "defense_app_log": "outputs/experiments/cooja/seed_42/random_forest/dummy_ldp/COOJA.testlog",
+            "defense_radio_log": null,
+            "log_type": "cooja_metric_log"
+          },
           "baseline_test": {
-            "accuracy": 0.24564315352697094,
-            "f1_macro": 0.2423633203474895,
+            "accuracy": 0.15873015873015872,
+            "f1_macro": 0.15657287157287159,
             "labels": [
               "client_2",
               "client_3",
@@ -751,58 +886,58 @@
             ],
             "confusion_matrix": [
               [
-                62,
-                23,
-                34,
-                22,
-                36,
-                40
+                4,
+                2,
+                5,
+                2,
+                3,
+                4
               ],
               [
-                35,
-                30,
-                31,
-                40,
-                27,
-                33
+                2,
+                2,
+                5,
+                2,
+                1,
+                3
               ],
               [
-                37,
-                24,
-                56,
-                26,
-                18,
-                30
+                5,
+                3,
+                2,
+                2,
+                7,
+                3
               ],
               [
-                26,
-                30,
-                29,
-                34,
-                33,
-                37
+                2,
+                2,
+                5,
+                2,
+                4,
+                6
               ],
               [
-                47,
-                27,
-                34,
-                26,
-                57,
-                24
+                9,
+                1,
+                3,
+                3,
+                4,
+                3
               ],
               [
-                34,
-                26,
-                22,
-                26,
-                32,
-                57
+                8,
+                0,
+                6,
+                3,
+                2,
+                6
               ]
             ]
           },
           "fixed_attacker_on_defense": {
-            "accuracy": 0.23209169054441262,
-            "f1_macro": 0.22383865011370227,
+            "accuracy": 0.13178294573643412,
+            "f1_macro": 0.12095441784137251,
             "labels": [
               "client_2",
               "client_3",
@@ -813,58 +948,58 @@
             ],
             "confusion_matrix": [
               [
-                8,
+                6,
+                2,
+                9,
                 3,
                 4,
-                2,
-                25,
-                6
-              ],
-              [
-                3,
-                9,
-                3,
-                6,
-                25,
-                11
-              ],
-              [
-                13,
-                6,
-                9,
-                8,
-                27,
-                5
-              ],
-              [
-                10,
-                6,
-                8,
-                11,
-                18,
                 4
               ],
               [
-                15,
-                6,
-                0,
-                3,
-                28,
-                9
+                10,
+                2,
+                5,
+                1,
+                2,
+                3
               ],
               [
-                10,
                 3,
+                0,
                 4,
+                1,
+                5,
+                0
+              ],
+              [
                 6,
-                19,
-                16
+                0,
+                2,
+                2,
+                8,
+                3
+              ],
+              [
+                8,
+                4,
+                5,
+                3,
+                3,
+                1
+              ],
+              [
+                8,
+                0,
+                5,
+                4,
+                3,
+                0
               ]
             ]
           },
           "retrain_attacker_on_defense": {
-            "accuracy": 0.22063037249283668,
-            "f1_macro": 0.21501983927376914,
+            "accuracy": 0.2248062015503876,
+            "f1_macro": 0.21342901805532952,
             "labels": [
               "client_2",
               "client_3",
@@ -876,60 +1011,86 @@
             "confusion_matrix": [
               [
                 9,
-                5,
-                11,
-                9,
-                7,
-                7
-              ],
-              [
-                6,
-                7,
-                16,
-                8,
-                12,
-                8
-              ],
-              [
-                11,
-                11,
-                22,
-                9,
-                11,
-                4
-              ],
-              [
-                6,
-                11,
-                15,
-                9,
-                8,
-                8
-              ],
-              [
-                8,
-                11,
-                12,
-                5,
-                15,
-                10
-              ],
-              [
-                7,
-                11,
-                11,
+                2,
                 4,
-                10,
-                15
+                4,
+                7,
+                2
+              ],
+              [
+                3,
+                3,
+                1,
+                4,
+                6,
+                6
+              ],
+              [
+                1,
+                0,
+                2,
+                7,
+                2,
+                1
+              ],
+              [
+                4,
+                4,
+                2,
+                4,
+                4,
+                3
+              ],
+              [
+                3,
+                3,
+                5,
+                3,
+                7,
+                3
+              ],
+              [
+                4,
+                3,
+                3,
+                3,
+                3,
+                4
               ]
             ]
           }
         },
         {
           "seed": 123,
+          "dataset": {
+            "baseline_windows": 468,
+            "defense_windows": 443,
+            "baseline_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "defense_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ]
+          },
+          "source_log_paths": {
+            "baseline_app_log": "outputs/experiments/cooja/seed_123/random_forest/baseline/COOJA.testlog",
+            "defense_app_log": "outputs/experiments/cooja/seed_123/random_forest/dummy_ldp/COOJA.testlog",
+            "defense_radio_log": null,
+            "log_type": "cooja_metric_log"
+          },
           "baseline_test": {
-            "accuracy": 0.25809128630705397,
-            "f1_macro": 0.2557620743526765,
+            "accuracy": 0.15602836879432624,
+            "f1_macro": 0.1575074342233457,
             "labels": [
               "client_2",
               "client_3",
@@ -940,58 +1101,58 @@
             ],
             "confusion_matrix": [
               [
-                70,
-                26,
-                34,
-                25,
-                31,
-                31
+                4,
+                4,
+                3,
+                7,
+                3,
+                2
               ],
               [
-                30,
-                35,
-                32,
-                35,
-                23,
-                41
+                4,
+                2,
+                1,
+                8,
+                4,
+                10
               ],
               [
-                38,
-                27,
-                51,
-                27,
-                24,
-                24
+                3,
+                4,
+                4,
+                2,
+                5,
+                5
               ],
               [
-                25,
-                30,
-                28,
-                44,
-                31,
-                31
+                2,
+                2,
+                3,
+                3,
+                3,
+                7
               ],
               [
-                42,
-                26,
-                28,
-                24,
-                58,
-                37
+                3,
+                5,
+                4,
+                1,
+                5,
+                5
               ],
               [
-                31,
-                30,
-                20,
-                22,
-                41,
-                53
+                3,
+                3,
+                7,
+                2,
+                4,
+                4
               ]
             ]
           },
           "fixed_attacker_on_defense": {
-            "accuracy": 0.19484240687679083,
-            "f1_macro": 0.17439604343738638,
+            "accuracy": 0.21052631578947367,
+            "f1_macro": 0.209176968680172,
             "labels": [
               "client_2",
               "client_3",
@@ -1002,58 +1163,58 @@
             ],
             "confusion_matrix": [
               [
-                7,
-                5,
-                2,
-                5,
-                28,
-                1
-              ],
-              [
-                9,
-                5,
-                2,
-                7,
-                27,
-                7
-              ],
-              [
-                8,
-                7,
                 3,
-                11,
-                31,
-                8
-              ],
-              [
-                7,
-                5,
+                1,
                 4,
-                12,
-                20,
-                9
+                1,
+                6,
+                4
               ],
               [
-                9,
                 3,
-                2,
-                9,
-                30,
-                8
+                4,
+                4,
+                1,
+                8,
+                3
               ],
               [
-                8,
                 2,
-                9,
+                4,
+                3,
+                0,
                 5,
-                23,
-                11
+                5
+              ],
+              [
+                2,
+                3,
+                3,
+                6,
+                9,
+                3
+              ],
+              [
+                1,
+                3,
+                3,
+                1,
+                8,
+                3
+              ],
+              [
+                5,
+                3,
+                6,
+                2,
+                7,
+                4
               ]
             ]
           },
           "retrain_attacker_on_defense": {
-            "accuracy": 0.2177650429799427,
-            "f1_macro": 0.2153323433560871,
+            "accuracy": 0.23308270676691728,
+            "f1_macro": 0.21548863728277964,
             "labels": [
               "client_2",
               "client_3",
@@ -1064,61 +1225,87 @@
             ],
             "confusion_matrix": [
               [
-                8,
-                6,
-                12,
-                9,
-                8,
+                1,
+                2,
+                3,
+                4,
+                4,
                 5
               ],
               [
-                8,
-                10,
-                18,
-                7,
-                6,
-                8
-              ],
-              [
-                8,
-                13,
-                18,
-                6,
-                11,
-                12
-              ],
-              [
-                11,
-                14,
-                11,
-                10,
                 5,
+                4,
+                2,
+                3,
+                5,
+                4
+              ],
+              [
+                2,
+                5,
+                4,
+                1,
+                2,
+                5
+              ],
+              [
+                2,
+                2,
+                1,
+                11,
+                4,
                 6
               ],
               [
-                9,
-                9,
-                16,
                 4,
-                13,
-                10
+                2,
+                4,
+                3,
+                3,
+                3
               ],
               [
-                5,
-                10,
-                11,
-                6,
-                9,
-                17
+                1,
+                4,
+                2,
+                8,
+                4,
+                8
               ]
             ]
           }
         },
         {
           "seed": 2026,
+          "dataset": {
+            "baseline_windows": 460,
+            "defense_windows": 438,
+            "baseline_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "defense_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ]
+          },
+          "source_log_paths": {
+            "baseline_app_log": "outputs/experiments/cooja/seed_2026/random_forest/baseline/COOJA.testlog",
+            "defense_app_log": "outputs/experiments/cooja/seed_2026/random_forest/dummy_ldp/COOJA.testlog",
+            "defense_radio_log": null,
+            "log_type": "cooja_metric_log"
+          },
           "baseline_test": {
-            "accuracy": 0.24315352697095435,
-            "f1_macro": 0.2411207688402276,
+            "accuracy": 0.17391304347826086,
+            "f1_macro": 0.1826431830593873,
             "labels": [
               "client_2",
               "client_3",
@@ -1129,58 +1316,58 @@
             ],
             "confusion_matrix": [
               [
-                68,
-                25,
-                33,
-                29,
-                27,
-                35
+                4,
+                4,
+                5,
+                2,
+                4,
+                3
               ],
               [
-                27,
-                41,
-                31,
-                39,
-                20,
-                38
+                3,
+                5,
+                2,
+                0,
+                7,
+                3
               ],
               [
-                28,
-                27,
-                52,
-                31,
-                29,
-                24
+                3,
+                4,
+                1,
+                3,
+                7,
+                10
               ],
               [
-                26,
-                33,
-                30,
-                30,
-                34,
-                36
+                2,
+                2,
+                5,
+                5,
+                4,
+                3
               ],
               [
-                41,
-                33,
-                22,
-                30,
-                51,
-                38
+                3,
+                2,
+                7,
+                3,
+                3,
+                3
               ],
               [
-                35,
-                27,
-                26,
-                28,
-                30,
-                51
+                5,
+                3,
+                5,
+                2,
+                5,
+                6
               ]
             ]
           },
           "fixed_attacker_on_defense": {
-            "accuracy": 0.2148997134670487,
-            "f1_macro": 0.2008052242458216,
+            "accuracy": 0.17424242424242425,
+            "f1_macro": 0.15678614915876724,
             "labels": [
               "client_2",
               "client_3",
@@ -1191,58 +1378,58 @@
             ],
             "confusion_matrix": [
               [
-                15,
-                5,
-                1,
-                4,
-                16,
-                7
-              ],
-              [
-                14,
                 3,
-                5,
-                3,
-                25,
-                7
-              ],
-              [
-                14,
-                7,
-                10,
-                9,
-                20,
-                8
-              ],
-              [
-                10,
-                7,
-                8,
-                10,
-                15,
-                7
-              ],
-              [
-                15,
-                5,
-                0,
+                2,
                 6,
-                27,
-                8
+                3,
+                3,
+                3
               ],
               [
-                10,
-                7,
+                3,
+                1,
+                8,
+                2,
+                2,
+                4
+              ],
+              [
+                3,
+                2,
+                8,
+                2,
+                1,
+                7
+              ],
+              [
+                5,
                 2,
                 9,
-                20,
-                10
+                2,
+                1,
+                3
+              ],
+              [
+                5,
+                5,
+                6,
+                2,
+                2,
+                2
+              ],
+              [
+                3,
+                0,
+                11,
+                2,
+                2,
+                7
               ]
             ]
           },
           "retrain_attacker_on_defense": {
-            "accuracy": 0.2492836676217765,
-            "f1_macro": 0.24385655096668046,
+            "accuracy": 0.24242424242424243,
+            "f1_macro": 0.23479423456048046,
             "labels": [
               "client_2",
               "client_3",
@@ -1253,52 +1440,52 @@
             ],
             "confusion_matrix": [
               [
-                9,
+                4,
+                3,
+                4,
+                7,
+                0,
+                2
+              ],
+              [
                 6,
-                13,
-                6,
+                7,
+                0,
+                4,
+                1,
+                2
+              ],
+              [
+                2,
+                4,
+                7,
+                2,
+                2,
+                6
+              ],
+              [
                 5,
-                9
+                2,
+                4,
+                4,
+                1,
+                6
               ],
               [
                 3,
-                11,
-                15,
-                12,
-                7,
-                9
-              ],
-              [
-                7,
-                8,
-                24,
-                13,
-                9,
-                7
-              ],
-              [
-                6,
-                5,
-                19,
-                14,
-                8,
+                4,
+                4,
+                4,
+                2,
                 5
               ],
               [
+                2,
+                2,
                 7,
-                13,
-                14,
-                4,
-                12,
-                11
-              ],
-              [
-                6,
-                7,
-                13,
-                7,
-                8,
-                17
+                3,
+                3,
+                8
               ]
             ]
           }
@@ -1307,17 +1494,29 @@
     },
     "dummy_adaptive_ldp": {
       "defense_log_paths": {
-        "radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg_dummy_adaptive.txt",
-        "app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener_dummy_adaptive.txt"
+        "radio_log": null,
+        "app_log": "outputs/experiments/cooja/seed_42/random_forest/dummy_adaptive_ldp/COOJA.testlog",
+        "log_pattern": "outputs/experiments/cooja/seed_{seed}/random_forest/dummy_adaptive_ldp/COOJA.testlog",
+        "log_type": "cooja_metric_log"
       },
       "generation": {
-        "mode": "from_defense_logs",
+        "mode": "from_metric_logs",
         "transform": null,
         "transform_config": null
       },
       "dataset": {
-        "baseline_windows": 4016,
-        "defense_windows": 1140,
+        "baseline_windows": 449,
+        "defense_windows": 440,
+        "baseline_windows_by_seed": {
+          "42": 419,
+          "123": 468,
+          "2026": 460
+        },
+        "defense_windows_by_seed": {
+          "42": 451,
+          "123": 426,
+          "2026": 442
+        },
         "baseline_labels": [
           "client_2",
           "client_3",
@@ -1337,57 +1536,57 @@
       },
       "baseline_test": {
         "accuracy": {
-          "mean": 0.24896265560165975,
-          "std": 0.006534446368474548,
-          "min": 0.24315352697095435,
-          "max": 0.25809128630705397
+          "mean": 0.16289052366758194,
+          "std": 0.007871758568746392,
+          "min": 0.15602836879432624,
+          "max": 0.17391304347826086
         },
         "f1_macro": {
-          "mean": 0.24641538784679787,
-          "std": 0.006628544085565602,
-          "min": 0.2411207688402276,
-          "max": 0.2557620743526765
+          "mean": 0.16557449628520152,
+          "std": 0.012075413118767774,
+          "min": 0.15657287157287159,
+          "max": 0.1826431830593873
         }
       },
       "fixed_attacker": {
         "accuracy": {
-          "mean": 0.20955165692007796,
-          "std": 0.016250810916698895,
-          "min": 0.1871345029239766,
-          "max": 0.22514619883040934
+          "mean": 0.15423669467787116,
+          "std": 0.023908438872107255,
+          "min": 0.1323529411764706,
+          "max": 0.1875
         },
         "f1_macro": {
-          "mean": 0.19754863109678486,
-          "std": 0.016531607410970338,
-          "min": 0.1748732677589484,
-          "max": 0.21381703162896237
+          "mean": 0.14552419732932703,
+          "std": 0.02902650327349678,
+          "min": 0.11233243785725266,
+          "max": 0.18303746614216942
         },
-        "delta_vs_baseline_accuracy_mean": -0.039410998681581794,
-        "delta_vs_baseline_f1_mean": -0.04886675675001301
+        "delta_vs_baseline_accuracy_mean": -0.008653828989710788,
+        "delta_vs_baseline_f1_mean": -0.020050298955874485
       },
       "retrain_attacker": {
         "accuracy": {
-          "mean": 0.24269005847953215,
-          "std": 0.013292574753397532,
-          "min": 0.22807017543859648,
-          "max": 0.260233918128655
+          "mean": 0.2143110533687159,
+          "std": 0.01945781780319894,
+          "min": 0.18796992481203006,
+          "max": 0.234375
         },
         "f1_macro": {
-          "mean": 0.2405971839637652,
-          "std": 0.011657844287719364,
-          "min": 0.2261038434302929,
-          "max": 0.25464938949899224
+          "mean": 0.18693478148941917,
+          "std": 0.007760616228568589,
+          "min": 0.176168430335097,
+          "max": 0.19416322357498828
         },
-        "delta_vs_baseline_accuracy_mean": -0.0062725971221276045,
-        "delta_vs_baseline_f1_mean": -0.005818203883032669
+        "delta_vs_baseline_accuracy_mean": 0.05142052970113395,
+        "delta_vs_baseline_f1_mean": 0.02136028520421765
       },
       "runs": [
         {
           "seed": 42,
-          "baseline_test": {
-            "accuracy": 0.24564315352697094,
-            "f1_macro": 0.2423633203474895,
-            "labels": [
+          "dataset": {
+            "baseline_windows": 419,
+            "defense_windows": 451,
+            "baseline_labels": [
               "client_2",
               "client_3",
               "client_4",
@@ -1395,60 +1594,24 @@
               "client_6",
               "client_7"
             ],
-            "confusion_matrix": [
-              [
-                62,
-                23,
-                34,
-                22,
-                36,
-                40
-              ],
-              [
-                35,
-                30,
-                31,
-                40,
-                27,
-                33
-              ],
-              [
-                37,
-                24,
-                56,
-                26,
-                18,
-                30
-              ],
-              [
-                26,
-                30,
-                29,
-                34,
-                33,
-                37
-              ],
-              [
-                47,
-                27,
-                34,
-                26,
-                57,
-                24
-              ],
-              [
-                34,
-                26,
-                22,
-                26,
-                32,
-                57
-              ]
+            "defense_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
             ]
           },
-          "fixed_attacker_on_defense": {
-            "accuracy": 0.21637426900584794,
-            "f1_macro": 0.21381703162896237,
+          "source_log_paths": {
+            "baseline_app_log": "outputs/experiments/cooja/seed_42/random_forest/baseline/COOJA.testlog",
+            "defense_app_log": "outputs/experiments/cooja/seed_42/random_forest/dummy_adaptive_ldp/COOJA.testlog",
+            "defense_radio_log": null,
+            "log_type": "cooja_metric_log"
+          },
+          "baseline_test": {
+            "accuracy": 0.15873015873015872,
+            "f1_macro": 0.15657287157287159,
             "labels": [
               "client_2",
               "client_3",
@@ -1459,58 +1622,120 @@
             ],
             "confusion_matrix": [
               [
-                13,
-                1,
-                2,
-                6,
-                24,
-                8
-              ],
-              [
-                11,
-                10,
-                6,
-                5,
-                21,
-                7
-              ],
-              [
-                5,
-                7,
-                11,
                 4,
-                26,
+                2,
+                5,
+                2,
+                3,
+                4
+              ],
+              [
+                2,
+                2,
+                5,
+                2,
+                1,
+                3
+              ],
+              [
+                5,
+                3,
+                2,
+                2,
+                7,
+                3
+              ],
+              [
+                2,
+                2,
+                5,
+                2,
+                4,
                 6
               ],
               [
                 9,
+                1,
                 3,
-                8,
-                5,
-                24,
-                15
-              ],
-              [
-                10,
-                6,
-                5,
+                3,
                 4,
-                21,
-                13
+                3
               ],
               [
+                8,
+                0,
+                6,
+                3,
+                2,
+                6
+              ]
+            ]
+          },
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.1323529411764706,
+            "f1_macro": 0.11233243785725266,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                9,
                 7,
                 2,
-                3,
                 2,
-                18,
-                14
+                6,
+                3
+              ],
+              [
+                8,
+                1,
+                3,
+                4,
+                3,
+                3
+              ],
+              [
+                8,
+                2,
+                1,
+                0,
+                2,
+                4
+              ],
+              [
+                11,
+                2,
+                2,
+                1,
+                1,
+                2
+              ],
+              [
+                17,
+                1,
+                4,
+                2,
+                3,
+                2
+              ],
+              [
+                11,
+                0,
+                0,
+                3,
+                3,
+                3
               ]
             ]
           },
           "retrain_attacker_on_defense": {
-            "accuracy": 0.260233918128655,
-            "f1_macro": 0.25464938949899224,
+            "accuracy": 0.22058823529411764,
+            "f1_macro": 0.19416322357498828,
             "labels": [
               "client_2",
               "client_3",
@@ -1522,60 +1747,86 @@
             "confusion_matrix": [
               [
                 11,
-                8,
-                11,
-                11,
-                10,
-                3
-              ],
-              [
-                8,
-                14,
-                10,
-                11,
-                10,
-                7
+                6,
+                0,
+                6,
+                2,
+                4
               ],
               [
                 7,
-                10,
-                15,
+                4,
+                1,
+                3,
+                4,
+                3
+              ],
+              [
+                5,
+                3,
+                0,
+                2,
+                3,
+                4
+              ],
+              [
+                4,
+                4,
+                3,
+                2,
+                3,
+                3
+              ],
+              [
+                4,
                 6,
-                16,
+                4,
+                2,
+                8,
                 5
               ],
               [
-                7,
-                8,
-                18,
-                20,
-                8,
-                3
-              ],
-              [
-                12,
-                7,
-                10,
-                6,
-                21,
-                3
-              ],
-              [
-                7,
-                6,
                 3,
-                13,
-                9,
-                8
+                3,
+                4,
+                3,
+                2,
+                5
               ]
             ]
           }
         },
         {
           "seed": 123,
+          "dataset": {
+            "baseline_windows": 468,
+            "defense_windows": 426,
+            "baseline_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "defense_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ]
+          },
+          "source_log_paths": {
+            "baseline_app_log": "outputs/experiments/cooja/seed_123/random_forest/baseline/COOJA.testlog",
+            "defense_app_log": "outputs/experiments/cooja/seed_123/random_forest/dummy_adaptive_ldp/COOJA.testlog",
+            "defense_radio_log": null,
+            "log_type": "cooja_metric_log"
+          },
           "baseline_test": {
-            "accuracy": 0.25809128630705397,
-            "f1_macro": 0.2557620743526765,
+            "accuracy": 0.15602836879432624,
+            "f1_macro": 0.1575074342233457,
             "labels": [
               "client_2",
               "client_3",
@@ -1586,58 +1837,58 @@
             ],
             "confusion_matrix": [
               [
-                70,
-                26,
-                34,
-                25,
-                31,
-                31
+                4,
+                4,
+                3,
+                7,
+                3,
+                2
               ],
               [
-                30,
-                35,
-                32,
-                35,
-                23,
-                41
+                4,
+                2,
+                1,
+                8,
+                4,
+                10
               ],
               [
-                38,
-                27,
-                51,
-                27,
-                24,
-                24
+                3,
+                4,
+                4,
+                2,
+                5,
+                5
               ],
               [
-                25,
-                30,
-                28,
-                44,
-                31,
-                31
+                2,
+                2,
+                3,
+                3,
+                3,
+                7
               ],
               [
-                42,
-                26,
-                28,
-                24,
-                58,
-                37
+                3,
+                5,
+                4,
+                1,
+                5,
+                5
               ],
               [
-                31,
-                30,
-                20,
-                22,
-                41,
-                53
+                3,
+                3,
+                7,
+                2,
+                4,
+                4
               ]
             ]
           },
           "fixed_attacker_on_defense": {
-            "accuracy": 0.22514619883040934,
-            "f1_macro": 0.20395559390244378,
+            "accuracy": 0.1875,
+            "f1_macro": 0.18303746614216942,
             "labels": [
               "client_2",
               "client_3",
@@ -1648,58 +1899,58 @@
             ],
             "confusion_matrix": [
               [
-                11,
-                1,
                 3,
-                6,
-                24,
-                9
+                7,
+                3,
+                0,
+                3,
+                2
               ],
               [
-                7,
                 4,
                 5,
-                9,
-                30,
+                2,
+                3,
+                3,
+                3
+              ],
+              [
+                4,
+                3,
+                4,
+                1,
+                4,
+                1
+              ],
+              [
+                4,
+                4,
+                3,
+                2,
+                5,
                 5
               ],
               [
-                7,
-                3,
-                11,
-                4,
-                28,
-                6
-              ],
-              [
+                0,
                 5,
-                10,
                 5,
-                8,
-                27,
-                9
-              ],
-              [
+                1,
                 6,
-                4,
-                2,
-                4,
-                35,
-                8
+                4
               ],
               [
                 5,
+                3,
                 5,
-                3,
-                3,
-                22,
-                8
+                2,
+                10,
+                4
               ]
             ]
           },
           "retrain_attacker_on_defense": {
-            "accuracy": 0.22807017543859648,
-            "f1_macro": 0.2261038434302929,
+            "accuracy": 0.234375,
+            "f1_macro": 0.19047269055817226,
             "labels": [
               "client_2",
               "client_3",
@@ -1710,61 +1961,87 @@
             ],
             "confusion_matrix": [
               [
-                13,
-                6,
-                11,
-                7,
-                10,
+                0,
+                4,
+                1,
+                3,
+                3,
                 7
               ],
               [
-                6,
-                13,
-                12,
-                13,
-                11,
-                5
+                0,
+                4,
+                1,
+                4,
+                4,
+                7
               ],
               [
-                6,
-                11,
-                14,
-                11,
-                13,
+                0,
+                0,
+                3,
+                7,
+                3,
                 4
               ],
               [
-                8,
-                10,
-                12,
-                17,
-                9,
-                8
-              ],
-              [
+                2,
                 4,
-                11,
-                9,
-                16,
-                14,
-                5
+                6,
+                2,
+                3,
+                6
               ],
               [
+                2,
+                3,
+                7,
+                2,
                 5,
-                10,
+                2
+              ],
+              [
+                1,
                 6,
-                13,
-                5,
-                7
+                0,
+                2,
+                4,
+                16
               ]
             ]
           }
         },
         {
           "seed": 2026,
+          "dataset": {
+            "baseline_windows": 460,
+            "defense_windows": 442,
+            "baseline_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "defense_labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ]
+          },
+          "source_log_paths": {
+            "baseline_app_log": "outputs/experiments/cooja/seed_2026/random_forest/baseline/COOJA.testlog",
+            "defense_app_log": "outputs/experiments/cooja/seed_2026/random_forest/dummy_adaptive_ldp/COOJA.testlog",
+            "defense_radio_log": null,
+            "log_type": "cooja_metric_log"
+          },
           "baseline_test": {
-            "accuracy": 0.24315352697095435,
-            "f1_macro": 0.2411207688402276,
+            "accuracy": 0.17391304347826086,
+            "f1_macro": 0.1826431830593873,
             "labels": [
               "client_2",
               "client_3",
@@ -1775,176 +2052,176 @@
             ],
             "confusion_matrix": [
               [
-                68,
-                25,
-                33,
-                29,
-                27,
-                35
-              ],
-              [
-                27,
-                41,
-                31,
-                39,
-                20,
-                38
-              ],
-              [
-                28,
-                27,
-                52,
-                31,
-                29,
-                24
-              ],
-              [
-                26,
-                33,
-                30,
-                30,
-                34,
-                36
-              ],
-              [
-                41,
-                33,
-                22,
-                30,
-                51,
-                38
-              ],
-              [
-                35,
-                27,
-                26,
-                28,
-                30,
-                51
-              ]
-            ]
-          },
-          "fixed_attacker_on_defense": {
-            "accuracy": 0.1871345029239766,
-            "f1_macro": 0.1748732677589484,
-            "labels": [
-              "client_2",
-              "client_3",
-              "client_4",
-              "client_5",
-              "client_6",
-              "client_7"
-            ],
-            "confusion_matrix": [
-              [
-                15,
-                2,
+                4,
                 4,
                 5,
-                24,
-                4
-              ],
-              [
-                14,
-                5,
-                7,
-                9,
-                19,
-                6
-              ],
-              [
-                15,
                 2,
-                5,
-                5,
-                27,
-                5
-              ],
-              [
-                8,
                 4,
-                10,
-                10,
-                22,
-                10
+                3
               ],
               [
-                13,
-                7,
+                3,
+                5,
+                2,
                 0,
-                8,
-                22,
-                9
-              ],
-              [
-                8,
-                5,
-                5,
-                2,
-                19,
-                7
-              ]
-            ]
-          },
-          "retrain_attacker_on_defense": {
-            "accuracy": 0.23976608187134502,
-            "f1_macro": 0.24103831896201044,
-            "labels": [
-              "client_2",
-              "client_3",
-              "client_4",
-              "client_5",
-              "client_6",
-              "client_7"
-            ],
-            "confusion_matrix": [
-              [
-                12,
-                9,
-                9,
-                9,
-                11,
-                4
-              ],
-              [
-                9,
-                13,
-                13,
-                17,
-                7,
-                1
-              ],
-              [
-                12,
-                11,
-                14,
-                12,
                 7,
                 3
               ],
               [
-                10,
-                13,
-                9,
-                20,
-                6,
-                6
+                3,
+                4,
+                1,
+                3,
+                7,
+                10
               ],
               [
-                12,
-                11,
-                9,
-                12,
-                13,
+                2,
+                2,
+                5,
+                5,
+                4,
+                3
+              ],
+              [
+                3,
+                2,
+                7,
+                3,
+                3,
+                3
+              ],
+              [
+                5,
+                3,
+                5,
+                2,
+                5,
+                6
+              ]
+            ]
+          },
+          "fixed_attacker_on_defense": {
+            "accuracy": 0.14285714285714285,
+            "f1_macro": 0.14120268798855898,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                3,
+                5,
+                6,
+                1,
+                3,
+                7
+              ],
+              [
+                2,
+                2,
+                6,
+                2,
+                1,
+                5
+              ],
+              [
+                3,
+                2,
+                6,
+                1,
+                0,
+                4
+              ],
+              [
+                6,
+                6,
+                5,
+                2,
+                1,
+                4
+              ],
+              [
+                5,
+                4,
+                6,
+                1,
+                3,
+                4
+              ],
+              [
+                4,
+                6,
+                8,
+                1,
+                5,
+                3
+              ]
+            ]
+          },
+          "retrain_attacker_on_defense": {
+            "accuracy": 0.18796992481203006,
+            "f1_macro": 0.176168430335097,
+            "labels": [
+              "client_2",
+              "client_3",
+              "client_4",
+              "client_5",
+              "client_6",
+              "client_7"
+            ],
+            "confusion_matrix": [
+              [
+                4,
+                2,
+                4,
+                3,
+                3,
+                9
+              ],
+              [
+                6,
+                2,
+                2,
+                4,
+                2,
+                2
+              ],
+              [
+                3,
+                3,
+                1,
+                4,
+                4,
+                1
+              ],
+              [
+                5,
+                1,
+                2,
+                5,
+                6,
+                5
+              ],
+              [
+                6,
+                1,
+                2,
+                7,
+                5,
                 2
               ],
               [
                 7,
-                8,
-                7,
-                8,
-                6,
-                10
+                1,
+                3,
+                3,
+                5,
+                8
               ]
             ]
           }

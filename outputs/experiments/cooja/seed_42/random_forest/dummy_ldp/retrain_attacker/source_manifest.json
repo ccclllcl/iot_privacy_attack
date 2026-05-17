@@ -1,19 +1,8 @@
 {
-  "dataset": "cooja",
-  "seed": 42,
-  "model": "random_forest",
-  "method": "dummy_ldp",
-  "mode": "retrain_attacker",
-  "role": "cooja_per_seed",
-  "source_files": [
-    {
-      "role": "per_seed_row",
-      "old_path": "outputs/summaries/final_thesis/cooja/cooja_per_seed.csv",
-      "new_path": "outputs/experiments/cooja/seed_42/random_forest/dummy_ldp/retrain_attacker/metrics.json"
-    }
-  ],
-  "unavailable_reason": {
-    "packet_byte_iat_metrics": "Current Cooja logs do not expose enough labeled packet fields for packet/byte/IAT proxy metrics.",
-    "energy_delay_metrics": "No real energy or end-to-end delay measurements are available."
-  }
+  "artifact_type": "cooja_defense_eval",
+  "generated_by": "experiments/cooja/run_cooja_defense_eval.py",
+  "source_log_type": "cooja_metric_log",
+  "baseline_source_app_log": "outputs/experiments/cooja/seed_42/random_forest/baseline/COOJA.testlog",
+  "defense_source_app_log": "outputs/experiments/cooja/seed_42/random_forest/dummy_ldp/COOJA.testlog",
+  "note": "Accuracy was recomputed from the same no-gui Cooja METRIC_TX/METRIC_RX logs used for overhead metrics."
 }

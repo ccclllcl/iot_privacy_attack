@@ -19,11 +19,113 @@
 #define ADAPTIVE_MODE 0
 #endif
 
+#ifndef ADAPTIVE_WINDOW_SEC
+#define ADAPTIVE_WINDOW_SEC 60
+#endif
+
+#ifndef ADAPTIVE_TARGET_REAL_TX
+#define ADAPTIVE_TARGET_REAL_TX 8
+#endif
+
+#ifndef ADAPTIVE_DUMMY_PROB_MIN_PCT
+#define ADAPTIVE_DUMMY_PROB_MIN_PCT 8
+#endif
+
+#ifndef ADAPTIVE_DUMMY_PROB_MAX_PCT
+#define ADAPTIVE_DUMMY_PROB_MAX_PCT 35
+#endif
+
+#ifndef ADAPTIVE_EPSILON_MIN_MILLI
+#define ADAPTIVE_EPSILON_MIN_MILLI 600
+#endif
+
+#ifndef ADAPTIVE_EPSILON_MAX_MILLI
+#define ADAPTIVE_EPSILON_MAX_MILLI 2000
+#endif
+
+#ifndef ADAPTIVE_IAT_MIN_MS
+#define ADAPTIVE_IAT_MIN_MS 6000
+#endif
+
+#ifndef ADAPTIVE_IAT_MAX_MS
+#define ADAPTIVE_IAT_MAX_MS 18000
+#endif
+
 static struct simple_udp_connection udp_conn;
 static uint32_t rx_count;
 
 PROCESS(udp_client_process, "UDP metric mixed-traffic client");
 AUTOSTART_PROCESSES(&udp_client_process);
+
+#if ADAPTIVE_MODE
+#define ADAPTIVE_HISTORY_LEN 16
+
+static clock_time_t recent_real_tx[ADAPTIVE_HISTORY_LEN];
+static uint8_t recent_real_pos;
+static uint8_t recent_real_used;
+static uint32_t last_real_tx_ms;
+static uint32_t ewma_iat_ms;
+
+static void
+adaptive_record_real_tx(void)
+{
+  uint32_t now_ms = metric_now_ms();
+  if(last_real_tx_ms > 0 && now_ms > last_real_tx_ms) {
+    uint32_t iat = now_ms - last_real_tx_ms;
+    ewma_iat_ms = ewma_iat_ms == 0 ? iat : ((3 * ewma_iat_ms) + iat) / 4;
+  } else if(ewma_iat_ms == 0) {
+    ewma_iat_ms = (uint32_t)(((uint64_t)SEND_INTERVAL * 1000ull) / CLOCK_SECOND);
+  }
+  last_real_tx_ms = now_ms;
+
+  recent_real_tx[recent_real_pos] = clock_time();
+  recent_real_pos = (recent_real_pos + 1) % ADAPTIVE_HISTORY_LEN;
+  if(recent_real_used < ADAPTIVE_HISTORY_LEN) {
+    recent_real_used++;
+  }
+}
+
+static uint8_t
+adaptive_recent_real_count(clock_time_t now)
+{
+  uint8_t i;
+  uint8_t count = 0;
+  clock_time_t window = ADAPTIVE_WINDOW_SEC * CLOCK_SECOND;
+  for(i = 0; i < recent_real_used; i++) {
+    if(now >= recent_real_tx[i] && now - recent_real_tx[i] <= window) {
+      count++;
+    }
+  }
+  return count;
+}
+
+static uint8_t
+adaptive_intensity_pct(void)
+{
+  uint8_t recent_count = adaptive_recent_real_count(clock_time());
+  uint16_t count_pct = recent_count >= ADAPTIVE_TARGET_REAL_TX ?
+    100 : (uint16_t)recent_count * 100 / ADAPTIVE_TARGET_REAL_TX;
+  uint16_t iat_pct;
+
+  if(ewma_iat_ms <= ADAPTIVE_IAT_MIN_MS) {
+    iat_pct = 100;
+  } else if(ewma_iat_ms >= ADAPTIVE_IAT_MAX_MS) {
+    iat_pct = 0;
+  } else {
+    iat_pct = (uint16_t)((ADAPTIVE_IAT_MAX_MS - ewma_iat_ms) * 100 /
+                         (ADAPTIVE_IAT_MAX_MS - ADAPTIVE_IAT_MIN_MS));
+  }
+
+  return (uint8_t)((70 * count_pct + 30 * iat_pct) / 100);
+}
+
+static uint16_t
+adaptive_epsilon_milli(uint8_t intensity_pct)
+{
+  uint16_t span = ADAPTIVE_EPSILON_MAX_MILLI - ADAPTIVE_EPSILON_MIN_MILLI;
+  return (uint16_t)(ADAPTIVE_EPSILON_MAX_MILLI - ((uint32_t)span * intensity_pct / 100));
+}
+#endif
 
 static void
 udp_rx_callback(struct simple_udp_connection *c,
@@ -48,14 +150,10 @@ static uint8_t
 current_dummy_prob(void)
 {
 #if ADAPTIVE_MODE
-  clock_time_t now = clock_time();
-  if(now < (5 * 60 * CLOCK_SECOND)) {
-    return 15;
-  }
-  if(now < (10 * 60 * CLOCK_SECOND)) {
-    return 45;
-  }
-  return 25;
+  uint8_t intensity_pct = adaptive_intensity_pct();
+  return (uint8_t)(ADAPTIVE_DUMMY_PROB_MIN_PCT +
+                   ((uint16_t)(ADAPTIVE_DUMMY_PROB_MAX_PCT - ADAPTIVE_DUMMY_PROB_MIN_PCT) *
+                    intensity_pct / 100));
 #else
   return DUMMY_PROB_PCT;
 #endif
@@ -69,6 +167,11 @@ PROCESS_THREAD(udp_client_process, ev, data)
   static uint32_t tx_count;
   static uint32_t missed_tx_count;
   static uint32_t dummy_count;
+  static uint8_t dummy_prob_pct;
+#if ADAPTIVE_MODE
+  static uint8_t adaptive_intensity;
+  static uint16_t adaptive_epsilon;
+#endif
   uip_ipaddr_t dest_ipaddr;
 
   PROCESS_BEGIN();
@@ -94,7 +197,24 @@ PROCESS_THREAD(udp_client_process, ev, data)
       tx_count++;
 
 #if DUMMY_ENABLED
-      if((random_rand() % 100) < current_dummy_prob()) {
+#if ADAPTIVE_MODE
+      adaptive_record_real_tx();
+      adaptive_intensity = adaptive_intensity_pct();
+      adaptive_epsilon = adaptive_epsilon_milli(adaptive_intensity);
+      dummy_prob_pct = current_dummy_prob();
+      if(tx_count % 10 == 0) {
+        LOG_INFO("ADAPTIVE_LDP node=%u recent_real=%u intensity_pct=%u epsilon_milli=%u dummy_prob_pct=%u ewma_iat_ms=%" PRIu32 "\n",
+                 node_id,
+                 adaptive_recent_real_count(clock_time()),
+                 adaptive_intensity,
+                 adaptive_epsilon,
+                 dummy_prob_pct,
+                 ewma_iat_ms);
+      }
+#else
+      dummy_prob_pct = current_dummy_prob();
+#endif
+      if((random_rand() % 100) < dummy_prob_pct) {
         metric_fill_packet(&dummy_pkt, METRIC_PACKET_DUMMY, dummy_count, "status");
         simple_udp_sendto(&udp_conn, &dummy_pkt, sizeof(dummy_pkt), &dest_ipaddr);
         LOG_INFO("METRIC_TX type=DUMMY node=%u seq=%" PRIu32 " bytes=%u time_ms=%" PRIu32 "\n",
