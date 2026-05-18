@@ -57,109 +57,6 @@ def _mean(series: pd.Series) -> float | None:
     return float(vals.mean())
 
 
-def _metric_mean(report: dict[str, Any], section: str, metric: str) -> float | None:
-    try:
-        return float(((report.get(section) or {}).get(metric) or {}).get("mean"))
-    except Exception:
-        return None
-
-
-def _metric_value(report: dict[str, Any], metric: str) -> float | None:
-    try:
-        return float(report.get(metric))
-    except Exception:
-        return None
-
-
-def update_accuracy_from_eval_report() -> bool:
-    report_path = EXPERIMENT_ROOT / "eval" / "defense_eval_report.json"
-    report = _read_json(report_path)
-    if not isinstance(report, dict):
-        return False
-    methods = report.get("methods", {})
-    if not isinstance(methods, dict) or not methods:
-        return False
-
-    summary_rows: list[dict[str, Any]] = []
-    per_seed_rows: list[dict[str, Any]] = []
-    for method_name, method_obj in methods.items():
-        if method_name not in DEFENSE_METHODS or not isinstance(method_obj, dict):
-            continue
-        paths = method_obj.get("defense_log_paths", {}) if isinstance(method_obj.get("defense_log_paths"), dict) else {}
-        source_files = json.dumps(paths, ensure_ascii=False)
-        baseline_acc = _metric_mean(method_obj, "baseline_test", "accuracy")
-        for mode, section in [
-            ("fixed_attacker", "fixed_attacker"),
-            ("retrain_attacker", "retrain_attacker"),
-        ]:
-            defended_acc = _metric_mean(method_obj, section, "accuracy")
-            f1_macro = _metric_mean(method_obj, section, "f1_macro")
-            summary_rows.append(
-                {
-                    "accuracy_drop": None
-                    if baseline_acc is None or defended_acc is None
-                    else baseline_acc - defended_acc,
-                    "baseline_acc": baseline_acc,
-                    "byte_count_mean": None,
-                    "correlation_drop": None,
-                    "defended_acc": defended_acc,
-                    "delay_proxy_available": None,
-                    "dummy_packet_ratio": None,
-                    "energy_metric_available": None,
-                    "f1_macro": f1_macro,
-                    "mean_iat_ms": None,
-                    "method": method_name,
-                    "mode": mode,
-                    "p95_iat_ms": None,
-                    "packet_overhead_ratio": None,
-                    "pkt_count_mean": None,
-                    "seed": "mean_over_seeds",
-                    "source_log_files": source_files,
-                    "traffic_activity_correlation_after": None,
-                    "traffic_activity_correlation_before": None,
-                }
-            )
-
-        for run in method_obj.get("runs", []) or []:
-            if not isinstance(run, dict):
-                continue
-            seed = int(run.get("seed"))
-            run_dataset = run.get("dataset", {}) if isinstance(run.get("dataset"), dict) else {}
-            run_paths = run.get("source_log_paths", {}) if isinstance(run.get("source_log_paths"), dict) else {}
-            base = run.get("baseline_test", {}) if isinstance(run.get("baseline_test"), dict) else {}
-            for mode, key in [
-                ("fixed_attacker", "fixed_attacker_on_defense"),
-                ("retrain_attacker", "retrain_attacker_on_defense"),
-            ]:
-                defended = run.get(key, {}) if isinstance(run.get(key), dict) else {}
-                b_acc = _metric_value(base, "accuracy")
-                d_acc = _metric_value(defended, "accuracy")
-                per_seed_rows.append(
-                    {
-                        "method": method_name,
-                        "mode": mode,
-                        "seed": seed,
-                        "baseline_acc": b_acc,
-                        "defended_acc": d_acc,
-                        "accuracy_drop": None if b_acc is None or d_acc is None else b_acc - d_acc,
-                        "baseline_f1_macro": _metric_value(base, "f1_macro"),
-                        "defended_f1_macro": _metric_value(defended, "f1_macro"),
-                        "baseline_windows": run_dataset.get("baseline_windows"),
-                        "defense_windows": run_dataset.get("defense_windows"),
-                        "source_radio_log": run_paths.get("defense_radio_log"),
-                        "source_app_log": run_paths.get("defense_app_log") or paths.get("app_log"),
-                    }
-                )
-
-    if not summary_rows:
-        return False
-    COOJA_SUMMARY_DIR.mkdir(parents=True, exist_ok=True)
-    pd.DataFrame(summary_rows).to_csv(COOJA_SUMMARY_DIR / "cooja_summary.csv", index=False, encoding="utf-8-sig")
-    pd.DataFrame(per_seed_rows).to_csv(COOJA_SUMMARY_DIR / "cooja_per_seed.csv", index=False, encoding="utf-8-sig")
-    _write_json(COOJA_SUMMARY_DIR / "cooja_summary.json", summary_rows)
-    return True
-
-
 def load_metrics(experiment_root: Path) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     rows: list[dict[str, Any]] = []
     missing: list[dict[str, Any]] = []
@@ -273,9 +170,6 @@ def update_cooja_summary(df: pd.DataFrame) -> None:
     if not summary_path.exists():
         return
     summary = pd.read_csv(summary_path)
-    for col in ["delay_proxy_available", "energy_metric_available", "is_hardware_measurement"]:
-        if col in summary.columns:
-            summary[col] = summary[col].astype("object")
     overhead = pd.DataFrame(build_overhead_summary(df))
     if overhead.empty:
         return
@@ -352,7 +246,6 @@ def write_completion_report(df: pd.DataFrame, missing: list[dict[str, Any]]) -> 
         "modified_contiki_sources": [
             "cooja/contiki-ng/udp-client-baseline.c",
             "cooja/contiki-ng/udp-client-mix.c",
-            "cooja/contiki-ng/udp-client-mix-adaptive.c",
             "cooja/contiki-ng/udp-server-metrics.c",
             "cooja/contiki-ng/udp-metric-common.h",
         ],
@@ -371,7 +264,7 @@ def write_completion_report(df: pd.DataFrame, missing: list[dict[str, Any]]) -> 
         "missing": missing,
         "success": success,
         "word_document_modified": False,
-        "metric_note": "Energy is an Energest simulation estimate; delay is Cooja simulation-time end-to-end delay. dummy_adaptive_ldp uses recent send-intensity driven adaptive epsilon and dummy probability.",
+        "metric_note": "Energy is an Energest simulation estimate; delay is Cooja simulation-time end-to-end delay.",
     }
     _write_json(SUMMARY_ROOT / "cooja_overhead_completion_report.json", report)
 
@@ -418,7 +311,6 @@ def summarize(experiment_root: Path = EXPERIMENT_ROOT) -> dict[str, Any]:
     overhead_rows = build_overhead_summary(df)
     pd.DataFrame(traffic_rows).to_csv(COOJA_SUMMARY_DIR / "cooja_traffic_metrics.csv", index=False, encoding="utf-8-sig")
     pd.DataFrame(overhead_rows).to_csv(COOJA_SUMMARY_DIR / "cooja_overhead_summary.csv", index=False, encoding="utf-8-sig")
-    update_accuracy_from_eval_report()
     update_cooja_summary(df)
     update_final_summary()
     write_limitations(not missing and not df.empty, missing)

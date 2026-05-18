@@ -13,12 +13,66 @@
   ],
   "results": [
     {
+      "method": "baseline",
+      "seed": 42,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_42/random_forest/baseline/overhead_metrics.json",
+      "events": 2134,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_noise",
+      "seed": 42,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_42/random_forest/dummy_noise/overhead_metrics.json",
+      "events": 2504,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_ldp",
+      "seed": 42,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_42/random_forest/dummy_ldp/overhead_metrics.json",
+      "events": 2822,
+      "unavailable_reason": []
+    },
+    {
       "method": "dummy_adaptive_ldp",
       "seed": 42,
       "status": "ok",
       "returncode": 0,
       "output": "outputs/experiments/cooja/seed_42/random_forest/dummy_adaptive_ldp/overhead_metrics.json",
-      "events": 2676,
+      "events": 2680,
+      "unavailable_reason": []
+    },
+    {
+      "method": "baseline",
+      "seed": 123,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_123/random_forest/baseline/overhead_metrics.json",
+      "events": 2128,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_noise",
+      "seed": 123,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_123/random_forest/dummy_noise/overhead_metrics.json",
+      "events": 2572,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_ldp",
+      "seed": 123,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_123/random_forest/dummy_ldp/overhead_metrics.json",
+      "events": 2896,
       "unavailable_reason": []
     },
     {
@@ -27,7 +81,34 @@
       "status": "ok",
       "returncode": 0,
       "output": "outputs/experiments/cooja/seed_123/random_forest/dummy_adaptive_ldp/overhead_metrics.json",
-      "events": 2788,
+      "events": 2712,
+      "unavailable_reason": []
+    },
+    {
+      "method": "baseline",
+      "seed": 2026,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_2026/random_forest/baseline/overhead_metrics.json",
+      "events": 2122,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_noise",
+      "seed": 2026,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_2026/random_forest/dummy_noise/overhead_metrics.json",
+      "events": 2558,
+      "unavailable_reason": []
+    },
+    {
+      "method": "dummy_ldp",
+      "seed": 2026,
+      "status": "ok",
+      "returncode": 0,
+      "output": "outputs/experiments/cooja/seed_2026/random_forest/dummy_ldp/overhead_metrics.json",
+      "events": 2902,
       "unavailable_reason": []
     },
     {
@@ -36,7 +117,7 @@
       "status": "ok",
       "returncode": 0,
       "output": "outputs/experiments/cooja/seed_2026/random_forest/dummy_adaptive_ldp/overhead_metrics.json",
-      "events": 2722,
+      "events": 2684,
       "unavailable_reason": []
     }
   ],

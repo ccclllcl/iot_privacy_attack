@@ -1,9 +1,8 @@
 {
-  "generated_at": "2026-05-18T00:23:25",
+  "generated_at": "2026-05-11T10:54:25",
   "modified_contiki_sources": [
     "cooja/contiki-ng/udp-client-baseline.c",
     "cooja/contiki-ng/udp-client-mix.c",
-    "cooja/contiki-ng/udp-client-mix-adaptive.c",
     "cooja/contiki-ng/udp-server-metrics.c",
     "cooja/contiki-ng/udp-metric-common.h"
   ],
@@ -35,5 +34,5 @@
   "missing": [],
   "success": true,
   "word_document_modified": false,
-  "metric_note": "Energy is an Energest simulation estimate; delay is Cooja simulation-time end-to-end delay. dummy_adaptive_ldp uses recent send-intensity driven adaptive epsilon and dummy probability."
+  "metric_note": "Energy is an Energest simulation estimate; delay is Cooja simulation-time end-to-end delay."
 }

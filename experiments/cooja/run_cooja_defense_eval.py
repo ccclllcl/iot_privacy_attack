@@ -26,7 +26,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
 from sklearn.model_selection import train_test_split
 
-from parse_cooja_overhead_metrics import parse_log as parse_metric_log
 from run_cooja_baseline_attack import (
     build_window_dataset,
     parse_app_requests,
@@ -43,17 +42,6 @@ def parse_seed_list(s: str) -> list[int]:
     if not out:
         raise ValueError("Seed list is empty.")
     return out
-
-
-def parse_method_list(s: str) -> list[str]:
-    allowed = {"dummy_noise", "dummy_ldp", "dummy_adaptive_ldp"}
-    methods = [part.strip() for part in s.split(",") if part.strip()]
-    if not methods:
-        raise ValueError("Method list is empty.")
-    bad = [m for m in methods if m not in allowed]
-    if bad:
-        raise ValueError(f"Unsupported Cooja method(s): {bad}")
-    return methods
 
 
 def summarize(vals: list[float]) -> dict[str, float]:
@@ -98,41 +86,6 @@ def dataset_from_frames(
     return build_window_dataset(
         radio_df=radio_df,
         app_df=app_df,
-        window_s=window_s,
-        step_s=step_s,
-        min_requests=min_requests,
-        dominance_threshold=dominance_threshold,
-    )
-
-
-def dataset_from_metric_log(
-    metric_log: Path,
-    window_s: float,
-    step_s: float,
-    min_requests: int,
-    dominance_threshold: float,
-) -> pd.DataFrame:
-    events, _ = parse_metric_log(metric_log)
-    radio_rows: list[dict[str, int]] = []
-    app_rows: list[dict[str, int]] = []
-    for event in events:
-        if event.get("event") != "TX":
-            continue
-        raw_time = event.get("sim_time_ms")
-        if raw_time in {"", None}:
-            raw_time = event.get("payload_time_ms") or event.get("time_ms")
-        t_ms = int(round(float(raw_time)))
-        node = int(event["node"])
-        radio_rows.append({"t_ms": t_ms, "src_id": node, "frame_len": int(event["bytes"])})
-        if event.get("packet_type") == "REAL":
-            app_rows.append({"t_ms": t_ms, "client_id": node})
-    if not radio_rows or not app_rows:
-        raise ValueError(f"No usable METRIC_TX rows found in {metric_log}")
-    radio_df = pd.DataFrame(radio_rows).sort_values("t_ms").reset_index(drop=True)
-    app_df = pd.DataFrame(app_rows).sort_values("t_ms").reset_index(drop=True)
-    return dataset_from_frames(
-        radio_df,
-        app_df,
         window_s=window_s,
         step_s=step_s,
         min_requests=min_requests,
@@ -257,279 +210,6 @@ def eval_metrics(
     }
 
 
-def _rel(path: Path, root: Path) -> str:
-    try:
-        return path.resolve().relative_to(root.resolve()).as_posix()
-    except Exception:
-        return path.as_posix().replace("\\", "/")
-
-
-def _metric_log_path(experiment_root: Path, seed: int, method: str) -> Path:
-    return experiment_root / f"seed_{seed}" / "random_forest" / method / "COOJA.testlog"
-
-
-def _write_metric_eval_artifact(
-    *,
-    root: Path,
-    experiment_root: Path,
-    method: str,
-    seed: int,
-    mode: str,
-    baseline_metrics: dict[str, Any],
-    defended_metrics: dict[str, Any],
-    baseline_log: Path,
-    defense_log: Path,
-    baseline_windows: int,
-    defense_windows: int,
-) -> None:
-    out_dir = experiment_root / f"seed_{seed}" / "random_forest" / method / mode
-    out_dir.mkdir(parents=True, exist_ok=True)
-    metrics = {
-        "dataset": "cooja",
-        "seed": int(seed),
-        "model": "random_forest",
-        "method": method,
-        "mode": mode,
-        "baseline_acc": float(baseline_metrics["accuracy"]),
-        "defended_acc": float(defended_metrics["accuracy"]),
-        "accuracy_drop": float(baseline_metrics["accuracy"] - defended_metrics["accuracy"]),
-        "baseline_f1_macro": float(baseline_metrics["f1_macro"]),
-        "defended_f1_macro": float(defended_metrics["f1_macro"]),
-        "baseline_windows": int(baseline_windows),
-        "defense_windows": int(defense_windows),
-        "source_log_type": "cooja_metric_log",
-        "baseline_source_app_log": _rel(baseline_log, root),
-        "source_app_log": _rel(defense_log, root),
-        "source_radio_log": None,
-    }
-    (out_dir / "metrics.json").write_text(
-        json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    (out_dir / "source_manifest.json").write_text(
-        json.dumps(
-            {
-                "artifact_type": "cooja_defense_eval",
-                "generated_by": "experiments/cooja/run_cooja_defense_eval.py",
-                "source_log_type": "cooja_metric_log",
-                "baseline_source_app_log": _rel(baseline_log, root),
-                "defense_source_app_log": _rel(defense_log, root),
-                "note": "Accuracy was recomputed from the same no-gui Cooja METRIC_TX/METRIC_RX logs used for overhead metrics.",
-            },
-            ensure_ascii=False,
-            indent=2,
-        ),
-        encoding="utf-8",
-    )
-
-
-def evaluate_metric_experiment_logs(
-    *,
-    root: Path,
-    experiment_root: Path,
-    out_dir: Path,
-    methods: list[str],
-    seeds: list[int],
-    window_s: float,
-    step_s: float,
-    min_requests: int,
-    dominance_threshold: float,
-    test_ratio: float,
-) -> dict[str, Any]:
-    methods_summary: dict[str, Any] = {}
-
-    for method_name in methods:
-        per_seed_runs: list[dict[str, Any]] = []
-        b_acc: list[float] = []
-        b_f1: list[float] = []
-        f_acc: list[float] = []
-        f_f1: list[float] = []
-        r_acc: list[float] = []
-        r_f1: list[float] = []
-        baseline_windows: list[int] = []
-        defense_windows: list[int] = []
-        baseline_labels: set[str] = set()
-        defense_labels: set[str] = set()
-
-        for seed in seeds:
-            baseline_log = _metric_log_path(experiment_root, seed, "baseline")
-            defense_log = _metric_log_path(experiment_root, seed, method_name)
-            if not baseline_log.exists():
-                raise FileNotFoundError(f"Missing baseline Cooja metric log: {baseline_log}")
-            if not defense_log.exists():
-                raise FileNotFoundError(f"Missing defense Cooja metric log: {defense_log}")
-
-            baseline_ds = dataset_from_metric_log(
-                baseline_log,
-                window_s=window_s,
-                step_s=step_s,
-                min_requests=min_requests,
-                dominance_threshold=dominance_threshold,
-            )
-            defense_ds = dataset_from_metric_log(
-                defense_log,
-                window_s=window_s,
-                step_s=step_s,
-                min_requests=min_requests,
-                dominance_threshold=dominance_threshold,
-            )
-            x_base, y_base, _ = make_xy(baseline_ds)
-            x_def, y_def, _ = make_xy(defense_ds)
-
-            xb_train, xb_test, yb_train, yb_test = train_test_split(
-                x_base,
-                y_base,
-                test_size=test_ratio,
-                random_state=int(seed),
-                stratify=y_base,
-            )
-            xd_train, xd_test, yd_train, yd_test = train_test_split(
-                x_def,
-                y_def,
-                test_size=test_ratio,
-                random_state=int(seed),
-                stratify=y_def,
-            )
-
-            base_clf = train_rf(xb_train, yb_train, seed=seed)
-            base_labels = sorted(np.unique(yb_test).tolist())
-            fixed_labels = sorted(np.unique(yd_test).tolist())
-            base_metrics = eval_metrics(base_clf, xb_test, yb_test, labels=base_labels)
-            fixed_metrics = eval_metrics(base_clf, xd_test, yd_test, labels=fixed_labels)
-            retrain_clf = train_rf(xd_train, yd_train, seed=seed)
-            retrain_metrics = eval_metrics(retrain_clf, xd_test, yd_test, labels=fixed_labels)
-
-            b_acc.append(base_metrics["accuracy"])
-            b_f1.append(base_metrics["f1_macro"])
-            f_acc.append(fixed_metrics["accuracy"])
-            f_f1.append(fixed_metrics["f1_macro"])
-            r_acc.append(retrain_metrics["accuracy"])
-            r_f1.append(retrain_metrics["f1_macro"])
-            baseline_windows.append(int(len(baseline_ds)))
-            defense_windows.append(int(len(defense_ds)))
-            baseline_labels.update(np.unique(y_base).tolist())
-            defense_labels.update(np.unique(y_def).tolist())
-
-            _write_metric_eval_artifact(
-                root=root,
-                experiment_root=experiment_root,
-                method=method_name,
-                seed=seed,
-                mode="fixed_attacker",
-                baseline_metrics=base_metrics,
-                defended_metrics=fixed_metrics,
-                baseline_log=baseline_log,
-                defense_log=defense_log,
-                baseline_windows=len(baseline_ds),
-                defense_windows=len(defense_ds),
-            )
-            _write_metric_eval_artifact(
-                root=root,
-                experiment_root=experiment_root,
-                method=method_name,
-                seed=seed,
-                mode="retrain_attacker",
-                baseline_metrics=base_metrics,
-                defended_metrics=retrain_metrics,
-                baseline_log=baseline_log,
-                defense_log=defense_log,
-                baseline_windows=len(baseline_ds),
-                defense_windows=len(defense_ds),
-            )
-
-            per_seed_runs.append(
-                {
-                    "seed": int(seed),
-                    "dataset": {
-                        "baseline_windows": int(len(baseline_ds)),
-                        "defense_windows": int(len(defense_ds)),
-                        "baseline_labels": sorted(np.unique(y_base).tolist()),
-                        "defense_labels": sorted(np.unique(y_def).tolist()),
-                    },
-                    "source_log_paths": {
-                        "baseline_app_log": _rel(baseline_log, root),
-                        "defense_app_log": _rel(defense_log, root),
-                        "defense_radio_log": None,
-                        "log_type": "cooja_metric_log",
-                    },
-                    "baseline_test": base_metrics,
-                    "fixed_attacker_on_defense": fixed_metrics,
-                    "retrain_attacker_on_defense": retrain_metrics,
-                }
-            )
-            print(
-                f"[metric:{method_name}][seed={seed}] "
-                f"baseline={base_metrics['accuracy']:.4f}, "
-                f"fixed={fixed_metrics['accuracy']:.4f}, "
-                f"retrain={retrain_metrics['accuracy']:.4f}"
-            )
-
-        methods_summary[method_name] = {
-            "defense_log_paths": {
-                "radio_log": None,
-                "app_log": _rel(_metric_log_path(experiment_root, seeds[0], method_name), root),
-                "log_pattern": _rel(
-                    experiment_root / "seed_{seed}" / "random_forest" / method_name / "COOJA.testlog",
-                    root,
-                ),
-                "log_type": "cooja_metric_log",
-            },
-            "generation": {
-                "mode": "from_metric_logs",
-                "transform": None,
-                "transform_config": None,
-            },
-            "dataset": {
-                "baseline_windows": int(round(mean(baseline_windows))),
-                "defense_windows": int(round(mean(defense_windows))),
-                "baseline_windows_by_seed": dict(zip([str(s) for s in seeds], baseline_windows)),
-                "defense_windows_by_seed": dict(zip([str(s) for s in seeds], defense_windows)),
-                "baseline_labels": sorted(baseline_labels),
-                "defense_labels": sorted(defense_labels),
-            },
-            "baseline_test": {
-                "accuracy": summarize(b_acc),
-                "f1_macro": summarize(b_f1),
-            },
-            "fixed_attacker": {
-                "accuracy": summarize(f_acc),
-                "f1_macro": summarize(f_f1),
-                "delta_vs_baseline_accuracy_mean": float(mean(f_acc) - mean(b_acc)),
-                "delta_vs_baseline_f1_mean": float(mean(f_f1) - mean(b_f1)),
-            },
-            "retrain_attacker": {
-                "accuracy": summarize(r_acc),
-                "f1_macro": summarize(r_f1),
-                "delta_vs_baseline_accuracy_mean": float(mean(r_acc) - mean(b_acc)),
-                "delta_vs_baseline_f1_mean": float(mean(r_f1) - mean(b_f1)),
-            },
-            "runs": per_seed_runs,
-        }
-
-    final_report = {
-        "config": {
-            "source": "outputs/experiments/cooja/seed_{seed}/random_forest/{method}/COOJA.testlog",
-            "metric_log_experiment_root": _rel(experiment_root, root),
-            "window_s": float(window_s),
-            "step_s": float(step_s),
-            "min_requests": int(min_requests),
-            "dominance_threshold": float(dominance_threshold),
-            "test_ratio": float(test_ratio),
-            "seeds": seeds,
-            "methods": methods,
-            "log_type": "cooja_metric_log",
-        },
-        "methods": methods_summary,
-    }
-    out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "defense_eval_report.json").write_text(
-        json.dumps(final_report, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    plot_method_bars(methods_summary, out_dir / "method_accuracy_bars.png")
-    print(f"[OK] report: {out_dir / 'defense_eval_report.json'}")
-    print(f"[OK] plot:   {out_dir / 'method_accuracy_bars.png'}")
-    return final_report
-
-
 def load_manifest(path: Path) -> dict[str, Any]:
     data = json.loads(path.read_text(encoding="utf-8"))
     if "baseline" not in data or "methods" not in data:
@@ -623,41 +303,17 @@ def main() -> None:
     ap.add_argument("--dominance_threshold", type=float, default=0.2)
     ap.add_argument("--test_ratio", type=float, default=0.3)
     ap.add_argument("--seeds", default="42,123,2026")
-    ap.add_argument("--methods", default="dummy_noise,dummy_ldp,dummy_adaptive_ldp")
-    ap.add_argument(
-        "--metric-experiment-root",
-        default=None,
-        help="Read no-gui Cooja COOJA.testlog files under outputs/experiments/cooja instead of legacy RadioLogger/LogListener pairs.",
-    )
     args = ap.parse_args()
 
     root = Path(__file__).resolve().parents[2]
     out_dir = (root / args.out_dir).resolve() if not Path(args.out_dir).is_absolute() else Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    seeds = parse_seed_list(str(args.seeds))
-
-    if args.metric_experiment_root:
-        experiment_root = Path(args.metric_experiment_root)
-        if not experiment_root.is_absolute():
-            experiment_root = (root / experiment_root).resolve()
-        evaluate_metric_experiment_logs(
-            root=root,
-            experiment_root=experiment_root,
-            out_dir=out_dir,
-            methods=parse_method_list(str(args.methods)),
-            seeds=seeds,
-            window_s=float(args.window_s),
-            step_s=float(args.step_s),
-            min_requests=int(args.min_requests),
-            dominance_threshold=float(args.dominance_threshold),
-            test_ratio=float(args.test_ratio),
-        )
-        return
 
     manifest_path = Path(args.manifest)
     if not manifest_path.is_absolute():
         manifest_path = (root / manifest_path).resolve()
     manifest = resolve_manifest_paths(load_manifest(manifest_path))
+    seeds = parse_seed_list(str(args.seeds))
 
     missing_logs = _missing_log_entries(manifest)
     if missing_logs:

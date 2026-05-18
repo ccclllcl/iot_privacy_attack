@@ -4,15 +4,11 @@
   "model": "random_forest",
   "method": "dummy_noise",
   "mode": "retrain_attacker",
-  "baseline_acc": 0.17391304347826086,
-  "defended_acc": 0.1791044776119403,
-  "accuracy_drop": -0.005191434133679423,
-  "baseline_f1_macro": 0.1826431830593873,
-  "defended_f1_macro": 0.17090775102594144,
-  "baseline_windows": 460,
-  "defense_windows": 446,
-  "source_log_type": "cooja_metric_log",
-  "baseline_source_app_log": "outputs/experiments/cooja/seed_2026/random_forest/baseline/COOJA.testlog",
-  "source_app_log": "outputs/experiments/cooja/seed_2026/random_forest/dummy_noise/COOJA.testlog",
-  "source_radio_log": null
+  "baseline_acc": "0.24315352697095435",
+  "defended_acc": "0.29411764705882354",
+  "accuracy_drop": "-0.050964120087869186",
+  "baseline_f1_macro": "0.2411207688402276",
+  "defended_f1_macro": "0.27901533167661347",
+  "source_radio_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\Radiomsg_dummy_noise.txt",
+  "source_app_log": "\\\\wsl$\\Ubuntu-22.04\\home\\linchen\\iot-privacy-project\\loglistener_dummy_noise.txt"
 }
