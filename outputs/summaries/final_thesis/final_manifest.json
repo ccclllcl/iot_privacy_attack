@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-11T10:49:38",
-  "experiment_result_commit": "a43cb0e28822124fcaea8df2f40ff6119b571299",
+  "generated_at": "2026-05-18T08:55:52",
+  "experiment_result_commit": "bcd3597810165b0196dd715f8bd954602c26750e",
   "repository_cleanup_commit": "22580d40585af923aa1180215098db4403d47b79",
-  "latest_verified_commit": "working_tree_before_final_commit",
+  "latest_verified_commit": "bcd3597810165b0196dd715f8bd954602c26750e",
   "inputs": {
     "experiment_source_root": "outputs/experiments",
     "cooja_manifest_candidates": [
