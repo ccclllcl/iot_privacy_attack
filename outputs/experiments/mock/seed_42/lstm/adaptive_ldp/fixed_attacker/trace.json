@@ -1,11 +1,5 @@
 {
-  "dataset": "mock",
-  "seed": 42,
-  "model_type": "lstm",
-  "method": "adaptive_ldp",
-  "mode": "fixed_attacker",
-  "config": "configs/generated_all_methods/default.seed_42.adaptive_ldp.yaml",
-  "command": "python experiments/core/run_defense_eval.py --mode fixed_attacker",
-  "timestamp": "2026-05-07T13:36:50",
-  "git_commit": "b516557152acf3268c3142f437183d7faf33d04a"
+  "generated_at": "2026-06-01T13:23:39",
+  "artifact_type": "defense_evaluation",
+  "baseline_accuracy": 0.7649006622516556
 }

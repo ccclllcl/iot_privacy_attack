@@ -1,0 +1,707 @@
+{
+  "generated_at": "2026-06-01T13:24:32",
+  "scope": "mock seed_42 lstm baseline consistency",
+  "pre_rerun": {
+    "phase": "pre_rerun",
+    "baseline_confusion_path": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json",
+    "baseline_accuracy_from_trace_over_sum": 0.3576158940397351,
+    "baseline_confusion_accuracy_field": 0.3576158940397351,
+    "baseline_metrics_path": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_metrics.json",
+    "baseline_metrics_accuracy": 0.3576158940397351,
+    "baseline_metrics_matches_confusion": true,
+    "classification_reports": [
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/classification_report.txt",
+        "method": "adaptive_ldp",
+        "mode": "fixed_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.47351,
+        "baseline_matches_confusion": false
+      },
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/classification_report.txt",
+        "method": "adaptive_ldp",
+        "mode": "retrain_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.460265,
+        "baseline_matches_confusion": false
+      },
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/classification_report.txt",
+        "method": "ldp",
+        "mode": "fixed_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.336093,
+        "baseline_matches_confusion": false
+      },
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/classification_report.txt",
+        "method": "ldp",
+        "mode": "retrain_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.291391,
+        "baseline_matches_confusion": false
+      },
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/classification_report.txt",
+        "method": "noise",
+        "mode": "fixed_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.370861,
+        "baseline_matches_confusion": false
+      },
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/classification_report.txt",
+        "method": "noise",
+        "mode": "retrain_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.32947,
+        "baseline_matches_confusion": false
+      }
+    ],
+    "baseline_acc_value_sources": {
+      "0.357616": [
+        "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json",
+        "outputs/experiments/mock/seed_42/lstm/baseline/baseline_metrics.json"
+      ],
+      "0.764901": [
+        "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/classification_report.txt",
+        "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/classification_report.txt",
+        "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/classification_report.txt",
+        "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/classification_report.txt",
+        "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/classification_report.txt",
+        "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/classification_report.txt"
+      ]
+    },
+    "detected_dual_baseline_acc": true,
+    "artifact_file_stats": {
+      "data/processed/mock/seed_42/sequences.npz": {
+        "exists": true,
+        "mtime": 1777279445.7837853,
+        "size": 159237
+      },
+      "outputs/models/mock/seed_42/lstm/baseline/best_lstm.pt": {
+        "exists": true,
+        "mtime": 1778317248.2177486,
+        "size": 818053
+      },
+      "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json": {
+        "exists": true,
+        "mtime": 1778317646.9454236,
+        "size": 1725
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/confusion.json": {
+        "exists": true,
+        "mtime": 1777279516.2010984,
+        "size": 1743
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/metrics.json": {
+        "exists": true,
+        "mtime": 1777279516.2010984,
+        "size": 1743
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime": 1778310158.3143914,
+        "size": 179
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/defense_report.json": {
+        "exists": true,
+        "mtime": 1777279529.030008,
+        "size": 1524
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/trace.json": {
+        "exists": true,
+        "mtime": 1778304803.801904,
+        "size": 386
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime": 1778313135.347316,
+        "size": 1610
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/confusion.json": {
+        "exists": true,
+        "mtime": 1777279519.2996023,
+        "size": 1761
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/metrics.json": {
+        "exists": true,
+        "mtime": 1777279519.2996023,
+        "size": 1761
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime": 1778310158.3193924,
+        "size": 181
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/defense_report.json": {
+        "exists": true,
+        "mtime": 1777279529.030008,
+        "size": 1524
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/trace.json": {
+        "exists": true,
+        "mtime": 1778304803.8029065,
+        "size": 390
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime": 1778313135.358318,
+        "size": 1632
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json": {
+        "exists": true,
+        "mtime": 1777279562.6616485,
+        "size": 1743
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/metrics.json": {
+        "exists": true,
+        "mtime": 1777279562.6616485,
+        "size": 1743
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime": 1778310158.3423932,
+        "size": 170
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/defense_report.json": {
+        "exists": true,
+        "mtime": 1777279577.4136293,
+        "size": 1514
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/trace.json": {
+        "exists": true,
+        "mtime": 1778304803.8039048,
+        "size": 368
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime": 1778313135.3705695,
+        "size": 1511
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/confusion.json": {
+        "exists": true,
+        "mtime": 1777279565.9569826,
+        "size": 1777
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/metrics.json": {
+        "exists": true,
+        "mtime": 1777279565.9569826,
+        "size": 1777
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime": 1778310158.3474817,
+        "size": 172
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/defense_report.json": {
+        "exists": true,
+        "mtime": 1777279577.4136293,
+        "size": 1514
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/trace.json": {
+        "exists": true,
+        "mtime": 1778304803.804905,
+        "size": 372
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime": 1778313135.3805742,
+        "size": 1533
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json": {
+        "exists": true,
+        "mtime": 1777279625.4060605,
+        "size": 1753
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/metrics.json": {
+        "exists": true,
+        "mtime": 1777279625.4060605,
+        "size": 1753
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime": 1778310158.3656676,
+        "size": 172
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/defense_report.json": {
+        "exists": true,
+        "mtime": 1777279641.0752,
+        "size": 1499
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/trace.json": {
+        "exists": true,
+        "mtime": 1778304803.8059044,
+        "size": 372
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime": 1778313135.3915746,
+        "size": 1533
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/confusion.json": {
+        "exists": true,
+        "mtime": 1777279628.991757,
+        "size": 1776
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/metrics.json": {
+        "exists": true,
+        "mtime": 1777279628.991757,
+        "size": 1776
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime": 1778310158.3696945,
+        "size": 174
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/defense_report.json": {
+        "exists": true,
+        "mtime": 1777279641.0752,
+        "size": 1499
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/trace.json": {
+        "exists": true,
+        "mtime": 1778304803.8069043,
+        "size": 376
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime": 1778313135.4025736,
+        "size": 1555
+      }
+    }
+  },
+  "post_rerun": {
+    "phase": "post_rerun",
+    "baseline_confusion_path": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json",
+    "baseline_accuracy_from_trace_over_sum": 0.7649006622516556,
+    "baseline_confusion_accuracy_field": 0.7649006622516556,
+    "baseline_metrics_path": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_metrics.json",
+    "baseline_metrics_accuracy": 0.7649006622516556,
+    "baseline_metrics_matches_confusion": true,
+    "classification_reports": [
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/classification_report.txt",
+        "method": "adaptive_ldp",
+        "mode": "fixed_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.47351,
+        "baseline_matches_confusion": true
+      },
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/classification_report.txt",
+        "method": "adaptive_ldp",
+        "mode": "retrain_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.460265,
+        "baseline_matches_confusion": true
+      },
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/classification_report.txt",
+        "method": "ldp",
+        "mode": "fixed_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.336093,
+        "baseline_matches_confusion": true
+      },
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/classification_report.txt",
+        "method": "ldp",
+        "mode": "retrain_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.291391,
+        "baseline_matches_confusion": true
+      },
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/classification_report.txt",
+        "method": "noise",
+        "mode": "fixed_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.370861,
+        "baseline_matches_confusion": true
+      },
+      {
+        "path": "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/classification_report.txt",
+        "method": "noise",
+        "mode": "retrain_attacker",
+        "baseline_acc": 0.764901,
+        "defended_acc": 0.32947,
+        "baseline_matches_confusion": true
+      }
+    ],
+    "baseline_acc_value_sources": {
+      "0.764901": [
+        "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json",
+        "outputs/experiments/mock/seed_42/lstm/baseline/baseline_metrics.json",
+        "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/classification_report.txt",
+        "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/trace.json",
+        "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/classification_report.txt",
+        "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/trace.json",
+        "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/classification_report.txt",
+        "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/trace.json",
+        "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/classification_report.txt",
+        "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/trace.json",
+        "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/classification_report.txt",
+        "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/trace.json",
+        "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/classification_report.txt",
+        "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/trace.json"
+      ]
+    },
+    "detected_dual_baseline_acc": false,
+    "artifact_file_stats": {
+      "data/processed/mock/seed_42/sequences.npz": {
+        "exists": true,
+        "mtime_iso": "2026-04-27T16:44:05",
+        "size": 159237
+      },
+      "outputs/models/mock/seed_42/lstm/baseline/best_lstm.pt": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:38",
+        "size": 818053
+      },
+      "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:38",
+        "size": 1749
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/confusion.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:39",
+        "size": 1743
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/metrics.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:39",
+        "size": 1743
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:39",
+        "size": 179
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/defense_report.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:39",
+        "size": 1930
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/trace.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:39",
+        "size": 131
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:39",
+        "size": 611
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/confusion.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:52",
+        "size": 1761
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/metrics.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:52",
+        "size": 1761
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:52",
+        "size": 181
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/defense_report.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:52",
+        "size": 1522
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/trace.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:52",
+        "size": 131
+      },
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:52",
+        "size": 670
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:53",
+        "size": 1743
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/metrics.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:53",
+        "size": 1743
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:53",
+        "size": 170
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/defense_report.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:53",
+        "size": 1918
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/trace.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:53",
+        "size": 131
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:23:53",
+        "size": 584
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/confusion.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:00",
+        "size": 1777
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/metrics.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:00",
+        "size": 1777
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:00",
+        "size": 172
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/defense_report.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:00",
+        "size": 1517
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/trace.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:00",
+        "size": 131
+      },
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:00",
+        "size": 625
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:01",
+        "size": 1753
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/metrics.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:01",
+        "size": 1753
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:01",
+        "size": 172
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/defense_report.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:01",
+        "size": 1932
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/trace.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:01",
+        "size": 131
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:01",
+        "size": 590
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/confusion.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:12",
+        "size": 1777
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/metrics.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:12",
+        "size": 1777
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/classification_report.txt": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:12",
+        "size": 174
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/defense_report.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:12",
+        "size": 1580
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/trace.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:12",
+        "size": 131
+      },
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/source_manifest.json": {
+        "exists": true,
+        "mtime_iso": "2026-06-01T13:24:12",
+        "size": 635
+      }
+    }
+  },
+  "rerun_performed": true,
+  "rerun_reason": "pre-rerun artifacts mixed baseline_acc=0.357616 dashboard demo baseline with baseline_acc=0.764901 full main-matrix defense reports",
+  "rerun_outputs": {
+    "baseline_model": "outputs/models/mock/seed_42/lstm/baseline/best_lstm.pt",
+    "baseline_confusion": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json",
+    "defense_dirs": [
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker",
+      "outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker",
+      "outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker",
+      "outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker",
+      "outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker",
+      "outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker"
+    ],
+    "summary_csv": "outputs/summaries/final_thesis/mock/mock_summary.csv",
+    "summary_builder": {
+      "command": "C:\\Users\\lc107\\AppData\\Local\\Programs\\Python\\Python314\\python.exe scripts/final_thesis/build_final_thesis_results.py",
+      "returncode": 0,
+      "stdout_tail": "FINAL_THESIS_RESULTS_READY=true\nfinal_summary_path=outputs/summaries/final_thesis/final_summary.csv\nfinal_report_path=outputs/summaries/final_thesis/final_thesis_summary.md\n",
+      "stderr_tail": ""
+    }
+  },
+  "defense_results": [
+    {
+      "method": "adaptive_ldp",
+      "mode": "fixed_attacker",
+      "defended_acc": 0.4735099337748344
+    },
+    {
+      "method": "adaptive_ldp",
+      "mode": "retrain_attacker",
+      "defended_acc": 0.4602649006622517
+    },
+    {
+      "method": "ldp",
+      "mode": "fixed_attacker",
+      "defended_acc": 0.3360927152317881
+    },
+    {
+      "method": "ldp",
+      "mode": "retrain_attacker",
+      "defended_acc": 0.2913907284768212
+    },
+    {
+      "method": "noise",
+      "mode": "fixed_attacker",
+      "defended_acc": 0.3708609271523179
+    },
+    {
+      "method": "noise",
+      "mode": "retrain_attacker",
+      "defended_acc": 0.3294701986754967
+    }
+  ],
+  "mock_summary_seed42_lstm_rows": [
+    {
+      "accuracy_drop": "0.29139072847682124",
+      "baseline_acc": "0.7649006622516556",
+      "baseline_f1_macro": "0.7558416715559573",
+      "dataset": "mock",
+      "defended_acc": "0.4735099337748344",
+      "defended_f1_macro": "0.31636311158817537",
+      "mae": "0.39027860413277304",
+      "method": "adaptive_ldp",
+      "mode": "fixed_attacker",
+      "model_type": "lstm",
+      "mse": "0.8957119544972894",
+      "pearson_r": "0.14704641567008098",
+      "relative_accuracy_drop_percent": "38.0952380952381",
+      "seed": "42",
+      "source_files": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json;outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/confusion.json;outputs/experiments/mock/seed_42/lstm/adaptive_ldp/fixed_attacker/defense_report.json"
+    },
+    {
+      "accuracy_drop": "0.304635761589404",
+      "baseline_acc": "0.7649006622516556",
+      "baseline_f1_macro": "0.7558416715559573",
+      "dataset": "mock",
+      "defended_acc": "0.4602649006622517",
+      "defended_f1_macro": "0.39422385510774616",
+      "mae": "0.39027860413277304",
+      "method": "adaptive_ldp",
+      "mode": "retrain_attacker",
+      "model_type": "lstm",
+      "mse": "0.8957119544972894",
+      "pearson_r": "0.14704641567008098",
+      "relative_accuracy_drop_percent": "39.82683982683983",
+      "seed": "42",
+      "source_files": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json;outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/confusion.json;outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/defense_report.json"
+    },
+    {
+      "accuracy_drop": "0.4288079470198676",
+      "baseline_acc": "0.7649006622516556",
+      "baseline_f1_macro": "0.7558416715559573",
+      "dataset": "mock",
+      "defended_acc": "0.3360927152317881",
+      "defended_f1_macro": "0.19165992524134562",
+      "mae": "0.5168689694140145",
+      "method": "ldp",
+      "mode": "fixed_attacker",
+      "model_type": "lstm",
+      "mse": "1.0058371716019419",
+      "pearson_r": "0.108581906577775",
+      "relative_accuracy_drop_percent": "56.06060606060607",
+      "seed": "42",
+      "source_files": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json;outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json;outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/defense_report.json"
+    },
+    {
+      "accuracy_drop": "0.47350993377483447",
+      "baseline_acc": "0.7649006622516556",
+      "baseline_f1_macro": "0.7558416715559573",
+      "dataset": "mock",
+      "defended_acc": "0.2913907284768212",
+      "defended_f1_macro": "0.2257524996900046",
+      "mae": "0.5168689694140145",
+      "method": "ldp",
+      "mode": "retrain_attacker",
+      "model_type": "lstm",
+      "mse": "1.0058371716019419",
+      "pearson_r": "0.108581906577775",
+      "relative_accuracy_drop_percent": "61.904761904761905",
+      "seed": "42",
+      "source_files": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json;outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/confusion.json;outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/defense_report.json"
+    },
+    {
+      "accuracy_drop": "0.39403973509933776",
+      "baseline_acc": "0.7649006622516556",
+      "baseline_f1_macro": "0.7558416715559573",
+      "dataset": "mock",
+      "defended_acc": "0.3708609271523179",
+      "defended_f1_macro": "0.2188925706986578",
+      "mae": "0.4997777148464784",
+      "method": "noise",
+      "mode": "fixed_attacker",
+      "model_type": "lstm",
+      "mse": "0.4990515514628953",
+      "pearson_r": "0.21107981852836696",
+      "relative_accuracy_drop_percent": "51.515151515151516",
+      "seed": "42",
+      "source_files": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json;outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json;outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/defense_report.json"
+    },
+    {
+      "accuracy_drop": "0.43543046357615894",
+      "baseline_acc": "0.7649006622516556",
+      "baseline_f1_macro": "0.7558416715559573",
+      "dataset": "mock",
+      "defended_acc": "0.3294701986754967",
+      "defended_f1_macro": "0.2834620922360163",
+      "mae": "0.4997777148464784",
+      "method": "noise",
+      "mode": "retrain_attacker",
+      "model_type": "lstm",
+      "mse": "0.4990515514628953",
+      "pearson_r": "0.21107981852836696",
+      "relative_accuracy_drop_percent": "56.926406926406926",
+      "seed": "42",
+      "source_files": "outputs/experiments/mock/seed_42/lstm/baseline/baseline_confusion.json;outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/confusion.json;outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/defense_report.json"
+    }
+  ]
+}

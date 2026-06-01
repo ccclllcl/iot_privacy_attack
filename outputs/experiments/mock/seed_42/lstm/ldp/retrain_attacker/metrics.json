@@ -91,13 +91,13 @@
       "count": 16
     },
     {
-      "true": "using_computer",
-      "pred": "cooking",
+      "true": "cooking",
+      "pred": "away",
       "count": 15
     },
     {
-      "true": "cooking",
-      "pred": "away",
+      "true": "using_computer",
+      "pred": "cooking",
       "count": 15
     }
   ],

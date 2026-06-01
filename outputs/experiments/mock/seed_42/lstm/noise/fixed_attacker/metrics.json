@@ -82,12 +82,12 @@
     },
     {
       "true": "sleep",
-      "pred": "other",
+      "pred": "cooking",
       "count": 20
     },
     {
       "true": "sleep",
-      "pred": "cooking",
+      "pred": "other",
       "count": 20
     },
     {

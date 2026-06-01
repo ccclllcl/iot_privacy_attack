@@ -96,8 +96,8 @@
       "count": 16
     },
     {
-      "true": "other",
-      "pred": "sleep",
+      "true": "away",
+      "pred": "cooking",
       "count": 13
     }
   ],

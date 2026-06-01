@@ -1,4 +1,5 @@
 {
-  "generated_at": "2026-05-09T17:07:26",
-  "artifact_type": "baseline_evaluation"
+  "generated_at": "2026-06-01T13:23:38",
+  "artifact_type": "baseline_training_and_evaluation",
+  "num_epochs": 80
 }

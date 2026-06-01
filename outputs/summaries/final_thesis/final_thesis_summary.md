@@ -7,12 +7,12 @@
 - 说明: 实验结果包生成 commit 与后续仓库清理 commit 可能不同；清理未重跑实验，只修正文档、路径和冗余产物。
 - python version: `3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]`
 - OS: `Windows-11-10.0.26200-SP0`
-- start time / end time: `2026-05-11T10:49:30` / `2026-05-11T10:49:44`
+- start time / end time: `2026-06-01T13:24:13` / `2026-06-01T13:24:32`
 
 ## 2. mock 实验是否完整
 - mock 主矩阵完整: `36` / `36`。
 - mock 参数扫描完整: `36` / `36`；missing=`0`。
-- LSTM 主要结果: baseline_acc 均值 `0.6402`，defended_acc 均值 `0.3764`。
+- LSTM 主要结果: baseline_acc 均值 `0.7759`，defended_acc 均值 `0.3764`。
 - MLP 主要结果: baseline_acc 均值 `0.4735`，defended_acc 均值 `0.2568`。
 - adaptive_ldp 已有 `6`-profile 级消融汇总。
 - 可写入论文的结论: fixed_attacker 与 retrain_attacker 在 mock 数据上呈现可观差异，支持隐私-效用分析。

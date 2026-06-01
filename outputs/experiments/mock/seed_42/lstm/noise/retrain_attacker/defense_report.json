@@ -9,7 +9,7 @@
   "defense_config": {
     "enabled": true,
     "method": "noise",
-    "mode": "fixed_attacker",
+    "mode": "retrain_attacker",
     "epsilon": 1.0,
     "ldp_sensitivity": 1.0,
     "noise_type": "laplace",
@@ -27,25 +27,25 @@
   "attack_metrics": {
     "note": "重训后模型在干净测试集上的表现通常下降（分布偏移），在防御后测试集上为自适应攻击者的主指标。",
     "retrained_on_defended": {
-      "accuracy_on_defended_test": 0.2599337748344371,
-      "f1_macro_on_defended_test": 0.18708902755334428,
+      "accuracy_on_defended_test": 0.3294701986754967,
+      "f1_macro_on_defended_test": 0.2834620922360163,
       "per_class_recall_on_defended_test": {
-        "sleep": 0.0,
-        "away": 0.711864406779661,
-        "cooking": 0.01532567049808429,
-        "using_computer": 0.5847953216374269,
-        "other": 0.171875
+        "sleep": 0.16326530612244897,
+        "away": 0.3728813559322034,
+        "cooking": 0.2413793103448276,
+        "using_computer": 0.5146198830409356,
+        "other": 0.28125
       }
     },
     "same_retrained_model_on_clean_test": {
-      "accuracy": 0.09768211920529801,
-      "f1_macro": 0.03559577677224736,
+      "accuracy": 0.5347682119205298,
+      "f1_macro": 0.4677178116497708,
       "per_class_recall": {
-        "sleep": 0.0,
-        "away": 1.0,
-        "cooking": 0.0,
-        "using_computer": 0.0,
-        "other": 0.0
+        "sleep": 0.24489795918367346,
+        "away": 0.8983050847457628,
+        "cooking": 0.26436781609195403,
+        "using_computer": 0.9824561403508771,
+        "other": 0.328125
       }
     }
   }

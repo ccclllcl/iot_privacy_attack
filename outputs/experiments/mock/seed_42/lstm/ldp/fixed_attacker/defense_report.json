@@ -1,5 +1,5 @@
 {
-  "mode": "retrain_attacker",
+  "mode": "fixed_attacker",
   "distortion": {
     "mse": 1.0058371716019419,
     "mae": 0.5168689694140145,
@@ -25,27 +25,42 @@
     "numeric_features": null
   },
   "attack_metrics": {
-    "note": "重训后模型在干净测试集上的表现通常下降（分布偏移），在防御后测试集上为自适应攻击者的主指标。",
-    "retrained_on_defended": {
-      "accuracy_on_defended_test": 0.21357615894039736,
-      "f1_macro_on_defended_test": 0.15557913185722408,
-      "per_class_recall_on_defended_test": {
-        "sleep": 0.04081632653061224,
-        "away": 0.576271186440678,
-        "cooking": 0.038314176245210725,
-        "using_computer": 0.47953216374269003,
-        "other": 0.015625
+    "baseline": {
+      "accuracy": 0.7649006622516556,
+      "precision_macro": 0.7529925369008299,
+      "recall_macro": 0.8070110569066902,
+      "f1_macro": 0.7558416715559573,
+      "per_class_recall": {
+        "sleep": 0.7551020408163265,
+        "away": 0.7627118644067796,
+        "cooking": 0.6283524904214559,
+        "using_computer": 0.8888888888888888,
+        "other": 1.0
       }
     },
-    "same_retrained_model_on_clean_test": {
-      "accuracy": 0.43211920529801323,
-      "f1_macro": 0.12069364161849712,
+    "defended_fixed_attacker": {
+      "accuracy": 0.3360927152317881,
+      "precision_macro": 0.27271406460367437,
+      "recall_macro": 0.23985071720763323,
+      "f1_macro": 0.19165992524134562,
       "per_class_recall": {
-        "sleep": 0.0,
+        "sleep": 0.10204081632653061,
         "away": 0.0,
-        "cooking": 1.0,
-        "using_computer": 0.0,
-        "other": 0.0
+        "cooking": 0.6168582375478927,
+        "using_computer": 0.05847953216374269,
+        "other": 0.421875
+      }
+    },
+    "defense_effect": {
+      "accuracy_drop": 0.4288079470198676,
+      "relative_accuracy_drop_percent": 56.06060606060607,
+      "macro_f1_drop": 0.5641817463146117,
+      "per_class_recall_drop": {
+        "sleep": 0.6530612244897959,
+        "away": 0.7627118644067796,
+        "cooking": 0.011494252873563204,
+        "using_computer": 0.8304093567251462,
+        "other": 0.578125
       }
     }
   }

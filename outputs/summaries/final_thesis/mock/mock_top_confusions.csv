@@ -16,8 +16,8 @@ count,dataset,method,mode,model_type,pred_label,seed,source_file,true_label
 19,mock,adaptive_ldp,retrain_attacker,lstm,sleep,42,outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/confusion.json,away
 18,mock,adaptive_ldp,retrain_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/confusion.json,using_computer
 17,mock,adaptive_ldp,retrain_attacker,lstm,sleep,42,outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/confusion.json,other
-13,mock,adaptive_ldp,retrain_attacker,lstm,using_computer,42,outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/confusion.json,other
 13,mock,adaptive_ldp,retrain_attacker,lstm,cooking,42,outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/confusion.json,away
+13,mock,adaptive_ldp,retrain_attacker,lstm,using_computer,42,outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/confusion.json,other
 12,mock,adaptive_ldp,retrain_attacker,lstm,using_computer,42,outputs/experiments/mock/seed_42/lstm/adaptive_ldp/retrain_attacker/confusion.json,sleep
 77,mock,ldp,fixed_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json,cooking
 74,mock,ldp,fixed_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json,using_computer
@@ -25,8 +25,8 @@ count,dataset,method,mode,model_type,pred_label,seed,source_file,true_label
 33,mock,ldp,fixed_attacker,lstm,cooking,42,outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json,away
 29,mock,ldp,fixed_attacker,lstm,cooking,42,outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json,other
 23,mock,ldp,fixed_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json,away
-22,mock,ldp,fixed_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json,sleep
 22,mock,ldp,fixed_attacker,lstm,cooking,42,outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json,sleep
+22,mock,ldp,fixed_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json,sleep
 19,mock,ldp,fixed_attacker,lstm,sleep,42,outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json,cooking
 15,mock,ldp,fixed_attacker,lstm,sleep,42,outputs/experiments/mock/seed_42/lstm/ldp/fixed_attacker/confusion.json,using_computer
 92,mock,ldp,retrain_attacker,lstm,using_computer,42,outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/confusion.json,cooking
@@ -37,16 +37,16 @@ count,dataset,method,mode,model_type,pred_label,seed,source_file,true_label
 23,mock,ldp,retrain_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/confusion.json,away
 17,mock,ldp,retrain_attacker,lstm,using_computer,42,outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/confusion.json,sleep
 16,mock,ldp,retrain_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/confusion.json,sleep
-15,mock,ldp,retrain_attacker,lstm,cooking,42,outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/confusion.json,using_computer
 15,mock,ldp,retrain_attacker,lstm,away,42,outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/confusion.json,cooking
+15,mock,ldp,retrain_attacker,lstm,cooking,42,outputs/experiments/mock/seed_42/lstm/ldp/retrain_attacker/confusion.json,using_computer
 87,mock,noise,fixed_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json,using_computer
 62,mock,noise,fixed_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json,cooking
 52,mock,noise,fixed_attacker,lstm,cooking,42,outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json,using_computer
 39,mock,noise,fixed_attacker,lstm,cooking,42,outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json,away
 29,mock,noise,fixed_attacker,lstm,sleep,42,outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json,using_computer
 21,mock,noise,fixed_attacker,lstm,sleep,42,outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json,cooking
-20,mock,noise,fixed_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json,sleep
 20,mock,noise,fixed_attacker,lstm,cooking,42,outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json,sleep
+20,mock,noise,fixed_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json,sleep
 15,mock,noise,fixed_attacker,lstm,cooking,42,outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json,other
 10,mock,noise,fixed_attacker,lstm,sleep,42,outputs/experiments/mock/seed_42/lstm/noise/fixed_attacker/confusion.json,away
 91,mock,noise,retrain_attacker,lstm,away,42,outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/confusion.json,cooking
@@ -58,7 +58,7 @@ count,dataset,method,mode,model_type,pred_label,seed,source_file,true_label
 21,mock,noise,retrain_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/confusion.json,cooking
 17,mock,noise,retrain_attacker,lstm,using_computer,42,outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/confusion.json,other
 16,mock,noise,retrain_attacker,lstm,other,42,outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/confusion.json,sleep
-13,mock,noise,retrain_attacker,lstm,sleep,42,outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/confusion.json,other
+13,mock,noise,retrain_attacker,lstm,cooking,42,outputs/experiments/mock/seed_42/lstm/noise/retrain_attacker/confusion.json,away
 91,mock,adaptive_ldp,fixed_attacker,mlp,cooking,42,outputs/experiments/mock/seed_42/mlp/adaptive_ldp/fixed_attacker/confusion.json,using_computer
 80,mock,adaptive_ldp,fixed_attacker,mlp,other,42,outputs/experiments/mock/seed_42/mlp/adaptive_ldp/fixed_attacker/confusion.json,using_computer
 59,mock,adaptive_ldp,fixed_attacker,mlp,cooking,42,outputs/experiments/mock/seed_42/mlp/adaptive_ldp/fixed_attacker/confusion.json,other
